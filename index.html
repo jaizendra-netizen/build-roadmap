@@ -94,6 +94,34 @@
 <style>
   *,*::before,*::after{box-sizing:border-box}
   img,svg{max-width:100%}
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
 
   @media print{.mmwrap{break-inside:avoid;overflow:visible}}
 </style>
@@ -326,6 +354,7 @@
     <li><a href="#dist">★ The content distribution system. LinkedIn → site → newsletter → Reddit → AI</a></li>
     <li><a href="#mcp">★ The MCP + downloadables play (what nobody else is doing)</a></li>
     <li><a href="#kw">Master keyword table</a></li>
+    <li><a href="#niche">★ The GTM / RevOps niche: who owns it, every keyword</a></li>
     <li><a href="#set">The document set, all 15 companions</a></li>
   </ol></div>
 </header>
@@ -400,8 +429,36 @@ The underlying competitor audits, including the named backlink-vendor findings a
 │   │   │     <span class="kw">→ "n8n automation agency" · 450 · </span><span class="mid">KD 33</span>    <span class="lk">FED BY ←</span> D24 n8n-vs-zapier-vs-make
 │   │   │     <span class="ref">REF</span> <a href="https://n8n.io/integrations/">n8n.io/integrations/</a> <span class="note">· GOLD STANDARD for how integration pages are built at scale</span>
 │   │   │
-│   │   └── <b>/ai-integration-services/</b>           <span class="note">CHILD</span> · <b>D11</b>
-│   │         <span class="kw">→ "ai integration services" · 2,056 · </span><span class="mid">KD 32</span>    <span class="lk">FED BY ←</span> D27 agents+HubSpot/CRM
+│   │   ├── <b>/ai-integration-services/</b>           <span class="note">CHILD</span> · <b>D11</b>
+│   │   │     <span class="kw">→ "ai integration services" · 2,056 · </span><span class="mid">KD 32</span>    <span class="lk">FED BY ←</span> D27 agents+HubSpot/CRM
+│   │   │
+│   │   └── <b>THE GTM / REVOPS FAMILY</b> <span class="note">★ what we actually sell · added 3 Aug 2026 · see §8</span>
+│   │         <span class="note">Niche the PROOF, not the positioning. These are children of the broad parent,</span>
+│   │         <span class="note">never the site's masthead. A DR-32 site branded "GTM Engineering Agency" earns 7 visits/mo.</span>
+│   │         │
+│   │         ├── <b>/marketing-automation-agency/</b>   <span class="note">★★★ BEST RATIO ON THE WHOLE SITE</span> · <b>D09</b>
+│   │         │     <span class="kw">→ "marketing automation agency" · 1,200 · </span><span class="easy">KD 3</span><span class="kw"> · adjacent to everything we do</span>
+│   │         │     <span class="ref">REF</span> <a href="https://theaiautomationagency.ai/">theaiautomationagency.ai</a> <span class="note">· DR 10, ranks #32 here. Wide open.</span>
+│   │         │
+│   │         ├── <b>/lead-generation-automation/</b>    <span class="note">CHILD · the sentence clients actually say</span> · <b>D10</b>
+│   │         │     <span class="kw">→ 343 · </span><span class="easy">KD 4</span><span class="kw"> · $10 CPC</span>    <span class="lk">FED BY ←</span> D16 prospect-list · D18 enrichment
+│   │         │     <span class="ref">REF</span> <a href="https://utmost.agency/">utmost.agency</a> <span class="note">· DR 32, ranks #1 for "lead generation workflow"</span>
+│   │         │
+│   │         ├── <b>/revops-automation/</b>             <span class="note">CHILD · tiny volume, high intent</span> · <b>D12</b>
+│   │         │     <span class="kw">→ 68 · </span><span class="easy">KD 3</span>    <span class="lk">FED BY ←</span> D22 sales-ops-as-a-service · D26 CPQ
+│   │         │     <span class="ref">REF</span> <a href="https://revopsautomated.com/">revopsautomated.com</a> <span class="note">· DR 29 holds #1. Took them 44 months to reach 238 visits/mo.</span>
+│   │         │
+│   │         ├── <b>/abm-automation/</b>                <span class="note">CHILD ⚠ brand collision</span> · <b>D12</b>
+│   │         │     <span class="kw">→ 100 · </span><span class="mid">KD 21</span>    <span class="hard">⚠</span> <span class="note">page 1 is an Oklahoma HVAC firm (abmautomation.com, DR 1).</span>
+│   │         │     <span class="note">        "ABM" reads as ABM Industries to Google. Target "abm digital marketing" (150, KD 12) instead.</span>
+│   │         │
+│   │         ├── <b>/hubspot-workflow-automation/</b>   <span class="note">CHILD · 50 · pairs with the integrations layer</span> · <b>D13</b>
+│   │         ├── <b>/clay-implementation/</b>           <span class="note">CHILD · "clay sales" 100 · </span><span class="easy">KD 4</span><span class="note"> · ⚠ never target "clay agency" (a UX firm owns it)</span> · <b>D13</b>
+│   │         └── <b>/intent-data-and-signals/</b>       <span class="note">CHILD · "intent data providers" 600 · </span><span class="easy">KD 5</span> · <b>D14</b>
+│   │               <span class="ref">REF</span> <a href="https://fullfunnel.co/">fullfunnel.co</a> <span class="note">· DR 56, ranks #7. Their whole business is this long-tail.</span>
+│   │
+│   │         <span class="hard">⛔ NEVER TARGET</span> <span class="note">"gtm automation" · Google Tag Manager owns that SERP entirely.</span>
+│   │
 │   │
 │   ├── <b>/ai-consulting-services/</b>                <span class="note">★ PARENT 3 · shell now, ranks yr 2</span> · <b>D22</b>
 │   │   │ <span class="kw">→ "ai consulting services" · 8,500 · </span><span class="hard">KD 45</span>
@@ -635,7 +692,7 @@ flowchart TD
   HOME["🏠 HOMEPAGE · KD 17"]
   P1["⚙️ PARENT 1 · KD 13"]; P2["⚙️ PARENT 2 · KD 24"]; P3["⚙️ PARENT 3 consulting"]; P4["⚙️ PARENT 4 hire/managed"]
   IND["🏢 /industries/ HUB"]; CASE["📊 /case-studies/ HUB"]; COST["💰 COST PILLAR + CALCULATOR"]
-  GLO["📖 /glossary/ — before demand"]; RES["🧲 /resources/ + downloadables"]; AIN["🤖 /mcp/ + /prompts/"]
+  GLO["📖 /glossary/ · before demand"]; RES["🧲 /resources/ + downloadables"]; AIN["🤖 /mcp/ + /prompts/"]
   BOOK["📅 /book-a-call/"]; NEWS["✉️ newsletter"]
   HOME --&gt; P1 & P2 & P3 & P4 & IND & CASE & COST
   P1 --&gt; CASE & COST & IND
@@ -711,7 +768,7 @@ flowchart TD
 </div>
 <!--mermaid
 flowchart TD
-  subgraph A["INSURANCE — replicate this exact shape per vertical"]
+  subgraph A["INSURANCE · replicate this exact shape per vertical"]
     B1["blog: insurance claims automation<br/>556 · KD 7 · D14"]; B2["blog: claims processing automation<br/>248 · KD 6 · D15"]
     B3["blog: why insurance AI pilots fail<br/>D17 · citation bait"]; B4["blog: legacy integration · D22"]; B5["blog: compliance + agents · D23"]
     IP["🎯 /industries/ai-agents-for-insurance/<br/>70 · KD 3 · $10 CPC"]; C1["📊 case A"]; C2["📊 case B"]
@@ -781,7 +838,7 @@ flowchart TD
 </div>
 <!--mermaid
 flowchart TD
-  subgraph B["COST CLUSTER — highest commercial intent"]
+  subgraph B["COST CLUSTER · highest commercial intent"]
     K1["how much does an agent cost · D19"]; K2["ai agent pricing · 150 · KD 7 · D20"]
     K3["chatbot development cost · 197 · KD 9 · D21"]; K4["cost to build · D23"]
     K5["⚡ what agents cost to RUN · D29<br/>page 1 = Reddit only. Own it."]; K6["build vs buy · D26"]; K7["ROI measurement · D30"]
@@ -847,7 +904,7 @@ flowchart TD
 </div>
 <!--mermaid
 flowchart TD
-  subgraph C["MECHANICS — feeds the flagship"]
+  subgraph C["MECHANICS · feeds the flagship"]
     M1["ai agent examples · 631 · KD 11"]; M2["use cases · 783 · KD 20"]; M3["agent vs chatbot · 713 · KD 23"]
     M4["how to build an ai agent · 6,195 · KD 18 ★"]; M5["frameworks · 1,534 · KD 26"]; M6["memory & state"]
     M7["guardrails & evals"]; M8["multi-agent orchestration"]; M9["rag vs fine tuning · 503 · KD 16"]
@@ -1123,7 +1180,94 @@ For an <em>AI agent development company</em>, an MCP server is the single most o
   </tbody>
 </table></div>
 
-<h2 id="set">8 · The document set: everything, from here</h2>
+
+<h2 id="niche">8 · The GTM / RevOps niche: who owns it, and every keyword they hold</h2>
+<p class="prose">Added 3 Aug 2026. We build lead-flow systems, HubSpot and Salesforce workflows, RevOps and
+ABM automation, and AI agents for outbound. The obvious move is to name the site after that. <strong>The
+data says do not.</strong> Niche the pitch, keep the site broad, and put the niche in the children and
+the case studies.</p>
+
+<div class="warn"><span class="lbl">Someone is already running the experiment</span>
+<p><strong>restartt.ai</strong> brands itself "SaaS GTM Engineering Agency", which is almost word for word
+the positioning under consideration. It is <strong>DR 32</strong>, ten months old, and <strong>ranks #1
+for "gtm engineering agency"</strong>. That earns it <strong>seven visits a month</strong>, because the
+term is 40 searches a month.<br><br>
+<strong>theaiautomationagency.ai</strong> is <strong>DR 10</strong>, the same ten months old, positioned
+broadly, and earns <strong>1,568 visits a month from thirteen keywords.</strong> A DR-10 site with the
+broad positioning is beating a DR-32 site with the niche positioning by 224 times.</p></div>
+
+<div class="tbl"><table>
+  <thead><tr><th>Site</th><th>Positioning</th><th class="num">DR</th><th class="num">Months live</th><th class="num">Traffic/mo</th><th class="num">Keywords</th></tr></thead>
+  <tbody>
+    <tr><td><b>theaiautomationagency.ai</b></td><td class="g"><b>broad: "AI automation agency"</b></td><td class="num">10</td><td class="num">10</td><td class="num g"><b>1,568</b></td><td class="num">13</td></tr>
+    <tr><td>fullfunnel.co</td><td>demand-gen consulting long-tail</td><td class="num">56</td><td class="num">44</td><td class="num">945</td><td class="num">60+</td></tr>
+    <tr><td>axeautomation.co</td><td>broad + integration pairs</td><td class="num">~15</td><td class="num">–</td><td class="num">~250</td><td class="num">30</td></tr>
+    <tr><td>revopsautomated.com</td><td class="r">niche: RevOps automation</td><td class="num">29</td><td class="num">44</td><td class="num w">238</td><td class="num">9</td></tr>
+    <tr><td>utmost.agency</td><td class="r">niche: sales automation</td><td class="num">32</td><td class="num">14</td><td class="num w">71</td><td class="num">20</td></tr>
+    <tr><td><b>restartt.ai</b></td><td class="r"><b>niche: GTM Engineering Agency</b></td><td class="num">32</td><td class="num">10</td><td class="num r"><b>7</b></td><td class="num">1</td></tr>
+  </tbody>
+</table></div>
+
+<h3>9a · Every keyword these five actually rank for, and whether it is worth taking</h3>
+<p class="prose">Pulled live from Ahrefs, 3 Aug 2026, US. Sorted by how takeable it is. <span class="g">Green
+KD</span> means a DR-0 site can win it this quarter.</p>
+<div class="tbl"><table>
+  <thead><tr><th>Keyword</th><th class="num">Vol</th><th class="num">KD</th><th>Who holds it now</th><th>Our page</th></tr></thead>
+  <tbody>
+    <tr><td><b>marketing automation agency</b></td><td class="num">1,200</td><td class="num g">3</td><td>nobody: theaiautomationagency sits at #32</td><td><b>new parent, D09</b></td></tr>
+    <tr><td>intent data providers</td><td class="num">600</td><td class="num g">5</td><td>fullfunnel.co #7</td><td>/intent-data-and-signals/</td></tr>
+    <tr><td>n8n cloud pricing 2025</td><td class="num">450</td><td class="num g">4</td><td>axeautomation.co #2</td><td>blog → n8n child</td></tr>
+    <tr><td>b2b intent data providers</td><td class="num">350</td><td class="num g">5</td><td>fullfunnel.co #1</td><td>/intent-data-and-signals/</td></tr>
+    <tr><td>lead generation automation</td><td class="num">343</td><td class="num g">4</td><td>open</td><td><b>/lead-generation-automation/</b></td></tr>
+    <tr><td>sales workflow automation</td><td class="num">343</td><td class="num g">10</td><td>open</td><td>/lead-generation-automation/</td></tr>
+    <tr><td>apollo vs hubspot</td><td class="num">300</td><td class="num g">0</td><td>fullfunnel.co #7</td><td>blog, D24</td></tr>
+    <tr><td>difference between inbound and outbound</td><td class="num">300</td><td class="num g">0</td><td>utmost.agency #1</td><td>blog / glossary</td></tr>
+    <tr><td>revenue operations consultant</td><td class="num">270</td><td class="num g">0</td><td>open</td><td>/revops-automation/</td></tr>
+    <tr><td>ai automation agencies</td><td class="num">250</td><td class="num g">2</td><td>theaiautomationagency #1</td><td>parent page</td></tr>
+    <tr><td>how to build prospect list</td><td class="num">250</td><td class="num g">2</td><td>utmost.agency #8</td><td>blog, D16</td></tr>
+    <tr><td>outsourced sales companies</td><td class="num">250</td><td class="num g">3</td><td>utmost.agency #1</td><td>/compare/</td></tr>
+    <tr><td>data enrichment solutions</td><td class="num">250</td><td class="num g">10</td><td>utmost.agency #1</td><td>blog, D18</td></tr>
+    <tr><td>outbound prospecting tools</td><td class="num">200</td><td class="num g">0</td><td>fullfunnel.co #4</td><td>/compare/</td></tr>
+    <tr><td>sales operations cpq</td><td class="num">200</td><td class="num g">0</td><td>revopsautomated #9</td><td>/revops-automation/</td></tr>
+    <tr><td>how to market saas product</td><td class="num">200</td><td class="num g">3</td><td>utmost.agency #1</td><td>blog</td></tr>
+    <tr><td>airtable google drive integration</td><td class="num">200</td><td class="num g">1</td><td>axeautomation #9</td><td><b>integration pages</b></td></tr>
+    <tr><td>demand generation consultants</td><td class="num">150</td><td class="num g">0</td><td>fullfunnel.co #2</td><td>/ai-consulting-services/</td></tr>
+    <tr><td>go-to-market consulting</td><td class="num">150</td><td class="num g">6</td><td>fullfunnel.co #1</td><td>/ai-consulting-services/</td></tr>
+    <tr><td>zapier consulting</td><td class="num">150</td><td class="num g">6</td><td>axeautomation #6</td><td><b>integration pages</b></td></tr>
+    <tr><td>abm digital marketing</td><td class="num">150</td><td class="num g">12</td><td>fullfunnel.co #5</td><td>/abm-automation/</td></tr>
+    <tr><td>demand generation consulting</td><td class="num">100</td><td class="num g">0</td><td>fullfunnel.co #1</td><td>/ai-consulting-services/</td></tr>
+    <tr><td>clay sales</td><td class="num">100</td><td class="num g">4</td><td>utmost.agency #9</td><td>/clay-implementation/</td></tr>
+    <tr><td>zapier automation consultant</td><td class="num">100</td><td class="num g">1</td><td>axeautomation #9</td><td><b>integration pages</b></td></tr>
+    <tr><td>how to start an ai automation agency</td><td class="num">100</td><td class="num g">4</td><td>theaiautomationagency #7</td><td>blog</td></tr>
+    <tr><td>gtm consultants</td><td class="num">60</td><td class="num g">0</td><td>fullfunnel.co #1</td><td>/ai-consulting-services/</td></tr>
+    <tr><td>sales operations as a service</td><td class="num">60</td><td class="num g">3</td><td>fullfunnel.co #1</td><td>/managed-ai-agent-services/</td></tr>
+    <tr><td>revops automation</td><td class="num">68</td><td class="num g">3</td><td>revopsautomated #1</td><td>/revops-automation/</td></tr>
+    <tr><td class="r">gtm automation</td><td class="num">100</td><td class="num g">0</td><td class="r">Google Tag Manager owns this SERP</td><td class="r">never</td></tr>
+    <tr><td class="r">clay agency</td><td class="num">284</td><td class="num w">26</td><td class="r">clay.global, a UX design firm, DR 72</td><td class="r">never</td></tr>
+    <tr><td class="r">abm automation</td><td class="num">100</td><td class="num w">21</td><td class="r">an Oklahoma HVAC company, DR 1</td><td class="r">use "abm digital marketing"</td></tr>
+  </tbody>
+</table></div>
+
+<div class="gold"><span class="lbl">What this table is actually telling us</span>
+<p><strong>Roughly 5,700 searches a month sit at KD 10 or below across this niche, and the sites holding
+them are DR 10 to 32.</strong> Not one of these SERPs is defended by a giant. Every green row is takeable
+inside a quarter by a site executing the roadmap.<br><br>
+<strong>axeautomation.co is the sleeper lesson.</strong> Look at what they rank for: <em>pandadoc slack
+integration · airtable google drive integration · xero slack integration · gusto zapier · chatgpt
+quickbooks · zapier consulting</em>. That is the programmatic integration-page play from §1 of this
+roadmap, already working, at low DR, in our exact market. Our 80 to 120 integration pages are not a
+speculative bet: someone is running them profitably right now.<br><br>
+<strong>And fullfunnel.co proves the consulting long-tail.</strong> "demand generation consulting" KD 0,
+"gtm consultants" KD 0, "sales operations as a service" KD 3. They hold #1 on all three. Those feed
+straight into our consulting parent.</p></div>
+
+<div class="see"><span class="lbl">The positioning rule, in one line</span>
+<p><strong>Say "we automate your RevOps, ABM and lead flow" on LinkedIn, in outbound and on the call.
+Target "ai automation services" and "marketing automation agency" on the money pages.</strong> The niche
+is what wins the deal. It is not what a stranger types into Google, because 40 people a month type
+"gtm engineering agency" and 1,200 type "marketing automation agency".</p></div>
+
+<h2 id="set">9 · The document set: everything, from here</h2>
 <p class="prose">Sixteen companion documents. <strong>This page carries no link to any of them</strong>: nothing here depends on anything else, so it opens and shares entirely on its own. The list below is what exists and why; the URLs live in <code>ARTIFACT_LINK_GRAPH.md</code> in the client folder.</p>
 
 <div class="see"><span class="lbl">The seven audits · how we know what's in this roadmap</span>
