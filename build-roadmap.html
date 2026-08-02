@@ -54,7 +54,6 @@
   .g{color:var(--good);font-weight:700}.w{color:var(--warn);font-weight:700}.r{color:var(--crit);font-weight:700}
   .chart{overflow-x:auto;background:var(--panel);border:1px solid var(--ring);border-radius:12px;padding:14px;margin:18px 0}
   pre.mermaid{margin:0 auto;background:transparent}
-
 .dgwrap{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);
           border-radius:12px;padding:16px 18px 18px;margin:18px 0;overflow-x:auto}
   .dgcap{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;
@@ -66,6 +65,17 @@
             border-left:3px solid var(--crit,#c4372c)}
   .dgkey{margin:0 0 14px;font-size:.8rem;color:var(--ink2,#54524d);line-height:1.65}
   .dgkey b{color:var(--acc,#1a4fd6)}
+  .dglegend{margin:12px 0 0;font-size:.76rem;color:var(--ink2,#54524d);
+    display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+  .dglegend .lg{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .dglegend i{width:16px;height:3px;border-radius:2px;display:inline-block}
+  .dglegend .hint{color:var(--mut,#8a8781);font-style:italic}
+  .dglegend .c1{background:#0f62fe}.dglegend .c2{background:#d9480f}
+  .dglegend .c3{background:#009d9a}.dglegend .c4{background:#8a3ffc}
+  .dglegend .c5{background:#ee5396}
+  @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) .dglegend{
+    .c1{background:#4589ff}.c2{background:#d96a0d}.c3{background:#0fa89a}
+    .c4{background:#9b6bf0}.c5{background:#e05a9a}}}
   @media print{.dgwrap{break-inside:avoid;overflow:visible}}
   .foot{margin-top:54px;padding-top:16px;border-top:1px solid var(--line);font-size:.82rem;color:var(--mut)}
 </style>
@@ -93,6 +103,32 @@
   .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
   .el.acc{fill:var(--acc,#1a4fd6)}
   .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
+  /* Per-source edge colours. Validated with the dataviz palette checker:
+     light L 0.43-0.77, dark L 0.48-0.67, CVD-separated, all checks pass. */
+  svg.dg{--e1:#0f62fe;--e2:#d9480f;--e3:#009d9a;--e4:#8a3ffc;--e5:#ee5396}
+  @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) svg.dg{
+    --e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;--e4:#9b6bf0;--e5:#e05a9a}}
+  :root[data-theme="dark"] svg.dg{--e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;
+    --e4:#9b6bf0;--e5:#e05a9a}
+  .ed.e1{stroke:var(--e1)}.ed.e2{stroke:var(--e2)}.ed.e3{stroke:var(--e3)}
+  .ed.e4{stroke:var(--e4)}.ed.e5{stroke:var(--e5)}
+  .ed.e1,.ed.e2,.ed.e3,.ed.e4,.ed.e5{stroke-width:1.6;opacity:.9}
+  .chip{stroke:none;pointer-events:none}
+  /* labels sit above the rect and would swallow the hover */
+  .nt,.ns,.el,.tl{pointer-events:none}
+  .nb{transition:filter .12s}
+  .c1{fill:var(--e1)}.c2{fill:var(--e2)}.c3{fill:var(--e3)}
+  .c4{fill:var(--e4)}.c5{fill:var(--e5)}
+  .nb.src1{stroke:var(--e1)}.nb.src2{stroke:var(--e2)}.nb.src3{stroke:var(--e3)}
+  .nb.src4{stroke:var(--e4)}.nb.src5{stroke:var(--e5)}
+  .nb.src1,.nb.src2,.nb.src3,.nb.src4,.nb.src5{stroke-width:1.5}
+  /* hover a source box and its own arrows come forward — no JavaScript */
+  svg.dg:has(.src1:hover) .ed:not(.e1),svg.dg:has(.src2:hover) .ed:not(.e2),
+  svg.dg:has(.src3:hover) .ed:not(.e3),svg.dg:has(.src4:hover) .ed:not(.e4),
+  svg.dg:has(.src5:hover) .ed:not(.e5){opacity:.12}
+  svg.dg:has(.src1:hover) .ed.e1,svg.dg:has(.src2:hover) .ed.e2,
+  svg.dg:has(.src3:hover) .ed.e3,svg.dg:has(.src4:hover) .ed.e4,
+  svg.dg:has(.src5:hover) .ed.e5{stroke-width:3;opacity:1}
 </style>
 <style>
   .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
@@ -118,6 +154,32 @@
   .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
   .el.acc{fill:var(--acc,#1a4fd6)}
   .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
+  /* Per-source edge colours. Validated with the dataviz palette checker:
+     light L 0.43-0.77, dark L 0.48-0.67, CVD-separated, all checks pass. */
+  svg.dg{--e1:#0f62fe;--e2:#d9480f;--e3:#009d9a;--e4:#8a3ffc;--e5:#ee5396}
+  @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) svg.dg{
+    --e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;--e4:#9b6bf0;--e5:#e05a9a}}
+  :root[data-theme="dark"] svg.dg{--e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;
+    --e4:#9b6bf0;--e5:#e05a9a}
+  .ed.e1{stroke:var(--e1)}.ed.e2{stroke:var(--e2)}.ed.e3{stroke:var(--e3)}
+  .ed.e4{stroke:var(--e4)}.ed.e5{stroke:var(--e5)}
+  .ed.e1,.ed.e2,.ed.e3,.ed.e4,.ed.e5{stroke-width:1.6;opacity:.9}
+  .chip{stroke:none;pointer-events:none}
+  /* labels sit above the rect and would swallow the hover */
+  .nt,.ns,.el,.tl{pointer-events:none}
+  .nb{transition:filter .12s}
+  .c1{fill:var(--e1)}.c2{fill:var(--e2)}.c3{fill:var(--e3)}
+  .c4{fill:var(--e4)}.c5{fill:var(--e5)}
+  .nb.src1{stroke:var(--e1)}.nb.src2{stroke:var(--e2)}.nb.src3{stroke:var(--e3)}
+  .nb.src4{stroke:var(--e4)}.nb.src5{stroke:var(--e5)}
+  .nb.src1,.nb.src2,.nb.src3,.nb.src4,.nb.src5{stroke-width:1.5}
+  /* hover a source box and its own arrows come forward — no JavaScript */
+  svg.dg:has(.src1:hover) .ed:not(.e1),svg.dg:has(.src2:hover) .ed:not(.e2),
+  svg.dg:has(.src3:hover) .ed:not(.e3),svg.dg:has(.src4:hover) .ed:not(.e4),
+  svg.dg:has(.src5:hover) .ed:not(.e5){opacity:.12}
+  svg.dg:has(.src1:hover) .ed.e1,svg.dg:has(.src2:hover) .ed.e2,
+  svg.dg:has(.src3:hover) .ed.e3,svg.dg:has(.src4:hover) .ed.e4,
+  svg.dg:has(.src5:hover) .ed.e5{stroke-width:3;opacity:1}
 </style>
 <style>
   .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
@@ -143,6 +205,32 @@
   .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
   .el.acc{fill:var(--acc,#1a4fd6)}
   .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
+  /* Per-source edge colours. Validated with the dataviz palette checker:
+     light L 0.43-0.77, dark L 0.48-0.67, CVD-separated, all checks pass. */
+  svg.dg{--e1:#0f62fe;--e2:#d9480f;--e3:#009d9a;--e4:#8a3ffc;--e5:#ee5396}
+  @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) svg.dg{
+    --e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;--e4:#9b6bf0;--e5:#e05a9a}}
+  :root[data-theme="dark"] svg.dg{--e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;
+    --e4:#9b6bf0;--e5:#e05a9a}
+  .ed.e1{stroke:var(--e1)}.ed.e2{stroke:var(--e2)}.ed.e3{stroke:var(--e3)}
+  .ed.e4{stroke:var(--e4)}.ed.e5{stroke:var(--e5)}
+  .ed.e1,.ed.e2,.ed.e3,.ed.e4,.ed.e5{stroke-width:1.6;opacity:.9}
+  .chip{stroke:none;pointer-events:none}
+  /* labels sit above the rect and would swallow the hover */
+  .nt,.ns,.el,.tl{pointer-events:none}
+  .nb{transition:filter .12s}
+  .c1{fill:var(--e1)}.c2{fill:var(--e2)}.c3{fill:var(--e3)}
+  .c4{fill:var(--e4)}.c5{fill:var(--e5)}
+  .nb.src1{stroke:var(--e1)}.nb.src2{stroke:var(--e2)}.nb.src3{stroke:var(--e3)}
+  .nb.src4{stroke:var(--e4)}.nb.src5{stroke:var(--e5)}
+  .nb.src1,.nb.src2,.nb.src3,.nb.src4,.nb.src5{stroke-width:1.5}
+  /* hover a source box and its own arrows come forward — no JavaScript */
+  svg.dg:has(.src1:hover) .ed:not(.e1),svg.dg:has(.src2:hover) .ed:not(.e2),
+  svg.dg:has(.src3:hover) .ed:not(.e3),svg.dg:has(.src4:hover) .ed:not(.e4),
+  svg.dg:has(.src5:hover) .ed:not(.e5){opacity:.12}
+  svg.dg:has(.src1:hover) .ed.e1,svg.dg:has(.src2:hover) .ed.e2,
+  svg.dg:has(.src3:hover) .ed.e3,svg.dg:has(.src4:hover) .ed.e4,
+  svg.dg:has(.src5:hover) .ed.e5{stroke-width:3;opacity:1}
 </style>
 <style>
   .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
@@ -168,6 +256,32 @@
   .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
   .el.acc{fill:var(--acc,#1a4fd6)}
   .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
+  /* Per-source edge colours. Validated with the dataviz palette checker:
+     light L 0.43-0.77, dark L 0.48-0.67, CVD-separated, all checks pass. */
+  svg.dg{--e1:#0f62fe;--e2:#d9480f;--e3:#009d9a;--e4:#8a3ffc;--e5:#ee5396}
+  @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) svg.dg{
+    --e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;--e4:#9b6bf0;--e5:#e05a9a}}
+  :root[data-theme="dark"] svg.dg{--e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;
+    --e4:#9b6bf0;--e5:#e05a9a}
+  .ed.e1{stroke:var(--e1)}.ed.e2{stroke:var(--e2)}.ed.e3{stroke:var(--e3)}
+  .ed.e4{stroke:var(--e4)}.ed.e5{stroke:var(--e5)}
+  .ed.e1,.ed.e2,.ed.e3,.ed.e4,.ed.e5{stroke-width:1.6;opacity:.9}
+  .chip{stroke:none;pointer-events:none}
+  /* labels sit above the rect and would swallow the hover */
+  .nt,.ns,.el,.tl{pointer-events:none}
+  .nb{transition:filter .12s}
+  .c1{fill:var(--e1)}.c2{fill:var(--e2)}.c3{fill:var(--e3)}
+  .c4{fill:var(--e4)}.c5{fill:var(--e5)}
+  .nb.src1{stroke:var(--e1)}.nb.src2{stroke:var(--e2)}.nb.src3{stroke:var(--e3)}
+  .nb.src4{stroke:var(--e4)}.nb.src5{stroke:var(--e5)}
+  .nb.src1,.nb.src2,.nb.src3,.nb.src4,.nb.src5{stroke-width:1.5}
+  /* hover a source box and its own arrows come forward — no JavaScript */
+  svg.dg:has(.src1:hover) .ed:not(.e1),svg.dg:has(.src2:hover) .ed:not(.e2),
+  svg.dg:has(.src3:hover) .ed:not(.e3),svg.dg:has(.src4:hover) .ed:not(.e4),
+  svg.dg:has(.src5:hover) .ed:not(.e5){opacity:.12}
+  svg.dg:has(.src1:hover) .ed.e1,svg.dg:has(.src2:hover) .ed.e2,
+  svg.dg:has(.src3:hover) .ed.e3,svg.dg:has(.src4:hover) .ed.e4,
+  svg.dg:has(.src5:hover) .ed.e5{stroke-width:3;opacity:1}
 </style>
 <style>
   .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
@@ -193,6 +307,32 @@
   .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
   .el.acc{fill:var(--acc,#1a4fd6)}
   .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
+  /* Per-source edge colours. Validated with the dataviz palette checker:
+     light L 0.43-0.77, dark L 0.48-0.67, CVD-separated, all checks pass. */
+  svg.dg{--e1:#0f62fe;--e2:#d9480f;--e3:#009d9a;--e4:#8a3ffc;--e5:#ee5396}
+  @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) svg.dg{
+    --e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;--e4:#9b6bf0;--e5:#e05a9a}}
+  :root[data-theme="dark"] svg.dg{--e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;
+    --e4:#9b6bf0;--e5:#e05a9a}
+  .ed.e1{stroke:var(--e1)}.ed.e2{stroke:var(--e2)}.ed.e3{stroke:var(--e3)}
+  .ed.e4{stroke:var(--e4)}.ed.e5{stroke:var(--e5)}
+  .ed.e1,.ed.e2,.ed.e3,.ed.e4,.ed.e5{stroke-width:1.6;opacity:.9}
+  .chip{stroke:none;pointer-events:none}
+  /* labels sit above the rect and would swallow the hover */
+  .nt,.ns,.el,.tl{pointer-events:none}
+  .nb{transition:filter .12s}
+  .c1{fill:var(--e1)}.c2{fill:var(--e2)}.c3{fill:var(--e3)}
+  .c4{fill:var(--e4)}.c5{fill:var(--e5)}
+  .nb.src1{stroke:var(--e1)}.nb.src2{stroke:var(--e2)}.nb.src3{stroke:var(--e3)}
+  .nb.src4{stroke:var(--e4)}.nb.src5{stroke:var(--e5)}
+  .nb.src1,.nb.src2,.nb.src3,.nb.src4,.nb.src5{stroke-width:1.5}
+  /* hover a source box and its own arrows come forward — no JavaScript */
+  svg.dg:has(.src1:hover) .ed:not(.e1),svg.dg:has(.src2:hover) .ed:not(.e2),
+  svg.dg:has(.src3:hover) .ed:not(.e3),svg.dg:has(.src4:hover) .ed:not(.e4),
+  svg.dg:has(.src5:hover) .ed:not(.e5){opacity:.12}
+  svg.dg:has(.src1:hover) .ed.e1,svg.dg:has(.src2:hover) .ed.e2,
+  svg.dg:has(.src3:hover) .ed.e3,svg.dg:has(.src4:hover) .ed.e4,
+  svg.dg:has(.src5:hover) .ed.e5{stroke-width:3;opacity:1}
 </style>
 <style>
   .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
@@ -218,6 +358,32 @@
   .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
   .el.acc{fill:var(--acc,#1a4fd6)}
   .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
+  /* Per-source edge colours. Validated with the dataviz palette checker:
+     light L 0.43-0.77, dark L 0.48-0.67, CVD-separated, all checks pass. */
+  svg.dg{--e1:#0f62fe;--e2:#d9480f;--e3:#009d9a;--e4:#8a3ffc;--e5:#ee5396}
+  @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) svg.dg{
+    --e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;--e4:#9b6bf0;--e5:#e05a9a}}
+  :root[data-theme="dark"] svg.dg{--e1:#4589ff;--e2:#d96a0d;--e3:#0fa89a;
+    --e4:#9b6bf0;--e5:#e05a9a}
+  .ed.e1{stroke:var(--e1)}.ed.e2{stroke:var(--e2)}.ed.e3{stroke:var(--e3)}
+  .ed.e4{stroke:var(--e4)}.ed.e5{stroke:var(--e5)}
+  .ed.e1,.ed.e2,.ed.e3,.ed.e4,.ed.e5{stroke-width:1.6;opacity:.9}
+  .chip{stroke:none;pointer-events:none}
+  /* labels sit above the rect and would swallow the hover */
+  .nt,.ns,.el,.tl{pointer-events:none}
+  .nb{transition:filter .12s}
+  .c1{fill:var(--e1)}.c2{fill:var(--e2)}.c3{fill:var(--e3)}
+  .c4{fill:var(--e4)}.c5{fill:var(--e5)}
+  .nb.src1{stroke:var(--e1)}.nb.src2{stroke:var(--e2)}.nb.src3{stroke:var(--e3)}
+  .nb.src4{stroke:var(--e4)}.nb.src5{stroke:var(--e5)}
+  .nb.src1,.nb.src2,.nb.src3,.nb.src4,.nb.src5{stroke-width:1.5}
+  /* hover a source box and its own arrows come forward — no JavaScript */
+  svg.dg:has(.src1:hover) .ed:not(.e1),svg.dg:has(.src2:hover) .ed:not(.e2),
+  svg.dg:has(.src3:hover) .ed:not(.e3),svg.dg:has(.src4:hover) .ed:not(.e4),
+  svg.dg:has(.src5:hover) .ed:not(.e5){opacity:.12}
+  svg.dg:has(.src1:hover) .ed.e1,svg.dg:has(.src2:hover) .ed.e2,
+  svg.dg:has(.src3:hover) .ed.e3,svg.dg:has(.src4:hover) .ed.e4,
+  svg.dg:has(.src5:hover) .ed.e5{stroke-width:3;opacity:1}
 </style>
 <style>
   *,*::before,*::after{box-sizing:border-box}
@@ -523,44 +689,49 @@ The underlying competitor audits — including the named backlink-vendor finding
 <p class="dgkey">Every map reads <strong>top to bottom</strong>. A grey arrow is a one-way link. A <b>blue arrow with a head at both ends means the two pages link to each other</b> — that reciprocal wiring is what makes the cluster work, and it is the part most agencies never build. Green marks the path to <b>/book-a-call/</b>.</p>
 <svg class="dg" viewBox="0 0 1028 437" width="100%" style="max-width:1028px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
+<defs><marker id="am1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e1)"/></marker><marker id="am2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e2)"/></marker><marker id="am3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e3)"/></marker><marker id="am4" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e4)"/></marker><marker id="am5" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e5)"/></marker><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
 
 <text class="tl" x="6" y="52.6">EARNS AUTHORITY</text>
 <text class="tl" x="6" y="157.8">ENTRY POINT</text>
 <text class="tl" x="6" y="301.0">THE MONEY LAYER</text>
 <text class="tl" x="6" y="406.2">CONVERTS</text>
-<path class="ed " d="M232.0,69.2 C232.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#ah)"/>
-<path class="ed " d="M473.0,69.2 C473.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#ah)"/>
-<path class="ed " d="M709.0,69.2 C709.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#ah)"/>
-<path class="ed " d="M232.0,69.2 C232.0,170.3 924.0,170.3 924.0,271.4" marker-end="url(#ah)"/>
-<path class="ed " d="M933.0,69.2 C933.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#ah)"/>
-<path class="ed dash" d="M473.0,69.2 C473.0,222.9 747.0,222.9 747.0,376.6" marker-end="url(#ah)"/>
-<path class="ed " d="M580.0,174.4 C580.0,222.9 246.0,222.9 246.0,271.4" marker-end="url(#ah)"/>
+<path class="ed  e2" d="M232.0,69.2 C232.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#am2)"/>
+<path class="ed  e3" d="M473.0,69.2 C473.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#am3)"/>
+<path class="ed  e4" d="M709.0,69.2 C709.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#am4)"/>
+<path class="ed  e2" d="M232.0,69.2 C232.0,170.3 924.0,170.3 924.0,271.4" marker-end="url(#am2)"/>
+<path class="ed  e5" d="M933.0,69.2 C933.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#am5)"/>
+<path class="ed dash e3" d="M473.0,69.2 C473.0,222.9 747.0,222.9 747.0,376.6" marker-end="url(#am3)"/>
+<path class="ed  e1" d="M580.0,174.4 C580.0,222.9 246.0,222.9 246.0,271.4" marker-end="url(#am1)"/>
 <path class="ed strong" d="M246.0,317.6 C246.0,347.1 453.0,347.1 453.0,376.6" marker-end="url(#ah2)"/>
-<path class="ed " d="M580.0,174.4 C580.0,222.9 475.0,222.9 475.0,271.4" marker-end="url(#ah)"/>
+<path class="ed  e1" d="M580.0,174.4 C580.0,222.9 475.0,222.9 475.0,271.4" marker-end="url(#am1)"/>
 <path class="ed " d="M475.0,317.6 C475.0,347.1 453.0,347.1 453.0,376.6" marker-end="url(#ah)"/>
-<path class="ed " d="M580.0,174.4 C580.0,222.9 702.0,222.9 702.0,271.4" marker-end="url(#ah)"/>
+<path class="ed  e1" d="M580.0,174.4 C580.0,222.9 702.0,222.9 702.0,271.4" marker-end="url(#am1)"/>
 <path class="ed " d="M702.0,317.6 C702.0,347.1 453.0,347.1 453.0,376.6" marker-end="url(#ah)"/>
-<path class="ed " d="M580.0,174.4 C580.0,222.9 924.0,222.9 924.0,271.4" marker-end="url(#ah)"/>
+<path class="ed  e1" d="M580.0,174.4 C580.0,222.9 924.0,222.9 924.0,271.4" marker-end="url(#am1)"/>
 <path class="ed " d="M924.0,317.6 C924.0,347.1 453.0,347.1 453.0,376.6" marker-end="url(#ah)"/>
 <path class="ed mesh" d="M348.0,298.0 L378.0,298.0" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
 <path class="ed mesh" d="M572.0,298.0 L602.0,298.0" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
 <path class="ed mesh" d="M802.0,298.0 L832.0,298.0" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
 <path class="ed mesh" d="M352.0,298.0 C352.0,232.4 598.0,232.4 598.0,298.0" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
 <text class="el acc" x="475.0" y="243.4">all four link to each other, both ways</text>
-<rect class="nb feed" x="132.0" y="30.0" width="200" height="39.2" rx="7"/>
+<rect class="nb feed src2" x="132.0" y="30.0" width="200" height="39.2" rx="7"/>
+<rect class="chip c2" x="132.0" y="30.0" width="5" height="39.2" rx="2.5"/>
 <text class="nt feed" x="232.0" y="47.4">/glossary/</text>
 <text class="ns" x="232.0" y="60.4">40–60 entries, before demand</text>
-<rect class="nb feed" x="366.0" y="30.0" width="214" height="39.2" rx="7"/>
+<rect class="nb feed src3" x="366.0" y="30.0" width="214" height="39.2" rx="7"/>
+<rect class="chip c3" x="366.0" y="30.0" width="5" height="39.2" rx="2.5"/>
 <text class="nt feed" x="473.0" y="47.4">/resources/ + downloadables</text>
 <text class="ns" x="473.0" y="60.4">the linkable assets</text>
-<rect class="nb feed" x="614.0" y="30.0" width="190" height="39.2" rx="7"/>
+<rect class="nb feed src4" x="614.0" y="30.0" width="190" height="39.2" rx="7"/>
+<rect class="chip c4" x="614.0" y="30.0" width="5" height="39.2" rx="2.5"/>
 <text class="nt feed" x="709.0" y="47.4">/mcp/ + /prompts/</text>
 <text class="ns" x="709.0" y="60.4">earns AI citations</text>
-<rect class="nb feed" x="838.0" y="30.0" width="190" height="39.2" rx="7"/>
+<rect class="nb feed src5" x="838.0" y="30.0" width="190" height="39.2" rx="7"/>
+<rect class="chip c5" x="838.0" y="30.0" width="5" height="39.2" rx="2.5"/>
 <text class="nt feed" x="933.0" y="47.4">43 blog posts</text>
 <text class="ns" x="933.0" y="60.4">2–3 links each, upward</text>
-<rect class="nb hub" x="415.0" y="135.2" width="330" height="39.2" rx="7"/>
+<rect class="nb hub src1" x="415.0" y="135.2" width="330" height="39.2" rx="7"/>
+<rect class="chip c1" x="415.0" y="135.2" width="5" height="39.2" rx="2.5"/>
 <text class="nt hub" x="580.0" y="152.6">HOMEPAGE</text>
 <text class="ns" x="580.0" y="165.6">"ai agent development company" · 1,417 · KD 17</text>
 <rect class="nb money" x="146.0" y="278.4" width="200" height="39.2" rx="7"/>
@@ -582,6 +753,7 @@ The underlying competitor audits — including the named backlink-vendor finding
 <text class="nt feed" x="747.0" y="401.0">✉ newsletter</text>
 <text class="ns" x="747.0" y="414.0">no algorithm throttles it</text>
 </svg>
+<p class="dglegend"><span class="lg"><i class="c1"></i>from the homepage</span> <span class="lg"><i class="c2"></i>from /glossary/</span> <span class="lg"><i class="c3"></i>from /resources/</span> <span class="lg"><i class="c4"></i>from /mcp/ + /prompts/</span> <span class="lg"><i class="c5"></i>from the blog</span><span class="lg hint">hover any coloured box to isolate its path</span></p>
 </div>
 <!--mermaid
 flowchart TD
@@ -605,33 +777,35 @@ flowchart TD
 
 <svg class="dg" viewBox="0 0 1158 416" width="100%" style="max-width:1158px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
+<defs><marker id="am1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e1)"/></marker><marker id="am2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e2)"/></marker><marker id="am3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e3)"/></marker><marker id="am4" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e4)"/></marker><marker id="am5" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e5)"/></marker><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
 
 <text class="tl" x="6" y="52.6">5 BLOGS FEED IT</text>
 <text class="tl" x="6" y="157.8">THE BEACHHEAD</text>
 <text class="tl" x="6" y="295.7">IT LINKS TO</text>
 <text class="tl" x="6" y="390.3">CONVERTS</text>
-<path class="ed " d="M225.0,69.2 C225.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#ah)"/>
-<path class="ed " d="M447.0,69.2 C447.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#ah)"/>
+<path class="ed  e2" d="M225.0,69.2 C225.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#am2)"/>
+<path class="ed  e3" d="M447.0,69.2 C447.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#am3)"/>
 <path class="ed " d="M669.0,69.2 C669.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#ah)"/>
 <path class="ed " d="M876.0,69.2 C876.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#ah)"/>
 <path class="ed " d="M1074.0,69.2 C1074.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#ah)"/>
-<path class="ed dash" d="M225.0,69.2 C225.0,170.3 320.0,170.3 320.0,271.4" marker-end="url(#ah)"/>
-<path class="ed dash" d="M447.0,69.2 C447.0,170.3 540.0,170.3 540.0,271.4" marker-end="url(#ah)"/>
+<path class="ed dash e2" d="M225.0,69.2 C225.0,170.3 320.0,170.3 320.0,271.4" marker-end="url(#am2)"/>
+<path class="ed dash e3" d="M447.0,69.2 C447.0,170.3 540.0,170.3 540.0,271.4" marker-end="url(#am3)"/>
 <path class="ed mesh" d="M645.0,181.4 C645.0,226.4 320.0,226.4 320.0,271.4" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
 <text class="el acc" x="482.5" y="223.4">both ways</text>
 <path class="ed mesh" d="M645.0,181.4 C645.0,226.4 540.0,226.4 540.0,271.4" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
 <text class="el acc" x="592.5" y="223.4">both ways</text>
-<path class="ed " d="M645.0,174.4 C645.0,222.9 760.0,222.9 760.0,271.4" marker-end="url(#ah)"/>
-<path class="ed " d="M645.0,174.4 C645.0,222.9 975.0,222.9 975.0,271.4" marker-end="url(#ah)"/>
+<path class="ed  e1" d="M645.0,174.4 C645.0,222.9 760.0,222.9 760.0,271.4" marker-end="url(#am1)"/>
+<path class="ed  e1" d="M645.0,174.4 C645.0,222.9 975.0,222.9 975.0,271.4" marker-end="url(#am1)"/>
 <path class="ed strong" d="M320.0,307.0 C320.0,336.5 645.0,336.5 645.0,366.0" marker-end="url(#ah2)"/>
 <path class="ed strong" d="M540.0,307.0 C540.0,336.5 645.0,336.5 645.0,366.0" marker-end="url(#ah2)"/>
 <path class="ed strong" d="M760.0,307.0 C760.0,336.5 645.0,336.5 645.0,366.0" marker-end="url(#ah2)"/>
 <path class="ed mesh" d="M415.0,292.7 L445.0,292.7" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
-<rect class="nb feed" x="132.0" y="30.0" width="186" height="39.2" rx="7"/>
+<rect class="nb feed src2" x="132.0" y="30.0" width="186" height="39.2" rx="7"/>
+<rect class="chip c2" x="132.0" y="30.0" width="5" height="39.2" rx="2.5"/>
 <text class="nt feed" x="225.0" y="47.4">insurance claims automation</text>
 <text class="ns" x="225.0" y="60.4">556 · KD 7 · D14</text>
-<rect class="nb feed" x="352.0" y="30.0" width="190" height="39.2" rx="7"/>
+<rect class="nb feed src3" x="352.0" y="30.0" width="190" height="39.2" rx="7"/>
+<rect class="chip c3" x="352.0" y="30.0" width="5" height="39.2" rx="2.5"/>
 <text class="nt feed" x="447.0" y="47.4">claims processing automation</text>
 <text class="ns" x="447.0" y="60.4">248 · KD 6 · D15</text>
 <rect class="nb feed" x="576.0" y="30.0" width="186" height="39.2" rx="7"/>
@@ -643,7 +817,8 @@ flowchart TD
 <rect class="nb feed" x="990.0" y="30.0" width="168" height="39.2" rx="7"/>
 <text class="nt feed" x="1074.0" y="47.4">compliance + agents</text>
 <text class="ns" x="1074.0" y="60.4">D23</text>
-<rect class="nb hub" x="475.0" y="135.2" width="340" height="39.2" rx="7"/>
+<rect class="nb hub src1" x="475.0" y="135.2" width="340" height="39.2" rx="7"/>
+<rect class="chip c1" x="475.0" y="135.2" width="5" height="39.2" rx="2.5"/>
 <text class="nt hub" x="645.0" y="152.6">/industries/ai-agents-for-insurance/</text>
 <text class="ns" x="645.0" y="165.6">70 · KD 3 · $10 CPC · D16</text>
 <rect class="nb proof" x="227.0" y="278.4" width="186" height="28.6" rx="7"/>
@@ -657,6 +832,7 @@ flowchart TD
 <rect class="nb convert" x="520.0" y="373.0" width="250" height="28.6" rx="7"/>
 <text class="nt convert" x="645.0" y="390.4">/book-a-call/</text>
 </svg>
+<p class="dglegend"><span class="lg"><i class="c1"></i>from the beachhead page</span> <span class="lg"><i class="c2"></i>from claims-automation</span> <span class="lg"><i class="c3"></i>from claims-processing</span><span class="lg hint">hover any coloured box to isolate its path</span></p>
 </div>
 <!--mermaid
 flowchart TD
@@ -674,7 +850,7 @@ flowchart TD
 
 <svg class="dg" viewBox="0 0 1482 418" width="100%" style="max-width:1160px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
+<defs><marker id="am1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e1)"/></marker><marker id="am2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e2)"/></marker><marker id="am3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e3)"/></marker><marker id="am4" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e4)"/></marker><marker id="am5" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e5)"/></marker><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
 
 <text class="tl" x="6" y="52.6">7 BLOGS FEED IT</text>
 <text class="tl" x="6" y="157.8">HIGHEST COMMERCIAL INTENT</text>
@@ -726,6 +902,7 @@ flowchart TD
 <text class="nt convert" x="807.0" y="382.4">/book-a-call/</text>
 <text class="ns" x="807.0" y="395.4">calculator result → form</text>
 </svg>
+
 </div>
 <!--mermaid
 flowchart TD
@@ -743,7 +920,7 @@ flowchart TD
 
 <svg class="dg" viewBox="0 0 1336 422" width="100%" style="max-width:1160px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
+<defs><marker id="am1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e1)"/></marker><marker id="am2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e2)"/></marker><marker id="am3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e3)"/></marker><marker id="am4" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e4)"/></marker><marker id="am5" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e5)"/></marker><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
 
 <text class="tl" x="6" y="52.6">6 BLOGS FEED IT</text>
 <text class="tl" x="6" y="157.8">PARENT SERVICE</text>
@@ -795,6 +972,7 @@ flowchart TD
 <text class="nt convert" x="734.0" y="397.0">/book-a-call/</text>
 </svg>
 <div class="dg-never"><strong>⛔ NEVER TARGET:</strong> "what is an ai agent" — 16,114 volume, KD 83. Wikipedia, IBM and AWS own page 1 permanently. Unwinnable at DR 0, and that traffic would not convert.</div>
+
 </div>
 <!--mermaid
 flowchart TD
@@ -813,7 +991,7 @@ flowchart TD
 
 <svg class="dg" viewBox="0 0 1262 309" width="100%" style="max-width:1160px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
+<defs><marker id="am1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e1)"/></marker><marker id="am2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e2)"/></marker><marker id="am3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e3)"/></marker><marker id="am4" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e4)"/></marker><marker id="am5" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e5)"/></marker><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
 
 <text class="tl" x="6" y="52.6">THE BLOG</text>
 <text class="tl" x="6" y="183.8">THE MONEY PAGE IT FEEDS</text>
@@ -864,6 +1042,7 @@ flowchart TD
 <rect class="nb convert" x="572.0" y="266.4" width="250" height="28.6" rx="7"/>
 <text class="nt convert" x="697.0" y="283.8">/book-a-call/</text>
 </svg>
+
 </div>
 <!--mermaid
 flowchart TD
@@ -902,7 +1081,7 @@ flowchart TD
 
 <svg class="dg" viewBox="0 0 918 483" width="100%" style="max-width:918px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
+<defs><marker id="am1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e1)"/></marker><marker id="am2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e2)"/></marker><marker id="am3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e3)"/></marker><marker id="am4" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e4)"/></marker><marker id="am5" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--e5)"/></marker><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
 
 <text class="tl" x="6" y="52.6">SOURCE</text>
 <text class="tl" x="6" y="157.8">DISTRIBUTION</text>
@@ -911,14 +1090,14 @@ flowchart TD
 <text class="tl" x="6" y="457.5">CONVERSION</text>
 <path class="ed strong" d="M525.0,69.2 C525.0,98.7 412.0,98.7 412.0,128.2" marker-end="url(#ah2)"/>
 <path class="ed " d="M525.0,69.2 C525.0,98.7 642.0,98.7 642.0,128.2" marker-end="url(#ah)"/>
-<path class="ed strong" d="M412.0,174.4 C412.0,203.9 406.0,203.9 406.0,233.4" marker-end="url(#ah2)"/>
+<path class="ed strong e2" d="M412.0,174.4 C412.0,203.9 406.0,203.9 406.0,233.4" marker-end="url(#am2)"/>
 <text class="el" x="409.0" y="200.9">engagement</text>
-<path class="ed " d="M412.0,174.4 C412.0,203.9 649.0,203.9 649.0,233.4" marker-end="url(#ah)"/>
-<path class="ed strong" d="M406.0,279.6 C406.0,309.1 215.0,309.1 215.0,338.6" marker-end="url(#ah2)"/>
-<path class="ed " d="M406.0,279.6 C406.0,309.1 415.0,309.1 415.0,338.6" marker-end="url(#ah)"/>
-<path class="ed " d="M406.0,279.6 C406.0,309.1 615.0,309.1 615.0,338.6" marker-end="url(#ah)"/>
-<path class="ed " d="M406.0,279.6 C406.0,309.1 825.0,309.1 825.0,338.6" marker-end="url(#ah)"/>
-<path class="ed dash" d="M649.0,279.6 C649.0,309.1 615.0,309.1 615.0,338.6" marker-end="url(#ah)"/>
+<path class="ed  e2" d="M412.0,174.4 C412.0,203.9 649.0,203.9 649.0,233.4" marker-end="url(#am2)"/>
+<path class="ed strong e1" d="M406.0,279.6 C406.0,309.1 215.0,309.1 215.0,338.6" marker-end="url(#am1)"/>
+<path class="ed  e1" d="M406.0,279.6 C406.0,309.1 415.0,309.1 415.0,338.6" marker-end="url(#am1)"/>
+<path class="ed  e1" d="M406.0,279.6 C406.0,309.1 615.0,309.1 615.0,338.6" marker-end="url(#am1)"/>
+<path class="ed  e1" d="M406.0,279.6 C406.0,309.1 825.0,309.1 825.0,338.6" marker-end="url(#am1)"/>
+<path class="ed dash e5" d="M649.0,279.6 C649.0,309.1 615.0,309.1 615.0,338.6" marker-end="url(#am5)"/>
 <text class="el" x="632.0" y="306.1">Reddit ranks page 1</text>
 <path class="ed strong" d="M215.0,374.2 C215.0,403.7 525.0,403.7 525.0,433.2" marker-end="url(#ah2)"/>
 <path class="ed " d="M415.0,374.2 C415.0,403.7 525.0,403.7 525.0,433.2" marker-end="url(#ah)"/>
@@ -929,16 +1108,19 @@ flowchart TD
 <rect class="nb feed" x="413.0" y="30.0" width="224" height="39.2" rx="7"/>
 <text class="nt feed" x="525.0" y="47.4">50 engineers</text>
 <text class="ns" x="525.0" y="60.4">real delivery work</text>
-<rect class="nb feed" x="312.0" y="135.2" width="200" height="39.2" rx="7"/>
+<rect class="nb feed src2" x="312.0" y="135.2" width="200" height="39.2" rx="7"/>
+<rect class="chip c2" x="312.0" y="135.2" width="5" height="39.2" rx="2.5"/>
 <text class="nt feed" x="412.0" y="152.6">LinkedIn post</text>
 <text class="ns" x="412.0" y="165.6">text-first, 3×/week</text>
 <rect class="nb feed" x="546.0" y="135.2" width="192" height="39.2" rx="7"/>
 <text class="nt feed" x="642.0" y="152.6">Instagram reel</text>
 <text class="ns" x="642.0" y="165.6">same insight, video</text>
-<rect class="nb feed" x="299.0" y="240.4" width="214" height="39.2" rx="7"/>
+<rect class="nb feed src1" x="299.0" y="240.4" width="214" height="39.2" rx="7"/>
+<rect class="chip c1" x="299.0" y="240.4" width="5" height="39.2" rx="2.5"/>
 <text class="nt feed" x="406.0" y="257.8">blog post on YOUR site</text>
 <text class="ns" x="406.0" y="270.8">targets a real keyword</text>
-<rect class="nb feed" x="547.0" y="240.4" width="204" height="39.2" rx="7"/>
+<rect class="nb feed src5" x="547.0" y="240.4" width="204" height="39.2" rx="7"/>
+<rect class="chip c5" x="547.0" y="240.4" width="5" height="39.2" rx="2.5"/>
 <text class="nt feed" x="649.0" y="257.8">Reddit answer</text>
 <text class="ns" x="649.0" y="270.8">r/AI_Agents · r/automation</text>
 <rect class="nb money" x="132.0" y="345.6" width="166" height="28.6" rx="7"/>
@@ -952,6 +1134,7 @@ flowchart TD
 <rect class="nb convert" x="400.0" y="440.2" width="250" height="28.6" rx="7"/>
 <text class="nt convert" x="525.0" y="457.6">/book-a-call/</text>
 </svg>
+<p class="dglegend"><span class="lg"><i class="c1"></i>from the blog post</span> <span class="lg"><i class="c2"></i>from LinkedIn</span> <span class="lg"><i class="c5"></i>from Reddit</span><span class="lg hint">hover any coloured box to isolate its path</span></p>
 </div>
 <!--mermaid
 flowchart LR
