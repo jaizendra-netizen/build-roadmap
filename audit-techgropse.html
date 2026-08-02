@@ -256,6 +256,35 @@
   *,*::before,*::after{box-sizing:border-box}
   img,svg{max-width:100%}
 
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
     a{color:#1a4fd6;text-decoration:underline}
@@ -478,6 +507,82 @@ flowchart TD
   <li><strong>Domain splits are for burned domains.</strong> Their .ae escape cost 18 months to reach what one Appinventiv subfolder page earns. One clean domain, subfolders, forever.</li>
   <li><strong>One good money page beats a thousand junk posts:</strong> Atlanta (355) &gt; blog (209). Build money pages first.</li>
 </ol>
+
+
+<h2 id="realcause">The real cause, tested against the alternative</h2>
+<div class="see"><span class="lbl">Added 3 Aug 2026, after we corrected the link finding</span>
+<p>We previously described this market's spam backlinks as bought. That was wrong: every one of those
+links is nofollow, sprayed by a vendor advertising itself. Which raises the fair question: if the links
+were not the cause, what killed techgropse.com? We tested it.</p></div>
+
+<p class="prose"><strong>Test one: could links have done it?</strong> If a link problem caused the
+collapse, the link profile would have shrunk. It did the opposite.</p>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Site</th><th class="num">Traffic, peak → now</th><th class="num">Change</th><th class="num">Referring domains, same window</th></tr></thead>
+  <tbody>
+    <tr><td><b>techgropse.com</b></td><td class="num">65,845 → 594</td><td class="num" style="color:var(--crit)">−99%</td><td class="num" style="color:var(--good)">994 → 2,489 (+150%)</td></tr>
+    <tr><td>appwrk.com</td><td class="num">41,660 → 1,157</td><td class="num" style="color:var(--crit)">−97%</td><td class="num" style="color:var(--good)">579 → 2,001 (+246%)</td></tr>
+    <tr><td>genesysgrowth.com</td><td class="num">1,021 → 504</td><td class="num" style="color:var(--crit)">−51%</td><td class="num" style="color:var(--good)">1,011 → 1,408 (+39%)</td></tr>
+    <tr><td>omnibound.ai</td><td class="num">3,377 → 2,123</td><td class="num" style="color:var(--crit)">−37%</td><td class="num" style="color:var(--good)">989 → 1,010 (+2%)</td></tr>
+  </tbody>
+</table></div>
+<p class="prose"><strong>Every site gained links while losing traffic.</strong> Links are ruled out as
+the mechanism on all four.</p>
+
+<p class="prose"><strong>Test two: the month-by-month curve against Google's update calendar.</strong></p>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Month</th><th class="num">Organic</th><th class="num">Change</th><th class="num">Ref. domains</th><th>What was happening</th></tr></thead>
+  <tbody>
+    <tr><td>Aug 2023</td><td class="num">1,083</td><td class="num">+12%</td><td class="num">793</td><td>A normal small agency site</td></tr>
+    <tr><td><b>Sep 2023</b></td><td class="num"><b>17,047</b></td><td class="num" style="color:var(--crit)"><b>+1,474%</b></td><td class="num">837</td><td><b>Mass publishing hits the index.</b> Sixteen times the traffic in one month, on 44 new referring domains. Coincides with the September 2023 Helpful Content Update.</td></tr>
+    <tr><td>Oct 2023</td><td class="num">62,560</td><td class="num">+267%</td><td class="num">937</td><td>October core + spam update</td></tr>
+    <tr><td><b>Nov 2023</b></td><td class="num"><b>65,845</b></td><td class="num">+5%</td><td class="num">994</td><td><b>Peak.</b> The high-water mark lasts one month.</td></tr>
+    <tr><td>Dec 2023</td><td class="num">44,767</td><td class="num" style="color:var(--crit)">−32%</td><td class="num">1,054</td><td>The unwind begins. Links still climbing.</td></tr>
+    <tr><td><b>Mar 2024</b></td><td class="num">21,251</td><td class="num" style="color:var(--crit)">−20%</td><td class="num">1,361</td><td><b>March 2024 core update</b>, which folded Helpful Content into core and explicitly targeted scaled content abuse</td></tr>
+    <tr><td>Jun 2024</td><td class="num">6,794</td><td class="num" style="color:var(--crit)">−48%</td><td class="num">1,521</td><td>Down 90% from peak in seven months</td></tr>
+    <tr><td>Sep 2024</td><td class="num">3,084</td><td class="num" style="color:var(--crit)">−68%</td><td class="num">1,619</td><td>Site-wide demotion, not a per-page one</td></tr>
+    <tr><td>Nov 2025</td><td class="num">6,818</td><td class="num">+121%</td><td class="num">2,327</td><td>A recovery attempt gets partway</td></tr>
+    <tr><td><b>Jan 2026</b></td><td class="num">1,154</td><td class="num" style="color:var(--crit)">−76%</td><td class="num">2,179</td><td><b>Crushed again, in the same month they published 161 new posts.</b> Publishing into a demoted site accelerated it.</td></tr>
+    <tr><td>Aug 2026</td><td class="num">594</td><td class="num" style="color:var(--crit)">−52%</td><td class="num">2,489</td><td><b>0.9% of peak.</b> Links at an all-time high.</td></tr>
+  </tbody>
+</table></div>
+
+<h3>What they published, and why it killed the domain</h3>
+<p class="prose">The surviving rankings are the evidence. These are the pages techgropse.com still holds
+positions for today, pulled live:</p>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>URL</th><th>Ranks for</th><th>Relevance to app development</th></tr></thead>
+  <tbody>
+    <tr><td><code>/blog/buffstreams/</code></td><td>"buffstreams.app nfl"</td><td style="color:var(--crit)">a piracy streaming site</td></tr>
+    <tr><td><code>/blog/best-onlyfans-alternatives/</code></td><td>"adults websites"</td><td style="color:var(--crit)">adult content</td></tr>
+    <tr><td><code>/blog/tango-app-business-model/</code></td><td>"pulsz.tv"</td><td style="color:var(--crit)">a sweepstakes casino</td></tr>
+    <tr><td><code>/blog/qdoba-business-model/</code></td><td>"qdoba customer service"</td><td style="color:var(--crit)">a burrito chain's support line</td></tr>
+    <tr><td><code>/blog/flashscore-business-model/</code></td><td>"flashscore.com"</td><td style="color:var(--crit)">someone else's sports app</td></tr>
+    <tr><td><code>/blog/kuta-software/</code>, <code>/blog/sheppard-software/</code></td><td>"kuta works", "shepherd software"</td><td style="color:var(--crit)">children's maths software</td></tr>
+    <tr><td><b><code>/mobile-app-development-company</code></b></td><td>"android developers near me" (#4)</td><td style="color:var(--good)"><b>the one real page: 355 of their 594 visits</b></td></tr>
+  </tbody>
+</table></div>
+
+<div class="see"><span class="lbl">The mechanism, stated plainly</span>
+<p><strong>An app-development agency published 916 posts about piracy sites, casino apps, adult content,
+burrito chains and children's maths software.</strong> It worked for exactly three months: September to
+November 2023, 1,083 visits to 65,845.</p>
+<p>Then Google's quality systems re-scored what the site was <em>about</em>. The judgement was not
+"this page is thin" but "this domain is not what it claims to be", and a site-wide demotion took the
+genuine commercial pages down with the junk. That is why <code>/mobile-app-development-company</code>,
+a legitimate page, now earns 355 visits instead of thousands.</p>
+<p><strong>The cause was topical dilution at scale.</strong> Not links, which grew 150% throughout. Not
+a manual action, because the decline is a staircase across many months rather than a cliff on one date.
+The traffic they bought with junk keywords was never going to convert anyway: their VP's own numbers
+show 197 raw inquiries collapsing to 24 qualified, a 12% rate, because the forms were being filled by
+job seekers, students and APK hunters.</p></div>
+
+<div class="warn"><span class="lbl">The rule this hands us</span>
+<p><strong>Every page on the site has to be about the thing the site sells.</strong> A 4,000-word post
+about a burrito chain's business model is not a neutral addition to an app-development domain; it is a
+vote against the domain's own topic. Volume is not the problem and never was. Relevance is.<br><br>
+And the second rule, from January 2026: <strong>never publish into a demoted site.</strong> They shipped
+161 posts that month and lost another 76%. Prune first, publish second.</p></div>
 
 <div class="foot">
   <p>Data: Ahrefs API v3 (traffic/DR histories for .com and .ae, top pages, refdomains, country splits), live HTML + sitemap inspection, DNS/whois probes of the ccTLD network, and the VP of Marketing's verbally-shared funnel numbers (197 raw → 24 qualified/mo, treated as directional). Pulled 2 Aug 2026. This is the data-driven case study; a full 9-specialist audit (like <a href="audit-appwrk.html">APPWRK's</a>) can be run on request. Series: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-appinventiv.html">Appinventiv</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appwrk.html">APPWRK</a> · <a href="wordpress-vs-webflow.html">Platform decision</a> · <a href="zero-click-marketing.html">Zero-Click talk</a>.</p>

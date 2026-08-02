@@ -264,6 +264,35 @@
   *,*::before,*::after{box-sizing:border-box}
   img,svg{max-width:100%}
 
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
     a{color:#1a4fd6;text-decoration:underline}
@@ -314,6 +343,18 @@
   <h1>appwrk.com: a real agency that poisoned itself with every shortcut at once</h1>
   <p class="prose">APPWRK IT Solutions is a genuine business: founded 2012, six real offices, ISO-certified, 98 named case studies, a live Shopify client roster. This audit found a real company buried under a content farm, doorway pages, fake star ratings, hollow badge links, Telegram link-seller spam, a fold-covering popup, and a cache bug serving the wrong pages. The fourth case study in our series, and the lowest score yet. Companions: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appinventiv.html">Appinventiv blueprint</a>.</p>
 </header>
+
+<div class="see"><span class="lbl">Correction and re-test, 3 Aug 2026</span>
+<p>An earlier version of this audit described the spam links pointing at this domain as bought. That was
+wrong. Every link in those clusters is <strong>nofollow</strong>, and a purchased link is dofollow
+because passing equity is the entire product. What this actually is: a link vendor spraying fabricated
+testimonials for itself and using real domains as filler. <strong>appwrk.com was targeted, not
+complicit.</strong> The same network points at our own site, which is what prompted the re-test.</p>
+<p><strong>This does not change why the traffic fell.</strong> We tested the alternative directly: if
+links had caused it, the link profile would have shrunk. Traffic fell from 41,660 to 1,157 (−97%) while referring domains rose from 579 to 2,001 (+246%). <strong>Links are ruled out as the
+mechanism.</strong> The cause was content quality, exactly as this audit describes below, and that
+finding stands unchanged.</p></div>
+
 
 <div class="hero">
   <div class="gauge">
