@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Appinventiv — The Content Architecture to Copy</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --bar: #2a78d6;
+    --good: #006300; --warn: #b45309; --crit: #d03b3b;
+    --see: #eef4fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --ring: rgba(255,255,255,0.10);
+      --accent: #86b6ef; --bar: #3987e5;
+      --good: #0ca30c; --warn: #f5a623; --crit: #e66767;
+      --see: #16202b;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --ring: rgba(255,255,255,0.10);
+    --accent: #86b6ef; --bar: #3987e5;
+    --good: #0ca30c; --warn: #f5a623; --crit: #e66767;
+    --see: #16202b;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --bar: #2a78d6;
+    --good: #006300; --warn: #b45309; --crit: #d03b3b;
+    --see: #eef4fb;
+  }
+  body { background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6; margin: 0; padding: 0 20px 90px; }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1, h2, h3 { font-family: Charter, Georgia, serif; text-wrap: balance; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.15; margin: 0 0 8px; }
+  h2 { font-size: 1.5rem; margin: 56px 0 14px; padding-top: 16px; border-top: 3px solid var(--ink); }
+  h3 { font-size: 1.14rem; margin: 32px 0 8px; }
+  p { color: var(--ink-2); margin: 0 0 13px; }
+  p strong, li strong, td strong { color: var(--ink); }
+  ul, ol { color: var(--ink-2); padding-left: 1.35em; margin: 0 0 13px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--accent); }
+  code { background: color-mix(in srgb, var(--grid) 50%, transparent); border-radius: 4px; padding: 1px 5px; font-size: 0.88em; }
+  .eyebrow { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 44px 0 12px; font-weight: 600; }
+  .prose { max-width: 730px; }
+  .vitals { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 24px 0; }
+  .vital { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 14px 16px; }
+  .vital .n { font-size: 1.5rem; font-weight: 700; }
+  .vital .l { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .see { background: var(--see); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 0.94rem; color: var(--ink-2); }
+  .see .lbl { font-weight: 700; color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .see p:last-child { margin-bottom: 0; }
+  .tbl-scroll { overflow-x: auto; margin: 16px 0; border: 1px solid var(--ring); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.86rem; min-width: 600px; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  .chart-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 14px; margin: 20px 0; }
+  pre.mermaid { margin: 0 auto; background: transparent; }
+  .foot { margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--grid); font-size: 0.8rem; color: var(--muted); }
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img{max-width:100%;height:auto}
+  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
+       padding:14px 18px;margin:16px 0;font-size:.86rem}
+  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
+  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
+  .dgm-s:first-of-type{margin-top:0}
+  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
+  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
+  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
+  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  @media print{
+    body{background:#fff;padding:0}
+    /* PDF links are real annotations, so do NOT also print the raw href:
+       it doubled line length and pushed the URL tree off the right edge. */
+    a{color:#1a4fd6;text-decoration:underline}
+    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
+    .tree{white-space:pre-wrap!important;overflow:visible!important;
+          word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
+    th,td{word-break:break-word;padding:4px 6px!important}
+    pre,code{white-space:pre-wrap!important;word-break:break-word}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    h2,h3{break-after:avoid}
+  }
+
+  .lib-nav{position:sticky;top:0;z-index:50;display:flex;gap:2px;flex-wrap:wrap;
+    align-items:center;padding:8px 14px;margin:0 0 22px;font-size:.78rem;
+    border-radius:0 0 10px 10px;max-width:100%;
+    background:color-mix(in srgb,var(--panel,#fff) 92%,transparent);
+    backdrop-filter:saturate(1.6) blur(8px);
+    border-bottom:1px solid var(--ring,#e5e2db)}
+  .lib-nav a{color:var(--ink2,#54524d);text-decoration:none;padding:4px 9px;
+    border-radius:6px;white-space:nowrap}
+  .lib-nav a:hover{background:var(--soft,#eef2fd);color:var(--acc,#1a4fd6)}
+  .lib-nav a.here{background:var(--acc,#1a4fd6);color:#fff;font-weight:700}
+  .lib-nav .home{font-weight:700;color:var(--acc,#1a4fd6);margin-right:6px}
+  .lib-nav .sep{color:var(--mut,#8a8781);opacity:.5;padding:0 2px}
+  .lib-foot{margin:64px 0 0;padding:30px 22px 44px;max-width:100%;
+    border-radius:12px 12px 0 0;
+    border-top:3px solid var(--ink,#111110);background:var(--panel,#fff)}
+  .lib-foot h3{font-family:Charter,Georgia,serif;font-size:1.22rem;margin:0 0 4px;
+    color:var(--ink,#111110)}
+  .lib-foot .sub{font-size:.86rem;color:var(--mut,#8a8781);margin:0 0 22px}
+  .lib-grid{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    max-width:1180px}
+  .lib-grid h4{font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--mut,#8a8781);margin:0 0 9px;font-weight:700}
+  .lib-grid ul{list-style:none;margin:0;padding:0}
+  .lib-grid li{margin:0 0 11px;line-height:1.4}
+  .lib-grid a{font-weight:700;font-size:.9rem;color:var(--acc,#1a4fd6);text-decoration:none}
+  .lib-grid a:hover{text-decoration:underline}
+  .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
+  .lib-grid li.here a{color:var(--ink,#111110)}
+  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+    font-size:.74rem;color:var(--mut,#8a8781)}
+  @media print{.lib-nav,.lib-foot{display:none}}
+</style>
+</head>
+<body><nav class="lib-nav"><a class="home" href="index.html">GTM BUILD LIBRARY</a><a href="build-roadmap.html">The Build Roadmap</a><span class="sep">·</span><a href="seo-from-zero.html">SEO From Zero</a><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><a href="niche-research.html">Niche Research</a><a href="page-types.html">Page Types Decoded</a><a href="zero-click-marketing.html">Zero-Click Marketing</a><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span class="sep">·</span><a href="site-prototype.html">Clickable Prototype</a><a href="site-blueprint.html">Site Blueprint</a><a href="30-day-compression.html">The 30-Day Compression</a><a href="full-build-documentation.html">Full Build Documentation</a><span class="sep">·</span><a href="audit-appinventiv.html" class="here">Appinventiv</a><a href="audit-searchable.html">searchable.com</a><a href="audit-genesysgrowth.html">genesysgrowth.com</a><a href="audit-omnibound.html">omnibound.ai</a><a href="audit-appwrk.html">appwrk.com</a><a href="audit-techgropse.html">TechGropse</a></nav>
+<div class="wrap">
+<header>
+  <div class="eyebrow">The model to copy · 2 Aug 2026 · sitemap full parse + Ahrefs API + 2 page-reading agents</div>
+  <h1>Appinventiv: the complete content architecture of a 107k-visit machine</h1>
+  <p class="prose">This is not a forensic audit — Appinventiv is the healthy one. This is the blueprint: the full map of what pages exist, how the countries are structured, which cluster earns which keyword family, how every blog feeds the money pages, and how the trust/video layer is built. Read it as the plan we are about to adapt for your site. Companions: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys autopsy</a> · <a href="audit-omnibound.html">Omnibound autopsy</a>.</p>
+</header>
+
+<div class="vitals">
+  <div class="vital"><div class="n">DR 77</div><div class="l">earned over ~10 years</div></div>
+  <div class="vital"><div class="n">106,745</div><div class="l">organic visits/mo (Aug 2026)</div></div>
+  <div class="vital"><div class="n">2,642</div><div class="l">URLs on ONE domain</div></div>
+  <div class="vital"><div class="n">73%</div><div class="l">of traffic lands on SERVICE pages — the inverse of Genesys/Omnibound</div></div>
+  <div class="vital"><div class="n">551</div><div class="l">old posts refreshed in July alone</div></div>
+</div>
+
+<h2 id="tree">1 · The complete architecture — top to bottom</h2>
+<p class="prose">Read downward: the domain splits into its content systems, each system into its clusters, each cluster labeled with what it contains, what traffic it earns, and what job it does in the machine. (Per your request: this is the content map — the backlink layer appears only where it matters, as the two link-magnet posts.)</p>
+
+<div class="chart-scroll">
+<div class="dgm">
+<div class="dgm-s">appinventiv.com — ONE domain, DR 77 — 2,642 URLs · ~106,700 visits/mo — WordPress + Yoast</div><ul class="dgm-l">
+<li>SERVICE CATALOG — 141 pages — ≈73% of all traffic (65,513 of top-100&#x27;s 90,273)</li>
+<li>COUNTRY &amp; CITY LAYER — ~55 pages — subfolders on the SAME domain — 6,596 visits from 12 top pages</li>
+<li>CITY LAYER — ~55 pages&lt;br/&gt;subfolders on the SAME domain&lt;br/&gt;6,596 visits from 12 top pages&quot;]</li>
+<li>PORTFOLIO — 62 case studies — the proof layer (thin on SEO, heavy on trust)</li>
+<li>GUIDES — 32 hub pages — 2,732 visits from top 4 — each owns a &#x27;cost/how&#x27; query family</li>
+<li>BLOG — 2,204 posts — ~10,200 visits from top 31 — job: catch early-stage searches + EARN LINKS + feed internal links</li>
+<li>SUPPORT — 80 press releases — 8 web stories · 4 insights · 8 author pages</li>
+</ul>
+<div class="dgm-s">SERVICE CATALOG — 141 pages — ≈73% of all traffic (65,513 of top-100&#x27;s 90,273)</div><ul class="dgm-l">
+<li>Core services (~25) — mobile-app-dev 9,023 visits · web-app 8,527 — software-dev 4,197 · devops 2,134</li>
+<li>Tech services (~40) — ai-development 4,971 · ai-chatbot 2,158 — blockchain 1,958 · cloud, metaverse, microservices…</li>
+<li>Industry services (~45) — fitness 2,966 (#1 whole &#x27;fitness app dev&#x27; family) — healthcare · fintech · construction · agriculture…</li>
+<li>Delivery models (~30) — dedicated teams · staff aug · full-cycle · MVP</li>
+<li>CONVERSION LAYER (sitewide) — global CTA bar on every page — no scattered forms — 7× &#x27;Explore Full Case Study&#x27; strips on service pages — exit-intent trust modal · Clutch widget in every footer</li>
+</ul>
+<div class="dgm-s">COUNTRY &amp; CITY LAYER — ~55 pages — subfolders on the SAME domain — 6,596 visits from 12 top pages</div><ul class="dgm-l">
+<li>Gulf: /ae/ 14 pages (Dubai #1–3 — whole &#x27;app development dubai&#x27; family, 1,606 visits) — /sa/ /qa/ /bh/ /kw/ /eg/</li>
+<li>Europe: /en-uk/ /en-de/ Germany — /en-es/ Spain · /en-fr/ France</li>
+<li>Americas/APAC: /en-us/ + US cities — (atlanta 355 · chicago · california) · /ca/ /sg/</li>
+</ul>
+<div class="dgm-s">BLOG — 2,204 posts — ~10,200 visits from top 31 — job: catch early-stage searches + EARN LINKS + feed internal links</div><ul class="dgm-l">
+<li>Cost guides — 376 posts — &#x27;how much does X cost&#x27; = buyer-intent long-tail</li>
+<li>AI/ML topics — 285 posts — feeds topical authority to AI service pages</li>
+<li>App/software-dev topics — 240 — + how-to 144 · vs 70 · blockchain 51</li>
+<li>⭐ LINK MAGNETS (evergreen definitional) — mvp-in-software-development: 21,785 ref. domains — how-to-hire-dedicated-team: 21,348</li>
+<li>Listicles 32 · trends 31 · benefits 29 — examples 23 · like-X models 19 · other 904</li>
+</ul>
+<div class="dgm-s">GUIDES — 32 hub pages — 2,732 visits from top 4 — each owns a &#x27;cost/how&#x27; query family</div><ul class="dgm-l">
+<li>⭐ /guide/mobile-app-development-cost — #1 &#x27;app development cost&#x27; (vol 1,900) + family — 9,580 words · 15 pricing tables — + sticky cost-calculator quiz → lead form</li>
+</ul>
+<div class="dgm-s">B4 == &quot;authority flows via internal links&quot;</div><ul class="dgm-l">
+<li>SERVICE CATALOG — 141 pages — ≈73% of all traffic (65,513 of top-100&#x27;s 90,273)</li>
+</ul>
+<div class="dgm-s">B1 == &quot;2–3 in-body links per post&quot;</div><ul class="dgm-l">
+<li>SERVICE CATALOG — 141 pages — ≈73% of all traffic (65,513 of top-100&#x27;s 90,273)</li>
+</ul>
+<div class="dgm-s">G1 == &quot;quiz → contact form&quot;</div><ul class="dgm-l">
+<li>CONVERSION LAYER (sitewide) — global CTA bar on every page — no scattered forms — 7× &#x27;Explore Full Case Study&#x27; strips on service pages — exit-intent trust modal · Clutch widget in every footer</li>
+</ul>
+<div class="dgm-s">PORT == &quot;bidirectional case ↔ service links&quot;</div><ul class="dgm-l">
+<li>SERVICE CATALOG — 141 pages — ≈73% of all traffic (65,513 of top-100&#x27;s 90,273)</li>
+</ul></div>
+</div>
+
+<h2 id="geo">2 · The country architecture — exactly what they run where</h2>
+<p class="prose">All on <strong>one domain</strong>, as subfolders — this is the structure we chose for you, running at scale in production:</p>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Market</th><th>Structure</th><th>What's there</th><th>Measured result</th></tr></thead>
+  <tbody>
+    <tr><td>UAE / Dubai</td><td><code>/ae/</code> — 14 pages</td><td>mobile-app-dev-company-dubai + service variants, EN/AR switcher, UAE portfolio, "us vs other providers" table</td><td>#1–3 for the entire "app development dubai" family (vol 800/700/600/450…), 1,606 visits/mo from the flagship page</td></tr>
+    <tr><td>Saudi Arabia</td><td><code>/sa/</code> + <code>/ar/</code> (Arabic)</td><td>software-dev + ai-dev company pages, both languages</td><td>Gulf coverage with 3+3 pages</td></tr>
+    <tr><td>Gulf rest</td><td><code>/qa/ /bh/ /kw/ /eg/</code></td><td>1 country page each</td><td>presence, minimal spend</td></tr>
+    <tr><td>UK / Germany / Spain / France</td><td><code>/en-uk/ /en-de/ /en-es/ /en-fr/</code></td><td>country service pages (fintech-dev-UK, app-dev-germany, app-dev-spain…)</td><td>your exact ES/DE lane, validated</td></tr>
+    <tr><td>USA</td><td><code>/en-us/</code> + bare city slugs</td><td>software-dev-atlanta / chicago / california…</td><td>city-level long-tail capture</td></tr>
+    <tr><td>Canada / Singapore</td><td><code>/ca/ /sg/</code></td><td>country pages</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<p class="prose"><strong>The rule visible in the data:</strong> deep investment only where buyers are (14 Dubai pages), one thin page elsewhere (Qatar, Bahrain) — never 60 clone cities like TechGropse's old .com.</p>
+
+<h2 id="services">3 · The service catalog — 141 pages in four families</h2>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Family</th><th class="num">~Pages</th><th>Examples</th><th>Top performers (visits/mo · keyword family owned)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Core services</strong></td><td class="num">25</td><td>mobile-app, web-app, software-dev, devops, QA, UI/UX</td><td>mobile-app-development-services <strong>9,023</strong> (#2 US "mobile app development services") · web-application-development <strong>8,527</strong> (169 kw)</td></tr>
+    <tr><td><strong>Tech services</strong></td><td class="num">40</td><td>ai-development, ai-chatbot, blockchain, cloud, metaverse, microservices, IoT, AWS</td><td>ai-development-services <strong>4,971</strong> (#1 US "ai development services") · ai-chatbot <strong>2,158</strong> · blockchain <strong>1,958</strong></td></tr>
+    <tr><td><strong>Industry services</strong></td><td class="num">45</td><td>fitness, healthcare, fintech, construction, agriculture, automotive, energy, e-scooter…</td><td>fitness-app-development-services <strong>2,966</strong> — #1 for the whole "fitness app development" family (vol 1,000+700+600…)</td></tr>
+    <tr><td><strong>Delivery models</strong></td><td class="num">30</td><td>dedicated-development-team, staff augmentation, full-cycle, legacy modernization</td><td>legacy-application-modernization <strong>1,348</strong> (#1 US)</td></tr>
+  </tbody>
+</table></div>
+<p class="prose">Your translation: core = "AI automation services / AI agent development"; tech = per-stack pages ("n8n automation agency", "Make/Zapier"); industry = "AI automation for insurance/logistics/real estate"; delivery = "AI automation retainer / audit / build-operate-transfer".</p>
+
+<h2 id="blog">4 · The blog machine — 2,204 posts, categorized, with jobs</h2>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Cluster (by slug)</th><th class="num">Posts</th><th>Job in the machine</th><th>Evidence</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Cost guides</strong> ("how much does X cost")</td><td class="num">376</td><td>Catch buyers at budgeting stage → funnel to services + the guide hub</td><td>Biggest deliberate cluster; each targets one "X cost" long-tail</td></tr>
+    <tr><td><strong>AI/ML topics</strong></td><td class="num">285</td><td>Topical authority feeding the AI service pages' rankings</td><td>ai-development-services ranks #1 US on the back of this cluster</td></tr>
+    <tr><td><strong>App/software-dev topics</strong></td><td class="num">240</td><td>Same, for core services</td><td>—</td></tr>
+    <tr><td><strong>How-to</strong></td><td class="num">144</td><td>Early-stage capture + internal linking</td><td>—</td></tr>
+    <tr><td><strong>⭐ Evergreen definitional (the link magnets)</strong></td><td class="num">~dozens</td><td><strong>EARN the domain's authority</strong></td><td>mvp-in-software-development: <strong>21,785 referring domains</strong>; how-to-hire-dedicated-team: <strong>21,348</strong> — the two pages that built more DR than everything else combined</td></tr>
+    <tr><td>X-vs-Y 70 · blockchain 51 · listicles 32 · trends 31 · benefits 29 · examples 23 · like-X 19</td><td class="num">255</td><td>Long-tail breadth</td><td>top listicle earns 1,879 visits/mo</td></tr>
+    <tr><td>Other/general</td><td class="num">904</td><td>Legacy breadth from 10 years of publishing</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<p class="prose"><strong>How blogs point at money (measured in the page anatomy):</strong> each blog/guide carries 2–3 in-body links to service pages and 20–28 to sibling posts — while service pages fan out 11–53 links to each other and carry the proof strips. The split is deliberate: authority pages cite and interlink; commercial pages sell and cross-sell. And the maintenance loop: <strong>551 posts refreshed in July 2026 alone</strong> — the machine is serviced monthly, not abandoned.</p>
+
+<h2 id="templates">5 · The 7 page templates, read line by line</h2>
+<p class="prose">An agent fetched one live page per template and recorded the actual section sequences, link counts, and CTAs (full skeletons: <code>findings/page-anatomy.md</code>):</p>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Template</th><th class="num">Words</th><th>Spine (actual H2 sequence, abridged)</th><th>Links out (svc/blog/case)</th><th>Signature element</th></tr></thead>
+  <tbody>
+    <tr><td><a href="https://appinventiv.com/mobile-app-development-services/">Flagship service</a></td><td class="num">6,063</td><td>services grid → <strong>7× Challenge/Solution/Impact case strips</strong> → testimonials → industries → compliance → why-us → tech stack → process → FAQ</td><td>48/45/10</td><td>Proof strips; zero on-page forms — one shared booking flow</td></tr>
+    <tr><td><a href="https://appinventiv.com/fitness-app-development-services/">Industry service</a></td><td class="num">4,425</td><td>leaner clone of flagship + market stats + 1 embedded case → FAQ</td><td>11/24/1</td><td>The scaling template — clone per vertical</td></tr>
+    <tr><td><a href="https://appinventiv.com/ae/mobile-app-development-company-dubai/">Geo page</a></td><td class="num">6,025</td><td>services → UAE portfolio → testimonials → why-Dubai → Middle-East approach → tech → FAQ</td><td>36/11/9</td><td>EN/AR switcher + "us vs other providers" table</td></tr>
+    <tr><td><a href="https://appinventiv.com/guide/mobile-app-development-cost/">Guide hub</a></td><td class="num">9,580</td><td>cost factors → hidden costs → per-type costs → step-by-step → monetization → FAQ</td><td>3/28/14</td><td><strong>Sticky cost-calculator quiz → lead form</strong> (the single highest-leverage element found) + 15 pricing tables</td></tr>
+    <tr><td><a href="https://appinventiv.com/blog/mvp-in-software-development/">Blog link-magnet</a></td><td class="num">5,621</td><td>what-is → MVP vs PoC vs Prototype table → types → steps → examples → why-they-fail → FAQ</td><td>2/20/0</td><td>Self-contained citable authority; TTS audio player</td></tr>
+    <tr><td><a href="https://appinventiv.com/portfolio/ikea-shopping-app/">Case study</a></td><td class="num">835</td><td>about → challenge → our role → goals → solution → process → more cases</td><td>1/0/2</td><td><strong>Their weakest template</strong> — no quote, no metrics, stale since 2020. Copy the skeleton, fix these three gaps</td></tr>
+    <tr><td><a href="https://appinventiv.com/">Homepage</a></td><td class="num">5,434</td><td>hero → capabilities → AI ecosystem → C-suite video testimonials → logos → awards → industries → FAQ</td><td>53/5/28</td><td>Persona-routed CTAs; trust-bar stat counters</td></tr>
+  </tbody>
+</table></div>
+<p class="prose"><strong>Three patterns repeat across every template:</strong> (1) one persistent global CTA/trust layer (same 4 CTA strings + Clutch badge on every page — no scattered forms); (2) every page ends with an FAQ whose text matches its FAQPage schema verbatim — a genuine AI-citation surface on ~every URL; (3) the binary split: commercial pages are proof-heavy and link to services; authority pages are citation-heavy and barely link to services — each page knows its one job.</p>
+
+<h2 id="trust">6 · The trust game — how the video testimonials actually work</h2>
+<p class="prose">You spotted the videos; here's the full system (complete inventory: <code>findings/trust-game.md</code>):</p>
+<ul class="prose">
+  <li><strong>All videos are self-hosted MP4s — zero YouTube embeds.</strong> The flagship is one file: <code>client-testimonial.mp4</code> — a single multi-client reel ("Words from Our C-Suite Partners") in a lightbox on the homepage. Flagship case studies (KFC, Adidas) each get one custom hero/results video. Self-hosting = no YouTube recommendations leaking your visitor to competitors, no cookie banners, full control.</li>
+  <li><strong>Written proof is componentized:</strong> 8 named, titled client quotes (Neeraj Tiwari of Americana, Simon Wing of Edfundo…) built once and reused across three contexts — homepage slider, exit-intent modal, per-case-study carousel.</li>
+  <li><strong>Numbers make it credible:</strong> per-case metric tiles (KFC: 22% conversion increase, 50%+ orders via app, 60%+ repeat purchases) and a sitewide stats bar (10+ years, 1700+ specialists, 35+ industries).</li>
+  <li><strong>Verification anchors:</strong> a live Clutch rating widget linked to their real profile in every footer + the Deloitte Fast 50 badge — the two elements repeated sitewide, because they're independently checkable.</li>
+  <li><strong>Distribution is layered, not a testimonials page:</strong> sitewide chrome carries the baseline (Clutch + Deloitte + exit modal); the homepage carries hero-grade assets (awards carousel, the video reel); each case study carries its own specific proof; service pages borrow proof via inline linked client mentions.</li>
+</ul>
+<div class="see"><span class="lbl">Your 10-step replication plan (for your 10–12 clients)</span>
+<p>1. Film <strong>one multi-client flagship reel</strong> first — not twelve separate videos; self-host the MP4. 2. Collect quote + headshot + real name/title from every client, no exceptions. 3. Build one reusable "trust card" component; deploy it in three contexts (homepage slider, exit modal, case pages). 4. Force ≥2 concrete metrics per client ("71% invoice-processing time cut"), no vague praise. 5. Deep case-study pages for your 3–4 strongest clients only. 6. Cross-link every case study ↔ its service page, both directions. 7. Get real Clutch/G2 reviews before displaying any badge. 8. Stats bar with defensible numbers only. 9. Exit-intent module that reuses assets from steps 1–4. 10. Build order: quotes → component → reel → 3 case studies → reviews → stats bar.</p></div>
+
+<h2 id="machine">7 · The whole machine in one paragraph</h2>
+<p class="prose">Evergreen definitional posts and stats-worthy guides <strong>earn</strong> the links (21k+ referring domains on two URLs alone) → that authority pools on one domain and flows through disciplined internal links into <strong>141 service pages, each owning exactly one buyer-intent keyword family</strong> → those service pages, carrying 73% of all traffic, convert through proof strips, one global booking flow, and a layered trust system anchored by verifiable badges and a single flagship testimonial reel → 62 case studies close the loop back to services → geo subfolders replay the whole play per country, deep only where buyers are → and 551 monthly refreshes keep every asset alive. No bought links, no ghost authors, no orphans. That's the machine — and every component of it maps one-to-one onto your AI-automation agency, at your scale, with your 12 clients and your 200k-follower distribution as the accelerant.</p>
+
+<div class="foot">
+  <p>Method: full sitemap-tree parse (2,642 URLs categorized by slug), Ahrefs API v3 (top-100 pages, best-by-links, per-URL keyword families), two page-reading agents (7 templates dissected; trust system inventoried). Full evidence: <code>~/clients/onegtmlab/new-venture-website/appinventiv.com-audit/</code>. Companions: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="wordpress-vs-webflow.html">platform decision</a>. Data pulled 2 Aug 2026. Next: TechGropse breakdown, then the combined 3–4 month strategy.</p>
+</div>
+</div>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li class="here"><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+</html>

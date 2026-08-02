@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Site Prototype — Clickable Reference Build</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #fbfaf8; --panel: #ffffff; --ink: #10100f; --ink2: #55534e; --mut: #8b8880;
+    --line: #e4e1da; --ring: rgba(16,16,15,.09);
+    --accent: #1a4fd6; --accent-soft: #edf1fd;
+    --acc2: #0e7c66;
+    --anno: #b8420f; --anno-bg: #fdf1ea;
+    --good: #0e7c3a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --bg: #0c0c0b; --panel: #161615; --ink: #f7f6f3; --ink2: #b8b5ad; --mut: #85827b;
+      --line: #2a2926; --ring: rgba(255,255,255,.1);
+      --accent: #7ba3ff; --accent-soft: #15203a;
+      --acc2: #4fd1ae;
+      --anno: #f0906a; --anno-bg: #2a1a12;
+      --good: #4ade80;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0c0c0b; --panel: #161615; --ink: #f7f6f3; --ink2: #b8b5ad; --mut: #85827b;
+    --line: #2a2926; --ring: rgba(255,255,255,.1);
+    --accent: #7ba3ff; --accent-soft: #15203a;
+    --acc2: #4fd1ae;
+    --anno: #f0906a; --anno-bg: #2a1a12;
+    --good: #4ade80;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #fbfaf8; --panel: #ffffff; --ink: #10100f; --ink2: #55534e; --mut: #8b8880;
+    --line: #e4e1da; --ring: rgba(16,16,15,.09);
+    --accent: #1a4fd6; --accent-soft: #edf1fd;
+    --acc2: #0e7c66;
+    --anno: #b8420f; --anno-bg: #fdf1ea;
+    --good: #0e7c3a;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.55; margin:0; }
+  .mono { font-family: ui-monospace,"SF Mono",Menlo,monospace; }
+
+  /* ---- prototype chrome ---- */
+  .chrome { position: sticky; top:0; z-index:50; background: var(--panel); border-bottom:1px solid var(--line); }
+  .chrome-in { max-width:1120px; margin:0 auto; padding:10px 20px; display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+  .chrome .tag { font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:var(--anno); background:var(--anno-bg); padding:3px 8px; border-radius:99px; }
+  .pgs { display:flex; gap:4px; flex-wrap:wrap; }
+  .pgbtn { font:inherit; font-size:.82rem; padding:5px 12px; border-radius:7px; border:1px solid var(--line); background:transparent; color:var(--ink2); cursor:pointer; }
+  .pgbtn:hover { border-color:var(--accent); color:var(--accent); }
+  .pgbtn[aria-current="true"] { background:var(--ink); color:var(--bg); border-color:var(--ink); font-weight:600; }
+  .toggle { margin-left:auto; display:flex; align-items:center; gap:7px; font-size:.8rem; color:var(--ink2); cursor:pointer; }
+  .toggle input { accent-color: var(--anno); width:15px; height:15px; }
+  .banner { background:var(--anno-bg); border-bottom:1px solid var(--line); color:var(--ink2); font-size:.8rem; }
+  .banner div { max-width:1120px; margin:0 auto; padding:8px 20px; }
+
+  /* ---- annotations ---- */
+  .an { display:none; }
+  body.anno .an { display:block; background:var(--anno-bg); border-left:3px solid var(--anno); border-radius:0 6px 6px 0; padding:8px 12px; margin:10px 0; font-size:.78rem; color:var(--ink2); font-family: ui-monospace,Menlo,monospace; line-height:1.6; }
+  body.anno .an b { color:var(--anno); }
+  body.anno .an a { color:var(--anno); }
+  body.anno section { outline:1px dashed color-mix(in srgb, var(--anno) 35%, transparent); outline-offset:6px; border-radius:4px; }
+
+  /* ---- site ---- */
+  .site { max-width:1120px; margin:0 auto; padding:0 20px 80px; }
+  .nav { display:flex; align-items:center; gap:26px; padding:20px 0; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .logo { font-weight:800; letter-spacing:-.02em; font-size:1.12rem; }
+  .logo span { color:var(--accent); }
+  .nav a { color:var(--ink2); text-decoration:none; font-size:.9rem; }
+  .nav a:hover { color:var(--accent); }
+  .nav .cta { margin-left:auto; background:var(--ink); color:var(--bg); padding:8px 16px; border-radius:8px; font-weight:600; font-size:.85rem; }
+
+  h1 { font-size:clamp(2rem,4.6vw,3.1rem); line-height:1.08; letter-spacing:-.025em; margin:0 0 16px; text-wrap:balance; }
+  h2 { font-size:clamp(1.35rem,2.4vw,1.75rem); letter-spacing:-.015em; margin:0 0 6px; text-wrap:balance; }
+  h3 { font-size:1.02rem; margin:0 0 6px; }
+  p { color:var(--ink2); margin:0 0 14px; }
+  section { padding:52px 0; border-bottom:1px solid var(--line); }
+  .kicker { font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--mut); font-weight:700; margin-bottom:12px; }
+  .lede { font-size:1.08rem; max-width:60ch; }
+
+  .btn { display:inline-block; background:var(--ink); color:var(--bg); padding:12px 22px; border-radius:9px; text-decoration:none; font-weight:650; font-size:.94rem; }
+  .btn.alt { background:transparent; color:var(--ink); border:1px solid var(--ink); }
+  .btns { display:flex; gap:12px; flex-wrap:wrap; margin:22px 0 8px; }
+
+  .grid { display:grid; gap:14px; }
+  .g2 { grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+  .g3 { grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+  .g4 { grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); }
+  .card { background:var(--panel); border:1px solid var(--ring); border-radius:12px; padding:20px; text-decoration:none; display:block; color:inherit; }
+  a.card:hover { border-color:var(--accent); }
+  .card .t { font-weight:700; margin-bottom:5px; }
+  .card p { font-size:.88rem; margin:0; }
+  .card .kw { font-size:.7rem; color:var(--mut); margin-top:9px; }
+
+  .logos { display:flex; gap:26px; flex-wrap:wrap; align-items:center; opacity:.75; }
+  .logos div { font-weight:700; font-size:.95rem; letter-spacing:-.01em; color:var(--ink2); }
+
+  .proof { background:var(--panel); border:1px solid var(--ring); border-radius:12px; padding:22px; margin-bottom:14px; }
+  .proof .meta { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:12px; }
+  .pill { font-size:.68rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:3px 9px; border-radius:99px; border:1px solid var(--ring); color:var(--ink2); }
+  .csi { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin:14px 0; }
+  .csi div .h { font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--mut); font-weight:700; margin-bottom:4px; }
+  .csi div p { font-size:.9rem; margin:0; }
+  .metric { font-family:ui-monospace,Menlo,monospace; font-size:1.5rem; font-weight:700; color:var(--acc2); }
+
+  .quote { background:var(--panel); border:1px solid var(--ring); border-radius:12px; padding:22px; }
+  .quote p { font-size:1.02rem; color:var(--ink); font-style:italic; }
+  .who { display:flex; gap:11px; align-items:center; margin-top:12px; }
+  .av { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--acc2)); flex:0 0 auto; }
+  .who .n { font-weight:650; font-size:.9rem; }
+  .who .r { font-size:.78rem; color:var(--mut); }
+
+  .vid { background:var(--panel); border:1px solid var(--ring); border-radius:12px; aspect-ratio:16/9; display:grid; place-items:center; color:var(--mut); font-size:.85rem; text-align:center; padding:20px; }
+
+  .faq { border-top:1px solid var(--line); padding:15px 0; }
+  .faq .q { font-weight:650; margin-bottom:5px; }
+  .faq p { font-size:.92rem; margin:0; }
+
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px; }
+  .stats .n { font-family:ui-monospace,Menlo,monospace; font-size:1.7rem; font-weight:700; }
+  .stats .l { font-size:.8rem; color:var(--mut); }
+
+  .inline-link { color:var(--accent); font-weight:600; }
+  .steps { counter-reset:s; }
+  .steps li { margin-bottom:12px; }
+  footer.sf { padding:34px 0; color:var(--mut); font-size:.85rem; }
+  .breadcrumb { font-size:.8rem; color:var(--mut); margin:22px 0 0; }
+  .breadcrumb a { color:var(--mut); }
+  .page { display:none; }
+  .page.on { display:block; }
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img{max-width:100%;height:auto}
+  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
+       padding:14px 18px;margin:16px 0;font-size:.86rem}
+  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
+  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
+  .dgm-s:first-of-type{margin-top:0}
+  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
+  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
+  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
+  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  @media print{
+    body{background:#fff;padding:0}
+    /* PDF links are real annotations, so do NOT also print the raw href:
+       it doubled line length and pushed the URL tree off the right edge. */
+    a{color:#1a4fd6;text-decoration:underline}
+    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
+    .tree{white-space:pre-wrap!important;overflow:visible!important;
+          word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
+    th,td{word-break:break-word;padding:4px 6px!important}
+    pre,code{white-space:pre-wrap!important;word-break:break-word}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    h2,h3{break-after:avoid}
+    /* this page is a tabbed prototype: .page panels and .an annotations are
+       display:none until clicked, so a print would silently drop most of it */
+    .page{display:block!important;break-before:page}
+    .an{display:block!important}
+    .tabs,.tabbar,nav[role="tablist"]{display:none!important}
+  }
+
+  .lib-nav{position:sticky;top:0;z-index:50;display:flex;gap:2px;flex-wrap:wrap;
+    align-items:center;padding:8px 14px;margin:0 0 22px;font-size:.78rem;
+    border-radius:0 0 10px 10px;max-width:100%;
+    background:color-mix(in srgb,var(--panel,#fff) 92%,transparent);
+    backdrop-filter:saturate(1.6) blur(8px);
+    border-bottom:1px solid var(--ring,#e5e2db)}
+  .lib-nav a{color:var(--ink2,#54524d);text-decoration:none;padding:4px 9px;
+    border-radius:6px;white-space:nowrap}
+  .lib-nav a:hover{background:var(--soft,#eef2fd);color:var(--acc,#1a4fd6)}
+  .lib-nav a.here{background:var(--acc,#1a4fd6);color:#fff;font-weight:700}
+  .lib-nav .home{font-weight:700;color:var(--acc,#1a4fd6);margin-right:6px}
+  .lib-nav .sep{color:var(--mut,#8a8781);opacity:.5;padding:0 2px}
+  .lib-foot{margin:64px 0 0;padding:30px 22px 44px;max-width:100%;
+    border-radius:12px 12px 0 0;
+    border-top:3px solid var(--ink,#111110);background:var(--panel,#fff)}
+  .lib-foot h3{font-family:Charter,Georgia,serif;font-size:1.22rem;margin:0 0 4px;
+    color:var(--ink,#111110)}
+  .lib-foot .sub{font-size:.86rem;color:var(--mut,#8a8781);margin:0 0 22px}
+  .lib-grid{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    max-width:1180px}
+  .lib-grid h4{font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--mut,#8a8781);margin:0 0 9px;font-weight:700}
+  .lib-grid ul{list-style:none;margin:0;padding:0}
+  .lib-grid li{margin:0 0 11px;line-height:1.4}
+  .lib-grid a{font-weight:700;font-size:.9rem;color:var(--acc,#1a4fd6);text-decoration:none}
+  .lib-grid a:hover{text-decoration:underline}
+  .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
+  .lib-grid li.here a{color:var(--ink,#111110)}
+  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+    font-size:.74rem;color:var(--mut,#8a8781)}
+  @media print{.lib-nav,.lib-foot{display:none}}
+</style>
+</head>
+<body><nav class="lib-nav"><a class="home" href="index.html">GTM BUILD LIBRARY</a><a href="build-roadmap.html">The Build Roadmap</a><span class="sep">·</span><a href="seo-from-zero.html">SEO From Zero</a><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><a href="niche-research.html">Niche Research</a><a href="page-types.html">Page Types Decoded</a><a href="zero-click-marketing.html">Zero-Click Marketing</a><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span class="sep">·</span><a href="site-prototype.html" class="here">Clickable Prototype</a><a href="site-blueprint.html">Site Blueprint</a><a href="30-day-compression.html">The 30-Day Compression</a><a href="full-build-documentation.html">Full Build Documentation</a><span class="sep">·</span><a href="audit-appinventiv.html">Appinventiv</a><a href="audit-searchable.html">searchable.com</a><a href="audit-genesysgrowth.html">genesysgrowth.com</a><a href="audit-omnibound.html">omnibound.ai</a><a href="audit-appwrk.html">appwrk.com</a><a href="audit-techgropse.html">TechGropse</a></nav>
+<div class="chrome">
+  <div class="chrome-in">
+    <span class="tag">Prototype</span>
+    <div class="pgs">
+      <button class="pgbtn" data-go="home" aria-current="true">🏠 Homepage</button>
+      <button class="pgbtn" data-go="service">⚙️ Service page</button>
+      <button class="pgbtn" data-go="industry">🏢 Industry page</button>
+      <button class="pgbtn" data-go="case">📊 Case study</button>
+      <button class="pgbtn" data-go="cost">💰 Cost pillar</button>
+    </div>
+    <label class="toggle"><input type="checkbox" id="annoTog"> Show SEO annotations</label>
+  </div>
+</div>
+<div class="banner"><div><strong>Placeholder content.</strong> Client names, logos, metrics and quotes below are invented stand-ins so the structure is visible — replace every one with your real 12 clients before anything ships. Structure, section order and internal links are the real deliverable.</div></div>
+
+<!-- ================= HOMEPAGE ================= -->
+<div class="page on" id="home"><div class="site">
+  <nav class="nav">
+    <div class="logo">agent<span>works</span></div>
+    <a href="#" data-go="service">Services</a>
+    <a href="#" data-go="industry">Industries</a>
+    <a href="#" data-go="case">Case studies</a>
+    <a href="#" data-go="cost">Pricing</a>
+    <a href="#">Insights</a>
+    <a class="cta" href="#">Book a call</a>
+  </nav>
+
+  <section>
+    <div class="kicker">AI agent development company</div>
+    <h1>We build AI agents that run in production — not demos that die in the pilot.</h1>
+    <p class="lede">Fifty engineers. Agents deployed across insurance, ecommerce and operations teams. We design, ship, and then run them — with evals, monitoring and a human in the loop where it matters.</p>
+    <div class="btns">
+      <a class="btn" href="#">Book a 30-minute call</a>
+      <a class="btn alt" href="#" data-go="cost">See what an agent costs →</a>
+    </div>
+    <div class="an"><b>[MONEY PAGE — homepage]</b> · TARGET KEYWORD: "ai agent development company" · 1,417 searches/mo · KD 17 · $10 CPC<br>
+    The H1 contains the target phrase in natural language. Two CTAs: one low-friction (cost calculator), one high-commitment (book a call) — never three competing asks.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Trusted by</div>
+    <div class="logos"><div>NORTHWIND INSURANCE</div><div>Kettle &amp; Co</div><div>PARAGON LOGISTICS</div><div>Brightline Health</div><div>Vela Commerce</div><div>Ardent Property</div></div>
+    <div class="an"><b>[E-E-A-T — trust layer]</b> Logo wall above the fold. Appinventiv runs ~10 client logos plus a Clutch widget in the footer of every page. Put your real 12 here. Never invent logos.</div>
+  </section>
+
+  <section>
+    <div class="kicker">What we build</div>
+    <h2>Four ways companies work with us</h2>
+    <div class="grid g2" style="margin-top:18px">
+      <a class="card" href="#" data-go="service"><div class="t">AI Agent Development →</div><p>Custom agents with tool use, memory and guardrails. Voice agents, copilots, multi-agent systems, RAG.</p><div class="kw mono">→ /ai-agent-development-services/</div></a>
+      <a class="card" href="#"><div class="t">AI Automation Services →</div><p>Business-process and workflow automation, n8n builds, document and invoice pipelines, integrations.</p><div class="kw mono">→ /ai-automation-services/</div></a>
+      <a class="card" href="#"><div class="t">AI Consulting →</div><p>Readiness assessment, agent audits, governance frameworks for regulated environments.</p><div class="kw mono">→ /ai-consulting-services/</div></a>
+      <a class="card" href="#"><div class="t">Dedicated AI Teams →</div><p>Hire agent engineers, PoC sprints, and managed services once agents are live.</p><div class="kw mono">→ /hire-ai-agent-developers/</div></a>
+    </div>
+    <div class="an"><b>LINKS OUT →</b> the 4 PARENT SERVICE pages. <b>This is what "links out" means:</b> clickable links inside this page's body pointing to other pages of your own site. They pass authority from the homepage (your strongest page) down to the pages that sell. Click one — it navigates in this prototype.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Proof</div>
+    <h2>Three agents, in production, with numbers</h2>
+
+    <div class="proof" style="margin-top:18px">
+      <div class="meta"><span class="pill">Insurance</span><span class="pill">Claims intake</span><span class="mono" style="color:var(--mut);font-size:.78rem">14 weeks to production</span></div>
+      <h3>Northwind Insurance — claims triage agent</h3>
+      <div class="csi">
+        <div><div class="h">Challenge</div><p>2,400 first-notice-of-loss emails a week, manually sorted by 9 people across two shifts.</p></div>
+        <div><div class="h">Solution</div><p>Intake agent reading email + attachments, extracting 14 fields, routing by severity, escalating anything it isn't sure about.</p></div>
+        <div><div class="h">Impact</div><div class="metric">71%</div><p style="margin-top:2px">of claims auto-triaged · median handling time 4.2h → 38min</p></div>
+      </div>
+      <a class="inline-link" href="#" data-go="case">Read the full case study →</a>
+    </div>
+
+    <div class="proof">
+      <div class="meta"><span class="pill">Ecommerce</span><span class="pill">Support deflection</span></div>
+      <h3>Vela Commerce — order-status &amp; returns agent</h3>
+      <div class="csi">
+        <div><div class="h">Challenge</div><p>62% of support tickets were "where is my order" and returns eligibility.</p></div>
+        <div><div class="h">Solution</div><p>Agent wired to Shopify + carrier APIs, handling status, returns and exchanges end to end.</p></div>
+        <div><div class="h">Impact</div><div class="metric">58%</div><p style="margin-top:2px">ticket deflection · CSAT held at 4.6</p></div>
+      </div>
+      <a class="inline-link" href="#" data-go="case">Read the full case study →</a>
+    </div>
+
+    <div class="proof">
+      <div class="meta"><span class="pill">Logistics</span><span class="pill">Document processing</span></div>
+      <h3>Paragon Logistics — invoice reconciliation agent</h3>
+      <div class="csi">
+        <div><div class="h">Challenge</div><p>11,000 carrier invoices/month reconciled by hand against rate cards.</p></div>
+        <div><div class="h">Solution</div><p>Extraction + reconciliation agent flagging only true exceptions to the finance team.</p></div>
+        <div><div class="h">Impact</div><div class="metric">$180k</div><p style="margin-top:2px">annual recovery from billing discrepancies caught</p></div>
+      </div>
+      <a class="inline-link" href="#" data-go="case">Read the full case study →</a>
+    </div>
+    <div class="an"><b>LINKS OUT →</b> 3–6 CASE STUDIES. This is Appinventiv's "Challenge / Solution / Impact" strip — see it live on <a href="https://appinventiv.com/mobile-app-development-services/" target="_blank">their flagship service page</a>, where they run 7 of them. Each strip is a link into a case study, and each case study links back. <b>Every metric here must be real and client-approved.</b></div>
+  </section>
+
+  <section>
+    <div class="kicker">Industries</div>
+    <h2>Where our agents already run</h2>
+    <div class="grid g3" style="margin-top:18px">
+      <a class="card" href="#" data-go="industry"><div class="t">Insurance →</div><p>Claims intake, underwriting support, compliance-safe document handling.</p><div class="kw mono">→ /industries/ai-agents-for-insurance/</div></a>
+      <a class="card" href="#"><div class="t">Ecommerce →</div><p>Support deflection, returns, catalog enrichment, order operations.</p><div class="kw mono">→ /industries/ai-agents-for-ecommerce/</div></a>
+      <a class="card" href="#"><div class="t">Logistics →</div><p>Invoice reconciliation, exception handling, carrier comms.</p><div class="kw mono">→ /industries/ai-agents-for-logistics/</div></a>
+      <a class="card" href="#"><div class="t">Healthcare ops →</div><p>Intake, prior-auth support, records handling under HIPAA constraints.</p><div class="kw mono">→ /industries/ai-agents-for-healthcare/</div></a>
+      <a class="card" href="#"><div class="t">Real estate →</div><p>Lead qualification, document prep, tenant comms.</p><div class="kw mono">→ /industries/ai-agents-for-real-estate/</div></a>
+      <a class="card" href="#"><div class="t">Customer service →</div><p>Tier-1 deflection with clean human handoff.</p><div class="kw mono">→ /industries/ai-agents-for-customer-service/</div></a>
+    </div>
+    <div class="an"><b>LINKS OUT →</b> the INDUSTRY pages (each is a MONEY PAGE with its own keyword). Insurance = your beachhead: "ai agents for insurance", 70 searches, KD 3, $10 CPC — and a DR-23 site currently ranks page 1 for it.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Pricing</div>
+    <h2>What does an AI agent actually cost?</h2>
+    <p class="lede">Build cost, token cost and the maintenance nobody quotes you for — with a calculator that gives you a range in two minutes.</p>
+    <div class="btns"><a class="btn" href="#" data-go="cost">Open the cost calculator →</a></div>
+    <div class="an"><b>LINKS OUT →</b> the COST PILLAR. Highest-leverage page on the site: target "ai agent development cost" (KD 8) — a DR-3 site holds #1 for it today. <a href="https://appinventiv.com/guide/mobile-app-development-cost/" target="_blank">Appinventiv's version</a> is 9,580 words with 15 pricing tables and a sticky quiz that converts into a lead.</div>
+  </section>
+
+  <section>
+    <div class="kicker">In their words</div>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="vid">▶ Multi-client testimonial reel<br><span style="font-size:.78rem">self-hosted MP4 — not YouTube (YouTube shows competitors' videos next to yours)</span></div>
+      <div class="quote">
+        <p>"We'd already failed one agent pilot internally. They started by telling us which half of our process shouldn't be automated at all — then shipped the half that should."</p>
+        <div class="who"><div class="av"></div><div><div class="n">[Client name]</div><div class="r">[Title], Northwind Insurance</div></div></div>
+      </div>
+    </div>
+    <div class="stats" style="margin-top:26px">
+      <div><div class="n">12</div><div class="l">companies running our agents</div></div>
+      <div><div class="n">50</div><div class="l">engineers, two time zones</div></div>
+      <div><div class="n">31</div><div class="l">agents in production</div></div>
+      <div><div class="n">4.9★</div><div class="l">Clutch (verified reviews)</div></div>
+    </div>
+    <div class="an"><b>[E-E-A-T]</b> Every number here must be defensible — an auditable stat bar is a trust asset, an invented one is a liability. Appinventiv pairs this with a live Clutch widget in the footer of every page. Video self-hosted, exactly as they do it.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Insights</div>
+    <h2>Latest from the team</h2>
+    <div class="grid g3" style="margin-top:18px">
+      <a class="card" href="#"><div class="t">What agents actually cost to run</div><p>Token economics from 31 production deployments.</p><div class="kw mono">by [Engineer name] · blog</div></a>
+      <a class="card" href="#"><div class="t">Why insurance AI pilots fail</div><p>The five failure modes we've had to engineer around.</p><div class="kw mono">by [Engineer name] · blog</div></a>
+      <a class="card" href="#"><div class="t">Agent vs chatbot: the real difference</div><p>Tool use, state, and autonomy loops explained.</p><div class="kw mono">by [Engineer name] · blog</div></a>
+    </div>
+    <div class="an"><b>THE CORRECTION:</b> earlier I said "homepage never links to blogs" — too absolute, my error. <b>The real rule is ratio.</b> Here: ~14 links to money pages vs 3 to blogs. Appinventiv's homepage runs 53 service links, 28 case-study links and 5 blog links. Three recent posts is right; a 20-post feed is not.</div>
+  </section>
+
+  <section style="border-bottom:none">
+    <h2>Tell us the process you'd hand to an agent tomorrow.</h2>
+    <p class="lede">Thirty minutes, an engineer on the call, and an honest answer about whether it's worth automating.</p>
+    <div class="btns"><a class="btn" href="#">Book a call →</a></div>
+    <div class="an"><b>→ /book-a-call/</b> — the ONE conversion destination. Every CTA on every page points here. No competing forms, no scattered Calendly embeds.</div>
+  </section>
+  <footer class="sf">agentworks · prototype · placeholder content</footer>
+</div></div>
+
+<!-- ================= SERVICE PAGE ================= -->
+<div class="page" id="service"><div class="site">
+  <nav class="nav">
+    <div class="logo">agent<span>works</span></div>
+    <a href="#" data-go="home">Home</a><a href="#" data-go="industry">Industries</a><a href="#" data-go="case">Case studies</a><a href="#" data-go="cost">Pricing</a>
+    <a class="cta" href="#">Book a call</a>
+  </nav>
+  <div class="breadcrumb"><a href="#" data-go="home">Home</a> › Services › AI Agent Development</div>
+
+  <section>
+    <div class="kicker">Parent service page</div>
+    <h1>AI Agent Development Services</h1>
+    <p class="lede">Agents that use your tools, hold state across a task, escalate when they're unsure, and get monitored after launch. Built by engineers who've shipped 31 of them.</p>
+    <div class="btns"><a class="btn" href="#">Book a call</a><a class="btn alt" href="#" data-go="cost">What it costs →</a></div>
+    <div class="an"><b>[PARENT SERVICE — flagship]</b> · TARGET: "ai agent development services" · 403/mo · KD 13 · $15 CPC. Also supports the homepage's "ai agent development company" (KD 17).<br>
+    EVIDENCE: neurons-lab ranks #4 for the head term with only <b>16 backlinks</b> to that page. Winnable. 4,000+ words. Model: <a href="https://appinventiv.com/ai-agent-development-services/" target="_blank">appinventiv.com/ai-agent-development-services/</a></div>
+  </section>
+
+  <section>
+    <div class="kicker">What's included</div>
+    <h2>Six ways we build</h2>
+    <div class="grid g3" style="margin-top:18px">
+      <a class="card" href="#"><div class="t">Voice agents →</div><p>Phone and in-app voice with barge-in, escalation and call summaries.</p><div class="kw mono">→ /ai-voice-agent-development-services/ · KD 21</div></a>
+      <a class="card" href="#"><div class="t">Chatbot development →</div><p>Retrieval-grounded assistants for support and internal knowledge.</p><div class="kw mono">→ /ai-chatbot-development-services/ · KD 4 ★</div></a>
+      <a class="card" href="#"><div class="t">Copilots →</div><p>In-product assistants that act inside your app, not beside it.</p><div class="kw mono">→ /ai-copilot-development-services/</div></a>
+      <a class="card" href="#"><div class="t">Multi-agent systems →</div><p>Orchestrated agents with routing, shared memory and supervision.</p><div class="kw mono">→ /multi-agent-system-development/ · KD 42</div></a>
+      <a class="card" href="#"><div class="t">RAG systems →</div><p>Retrieval pipelines that stay correct as your corpus changes.</p><div class="kw mono">→ /rag-development-services/ · KD 16</div></a>
+      <a class="card" href="#"><div class="t">Custom agents →</div><p>Bespoke architectures for processes that don't fit a pattern.</p><div class="kw mono">→ /custom-ai-agent-development/ · KD 46</div></a>
+    </div>
+    <div class="an"><b>LINKS OUT →</b> the 6 CHILD SERVICE pages. Each child targets its own keyword and links back up here. Never let two pages chase the same phrase — that's the mistake APPWRK made with five cities on two pages each.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Proof</div>
+    <h2>Agents we've shipped</h2>
+    <div class="proof" style="margin-top:18px">
+      <div class="meta"><span class="pill">Insurance</span></div>
+      <h3>Claims triage — Northwind Insurance</h3>
+      <div class="csi">
+        <div><div class="h">Challenge</div><p>2,400 FNOL emails/week sorted by hand.</p></div>
+        <div><div class="h">Solution</div><p>Intake agent with 14-field extraction and severity routing.</p></div>
+        <div><div class="h">Impact</div><div class="metric">71%</div><p style="margin-top:2px">auto-triaged</p></div>
+      </div>
+      <a class="inline-link" href="#" data-go="case">Full case study →</a>
+    </div>
+    <div class="proof">
+      <div class="meta"><span class="pill">Ecommerce</span></div>
+      <h3>Support deflection — Vela Commerce</h3>
+      <div class="csi">
+        <div><div class="h">Challenge</div><p>62% of tickets were order-status and returns.</p></div>
+        <div><div class="h">Solution</div><p>Agent wired into Shopify + carrier APIs.</p></div>
+        <div><div class="h">Impact</div><div class="metric">58%</div><p style="margin-top:2px">deflection, CSAT held</p></div>
+      </div>
+      <a class="inline-link" href="#" data-go="case">Full case study →</a>
+    </div>
+    <div class="an"><b>5 proof strips minimum on a flagship service page.</b> Appinventiv runs 7. This is the section that converts — it's also why case studies are built in Days 13–18, before most content.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Industries</div>
+    <h2>Sectors we know</h2>
+    <div class="grid g4" style="margin-top:18px">
+      <a class="card" href="#" data-go="industry"><div class="t">Insurance →</div></a>
+      <a class="card" href="#"><div class="t">Ecommerce →</div></a>
+      <a class="card" href="#"><div class="t">Logistics →</div></a>
+      <a class="card" href="#"><div class="t">Healthcare →</div></a>
+    </div>
+    <div class="an"><b>LINKS OUT →</b> INDUSTRY pages. The parent service links down to verticals; each vertical links back up here. That reciprocal wiring is what Genesys never did — 94% of their pages had no internal links at all.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Process</div>
+    <h2>How a build actually runs</h2>
+    <ol class="steps" style="margin-top:16px">
+      <li><strong>Week 0 — process audit.</strong> We map the workflow and tell you which parts shouldn't be automated.</li>
+      <li><strong>Weeks 1–2 — PoC on real data.</strong> Not a demo. Your documents, your edge cases.</li>
+      <li><strong>Weeks 3–8 — build.</strong> Tools, memory, guardrails, human-in-the-loop points, eval suite.</li>
+      <li><strong>Weeks 9–12 — production hardening.</strong> Monitoring, fallbacks, cost controls, handover.</li>
+      <li><strong>Ongoing — managed operation.</strong> Evals re-run weekly; drift and cost tracked.</li>
+    </ol>
+    <div class="an"><b>Mechanics, not marketing.</b> This section is where your 50 engineers' actual knowledge shows. It's also the part AI engines quote when someone asks "how does an AI agent project work" — write it to be citable.</div>
+  </section>
+
+  <section>
+    <div class="kicker">FAQ</div>
+    <h2>Questions buyers actually ask</h2>
+    <div style="margin-top:16px">
+      <div class="faq"><div class="q">How long until an agent is in production?</div><p>Typically 8–14 weeks for a scoped process. PoC on your real data inside two weeks.</p></div>
+      <div class="faq"><div class="q">What does it cost to run, not just to build?</div><p>Token spend plus monitoring. For a claims-intake agent at 2,400 items/week, expect a predictable monthly range — the <a class="inline-link" href="#" data-go="cost">cost calculator</a> gives you a figure.</p></div>
+      <div class="faq"><div class="q">What happens when the agent is wrong?</div><p>It escalates with its reasoning attached. Confidence thresholds and human-in-the-loop points are designed in from week one.</p></div>
+      <div class="faq"><div class="q">Do you work with regulated data?</div><p>Yes — governance, audit trails and data-residency constraints are scoped before the build.</p></div>
+    </div>
+    <div class="an"><b>Every template ends with FAQ + FAQPage schema.</b> Appinventiv does this on 5 of 7 page types, and the visible text matches the JSON-LD exactly — a real AI-citation surface, not schema theatre.</div>
+  </section>
+
+  <section style="border-bottom:none">
+    <h2>Bring us the process you think can't be automated.</h2>
+    <div class="btns"><a class="btn" href="#">Book a call →</a></div>
+  </section>
+  <footer class="sf">agentworks · prototype</footer>
+</div></div>
+
+<!-- ================= INDUSTRY PAGE ================= -->
+<div class="page" id="industry"><div class="site">
+  <nav class="nav">
+    <div class="logo">agent<span>works</span></div>
+    <a href="#" data-go="home">Home</a><a href="#" data-go="service">Services</a><a href="#" data-go="case">Case studies</a><a href="#" data-go="cost">Pricing</a>
+    <a class="cta" href="#">Book a call</a>
+  </nav>
+  <div class="breadcrumb"><a href="#" data-go="home">Home</a> › <a href="#">Industries</a> › Insurance</div>
+
+  <section>
+    <div class="kicker">Industry page · beachhead</div>
+    <h1>AI Agents for Insurance</h1>
+    <p class="lede">Claims intake, underwriting support and document handling — built for teams that answer to a regulator and can't ship a black box.</p>
+    <div class="btns"><a class="btn" href="#">Book a call</a><a class="btn alt" href="#" data-go="case">See the claims agent →</a></div>
+    <div class="an"><b>[MONEY PAGE — industry/vertical]</b> · TARGET: "ai agents for insurance" · 70/mo · KD 3 · <b>$10 CPC</b><br>
+    Low volume, but every searcher is a buyer, and a DR-23 site (aelumconsulting) holds page 1 today — the door is open. Six blog posts feed this page.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Where agents fit</div>
+    <h2>Four processes we've automated in insurance</h2>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="card"><div class="t">First-notice-of-loss intake</div><p>Reading claim emails and attachments, extracting structured fields, routing by severity.</p></div>
+      <div class="card"><div class="t">Underwriting support</div><p>Pulling and summarising submission documents so underwriters read decisions, not paperwork.</p></div>
+      <div class="card"><div class="t">Document &amp; compliance handling</div><p>Classification and retention with a full audit trail of every agent action.</p></div>
+      <div class="card"><div class="t">Policyholder comms</div><p>Status answers and renewals with clean escalation to a licensed human.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Proof in this sector</div>
+    <div class="proof">
+      <div class="meta"><span class="pill">Insurance</span><span class="pill">14 weeks</span></div>
+      <h3>Northwind Insurance — claims triage agent</h3>
+      <div class="csi">
+        <div><div class="h">Challenge</div><p>9 people, two shifts, 2,400 FNOL emails a week.</p></div>
+        <div><div class="h">Solution</div><p>Intake agent with severity routing and mandatory escalation on low confidence.</p></div>
+        <div><div class="h">Impact</div><div class="metric">71%</div><p style="margin-top:2px">auto-triaged · 4.2h → 38min</p></div>
+      </div>
+      <a class="inline-link" href="#" data-go="case">Full case study →</a>
+    </div>
+    <div class="an"><b>LINKS OUT →</b> 2 vertical-matched CASE STUDIES + the PARENT SERVICE + the COST PILLAR + /book-a-call/.<br>
+    <b>LINKED FROM ←</b> /industries/ hub · the flagship service page · its 6 blog posts · both insurance case studies.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Reading</div>
+    <h2>What our engineers have written about insurance</h2>
+    <div class="grid g3" style="margin-top:18px">
+      <a class="card" href="#"><div class="t">Insurance claims automation</div><p class="kw mono" style="margin-top:8px">blog · 556/mo · KD 7</p></a>
+      <a class="card" href="#"><div class="t">Claims processing automation</div><p class="kw mono" style="margin-top:8px">blog · 248/mo · KD 6</p></a>
+      <a class="card" href="#"><div class="t">Why insurance AI pilots fail</div><p class="kw mono" style="margin-top:8px">blog · no keyword — citation bait</p></a>
+    </div>
+    <div class="an"><b>This is the cluster.</b> 5–6 blog posts each linking UP to this page; this page links back down to them. Replicate this exact shape for every vertical — it's the whole machine, and Appinventiv runs 35 of these at once.</div>
+  </section>
+
+  <section style="border-bottom:none">
+    <h2>Bring us your intake queue.</h2>
+    <div class="btns"><a class="btn" href="#">Book a call →</a></div>
+  </section>
+  <footer class="sf">agentworks · prototype</footer>
+</div></div>
+
+<!-- ================= CASE STUDY ================= -->
+<div class="page" id="case"><div class="site">
+  <nav class="nav">
+    <div class="logo">agent<span>works</span></div>
+    <a href="#" data-go="home">Home</a><a href="#" data-go="service">Services</a><a href="#" data-go="industry">Industries</a><a href="#" data-go="cost">Pricing</a>
+    <a class="cta" href="#">Book a call</a>
+  </nav>
+  <div class="breadcrumb"><a href="#" data-go="home">Home</a> › <a href="#">Case studies</a> › Northwind Insurance</div>
+
+  <section>
+    <div class="kicker">Case study · Insurance</div>
+    <h1>How Northwind Insurance auto-triages 71% of claims intake</h1>
+    <div class="stats" style="margin:22px 0">
+      <div><div class="n" style="color:var(--acc2)">71%</div><div class="l">claims auto-triaged</div></div>
+      <div><div class="n" style="color:var(--acc2)">38min</div><div class="l">median handling (was 4.2h)</div></div>
+      <div><div class="n" style="color:var(--acc2)">14wk</div><div class="l">audit to production</div></div>
+      <div><div class="n" style="color:var(--acc2)">0</div><div class="l">headcount reduced — redeployed</div></div>
+    </div>
+    <div class="an"><b>[PROOF — case study]</b> Headline metric in the H1. <b>This fixes Appinventiv's weakest template:</b> <a href="https://appinventiv.com/portfolio/ikea-shopping-app/" target="_blank">their IKEA case study</a> is 835 words with no client quote, no metrics and no update since 2020. Yours carries all three.</div>
+  </section>
+
+  <section>
+    <div class="kicker">The problem</div>
+    <h2>Nine people reading email for a living</h2>
+    <p>Northwind's first-notice-of-loss queue arrived as unstructured email: some with PDFs, some with photos in the body, some forwarded three times from a broker. Nine coordinators across two shifts read each one, decided severity, keyed 14 fields into the claims system and routed it. Median time from arrival to assignment was 4.2 hours; overnight arrivals waited until morning.</p>
+    <p>They had already tried a rules-based extraction tool. It handled the two broker formats it was configured for and failed on everything else — which was 40% of volume.</p>
+  </section>
+
+  <section>
+    <div class="kicker">What we built</div>
+    <h2>The architecture</h2>
+    <div class="vid" style="aspect-ratio:21/9">[ARCHITECTURE DIAGRAM — email ingest → classifier → extraction agent → confidence gate → claims system / human queue]</div>
+    <ul style="margin-top:18px">
+      <li><strong>Ingest + classifier.</strong> Decides whether an email is an FNOL at all, and what document types are attached.</li>
+      <li><strong>Extraction agent.</strong> Pulls 14 fields from any format including photographs of handwritten forms, with per-field confidence.</li>
+      <li><strong>Confidence gate.</strong> Anything below threshold on any critical field goes to a human — with the agent's reasoning attached, not just a flag.</li>
+      <li><strong>Severity router.</strong> Applies Northwind's own triage rules, which we encoded with their claims lead in week two.</li>
+      <li><strong>Audit trail.</strong> Every action, prompt and decision logged for the regulator.</li>
+    </ul>
+    <div class="an"><b>This section is the differentiator.</b> No content mill can write it — it requires the engineer who built the thing. It's also what makes the page citable by AI engines and quotable in sales calls.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Results</div>
+    <h2>What changed in 90 days of production</h2>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="card"><div class="t">71% auto-triaged</div><p>The remaining 29% reach a human faster, with fields pre-filled and the uncertainty explained.</p></div>
+      <div class="card"><div class="t">4.2h → 38min median</div><p>Overnight arrivals are triaged before the morning shift starts.</p></div>
+      <div class="card"><div class="t">Zero roles removed</div><p>The nine coordinators moved to complex claims and customer contact — which is what the business wanted.</p></div>
+      <div class="card"><div class="t">Full audit trail</div><p>Passed internal compliance review at first pass.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">In their words</div>
+    <div class="grid g2" style="margin-top:8px">
+      <div class="quote">
+        <p>"We'd already failed one pilot. The difference here was week zero — they told us which 30% of the process not to automate, and that's why the other 70% actually shipped."</p>
+        <div class="who"><div class="av"></div><div><div class="n">[Client name]</div><div class="r">[Title] · Northwind Insurance</div></div></div>
+      </div>
+      <div class="vid">▶ 45-second client clip<br><span style="font-size:.78rem">self-hosted · same shoot as the homepage reel</span></div>
+    </div>
+    <div class="an"><b>Named quote + title + photo + video.</b> Non-negotiable on all 12 — this is the trust layer, and it's the single thing your referral clients can give you that money can't buy.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Related</div>
+    <div class="grid g3" style="margin-top:8px">
+      <a class="card" href="#" data-go="service"><div class="t">AI Agent Development →</div><p>The service this project used.</p></a>
+      <a class="card" href="#" data-go="industry"><div class="t">AI Agents for Insurance →</div><p>More from this sector.</p></a>
+      <a class="card" href="#" data-go="cost"><div class="t">What agents cost →</div><p>Build, run and maintain.</p></a>
+    </div>
+    <div class="an"><b>LINKS OUT →</b> the SERVICE it proves · its INDUSTRY page · 2 sibling case studies · /book-a-call/. A case study must never be a dead end — Appinventiv's has only 4 in-body links total, and that's their mistake to fix, not copy.</div>
+  </section>
+
+  <section style="border-bottom:none">
+    <h2>Have a queue like Northwind's?</h2>
+    <div class="btns"><a class="btn" href="#">Book a call →</a></div>
+  </section>
+  <footer class="sf">agentworks · prototype</footer>
+</div></div>
+
+<!-- ================= COST PILLAR ================= -->
+<div class="page" id="cost"><div class="site">
+  <nav class="nav">
+    <div class="logo">agent<span>works</span></div>
+    <a href="#" data-go="home">Home</a><a href="#" data-go="service">Services</a><a href="#" data-go="industry">Industries</a><a href="#" data-go="case">Case studies</a>
+    <a class="cta" href="#">Book a call</a>
+  </nav>
+  <div class="breadcrumb"><a href="#" data-go="home">Home</a> › Guides › AI agent development cost</div>
+
+  <section>
+    <div class="kicker">Pillar page</div>
+    <h1>What an AI agent actually costs to build — and to run</h1>
+    <p class="lede">Build cost, token cost, and the maintenance line nobody quotes. Figures from 31 agents we've put into production, not from a pricing page.</p>
+    <div class="an"><b>[PILLAR + LINKABLE ASSET]</b> · TARGET: "ai agent development cost" (KD 8) + "how much does an ai agent cost" (KD 8) + "ai agent pricing" (KD 7)<br>
+    <b>EVIDENCE:</b> destilabs.com — DR 3, ten total visits a month — holds #1 for this today. Model: <a href="https://appinventiv.com/guide/mobile-app-development-cost/" target="_blank">Appinventiv's cost guide</a> (9,580 words, 15 tables, sticky calculator) which ranks #1 for a 1,900-volume term and feeds their whole funnel. 4 blog posts link up to this page.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Calculator</div>
+    <h2>Get a range in two minutes</h2>
+    <div class="card" style="margin-top:16px">
+      <div style="font-size:.8rem;color:var(--mut);margin-bottom:14px" class="mono">STEP 1 OF 4 · no email required until the result</div>
+      <h3>What should the agent do?</h3>
+      <div class="grid g3" style="margin-top:12px">
+        <div class="card" style="background:transparent"><div class="t">Read &amp; extract</div><p>documents, email, forms</p></div>
+        <div class="card" style="background:transparent"><div class="t">Answer &amp; resolve</div><p>support, internal Q&amp;A</p></div>
+        <div class="card" style="background:transparent"><div class="t">Act in systems</div><p>CRM, ERP, ticketing</p></div>
+      </div>
+      <div class="btns" style="margin-bottom:0"><a class="btn" href="#">Next →</a></div>
+    </div>
+    <div class="an"><b>THE HIGHEST-LEVERAGE ELEMENT ON THE WHOLE SITE.</b> A 4-step quiz → a real range → then the email capture. Appinventiv's equivalent is sticky on scroll for the entire 9,580-word page. Build this in Days 19–24; it's a genuine dev task, not a content task.</div>
+  </section>
+
+  <section>
+    <div class="kicker">The three costs</div>
+    <h2>Build, run, maintain</h2>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card"><div class="t">Build</div><p>Scoping, PoC on real data, engineering, evals, hardening. Driven by process complexity and how many systems the agent must touch.</p></div>
+      <div class="card"><div class="t">Run</div><p>Token spend per item processed — the number almost nobody publishes. Varies 10× by whether you're extracting from a page or reasoning over a corpus.</p></div>
+      <div class="card"><div class="t">Maintain</div><p>Weekly evals, drift monitoring, prompt and tool updates as your systems change. The line item that separates a live agent from an abandoned one.</p></div>
+    </div>
+    <div class="an"><b>Pricing tables go here</b> — Appinventiv runs 15 of them. Real ranges from your 31 deployments. This is the content only you can write, which is exactly why it earns links and AI citations.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Deeper</div>
+    <div class="grid g4" style="margin-top:8px">
+      <a class="card" href="#"><div class="t">How much does an AI agent cost →</div></a>
+      <a class="card" href="#"><div class="t">AI agent pricing models →</div></a>
+      <a class="card" href="#"><div class="t">What agents cost to run →</div></a>
+      <a class="card" href="#"><div class="t">Chatbot development cost →</div></a>
+    </div>
+    <div class="an"><b>LINKED FROM ←</b> the homepage, every service page ("what does it cost?"), and these 4 blog posts. <b>LINKS OUT →</b> all 4 parent services, 3 case studies with real numbers, /book-a-call/.</div>
+  </section>
+
+  <section style="border-bottom:none">
+    <h2>Want the number for your specific process?</h2>
+    <div class="btns"><a class="btn" href="#">Book a call →</a></div>
+  </section>
+  <footer class="sf">agentworks · prototype</footer>
+</div></div>
+
+<script>
+(function(){
+  var pages = ['home','service','industry','case','cost'];
+  function go(id){
+    if(pages.indexOf(id)<0) return;
+    pages.forEach(function(p){ document.getElementById(p).classList.toggle('on', p===id); });
+    document.querySelectorAll('.pgbtn').forEach(function(b){ b.setAttribute('aria-current', String(b.dataset.go===id)); });
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('[data-go]');
+    if(!el) return;
+    e.preventDefault();
+    go(el.dataset.go);
+  });
+  document.getElementById('annoTog').addEventListener('change', function(e){
+    document.body.classList.toggle('anno', e.target.checked);
+  });
+})();
+</script>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li class="here"><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+</html>

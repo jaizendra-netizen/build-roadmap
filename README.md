@@ -1,7 +1,21 @@
-# Build Roadmap — AI Agent Site
+# The GTM Build Library
 
-Internal GTM build roadmap for OneGTMLab's new venture. Served at the Pages URL for this repo.
+Seventeen cross-linked documents behind OneGTMLab's new-venture website: the 30-day build
+roadmap, the seven competitor audits it came out of, and the course explaining every term
+used in either.
 
-**Not indexed** — `robots.txt` disallows all crawlers and every page carries `noindex, nofollow`. The link works for anyone who has it; search engines skip it.
+**Live:** https://jaizendra-netizen.github.io/build-roadmap/
 
-Source of truth: `~/clients/onegtmlab/new-venture-website/`.
+## Not indexed
+
+`robots.txt` disallows every crawler and each page carries `noindex, nofollow`. The links
+work for anyone who has them; search engines skip them.
+
+**The repository is public**, so treat these URLs as private-by-obscurity rather than
+actually private. The roadmap is safe to share widely. The seven audits name real companies
+and their link practices — keep those inside the team.
+
+## Source of truth
+
+`~/clients/onegtmlab/new-venture-website/` — `html-source/` holds the authored pages,
+`shareable/` holds the DOCX/PDF/Markdown exports and the build scripts.

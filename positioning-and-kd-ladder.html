@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Positioning, Keyword Difficulty & The Climb to Appinventiv</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --bar: #2a78d6;
+    --good: #006300; --warn: #b45309; --crit: #d03b3b;
+    --see: #eef4fb; --code-bg: #f0efe9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --ring: rgba(255,255,255,0.10);
+      --accent: #86b6ef; --bar: #3987e5;
+      --good: #0ca30c; --warn: #f5a623; --crit: #e66767;
+      --see: #16202b; --code-bg: #232320;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --ring: rgba(255,255,255,0.10);
+    --accent: #86b6ef; --bar: #3987e5;
+    --good: #0ca30c; --warn: #f5a623; --crit: #e66767;
+    --see: #16202b; --code-bg: #232320;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --bar: #2a78d6;
+    --good: #006300; --warn: #b45309; --crit: #d03b3b;
+    --see: #eef4fb; --code-bg: #f0efe9;
+  }
+  body { background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6; margin: 0; padding: 0 20px 90px; }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1, h2, h3 { font-family: Charter, Georgia, serif; text-wrap: balance; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.15; margin: 0 0 8px; }
+  h2 { font-size: 1.5rem; margin: 56px 0 14px; padding-top: 16px; border-top: 3px solid var(--ink); }
+  h3 { font-size: 1.13rem; margin: 32px 0 8px; }
+  p { color: var(--ink-2); margin: 0 0 13px; }
+  p strong, li strong, td strong { color: var(--ink); }
+  ul, ol { color: var(--ink-2); padding-left: 1.35em; margin: 0 0 13px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--accent); }
+  code { background: var(--code-bg); border-radius: 4px; padding: 1px 5px; font-size: 0.87em; font-family: ui-monospace, Menlo, monospace; }
+  .eyebrow { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 44px 0 12px; font-weight: 600; }
+  .prose { max-width: 740px; }
+  .see { background: var(--see); border-radius: 8px; padding: 12px 16px; margin: 14px 0; font-size: 0.94rem; color: var(--ink-2); }
+  .see .lbl { font-weight: 700; color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .see p:last-child { margin-bottom: 0; }
+  .correction { background: color-mix(in srgb, var(--crit) 8%, transparent); border-left: 3px solid var(--crit); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 16px 0; font-size: 0.94rem; color: var(--ink-2); }
+  .correction .lbl { font-weight: 700; color: var(--crit); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .tbl-scroll { overflow-x: auto; margin: 16px 0; border: 1px solid var(--ring); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.85rem; min-width: 620px; }
+  th, td { text-align: left; padding: 8px 11px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  .win { color: var(--good); font-weight: 600; }
+  .lose { color: var(--crit); font-weight: 600; }
+  .chart-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 14px; margin: 20px 0; }
+  pre.mermaid { margin: 0 auto; background: transparent; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin: 18px 0; }
+  .card { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 16px 18px; }
+  .card h3 { margin-top: 0; }
+  .card ul { font-size: 0.9rem; margin-bottom: 0; }
+  .foot { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--grid); font-size: 0.8rem; color: var(--muted); }
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img{max-width:100%;height:auto}
+  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
+       padding:14px 18px;margin:16px 0;font-size:.86rem}
+  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
+  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
+  .dgm-s:first-of-type{margin-top:0}
+  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
+  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
+  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
+  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  @media print{
+    body{background:#fff;padding:0}
+    /* PDF links are real annotations, so do NOT also print the raw href:
+       it doubled line length and pushed the URL tree off the right edge. */
+    a{color:#1a4fd6;text-decoration:underline}
+    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
+    .tree{white-space:pre-wrap!important;overflow:visible!important;
+          word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
+    th,td{word-break:break-word;padding:4px 6px!important}
+    pre,code{white-space:pre-wrap!important;word-break:break-word}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    h2,h3{break-after:avoid}
+  }
+
+  .lib-nav{position:sticky;top:0;z-index:50;display:flex;gap:2px;flex-wrap:wrap;
+    align-items:center;padding:8px 14px;margin:0 0 22px;font-size:.78rem;
+    border-radius:0 0 10px 10px;max-width:100%;
+    background:color-mix(in srgb,var(--panel,#fff) 92%,transparent);
+    backdrop-filter:saturate(1.6) blur(8px);
+    border-bottom:1px solid var(--ring,#e5e2db)}
+  .lib-nav a{color:var(--ink2,#54524d);text-decoration:none;padding:4px 9px;
+    border-radius:6px;white-space:nowrap}
+  .lib-nav a:hover{background:var(--soft,#eef2fd);color:var(--acc,#1a4fd6)}
+  .lib-nav a.here{background:var(--acc,#1a4fd6);color:#fff;font-weight:700}
+  .lib-nav .home{font-weight:700;color:var(--acc,#1a4fd6);margin-right:6px}
+  .lib-nav .sep{color:var(--mut,#8a8781);opacity:.5;padding:0 2px}
+  .lib-foot{margin:64px 0 0;padding:30px 22px 44px;max-width:100%;
+    border-radius:12px 12px 0 0;
+    border-top:3px solid var(--ink,#111110);background:var(--panel,#fff)}
+  .lib-foot h3{font-family:Charter,Georgia,serif;font-size:1.22rem;margin:0 0 4px;
+    color:var(--ink,#111110)}
+  .lib-foot .sub{font-size:.86rem;color:var(--mut,#8a8781);margin:0 0 22px}
+  .lib-grid{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    max-width:1180px}
+  .lib-grid h4{font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--mut,#8a8781);margin:0 0 9px;font-weight:700}
+  .lib-grid ul{list-style:none;margin:0;padding:0}
+  .lib-grid li{margin:0 0 11px;line-height:1.4}
+  .lib-grid a{font-weight:700;font-size:.9rem;color:var(--acc,#1a4fd6);text-decoration:none}
+  .lib-grid a:hover{text-decoration:underline}
+  .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
+  .lib-grid li.here a{color:var(--ink,#111110)}
+  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+    font-size:.74rem;color:var(--mut,#8a8781)}
+  @media print{.lib-nav,.lib-foot{display:none}}
+</style>
+</head>
+<body><nav class="lib-nav"><a class="home" href="index.html">GTM BUILD LIBRARY</a><a href="build-roadmap.html">The Build Roadmap</a><span class="sep">·</span><a href="seo-from-zero.html">SEO From Zero</a><a href="positioning-and-kd-ladder.html" class="here">Positioning &amp; the KD Ladder</a><a href="niche-research.html">Niche Research</a><a href="page-types.html">Page Types Decoded</a><a href="zero-click-marketing.html">Zero-Click Marketing</a><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span class="sep">·</span><a href="site-prototype.html">Clickable Prototype</a><a href="site-blueprint.html">Site Blueprint</a><a href="30-day-compression.html">The 30-Day Compression</a><a href="full-build-documentation.html">Full Build Documentation</a><span class="sep">·</span><a href="audit-appinventiv.html">Appinventiv</a><a href="audit-searchable.html">searchable.com</a><a href="audit-genesysgrowth.html">genesysgrowth.com</a><a href="audit-omnibound.html">omnibound.ai</a><a href="audit-appwrk.html">appwrk.com</a><a href="audit-techgropse.html">TechGropse</a></nav>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Strategy · 2 Aug 2026 · live SERP data + competitor profiling · rebuilt for a 50-person company</div>
+  <h1>Automation vs AI agents, what keyword difficulty really means, and the ladder to Appinventiv</h1>
+  <p class="prose">You told me something that changes the whole plan: <strong>50 employees, all clients from referral, and a 4–5 year goal to overtake Appinventiv.</strong> That's not a startup blog strategy — that's a category takeover with real delivery capacity behind it. Below: the positioning answer, how KD actually works (with live SERPs that prove it lies in both directions), the five-rung ladder with real competitor numbers, and the scaled content plan your headcount can actually sustain.</p>
+</header>
+
+<h2 id="diff">1 · Automation company vs AI agent development company — the real difference</h2>
+<p class="prose">This is not a naming exercise. They are different products, different buyers, different price points, and different competitive fields.</p>
+
+<div class="cols">
+  <div class="card">
+    <h3>Automation company</h3>
+    <ul>
+      <li><strong>What it sells:</strong> deterministic workflows — "if X then Y." Zapier/Make/n8n builds, RPA, integrations, data pipelines.</li>
+      <li><strong>Who defines the steps:</strong> <em>you do.</em> Every branch is drawn in advance by a human.</li>
+      <li><strong>Fails when:</strong> reality doesn't match the flowchart — a new invoice format, an unusual request, an exception nobody mapped.</li>
+      <li><strong>Buyer:</strong> ops manager / IT lead. Budget: $5–50k projects.</li>
+      <li><strong>Competition:</strong> enormous and commoditized — every freelancer on Upwork, every no-code shop. Reflected in the keywords: "ai automation agency" KD 43, "ai workflow automation" KD 63.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>AI agent development company</h3>
+    <ul>
+      <li><strong>What it sells:</strong> goal-driven systems — an LLM with tools, memory and guardrails that <em>decides</em> the steps.</li>
+      <li><strong>Who defines the steps:</strong> <em>the agent does,</em> within limits you engineer.</li>
+      <li><strong>Handles:</strong> the exceptions — an invoice in a format never seen, a request phrased three ways, a judgment call escalated to a human.</li>
+      <li><strong>Buyer:</strong> CTO / VP Ops / Head of Digital Transformation. Budget: $50k–500k+ builds, plus retainers for evals, monitoring, iteration.</li>
+      <li><strong>Competition:</strong> young and fragmented — "ai agent development company" KD 17, and the SERP still has room (proof in §2).</li>
+    </ul>
+  </div>
+</div>
+
+<div class="see"><span class="lbl">The one example that makes it concrete</span>
+<p><strong>Automation:</strong> "When an invoice email arrives → extract the PDF → run OCR → if amount &lt; $1,000 auto-approve → else route to a manager." Beautiful until an invoice arrives as a photo in the email body. Then it breaks and a human fixes it.<br><br>
+<strong>Agent:</strong> "Handle incoming invoices." It reads the email, recognises an invoice in a format it has never seen, extracts the fields, notices the amount is unusual for that vendor, checks the contract, and asks a human with its reasoning attached. Same business problem — but one is a flowchart and one is a colleague.<br><br>
+<strong>Commercially that difference is everything:</strong> the flowchart is a quote-and-deliver project competing on price. The colleague is an engineering engagement with evals, monitoring and iteration — recurring revenue, higher ticket, fewer credible competitors.</p></div>
+
+<h3>So which do you call yourself? Both — in a specific order</h3>
+<p class="prose">With 50 people you can deliver both, and you should. But the <em>label</em> is a strategic choice, and the data is unambiguous:</p>
+<ul class="prose">
+  <li><strong>Position as an AI agent development company.</strong> Young category, KD 17, $10 CPC, buyers with CTO-level budgets, and no incumbent has owned it yet — Appinventiv only started their agent cluster in mid-2025.</li>
+  <li><strong>Sell automation as the entry product.</strong> Bigger volume of buyers, shorter sales cycle, faster cash — and it's the natural first project that becomes the agent engagement six months later. It lives on your site as a <em>service page under your brand</em> (<code>/ai-automation-services/</code>), not as your identity.</li>
+  <li><strong>Never lead with "we automate everything."</strong> That phrase competes with Upwork freelancers, ranks for KD 43–63 terms, and gives a CTO no reason to pay you enterprise rates.</li>
+</ul>
+
+<h2 id="kd">2 · How keyword difficulty actually works — and where it lies</h2>
+<p class="prose">Plain mechanics first. <strong>Ahrefs KD is a 0–100 estimate of one thing only: roughly how many <em>referring domains</em> the pages currently in the top 10 have.</strong> KD 5 ≈ the top pages have a handful of links. KD 50 ≈ the top pages have ~100+ referring domains each. That's it. It is a <em>backlink</em> estimate, nothing more.</p>
+<p class="prose">Which means it <strong>ignores</strong>: domain authority, brand recognition, content depth, topical authority, freshness, and whether Google simply trusts IBM more than it trusts you. And that is why KD misleads in both directions. Here is the live proof from your own market, pulled today:</p>
+
+<div class="correction"><span class="lbl">Correction to my own earlier advice</span>
+<p>In the previous research I called <strong>"enterprise ai agents" (2,250 searches, KD 5) your biggest easy win.</strong> I checked the actual SERP today and I was wrong. Page one is <strong>IBM (DR 92), Google Cloud (DR 99), Gumloop (DR 74), Sema4 (DR 61), Sanalabs (DR 67)</strong>. The KD reads 5 only because those giants rank with very few links to those specific pages — Gumloop's page has <strong>2 backlinks</strong>. They don't need links; they have brand. A DR 0 site does not win that SERP in year one, whatever the KD says. This is exactly the "SERP-verify before committing" caveat, and I should have run the check before recommending it. Treat it as a year-two target.</p></div>
+
+<h3>The same data the other way: where KD 8 is genuinely open</h3>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Keyword (KD)</th><th>Who actually ranks — live, today</th><th>Verdict for a DR-0 site</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ai agent development cost</strong> (KD 8)</td><td>#1 productcrafters.io <strong>DR 28</strong> · #1 destilabs.com <strong>DR 3</strong> · #4 intellectyx DR 46 with <strong>7 backlinks</strong></td><td class="win">WIDE OPEN — a DR-3 site holds #1</td></tr>
+    <tr><td><strong>ai agent development company</strong> (KD 17)</td><td>#2 Appinventiv DR 77 · #3 LeewayHertz DR 71 · <strong>#4 neurons-lab DR 56 with just 16 backlinks</strong> · small listicle sites present</td><td class="win">Reachable at DR ~45–55 (12–18 mo)</td></tr>
+    <tr><td><strong>ai agents for insurance</strong> (KD 3)</td><td>Mixed: Cognigy DR 72 at #1, but <strong>aelumconsulting DR 23</strong> and onarchipelago DR 41 both on page 1</td><td class="win">Open — small sites present</td></tr>
+    <tr><td><strong>ai agents for ecommerce</strong> (KD 1)</td><td>Salesforce DR 92, BigCommerce DR 92, YouTube, Reddit… <strong>but lexogrine DR 31 ranks #7 with 1 backlink</strong></td><td>Page-1 possible, top-3 hard</td></tr>
+    <tr><td><strong>enterprise ai agents</strong> (KD 5)</td><td>IBM DR 92, Google Cloud DR 99, Gumloop DR 74 — <strong>no small site anywhere</strong></td><td class="lose">CLOSED for year one despite KD 5</td></tr>
+  </tbody>
+</table></div>
+
+<div class="see"><span class="lbl">The rule that replaces KD — use this forever</span>
+<p><strong>Don't ask "what's the KD?" Ask "is there anyone at my level on page one?"</strong> Open the SERP, check the Domain Ratings of the ten results. If two or more sites sit within ~20 DR points of where you'll be in six months, the keyword is winnable — build the page. If page one is uniformly DR 70+ brands, walk away no matter how low the KD reads. KD is a useful first filter for building a list; the SERP check is the decision. And what "DR 0" means in practice: you have no accumulated trust yet, so you win only where Google is still willing to rank unknown sites — which, in the AI-agent category right now, is <em>most of the buyer-intent long tail</em>. That window closes as the category matures, which is the real argument for moving fast.</p></div>
+
+<h2 id="ladder">3 · The ladder — who you overtake, in order, with real numbers</h2>
+<p class="prose">"Overtake Appinventiv" is a five-year war, and you win it by taking one rung at a time. I profiled every company actually ranking in your target SERPs. This is the ladder, measured today:</p>
+
+<div class="chart-scroll">
+<div class="dgm">
+<div class="dgm-s">YOU — today — DR 0 · 0 keywords · 0 organic — (50 employees · referral clients · 200k LinkedIn)</div><ul class="dgm-l">
+<li>R1 --&gt; R2 --&gt; R3 --&gt; R4 --&gt; R5</li>
+</ul></div>
+</div>
+
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Rung</th><th>Target to beat</th><th class="num">DR</th><th class="num">Keywords</th><th class="num">Visits/mo</th><th>What it takes</th></tr></thead>
+  <tbody>
+    <tr><td><strong>1</strong> (M3–9)</td><td>destilabs · productcrafters</td><td class="num">3–28</td><td class="num">5–35</td><td class="num">8–10</td><td>30–40 genuinely good pages. Your 50 people can do this in a quarter.</td></tr>
+    <tr><td><strong>2</strong> (M9–18)</td><td>intellectyx</td><td class="num">46</td><td class="num">157</td><td class="num">1,111</td><td>~150 pages + real links from your stats assets + directory profiles</td></tr>
+    <tr><td><strong>3</strong> (Yr 2)</td><td>neurons-lab</td><td class="num">56</td><td class="num">111</td><td class="num">6,563</td><td>Note: only 111 keywords but 6,500 visits — <strong>quality over quantity works</strong>. Deep pages on high-value terms.</td></tr>
+    <tr><td><strong>4</strong> (Yr 3)</td><td>softteco · leewayhertz</td><td class="num">61–71</td><td class="num">1,550–2,138</td><td class="num">21k–28k</td><td>~1,500 URLs, sustained refresh, serious link earning</td></tr>
+    <tr><td><strong>5</strong> (Yr 4–5)</td><td><strong>Appinventiv</strong></td><td class="num">77</td><td class="num">6,512</td><td class="num">106,745</td><td>~2,600 URLs, 10 years of links compressed into 4 — needs the full machine below</td></tr>
+  </tbody>
+</table></div>
+<p class="prose"><strong>Read rung 3 carefully</strong> — neurons-lab gets 6,563 visits from just <strong>111 keywords</strong>, while softteco needs 2,138 keywords for 21,655. That's ~59 visits per keyword vs ~10. Depth on the right terms beats breadth on the wrong ones, which is the entire lesson of the five audits, quantified.</p>
+
+<h2 id="scale">4 · What changes now that I know you have 50 people</h2>
+<p class="prose">My earlier plan assumed a founder with limited hands: 6–8 posts a month. At your headcount that's leaving the weapon in the box. Here's the honest recalibration:</p>
+
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Dimension</th><th>Solo-founder plan (before)</th><th><strong>50-employee plan (now)</strong></th></tr></thead>
+  <tbody>
+    <tr><td>New content</td><td>6–8 pieces/month</td><td><strong>20–30 pieces/month</strong> — 2 writers + 4–6 engineer SMEs contributing 2 hrs/week each for technical depth and review</td></tr>
+    <tr><td>Money pages</td><td>8 in 8 weeks</td><td><strong>25–30 in 8 weeks</strong> — the full service × industry matrix built in parallel by a small pod</td></tr>
+    <tr><td>Programmatic layer</td><td>skip year one</td><td><strong>Build it in month 3:</strong> integration pages (agent × each tool: Salesforce, HubSpot, Zendesk, Shopify, SAP…) — the Lindy pattern, 100–300 pages from one template + your real integration library</td></tr>
+    <tr><td>Original research</td><td>1 stats asset</td><td><strong>Quarterly research reports</strong> from your production deployments — the only link magnet nobody can copy, and you have 50 people's worth of project data</td></tr>
+    <tr><td>Case studies</td><td>3 deep + 9 cards</td><td><strong>All 12 deep + 2 new per month</strong> as referral projects close — your referral engine is a case-study factory</td></tr>
+    <tr><td>GEO/AEO</td><td>llms.txt + ai-info + schema</td><td><strong>Full program:</strong> that baseline PLUS a monthly prompt-tracking audit (ask ChatGPT/Claude/Perplexity your 30 money questions, log who gets cited), original-data citation bait quarterly, an interactive tool/calculator per service line, and aggressive directory + review presence</td></tr>
+    <tr><td>Refresh</td><td>every 4–6 months</td><td><strong>Every 4 months, plus a monthly 20-page audit</strong> — one person owning the refresh calendar (this is how Appinventiv touched 551 pages in July)</td></tr>
+  </tbody>
+</table></div>
+
+<div class="see"><span class="lbl">Your unfair advantage, and nobody else in this study has it</span>
+<p>Every failing site we audited faked expertise: Genesys claimed "hands-on testing" with no evidence, Omnibound published 196 articles under a persona with no face, APPWRK put one CEO's byline on 490 posts across HIPAA and frontend internals. <strong>You have 50 real practitioners shipping real agents.</strong> An engineer who spent last week fixing a tool-calling loop in production can write 800 words no content mill can fabricate — and that is precisely the E-E-A-T signal Google's 2024–2026 updates were built to reward. Byline them, photograph them, link their LinkedIn. Your content moat is your payroll.</p></div>
+
+<h2 id="keywords">5 · The corrected keyword map — SERP-verified, in climbing order</h2>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Phase</th><th>Targets</th><th>Why now</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Months 1–6<br/>"Own the wallet questions"</strong></td><td><code>ai agent development cost</code> (KD 8 — a DR-3 site holds #1) · <code>how much does an ai agent cost</code> · <code>ai agents for insurance</code> (KD 3, $10 CPC) · <code>ai agent consulting</code> (KD 11, $10) · <code>hire ai agent developers</code> (KD 10, $13) · <code>top ai agent development companies</code> (KD 1) · <code>best ai automation agencies</code> (KD 2) · <code>ai chatbot development services</code> (KD 4)</td><td>Every one has a sub-DR-50 site on page 1 today. High CPC = real buyers. These fund the business while authority builds.</td></tr>
+    <tr><td><strong>Months 6–18<br/>"Take the category"</strong></td><td><code>ai agent development company</code> (KD 17 — neurons-lab holds #4 with 16 links) · <code>ai agent development services</code> (KD 13, $15) · <code>agentic ai development company</code> (KD 12) · <code>ai automation services</code> (KD 24) · the vertical set (healthcare KD 24, customer service KD 28) · <code>workflow automation services</code> (KD 28, $19)</td><td>This is your identity term. Winning it = rung 3. Needs DR ~45+ and 10–20 real links to the page.</td></tr>
+    <tr><td><strong>Year 2–3<br/>"Contest the giants"</strong></td><td><code>enterprise ai agents</code> (the corrected one — needs brand, not links) · <code>ai automation agency</code> (KD 43) · <code>ai sdr</code> (KD 40, $17) · <code>ai integration services</code> (KD 32) · <code>custom ai agent development</code> (KD 46) · <code>ai receptionist</code> (KD 48)</td><td>Only after DR 55+ and a brand people search by name. Attacking these in year one is how sites waste a year.</td></tr>
+    <tr><td><strong>Always-on parallel</strong></td><td>The programmatic layer: <code>ai agent for [tool]</code> × 100–300 · geo pages <code>/ae/</code> <code>/es/</code> <code>/de/</code> <code>/pl/</code> · quarterly original research</td><td>Volume where it's cheap, languages where nobody competes, data nobody else has.</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="answer">6 · Direct answers to your three questions</h2>
+<ol class="prose">
+  <li><strong>"Can we increase posts per month?"</strong> Yes — <strong>20–30/month</strong> is right for your headcount, but only under one condition: every piece carries a real practitioner's byline and at least one thing that could only come from your delivery work (a real number, a real failure, a real architecture). The moment it becomes 30 generic AI-written posts you have rebuilt APPWRK's September 2024 — 110 posts, then a 95% collapse. <em>Volume with proof compounds; volume without proof is a time bomb.</em></li>
+  <li><strong>"Can we increase the GEO/AEO strategy?"</strong> Yes, substantially — and it's your fastest channel because AI engines don't care about domain age. The scaled program: the technical baseline (llms.txt, /ai-info, valid schema, server-rendered) + <strong>monthly prompt tracking</strong> (log which brands ChatGPT/Claude/Perplexity name for your 30 money questions — that's your real rank tracker) + quarterly original data + one interactive tool per service line + directory/review saturation. Remember the TechGropse lead that came from ChatGPT: it happened because they were embedded in directories, not because they optimized anything.</li>
+  <li><strong>"Best product-market fit to overtake Appinventiv?"</strong> Not by out-publishing them on mobile-app-development topics — they own that with a decade of links. You overtake by owning the category they entered only 14 months ago, from a position they structurally can't hold: <strong>they are an app-development company that added AI agents; you are an AI agent company with 50 engineers and no legacy positioning to protect.</strong> Their AI-agent cluster is 41 posts and 2 service pages. Build 300 pages of genuine agent depth in 18 months and you don't overtake their traffic — you take their category, which is where the market is moving anyway.</li>
+</ol>
+
+<div class="foot">
+  <p>Data pulled 2 Aug 2026: Ahrefs Keywords Explorer (US volume + KD), Ahrefs SERP Overview (live top-10 with per-result Domain Ratings and backlink counts), Ahrefs Site Explorer (competitor DR/traffic/keyword profiles). SERP positions and DRs change — re-verify before committing a page. Series: <a href="site-blueprint.html">Site blueprint</a> · <a href="niche-research.html">Keyword research</a> · <a href="audit-appinventiv.html">Appinventiv architecture</a> · <a href="seo-from-zero.html">SEO From Zero</a>.</p>
+</div>
+</div>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li class="here"><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+</html>

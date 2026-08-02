@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>TechGropse — The Collapse & The Reset</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --bar: #2a78d6;
+    --good: #006300; --warn: #b45309; --crit: #d03b3b;
+    --see: #eef4fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --ring: rgba(255,255,255,0.10);
+      --accent: #86b6ef; --bar: #3987e5;
+      --good: #0ca30c; --warn: #f5a623; --crit: #e66767;
+      --see: #16202b;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --ring: rgba(255,255,255,0.10);
+    --accent: #86b6ef; --bar: #3987e5;
+    --good: #0ca30c; --warn: #f5a623; --crit: #e66767;
+    --see: #16202b;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --bar: #2a78d6;
+    --good: #006300; --warn: #b45309; --crit: #d03b3b;
+    --see: #eef4fb;
+  }
+  body { background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6; margin: 0; padding: 0 20px 90px; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  h1, h2, h3 { font-family: Charter, Georgia, serif; text-wrap: balance; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.15; margin: 0 0 8px; }
+  h2 { font-size: 1.5rem; margin: 56px 0 14px; padding-top: 16px; border-top: 3px solid var(--ink); }
+  h3 { font-size: 1.14rem; margin: 32px 0 8px; }
+  p { color: var(--ink-2); margin: 0 0 13px; }
+  p strong, li strong, td strong { color: var(--ink); }
+  ul, ol { color: var(--ink-2); padding-left: 1.35em; margin: 0 0 13px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--accent); }
+  code { background: color-mix(in srgb, var(--grid) 50%, transparent); border-radius: 4px; padding: 1px 5px; font-size: 0.88em; }
+  .eyebrow { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 44px 0 12px; font-weight: 600; }
+  .prose { max-width: 720px; }
+  .vitals { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 12px; margin: 24px 0; }
+  .vital { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 14px 16px; }
+  .vital .n { font-size: 1.5rem; font-weight: 700; }
+  .vital .n.bad { color: var(--crit); }
+  .vital .l { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .see { background: var(--see); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 0.94rem; color: var(--ink-2); }
+  .see .lbl { font-weight: 700; color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .see p:last-child { margin-bottom: 0; }
+  .tbl-scroll { overflow-x: auto; margin: 16px 0; border: 1px solid var(--ring); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.86rem; min-width: 560px; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  .chart-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 14px; margin: 20px 0; }
+  pre.mermaid { margin: 0 auto; background: transparent; }
+  .foot { margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--grid); font-size: 0.8rem; color: var(--muted); }
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img{max-width:100%;height:auto}
+  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
+       padding:14px 18px;margin:16px 0;font-size:.86rem}
+  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
+  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
+  .dgm-s:first-of-type{margin-top:0}
+  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
+  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
+  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
+  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  @media print{
+    body{background:#fff;padding:0}
+    /* PDF links are real annotations, so do NOT also print the raw href:
+       it doubled line length and pushed the URL tree off the right edge. */
+    a{color:#1a4fd6;text-decoration:underline}
+    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
+    .tree{white-space:pre-wrap!important;overflow:visible!important;
+          word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
+    th,td{word-break:break-word;padding:4px 6px!important}
+    pre,code{white-space:pre-wrap!important;word-break:break-word}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    h2,h3{break-after:avoid}
+  }
+
+  .lib-nav{position:sticky;top:0;z-index:50;display:flex;gap:2px;flex-wrap:wrap;
+    align-items:center;padding:8px 14px;margin:0 0 22px;font-size:.78rem;
+    border-radius:0 0 10px 10px;max-width:100%;
+    background:color-mix(in srgb,var(--panel,#fff) 92%,transparent);
+    backdrop-filter:saturate(1.6) blur(8px);
+    border-bottom:1px solid var(--ring,#e5e2db)}
+  .lib-nav a{color:var(--ink2,#54524d);text-decoration:none;padding:4px 9px;
+    border-radius:6px;white-space:nowrap}
+  .lib-nav a:hover{background:var(--soft,#eef2fd);color:var(--acc,#1a4fd6)}
+  .lib-nav a.here{background:var(--acc,#1a4fd6);color:#fff;font-weight:700}
+  .lib-nav .home{font-weight:700;color:var(--acc,#1a4fd6);margin-right:6px}
+  .lib-nav .sep{color:var(--mut,#8a8781);opacity:.5;padding:0 2px}
+  .lib-foot{margin:64px 0 0;padding:30px 22px 44px;max-width:100%;
+    border-radius:12px 12px 0 0;
+    border-top:3px solid var(--ink,#111110);background:var(--panel,#fff)}
+  .lib-foot h3{font-family:Charter,Georgia,serif;font-size:1.22rem;margin:0 0 4px;
+    color:var(--ink,#111110)}
+  .lib-foot .sub{font-size:.86rem;color:var(--mut,#8a8781);margin:0 0 22px}
+  .lib-grid{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    max-width:1180px}
+  .lib-grid h4{font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--mut,#8a8781);margin:0 0 9px;font-weight:700}
+  .lib-grid ul{list-style:none;margin:0;padding:0}
+  .lib-grid li{margin:0 0 11px;line-height:1.4}
+  .lib-grid a{font-weight:700;font-size:.9rem;color:var(--acc,#1a4fd6);text-decoration:none}
+  .lib-grid a:hover{text-decoration:underline}
+  .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
+  .lib-grid li.here a{color:var(--ink,#111110)}
+  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+    font-size:.74rem;color:var(--mut,#8a8781)}
+  @media print{.lib-nav,.lib-foot{display:none}}
+</style>
+</head>
+<body><nav class="lib-nav"><a class="home" href="index.html">GTM BUILD LIBRARY</a><a href="build-roadmap.html">The Build Roadmap</a><span class="sep">·</span><a href="seo-from-zero.html">SEO From Zero</a><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><a href="niche-research.html">Niche Research</a><a href="page-types.html">Page Types Decoded</a><a href="zero-click-marketing.html">Zero-Click Marketing</a><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span class="sep">·</span><a href="site-prototype.html">Clickable Prototype</a><a href="site-blueprint.html">Site Blueprint</a><a href="30-day-compression.html">The 30-Day Compression</a><a href="full-build-documentation.html">Full Build Documentation</a><span class="sep">·</span><a href="audit-appinventiv.html">Appinventiv</a><a href="audit-searchable.html">searchable.com</a><a href="audit-genesysgrowth.html">genesysgrowth.com</a><a href="audit-omnibound.html">omnibound.ai</a><a href="audit-appwrk.html">appwrk.com</a><a href="audit-techgropse.html" class="here">TechGropse</a></nav>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Series case study · data pulled 2 Aug 2026 · Ahrefs API v3 + live inspection + the VP-of-marketing numbers</div>
+  <h1>TechGropse — the empire that collapsed, and the quiet reset behind it</h1>
+  <p class="prose">The site that started this whole investigation: the company whose model you were told to copy. It once had exactly the traffic you want — 65,845 visits a month — lost 99% of it to Google's quality updates, and quietly rebuilt on a fresh Dubai domain while its real lead engine ran somewhere else entirely: directories, brand, and now ChatGPT. Every number below is measured. (Note: this is the data-driven case study built from our investigation — the full 9-specialist audit treatment is available on request, but the story is already complete.) Companions: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-appinventiv.html">Appinventiv (the model)</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appwrk.html">APPWRK</a>.</p>
+</header>
+
+<div class="vitals">
+  <div class="vital"><div class="n">65,845</div><div class="l">peak organic visits/mo (Nov 2023)</div></div>
+  <div class="vital"><div class="n bad">623</div><div class="l">organic visits/mo today (−99%)</div></div>
+  <div class="vital"><div class="n">916</div><div class="l">blog posts → ~209 visits/mo</div></div>
+  <div class="vital"><div class="n">197 → 24</div><div class="l">raw inquiries → qualified leads/mo (VP's own numbers, 12%)</div></div>
+  <div class="vital"><div class="n">DR 50 / 24</div><div class="l">.com (burned) / .ae (the reset, 18 months old)</div></div>
+</div>
+
+<h2 id="tree">1 · The full map — one company, two domains, three lead engines</h2>
+<div class="chart-scroll">
+<div class="dgm">
+<div class="dgm-t">WHO LINKS IN (2,498 domains → DR 50)</div>
+<div class="dgm-s">✅ THE REAL ENGINE: directories — DesignRush 372 links · Clutch (101 reviews, 4.8★) — GoodFirms &#x27;Global Leader&#x27; · ProvenExpert 32 — Trustpilot · Techreviewer · Sortlist · Crunchbase</div><ul class="dgm-l">
+<li>techgropse.com — custom-coded site + WordPress blog — DR 50 · 623 visits/mo (was 65,845) — 481 pages incl. ~60 country/city landings</li>
+<li>THE FUNNEL (VP&#x27;s own numbers) — ~197 raw inquiries/mo → 24 qualified (12%) — ≈ the whole commercial engine</li>
+</ul>
+<div class="dgm-s">Platform pages: Medium, Behance, — about.me, heylink.me 22, shorturl.at 44 — (the last two = link-scheme residue)</div><ul class="dgm-l">
+<li>techgropse.com — custom-coded site + WordPress blog — DR 50 · 623 visits/mo (was 65,845) — 481 pages incl. ~60 country/city landings</li>
+</ul>
+<div class="dgm-s">techgropse.com — custom-coded site + WordPress blog — DR 50 · 623 visits/mo (was 65,845) — 481 pages incl. ~60 country/city landings</div><ul class="dgm-l">
+<li>Main site (custom, no CMS) — 481 pages: services + geo landings — top page: Atlanta (355 visits — more than — the entire 916-post blog)</li>
+<li>🚩 WordPress blog — 916 posts — ~209 visits/mo TOTAL — 161 posts published in Jan 2026 alone — top &#x27;hits&#x27;: GB WhatsApp (101), fun-websites (36), — Emirates-ID (16), buffstreams (12) — zero buyer overlap</li>
+<li>Country SUBFOLDERS on .com — /au/ /sa/ /qa/ — the cheap structure</li>
+<li><span class="dgm-e">[burned domain →&lt;br/&gt;quiet reset, early 2025]</span> techgropse.ae — separate ccTLD — DR 24 · 1,249 visits/mo · 37 pages — NOW BIGGER than the .com — Clutch entity: Techgropse FZC LLC (Dubai)</li>
+<li>techgropse.co.uk — DR 1.8 · ~115/mo</li>
+<li>techgropse.ca — live, zero SEO</li>
+<li>THE FUNNEL (VP&#x27;s own numbers) — ~197 raw inquiries/mo → 24 qualified (12%) — ≈ the whole commercial engine</li>
+</ul>
+<div class="dgm-s">techgropse.ae — separate ccTLD — DR 24 · 1,249 visits/mo · 37 pages — NOW BIGGER than the .com — Clutch entity: Techgropse FZC LLC (Dubai)</div><ul class="dgm-l">
+<li>THE FUNNEL (VP&#x27;s own numbers) — ~197 raw inquiries/mo → 24 qualified (12%) — ≈ the whole commercial engine</li>
+</ul>
+<div class="dgm-s">🤖 ChatGPT recommendations — (AI reads the directories + listicles — they&#x27;re embedded in) — confirmed lead</div><ul class="dgm-l">
+<li>THE FUNNEL (VP&#x27;s own numbers) — ~197 raw inquiries/mo → 24 qualified (12%) — ≈ the whole commercial engine</li>
+</ul></div>
+</div>
+<p class="prose"><strong>The three stories in this map:</strong> (1) the blog empire (916 posts) is commercially dead — its junk keywords produce form-fills that dilute the funnel to a 12% qualification rate; (2) the real, durable lead engine is the <strong>directory layer</strong> — a decade of Clutch/GoodFirms/DesignRush reviews that also feeds ChatGPT's recommendations; (3) the company already gave its own verdict on the .com by pouring 2025–26 effort into a fresh .ae domain instead of fixing the burned one.</p>
+
+<h2 id="timeline">2 · The two-collapse timeline</h2>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>When</th><th class="num">.com visits/mo</th><th>Event</th></tr></thead>
+  <tbody>
+    <tr><td>Aug 2023</td><td class="num">1,083</td><td>Pre-surge baseline</td></tr>
+    <tr><td>Sep–Oct 2023</td><td class="num">17,047 → 62,560</td><td>The content-farm surge catches fire</td></tr>
+    <tr><td><strong>Nov 2023</strong></td><td class="num"><strong>65,845</strong></td><td><strong>Peak — exactly the 50–100k scale you originally wanted</strong></td></tr>
+    <tr><td><strong>Mar 2024</strong></td><td class="num">21,251</td><td><strong>Google's March 2024 core/helpful-content update: −68% in one quarter</strong></td></tr>
+    <tr><td>Sep–Dec 2024</td><td class="num">3,084 → ~1,500</td><td>The long bleed-out</td></tr>
+    <tr><td>Jul–Nov 2025</td><td class="num">3,700 → 6,818</td><td>Partial recovery attempt peaks…</td></tr>
+    <tr><td><strong>Jan 2026</strong></td><td class="num">1,154</td><td><strong>…crushed again by the next update cycle — while publishing 161 NEW posts that same month</strong></td></tr>
+    <tr><td>Aug 2026</td><td class="num"><strong>623</strong></td><td>−99% from peak. Publishing cadence still 45–160 posts/mo through July</td></tr>
+  </tbody>
+</table></div>
+<div class="see"><span class="lbl">The publishing-vs-traffic proof</span>
+<p>Their WordPress sitemap dates show the cadence: 29 posts (Dec 2025) → <strong>161 (Jan 2026)</strong> → 46 → 158 (Mar) → 37 → 98 (May) → 46 → 45 (Jul). Traffic across those same months: 4,831 → 1,154 → 851 → 1,006 → 916 → 969 → 587 → 1,243. <strong>Publishing five posts a day into a site Google has demoted doesn't slow the fall — it feeds it.</strong> Same lesson APPWRK proved from the other side: recovery requires removing the junk, not out-publishing it.</p></div>
+
+<h2 id="blog">3 · The blog autopsy — 916 posts, ~209 visits</h2>
+<p class="prose">The blog's "top performers" tell you everything about why the funnel qualifies at only 12%:</p>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Page</th><th class="num">Visits/mo</th><th>Who searches this?</th></tr></thead>
+  <tbody>
+    <tr><td>/mobile-app-development-company-atlanta (main site)</td><td class="num">355</td><td>✅ Actual buyers — their single best page</td></tr>
+    <tr><td>/blog/gb-whatsapp-app-explained-in-2025/</td><td class="num">101</td><td>People wanting a modded WhatsApp APK</td></tr>
+    <tr><td>/blog/fun-websites-to-cure-boredom/</td><td class="num">36</td><td>Bored people</td></tr>
+    <tr><td>/blog/track-emirates-id-with-zajel-app/</td><td class="num">16</td><td>UAE residents tracking ID cards</td></tr>
+    <tr><td>/blog/buffstreams/</td><td class="num">12</td><td>People seeking pirated sports streams</td></tr>
+  </tbody>
+</table></div>
+<p class="prose">One custom-coded city landing page out-earns the entire 916-post WordPress blog. And the junk traffic isn't harmless — those visitors fill contact forms (job seekers, students, APK hunters), which is why <strong>197 raw inquiries collapse to 24 qualified</strong> — a 12% rate, below the healthy 20–40% band. Junk content costs twice: once in Google's site-wide quality score, once in your sales team's time.</p>
+
+<h2 id="reset">4 · The .ae reset — what a company does when its domain is burned</h2>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>When</th><th class="num">.ae DR</th><th class="num">.ae visits/mo</th><th>Event</th></tr></thead>
+  <tbody>
+    <tr><td>2022–2024</td><td class="num">&lt;1</td><td class="num">~0</td><td>Domain registered but dormant — parked insurance</td></tr>
+    <tr><td>Early 2025</td><td class="num">1.3</td><td class="num">~0</td><td><strong>Investment begins — right after the .com's recovery attempt fails</strong></td></tr>
+    <tr><td>Aug 2025</td><td class="num">6</td><td class="num">220</td><td>First real rankings in the less-contested UAE market</td></tr>
+    <tr><td>Feb 2026</td><td class="num">11</td><td class="num">~7</td><td>Volatility — young domains swing</td></tr>
+    <tr><td>Aug 2026</td><td class="num"><strong>24</strong></td><td class="num"><strong>1,249</strong></td><td><strong>The 37-page .ae now out-earns the 1,400-page .com</strong></td></tr>
+  </tbody>
+</table></div>
+<p class="prose">Read the timing: they didn't choose a ccTLD strategy — they <strong>escaped</strong> to one. The .com is algorithmically demoted, so a fresh domain was the way out, helped by the Dubai legal entity (Techgropse FZC LLC) and google.ae trust. Cost of the reset: ~18 months to DR 24 while owning a 10-year brand. Contrast with <a href="https://appinventiv.com/ae/mobile-app-development-company-dubai/">Appinventiv's approach</a>: their ONE Dubai subfolder page earns 1,606/mo riding the main domain's DR 77 — more than TechGropse's entire replacement site. The reset was rational for a burned domain; it's the wrong model for your clean one.</p>
+
+<h2 id="leads">5 · Where the 24 real leads actually come from</h2>
+<ol class="prose">
+  <li><strong>The directory moat (the engine):</strong> <a href="https://clutch.co/profile/techgropse-fzc">Clutch: 101 reviews, 4.8★</a>, "Top Mobile App Development" badges · <a href="https://www.goodfirms.co/company/techgropse-pvt-ltd">GoodFirms "Global Leader"</a> · <a href="https://www.designrush.com/agency/profile/tech-gropse">DesignRush 4.9★</a> (+ 372 backlinks from being embedded across DesignRush listicles) · Trustpilot · Sortlist · Techreviewer. Buyers searching "best app developers Dubai" land on these lists — <a href="https://www.designrush.com/agency/mobile-app-design-development/ae/dubai">which rank for exactly those queries</a> — and inquire. Ten years of reviews = a moat no algorithm update touches.</li>
+  <li><strong>Buyer-intent pages</strong> on .com + .ae (~1,900 combined relevant visits: the Atlanta page, <a href="https://www.techgropse.ae/app-development-dubai">the .ae Dubai pages</a>).</li>
+  <li><strong>Brand + direct</strong> — invisible to SEO tools, real after a decade.</li>
+  <li><strong>ChatGPT</strong> — the confirmed AI-referred lead. Mechanism: AI engines answer "best app development company in Dubai" by reading the directories and listicles above. TechGropse never optimized for AI — their directory moat did it for them. (This is the channel where your new brand can move fastest — the full playbook is in the <em>course</em>, Part 3.)</li>
+</ol>
+
+<h2 id="lessons">6 · What TechGropse contributes to the playbook</h2>
+<ol class="prose">
+  <li><strong>The volume model worked once and will not work again.</strong> They reached your dream number with 2023's algorithm; the model has been dead since March 2024 — and they proved it twice more by re-publishing into the decline.</li>
+  <li><strong>The commercial bar is startlingly low:</strong> their whole business runs on ~24 qualified leads/month from ~2,000 relevant visits + directories. That's the target to beat — not 65k visits.</li>
+  <li><strong>Directories are the most under-rated lead channel in this market</strong> — and the one that also feeds AI recommendations. Start the review flywheel with your 10–12 clients in week one.</li>
+  <li><strong>Junk traffic poisons the funnel</strong> — 12% qualification vs the normal 20–40% is the measurable cost of GB-WhatsApp readers filling your forms.</li>
+  <li><strong>Domain splits are for burned domains.</strong> Their .ae escape cost 18 months to reach what one Appinventiv subfolder page earns. One clean domain, subfolders, forever.</li>
+  <li><strong>One good money page beats a thousand junk posts:</strong> Atlanta (355) &gt; blog (209). Build money pages first.</li>
+</ol>
+
+<div class="foot">
+  <p>Data: Ahrefs API v3 (traffic/DR histories for .com and .ae, top pages, refdomains, country splits), live HTML + sitemap inspection, DNS/whois probes of the ccTLD network, and the VP of Marketing's verbally-shared funnel numbers (197 raw → 24 qualified/mo, treated as directional). Pulled 2 Aug 2026. This is the data-driven case study; a full 9-specialist audit (like <a href="audit-appwrk.html">APPWRK's</a>) can be run on request. Series: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-appinventiv.html">Appinventiv</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appwrk.html">APPWRK</a> · <a href="wordpress-vs-webflow.html">Platform decision</a> · <a href="zero-click-marketing.html">Zero-Click talk</a>.</p>
+</div>
+</div>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li class="here"><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+</html>

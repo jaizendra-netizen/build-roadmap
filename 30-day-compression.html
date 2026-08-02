@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>The 30-Day Compression — What Speeds Up, What Can't, and How to Win Anyway</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --bar: #2a78d6;
+    --good: #006300; --warn: #b45309; --crit: #d03b3b;
+    --see: #eef4fb; --code-bg: #f2f1ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --ring: rgba(255,255,255,0.10);
+      --accent: #86b6ef; --bar: #3987e5;
+      --good: #0ca30c; --warn: #f5a623; --crit: #e66767;
+      --see: #16202b; --code-bg: #201f1d;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --ring: rgba(255,255,255,0.10);
+    --accent: #86b6ef; --bar: #3987e5;
+    --good: #0ca30c; --warn: #f5a623; --crit: #e66767;
+    --see: #16202b; --code-bg: #201f1d;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --bar: #2a78d6;
+    --good: #006300; --warn: #b45309; --crit: #d03b3b;
+    --see: #eef4fb; --code-bg: #f2f1ec;
+  }
+  body { background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6; margin: 0; padding: 0 20px 90px; }
+  .wrap { max-width: 940px; margin: 0 auto; }
+  h1, h2, h3 { font-family: Charter, Georgia, serif; text-wrap: balance; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.15; margin: 0 0 8px; }
+  h2 { font-size: 1.5rem; margin: 54px 0 14px; padding-top: 16px; border-top: 3px solid var(--ink); }
+  h3 { font-size: 1.12rem; margin: 30px 0 8px; }
+  p { color: var(--ink-2); margin: 0 0 13px; }
+  p strong, li strong, td strong { color: var(--ink); }
+  ul, ol { color: var(--ink-2); padding-left: 1.35em; margin: 0 0 13px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--accent); }
+  code { background: var(--code-bg); border-radius: 4px; padding: 1px 5px; font-size: 0.87em; font-family: ui-monospace, Menlo, monospace; }
+  .eyebrow { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 44px 0 12px; font-weight: 600; }
+  .prose { max-width: 750px; }
+  .see { background: var(--see); border-radius: 8px; padding: 12px 16px; margin: 14px 0; font-size: 0.94rem; color: var(--ink-2); }
+  .see .lbl { font-weight: 700; color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .see p:last-child { margin-bottom: 0; }
+  .warn { background: color-mix(in srgb, var(--crit) 8%, transparent); border-left: 3px solid var(--crit); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 16px 0; font-size: 0.94rem; color: var(--ink-2); }
+  .warn .lbl { font-weight: 700; color: var(--crit); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .tbl-scroll { overflow-x: auto; margin: 16px 0; border: 1px solid var(--ring); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.85rem; min-width: 620px; }
+  th, td { text-align: left; padding: 8px 11px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  .yes { color: var(--good); font-weight: 700; }
+  .no { color: var(--crit); font-weight: 700; }
+  .chart-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 14px; margin: 20px 0; }
+  pre.mermaid { margin: 0 auto; background: transparent; }
+  .pod { background: var(--surface); border: 1px solid var(--ring); border-left: 4px solid var(--bar); border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 12px 0; }
+  .pod .h { font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .pod .m { font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; }
+  .pod ul { margin-bottom: 0; font-size: 0.9rem; }
+  .foot { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--grid); font-size: 0.8rem; color: var(--muted); }
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img{max-width:100%;height:auto}
+  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
+       padding:14px 18px;margin:16px 0;font-size:.86rem}
+  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
+  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
+  .dgm-s:first-of-type{margin-top:0}
+  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
+  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
+  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
+  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  @media print{
+    body{background:#fff;padding:0}
+    /* PDF links are real annotations, so do NOT also print the raw href:
+       it doubled line length and pushed the URL tree off the right edge. */
+    a{color:#1a4fd6;text-decoration:underline}
+    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
+    .tree{white-space:pre-wrap!important;overflow:visible!important;
+          word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
+    th,td{word-break:break-word;padding:4px 6px!important}
+    pre,code{white-space:pre-wrap!important;word-break:break-word}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    h2,h3{break-after:avoid}
+  }
+
+  .lib-nav{position:sticky;top:0;z-index:50;display:flex;gap:2px;flex-wrap:wrap;
+    align-items:center;padding:8px 14px;margin:0 0 22px;font-size:.78rem;
+    border-radius:0 0 10px 10px;max-width:100%;
+    background:color-mix(in srgb,var(--panel,#fff) 92%,transparent);
+    backdrop-filter:saturate(1.6) blur(8px);
+    border-bottom:1px solid var(--ring,#e5e2db)}
+  .lib-nav a{color:var(--ink2,#54524d);text-decoration:none;padding:4px 9px;
+    border-radius:6px;white-space:nowrap}
+  .lib-nav a:hover{background:var(--soft,#eef2fd);color:var(--acc,#1a4fd6)}
+  .lib-nav a.here{background:var(--acc,#1a4fd6);color:#fff;font-weight:700}
+  .lib-nav .home{font-weight:700;color:var(--acc,#1a4fd6);margin-right:6px}
+  .lib-nav .sep{color:var(--mut,#8a8781);opacity:.5;padding:0 2px}
+  .lib-foot{margin:64px 0 0;padding:30px 22px 44px;max-width:100%;
+    border-radius:12px 12px 0 0;
+    border-top:3px solid var(--ink,#111110);background:var(--panel,#fff)}
+  .lib-foot h3{font-family:Charter,Georgia,serif;font-size:1.22rem;margin:0 0 4px;
+    color:var(--ink,#111110)}
+  .lib-foot .sub{font-size:.86rem;color:var(--mut,#8a8781);margin:0 0 22px}
+  .lib-grid{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    max-width:1180px}
+  .lib-grid h4{font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--mut,#8a8781);margin:0 0 9px;font-weight:700}
+  .lib-grid ul{list-style:none;margin:0;padding:0}
+  .lib-grid li{margin:0 0 11px;line-height:1.4}
+  .lib-grid a{font-weight:700;font-size:.9rem;color:var(--acc,#1a4fd6);text-decoration:none}
+  .lib-grid a:hover{text-decoration:underline}
+  .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
+  .lib-grid li.here a{color:var(--ink,#111110)}
+  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+    font-size:.74rem;color:var(--mut,#8a8781)}
+  @media print{.lib-nav,.lib-foot{display:none}}
+</style>
+</head>
+<body><nav class="lib-nav"><a class="home" href="index.html">GTM BUILD LIBRARY</a><a href="build-roadmap.html">The Build Roadmap</a><span class="sep">·</span><a href="seo-from-zero.html">SEO From Zero</a><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><a href="niche-research.html">Niche Research</a><a href="page-types.html">Page Types Decoded</a><a href="zero-click-marketing.html">Zero-Click Marketing</a><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span class="sep">·</span><a href="site-prototype.html">Clickable Prototype</a><a href="site-blueprint.html">Site Blueprint</a><a href="30-day-compression.html" class="here">The 30-Day Compression</a><a href="full-build-documentation.html">Full Build Documentation</a><span class="sep">·</span><a href="audit-appinventiv.html">Appinventiv</a><a href="audit-searchable.html">searchable.com</a><a href="audit-genesysgrowth.html">genesysgrowth.com</a><a href="audit-omnibound.html">omnibound.ai</a><a href="audit-appwrk.html">appwrk.com</a><a href="audit-techgropse.html">TechGropse</a></nav>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Compression analysis · 2 Aug 2026 · 50 people · 2 time zones · 7 days/week · 10 technical writers</div>
+  <h1>Can you do 90 days in 30? Yes — and here's the part nobody tells you</h1>
+  <p class="prose">The honest answer has two halves. <strong>Building it in 30 days: absolutely achievable with your capacity — I'd say aggressive but realistic.</strong> Ranking in 30 days: physically impossible, for reasons that have nothing to do with your team. Below is exactly which parts compress, which don't and why, the parallel-pod plan that gets 200+ pages built in 30 days, and — most importantly — what to do with the 60 days you just freed up, because <em>that's</em> where the real acceleration lives.</p>
+</header>
+
+<h2 id="physics">1 · What compresses and what doesn't</h2>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Activity</th><th>Compressible?</th><th>The constraint</th></tr></thead>
+  <tbody>
+    <tr><td>Writing 200 pages</td><td class="yes">YES — fully</td><td>Your capacity. 10 technical writers × 30 days = 300+ pieces at your quality bar. Not the bottleneck.</td></tr>
+    <tr><td>Building templates, schema, design</td><td class="yes">YES</td><td>One week of engineering, then infinite reuse.</td></tr>
+    <tr><td>Case studies, testimonial video, directory profiles</td><td class="yes">YES</td><td>Bounded by client responsiveness, not by you. Start day 1.</td></tr>
+    <tr><td>Programmatic pages (integrations)</td><td class="yes">YES</td><td>Template + your real integration library. Days, not months.</td></tr>
+    <tr><td><strong>Google crawling &amp; indexing your pages</strong></td><td class="no">NO</td><td><strong>New domains get a small crawl budget.</strong> Google won't crawl 200 URLs on a 2-week-old site quickly — it discovers them over weeks regardless of when you published. Dumping everything at once doesn't speed this up; it just creates a queue.</td></tr>
+    <tr><td><strong>Trust / authority accumulation</strong></td><td class="no">NO</td><td>Links have to be <em>earned</em> after content exists, then found by Ahrefs/Google. There is no version of this that takes 30 days.</td></tr>
+    <tr><td><strong>Ranking maturation</strong></td><td class="no">NO</td><td>New domains empirically take 3–6 months to rank for anything commercial, even with perfect content. Google needs behavioural data before it trusts you.</td></tr>
+    <tr><td><strong>Review accumulation</strong></td><td class="no">NO</td><td>Clutch verifies each review by interview. 12 clients ≈ 6–10 weeks. Start day 1 or it becomes your critical path.</td></tr>
+  </tbody>
+</table></div>
+
+<div class="see"><span class="lbl">The proof from our own audit data</span>
+<p>Genesys mass-published <strong>364 posts across 3 days</strong> (Feb 4–6, 2026). Their traffic: 346 (Jan) → 428 (Mar) → 1,021 (May). It took <strong>three months</strong> for a three-day publishing sprint to show its peak. APPWRK published 110 posts in September 2024; traffic peaked in November — <strong>two months later</strong>. The lag between "published" and "ranked" is a constant of about 60–90 days, and it does not care how fast you wrote.<br><br>
+<strong>Which is precisely the argument for building fast anyway:</strong> if the evaluation clock starts when you publish and runs ~90 days, then publishing on day 30 instead of day 90 means you're harvesting in month 4 instead of month 6. <strong>You don't compress the clock — you start it earlier.</strong> That's worth two months of pipeline.</p></div>
+
+<h2 id="risk">2 · The one real risk, stated precisely</h2>
+<div class="warn"><span class="lbl">Velocity isn't the danger — undifferentiated scale is</span>
+<p>Publishing 200 high-quality, genuinely distinct pages on a new domain is not a penalty pattern; that's what a well-funded company launch looks like. What Google's 2024–2026 systems demote is <strong>scaled content abuse</strong>: many pages, one template, little unique value. You already know the receipts — APPWRK's 36 city pages at 98–99% textual similarity, TechGropse's 110 posts/month of GB-WhatsApp filler, Genesys's 143 near-identical "vs" pages.<br><br>
+<strong>Your actual exposure is the programmatic layer.</strong> 100 integration pages built from one template is the exact shape that gets flagged <em>if</em> the only difference is the tool name. It's completely safe <em>if</em> each carries real integration specifics only your engineers know: the auth method, which objects sync, the rate-limit gotcha, a working config snippet. That's the line. Your 50 practitioners are what puts you on the right side of it — but only if they actually contribute to those pages instead of a writer swapping names in a template.</p></div>
+
+<h2 id="plan">3 · The 30-day parallel build — six pods running simultaneously</h2>
+<p class="prose">With two time zones you effectively have a 16–20 hour build day. Structure it as six pods with a clean handoff, not 50 people on one backlog:</p>
+
+<div class="pod"><div class="h">POD 1 — Platform (2 engineers)</div><div class="m">Days 1–7, then support</div>
+<ul><li>WordPress, theme, RankMath, hosting, CDN, GA4/GSC/Bing</li><li>The machine layer: robots.txt with AI crawlers named, llms.txt, /ai-info/, sitemap, Organization schema</li><li><strong>Build 7 page templates once</strong> (parent service, child service, industry, case study, pillar, blog, integration) — validate each in the Rich Results Test before anyone writes into them</li><li>/book-a-call/ + the cost calculator (this is a real dev task — start it day 1)</li></ul></div>
+
+<div class="pod"><div class="h">POD 2 — Money pages (3 writers + 2 SME reviewers)</div><div class="m">Days 3–20 · output: 22 service pages + 6 industry pages</div>
+<ul><li>Flagship parent first (day 3–5), then children in priority order: chatbot (KD 4) → BPA (KD 8) → consulting → hire → voice → the rest</li><li>Each page: 3,000–4,500 words, one original architecture diagram, one real client example, FAQ + schema, single CTA</li><li>SME review gate: no page ships without an engineer's sign-off and byline</li></ul></div>
+
+<div class="pod"><div class="h">POD 3 — Proof (1 writer + 1 designer + delivery leads)</div><div class="m">Days 1–18 · output: 12 case studies + video + directory profiles</div>
+<ul><li>Day 1: email all 12 clients for permission, quotes, metrics, and a 45-second video slot. <strong>This is the critical path — it gates everything else.</strong></li><li>Day 1: create Clutch, GoodFirms, DesignRush profiles (verification takes weeks)</li><li>Days 5–18: 4 deep case studies + 8 cards, testimonial reel edited</li></ul></div>
+
+<div class="pod"><div class="h">POD 4 — Pillars &amp; linkable assets (2 senior writers + data analyst)</div><div class="m">Days 5–28 · output: 4 pillars + 2 research assets</div>
+<ul><li>Cost pillar + calculator content (days 5–12) — your highest-leverage page</li><li><strong>The research asset (days 10–28):</strong> pull real numbers from your 50 engineers' deployments. Sample size, methodology, charts, downloadable data. This is the only thing on the site a competitor cannot copy.</li><li>Pillars: ai-agents-for-business, enterprise-ai-agents, the comparison listicle</li></ul></div>
+
+<div class="pod"><div class="h">POD 5 — Blog clusters (4 writers + SME rotation)</div><div class="m">Days 8–30 · output: 45–60 posts</div>
+<ul><li>Clusters in order: cost (4) → insurance beachhead (6) → ecommerce (5) → mechanics (8) → automation (6) → stack/tools (6) → buyer-stage (6)</li><li>Every post: real byline, 2–3 links up to its money page, 1 case study link, 2–3 sibling links</li><li>Rule: if a post can't name a money page to link to, it doesn't get written</li></ul></div>
+
+<div class="pod"><div class="h">POD 6 — Programmatic (1 engineer + 2 writers + SME input)</div><div class="m">Days 15–30 · output: 80–120 integration pages</div>
+<ul><li>Template + a spreadsheet of tools you genuinely integrate</li><li><strong>Each row must carry engineer-supplied specifics</strong> — auth method, objects synced, a real gotcha, a config snippet. No specifics = don't build that page.</li><li>Ship in batches of 20, not all at once</li></ul></div>
+
+<h2 id="publish">4 · Build in 30 days, publish in 4 waves</h2>
+<p class="prose">Build fast, but release deliberately — not because Google punishes speed, but because a new domain's crawl budget is small and you want it spent on money pages first. You also want template mistakes caught before they replicate 100×.</p>
+<div class="chart-scroll">
+<div class="dgm">
+<div class="dgm-s">WAVE 1 · Day 5 — Homepage + flagship parent + about + 6 team pages — &lt;b&gt;~10 URLs&lt;/b&gt; — submit each manually in Search Console</div><ul class="dgm-l">
+<li>W2 --&gt; W3 --&gt; W4</li>
+</ul>
+<div class="dgm-s">WAVE 4 · Days 25–30 — Remaining blogs · research asset · programmatic in batches of 20 — &lt;b&gt;~120 URLs&lt;/b&gt;</div><ul class="dgm-l">
+<li>Day 31 audit: what&#x27;s indexed? — Search Console coverage report — Anything unindexed after 3 weeks = fix internal links to it</li>
+</ul></div>
+</div>
+<div class="see"><span class="lbl">Why the money pages go first</span>
+<p>Google crawls a new domain slowly and prioritises what you link to most. If you publish 120 programmatic pages on day 5, the crawler spends its small budget on integration stubs while your flagship service page waits. Publish the pages that make money first, link them hard from the homepage, and submit them individually in Search Console — then let the long tail follow.</p></div>
+
+<h2 id="results">5 · The realistic outcome curve (build-in-30 vs build-in-90)</h2>
+<div class="tbl-scroll"><table>
+  <thead><tr><th>Month</th><th>If you build in 90 days</th><th><strong>If you build in 30 days</strong></th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Site partially live, ~30 pages</td><td><strong>Everything live (~200 pages). Sales team armed with case studies + cost calculator immediately.</strong></td></tr>
+    <tr><td>2</td><td>~70 pages, indexing begins</td><td>Indexing well advanced · first AI-engine citations · Clutch reviews landing · <strong>60 days of link outreach already running</strong></td></tr>
+    <tr><td>3</td><td>~130 pages, first long-tail rankings</td><td><strong>First Tier-1 rankings land (KD ≤ 12 terms)</strong> · 300–800 organic visits · programmatic pages entering the index</td></tr>
+    <tr><td>4</td><td>Build finishes; first rankings</td><td><strong>Tier-1 consolidating, first Tier-2 movement.</strong> Refresh wave #1 already done. Second research asset published.</td></tr>
+    <tr><td>6</td><td>Tier-1 rankings, ~800 visits</td><td><strong>2,000–4,000 visits · "ai agent development company" contending · rung 2 of the ladder passed</strong></td></tr>
+    <tr><td>12</td><td>~3,000 visits, rung 2</td><td><strong>8,000–15,000 visits · rung 3 (neurons-lab) in reach · ES/DE/PL live</strong></td></tr>
+  </tbody>
+</table></div>
+<p class="prose"><strong>Net effect of compressing: roughly a two-month head start that compounds</strong>, because every page begins aging earlier and your link-building has 60 extra days to work. It is not a 3× speedup in rankings — nothing produces that — but over 12 months it's the difference between rung 2 and rung 3, which is real money.</p>
+
+<h2 id="free">6 · What to do with the 60 days you just freed — this is the actual acceleration</h2>
+<p class="prose">The pages were never the slow part. These are, and they're what you should run in days 31–90 while the content ages:</p>
+<ol class="prose">
+  <li><strong>Link acquisition at full intensity (the real DR lever).</strong> Your research asset is the ammunition: pitch it to industry newsletters, podcasts, journalists covering AI adoption, and every SaaS tool you integrate with (they link to integration partners). 60 days of dedicated outreach with 50 people's network behind it can realistically produce 40–80 genuine referring domains — that's DR 25–35 territory, which is the entire gate for your Tier-2 keywords.</li>
+  <li><strong>The review flywheel to completion.</strong> All 12 Clutch reviews verified, GoodFirms and G2 profiles populated, plus 3–5 "top AI agent companies" listicle placements. This is TechGropse's actual lead engine and it feeds AI recommendations directly.</li>
+  <li><strong>AI-citation campaign.</strong> Run the prompt-tracking audit weekly instead of monthly during this window: 30 money questions × ChatGPT/Claude/Perplexity, log who's cited, then close the specific gaps (a missing comparison page, an unclear entity description, a stat that needs publishing). This channel moves in <em>weeks</em>, not months — it's the one place where your 30-day-old site competes with DR 70 incumbents.</li>
+  <li><strong>Founder distribution at full volume.</strong> 3×/week LinkedIn + Instagram reels, every teardown repurposed from the content you just built. Months 1–3 this is your actual pipeline while SEO warms up.</li>
+  <li><strong>Iterate on real data.</strong> By day 60 Search Console shows which pages get impressions and which are ignored. Kill or merge the losers, deepen the winners — with 200 pages live you'll have a real signal to work from, which someone building slowly won't get until month 5.</li>
+  <li><strong>Localisation.</strong> ES/DE/PL versions of the top 20 pages — the lane where zero of the five sites we audited competes at all.</li>
+</ol>
+
+<h2 id="verdict">7 · The verdict</h2>
+<div class="see"><span class="lbl">Minimum realistic timeline, stated plainly</span>
+<p><strong>Build: 30 days.</strong> Yes — with 6 pods, 10 writers, SME review gates, and templates built in week one. I'd hold two conditions: every page carries a real engineer's contribution (that's your differentiation <em>and</em> your penalty insurance), and the programmatic layer only includes tools where you have genuine integration detail.<br><br>
+<strong>First meaningful rankings: month 3.</strong> Not compressible. Google's evaluation cycle runs ~60–90 days from publish, proven twice in our own audit data.<br><br>
+<strong>First inbound meetings from the website: month 2–3</strong>, mostly from AI citations, directories, and LinkedIn traffic converting on pages that now exist — not from classic organic rankings.<br><br>
+<strong>Rung 2 (beat intellectyx, DR 46): month 6–8</strong> instead of month 9–18. That's the compression paying off.<br><br>
+<strong>The honest framing:</strong> you cannot make Google evaluate you faster, but you can arrive at the starting line two months earlier with a bigger, better-armed site — and then spend those two months on links, reviews, and AI citations, which are the things that actually move the needle. That's the fastest legitimate path that exists, and your team is genuinely capable of it.</p></div>
+
+<div class="foot">
+  <p>Lag-time evidence from the <a href="audit-genesysgrowth.html">Genesys</a> (364 posts in 3 days → peak 3 months later) and <a href="audit-appwrk.html">APPWRK</a> (110 posts Sept → peak Nov) audits. Scaled-content-abuse patterns per Google's spam policies, matched against the failures documented in those audits. Companions: <a href="full-build-documentation.html">Master build thread</a> · <a href="positioning-and-kd-ladder.html">Positioning &amp; ladder</a> · <a href="page-types.html">Vocabulary &amp; architecture</a>.</p>
+</div>
+</div>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li class="here"><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+</html>
