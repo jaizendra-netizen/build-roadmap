@@ -51,20 +51,191 @@
   .g{color:var(--good);font-weight:700}.w{color:var(--warn);font-weight:700}.r{color:var(--crit);font-weight:700}
   .chart{overflow-x:auto;background:var(--panel);border:1px solid var(--ring);border-radius:12px;padding:14px;margin:18px 0}
   pre.mermaid{margin:0 auto;background:transparent}
+
+  .dgwrap{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);
+          border-radius:12px;padding:16px 18px 18px;margin:18px 0;overflow-x:auto}
+  .dgcap{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;
+         font-weight:700;color:var(--mut,#8a8781);margin:0 0 12px}
+  .dg{display:block;margin:0 auto}
+  .dg + .dg{margin-top:18px}
+  .dg-never{margin-top:14px;padding:10px 14px;border-radius:8px;font-size:.86rem;
+            line-height:1.5;color:var(--ink2,#54524d);
+            background:color-mix(in srgb,var(--crit,#c4372c) 8%,transparent);
+            border-left:3px solid var(--crit,#c4372c)}
+  @media print{.dgwrap{break-inside:avoid;overflow:visible}}
   .foot{margin-top:54px;padding-top:16px;border-top:1px solid var(--line);font-size:.82rem;color:var(--mut)}
 </style>
 <style>
+  .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.5}
+  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
+  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+      fill:var(--ink,#111110);text-anchor:middle}
+  .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
+  .nt.warn{fill:var(--crit,#c4372c)}
+  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .ed.dash{stroke-dasharray:5 4}
+  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle;letter-spacing:.09em}
+</style>
+<style>
+  .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.5}
+  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
+  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+      fill:var(--ink,#111110);text-anchor:middle}
+  .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
+  .nt.warn{fill:var(--crit,#c4372c)}
+  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .ed.dash{stroke-dasharray:5 4}
+  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle;letter-spacing:.09em}
+</style>
+<style>
+  .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.5}
+  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
+  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+      fill:var(--ink,#111110);text-anchor:middle}
+  .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
+  .nt.warn{fill:var(--crit,#c4372c)}
+  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .ed.dash{stroke-dasharray:5 4}
+  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle;letter-spacing:.09em}
+</style>
+<style>
+  .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.5}
+  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
+  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+      fill:var(--ink,#111110);text-anchor:middle}
+  .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
+  .nt.warn{fill:var(--crit,#c4372c)}
+  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .ed.dash{stroke-dasharray:5 4}
+  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle;letter-spacing:.09em}
+</style>
+<style>
+  .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.5}
+  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
+  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+      fill:var(--ink,#111110);text-anchor:middle}
+  .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
+  .nt.warn{fill:var(--crit,#c4372c)}
+  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .ed.dash{stroke-dasharray:5 4}
+  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle;letter-spacing:.09em}
+</style>
+<style>
+  .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.5}
+  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
+  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+      fill:var(--ink,#111110);text-anchor:middle}
+  .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
+  .nt.warn{fill:var(--crit,#c4372c)}
+  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .ed.dash{stroke-dasharray:5 4}
+  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle;letter-spacing:.09em}
+</style>
+<style>
+  .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.5}
+  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
+  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+      fill:var(--ink,#111110);text-anchor:middle}
+  .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
+  .nt.warn{fill:var(--crit,#c4372c)}
+  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .ed.dash{stroke-dasharray:5 4}
+  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
+      text-anchor:middle;letter-spacing:.09em}
+</style>
+<style>
   *,*::before,*::after{box-sizing:border-box}
-  img{max-width:100%;height:auto}
-  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
-       padding:14px 18px;margin:16px 0;font-size:.86rem}
-  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
-  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
-  .dgm-s:first-of-type{margin-top:0}
-  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
-  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
-  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
-  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  img,svg{max-width:100%}
   @media print{
     body{background:#fff;padding:0}
     /* PDF links are real annotations, so do NOT also print the raw href:
@@ -330,195 +501,341 @@ The underlying competitor audits — including the named backlink-vendor finding
 </div>
 
 <h2 id="clusters">3 · Cluster maps</h2>
-<div class="chart"><div class="dgm">
-<div class="dgm-s">🏠 HOMEPAGE · KD 17</div><ul class="dgm-l">
-<li>⚙️ PARENT 1 · KD 13</li>
-<li>⚙️ PARENT 2 · KD 24</li>
-<li>⚙️ PARENT 3 consulting</li>
-<li>⚙️ PARENT 4 hire/managed</li>
-<li>🏢 /industries/ HUB</li>
-<li>📊 /case-studies/ HUB</li>
-<li>💰 COST PILLAR + CALCULATOR</li>
-</ul>
-<div class="dgm-s">⚙️ PARENT 1 · KD 13</div><ul class="dgm-l">
-<li>📊 /case-studies/ HUB</li>
-<li>💰 COST PILLAR + CALCULATOR</li>
-<li>🏢 /industries/ HUB</li>
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">⚙️ PARENT 2 · KD 24</div><ul class="dgm-l">
-<li>📊 /case-studies/ HUB</li>
-<li>💰 COST PILLAR + CALCULATOR</li>
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">🏢 /industries/ HUB</div><ul class="dgm-l">
-<li>⚙️ PARENT 1 · KD 13</li>
-<li>📊 /case-studies/ HUB</li>
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">📊 /case-studies/ HUB</div><ul class="dgm-l">
-<li>⚙️ PARENT 1 · KD 13</li>
-<li>🏢 /industries/ HUB</li>
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">📖 /glossary/ — before demand</div><ul class="dgm-l">
-<li>⚙️ PARENT 1 · KD 13</li>
-<li>💰 COST PILLAR + CALCULATOR</li>
-</ul>
-<div class="dgm-s">🧲 /resources/ + downloadables</div><ul class="dgm-l">
-<li><span class="dgm-e">[earns external links]</span> ⚙️ PARENT 1 · KD 13</li>
-<li>✉️ newsletter</li>
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">🤖 /mcp/ + /prompts/</div><ul class="dgm-l">
-<li><span class="dgm-e">[earns AI citations]</span> ⚙️ PARENT 1 · KD 13</li>
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">⚙️ PARENT 3 consulting</div><ul class="dgm-l">
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">⚙️ PARENT 4 hire/managed</div><ul class="dgm-l">
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">💰 COST PILLAR + CALCULATOR</div><ul class="dgm-l">
-<li>📅 /book-a-call/</li>
-</ul></div></div>
-<div class="chart"><div class="dgm">
-<div class="dgm-t">INSURANCE — replicate this exact shape per vertical</div>
-<div class="dgm-s">blog: insurance claims automation — 556 · KD 7 · D14</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 · KD 3 · $10 CPC</li>
-<li>📊 case A</li>
-</ul>
-<div class="dgm-s">blog: claims processing automation — 248 · KD 6 · D15</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 · KD 3 · $10 CPC</li>
-<li>📊 case B</li>
-</ul>
-<div class="dgm-s">blog: why insurance AI pilots fail — D17 · citation bait</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 · KD 3 · $10 CPC</li>
-</ul>
-<div class="dgm-s">blog: legacy integration · D22</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 · KD 3 · $10 CPC</li>
-</ul>
-<div class="dgm-s">blog: compliance + agents · D23</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 · KD 3 · $10 CPC</li>
-</ul>
-<div class="dgm-s">🎯 /industries/ai-agents-for-insurance/ — 70 · KD 3 · $10 CPC</div><ul class="dgm-l">
-<li>📊 case A</li>
-<li>📊 case B</li>
-<li>⚙️ flagship</li>
-<li>💰 cost pillar</li>
-<li>📅 book-a-call</li>
-</ul>
-<div class="dgm-s">📊 case A</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 · KD 3 · $10 CPC</li>
-<li>📅 book-a-call</li>
-</ul>
-<div class="dgm-s">📊 case B</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 · KD 3 · $10 CPC</li>
-<li>📅 book-a-call</li>
-</ul></div></div>
-<div class="chart"><div class="dgm">
-<div class="dgm-t">COST CLUSTER — highest commercial intent</div>
-<div class="dgm-s">how much does an agent cost · D19</div><ul class="dgm-l">
-<li>💰 /guide/ai-agent-development-cost/ + CALCULATOR — KD 8 — a DR-3 site holds #1 today</li>
-</ul>
-<div class="dgm-s">ai agent pricing · 150 · KD 7 · D20</div><ul class="dgm-l">
-<li>💰 /guide/ai-agent-development-cost/ + CALCULATOR — KD 8 — a DR-3 site holds #1 today</li>
-</ul>
-<div class="dgm-s">chatbot development cost · 197 · KD 9 · D21</div><ul class="dgm-l">
-<li>💰 /guide/ai-agent-development-cost/ + CALCULATOR — KD 8 — a DR-3 site holds #1 today</li>
-</ul>
-<div class="dgm-s">cost to build · D23</div><ul class="dgm-l">
-<li>💰 /guide/ai-agent-development-cost/ + CALCULATOR — KD 8 — a DR-3 site holds #1 today</li>
-</ul>
-<div class="dgm-s">⚡ what agents cost to RUN · D29 — page 1 = Reddit only. Own it.</div><ul class="dgm-l">
-<li>💰 /guide/ai-agent-development-cost/ + CALCULATOR — KD 8 — a DR-3 site holds #1 today</li>
-</ul>
-<div class="dgm-s">build vs buy · D26</div><ul class="dgm-l">
-<li>💰 /guide/ai-agent-development-cost/ + CALCULATOR — KD 8 — a DR-3 site holds #1 today</li>
-</ul>
-<div class="dgm-s">ROI measurement · D30</div><ul class="dgm-l">
-<li>💰 /guide/ai-agent-development-cost/ + CALCULATOR — KD 8 — a DR-3 site holds #1 today</li>
-</ul>
-<div class="dgm-s">💰 /guide/ai-agent-development-cost/ + CALCULATOR — KD 8 — a DR-3 site holds #1 today</div><ul class="dgm-l">
-<li>⚙️ all 4 parents</li>
-<li>📊 3 cases with real numbers</li>
-<li><span class="dgm-e">[calculator → form]</span> 📅 book-a-call</li>
-</ul></div></div>
-<div class="chart"><div class="dgm">
-<div class="dgm-t">MECHANICS — feeds the flagship</div>
-<div class="dgm-s">ai agent examples · 631 · KD 11</div><ul class="dgm-l">
-<li>⚙️ flagship</li>
-</ul>
-<div class="dgm-s">use cases · 783 · KD 20</div><ul class="dgm-l">
-<li>⚙️ flagship</li>
-</ul>
-<div class="dgm-s">agent vs chatbot · 713 · KD 23</div><ul class="dgm-l">
-<li>⚙️ flagship</li>
-</ul>
-<div class="dgm-s">how to build an ai agent · 6,195 · KD 18 ★</div><ul class="dgm-l">
-<li>⚙️ flagship</li>
-</ul>
-<div class="dgm-s">frameworks · 1,534 · KD 26</div><ul class="dgm-l">
-<li>⚙️ flagship</li>
-</ul>
-<div class="dgm-s">memory &amp; state</div><ul class="dgm-l">
-<li>⚙️ flagship</li>
-</ul>
-<div class="dgm-s">rag vs fine tuning · 503 · KD 16</div><ul class="dgm-l">
-<li>/rag-development-services/</li>
-</ul>
-<div class="dgm-s">multi-agent orchestration</div><ul class="dgm-l">
-<li>/multi-agent-system-development/</li>
-</ul>
-<div class="dgm-s">guardrails &amp; evals</div><ul class="dgm-l">
-<li>/managed-ai-agent-services/</li>
-</ul>
-<div class="dgm-s">⚙️ flagship</div><ul class="dgm-l">
-<li>📅 book-a-call</li>
-</ul></div></div>
-<div class="chart"><div class="dgm">
-<div class="dgm-t">ECOMMERCE + AUTOMATION + STACK</div>
-<div class="dgm-s">ecommerce automation · 1,377 · KD 3 ★ best ratio</div><ul class="dgm-l">
-<li>🏢 /industries/ai-agents-for-ecommerce/ · KD 1</li>
-</ul>
-<div class="dgm-s">order-status · returns · catalog</div><ul class="dgm-l">
-<li>🏢 /industries/ai-agents-for-ecommerce/ · KD 1</li>
-</ul>
-<div class="dgm-s">invoice processing · 902 · KD 9</div><ul class="dgm-l">
-<li>⚙️ /business-process-automation-services/ · KD 8</li>
-</ul>
-<div class="dgm-s">customer service automation · 2,173 · KD 19</div><ul class="dgm-l">
-<li>🏢 CS vertical</li>
-</ul>
-<div class="dgm-s">n8n vs zapier vs make ⚡ open</div><ul class="dgm-l">
-<li>⚙️ /n8n-automation-agency/</li>
-</ul>
-<div class="dgm-s">agents + CRM / HubSpot</div><ul class="dgm-l">
-<li>🔗 /integrations/ × 80–120</li>
-</ul>
-<div class="dgm-s">MCP explained for buyers</div><ul class="dgm-l">
-<li>🤖 /mcp/</li>
-</ul>
-<div class="dgm-s">🏢 /industries/ai-agents-for-ecommerce/ · KD 1</div><ul class="dgm-l">
-<li>📅 book-a-call</li>
-</ul>
-<div class="dgm-s">⚙️ /business-process-automation-services/ · KD 8</div><ul class="dgm-l">
-<li>📅 book-a-call</li>
-</ul>
-<div class="dgm-s">🏢 CS vertical</div><ul class="dgm-l">
-<li>📅 book-a-call</li>
-</ul>
-<div class="dgm-s">⚙️ /n8n-automation-agency/</div><ul class="dgm-l">
-<li>📅 book-a-call</li>
-</ul>
-<div class="dgm-s">🔗 /integrations/ × 80–120</div><ul class="dgm-l">
-<li>📅 book-a-call</li>
-</ul>
-<div class="dgm-s">🤖 /mcp/</div><ul class="dgm-l">
-<li>📅 book-a-call</li>
-</ul></div></div>
+<div class="dgwrap"><p class="dgcap">How authority enters the site and where it ends up</p>
+<svg class="dg" viewBox="0 0 900 255" width="100%" style="max-width:900px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+
+<text class="ct" x="118.0" y="14.0">AUTHORITY IN</text>
+<text class="ct" x="450.0" y="14.0">WHERE IT POOLS</text>
+<text class="ct" x="782.0" y="14.0">WHAT IT CONVERTS TO</text>
+<path class="ed strong" d="M236.0,51.5 C284.0,51.5 284.0,135.5 325.0,135.5" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M236.0,107.5 C284.0,107.5 284.0,135.5 325.0,135.5" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M236.0,163.5 C284.0,163.5 284.0,135.5 325.0,135.5" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M236.0,219.5 C284.0,219.5 284.0,135.5 325.0,135.5" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M568.0,135.5 C616.0,135.5 616.0,107.5 657.0,107.5" marker-end="url(#ah2)"/>
+<path class="ed " d="M568.0,135.5 C616.0,135.5 616.0,163.5 657.0,163.5" marker-end="url(#ah)"/>
+<rect class="nb feed" x="0.0" y="30.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="49.0">/glossary/</text>
+<text class="ns" x="118.0" y="63.0">40–60 entries, before demand</text>
+<rect class="nb feed" x="0.0" y="86.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="105.0">/resources/ + downloadables</text>
+<text class="ns" x="118.0" y="119.0">earns external links</text>
+<rect class="nb feed" x="0.0" y="142.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="161.0">/mcp/ + /prompts/</text>
+<text class="ns" x="118.0" y="175.0">earns AI citations</text>
+<rect class="nb feed" x="0.0" y="198.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="217.0">43 blog posts</text>
+<text class="ns" x="118.0" y="231.0">2–3 links each to their money page</text>
+<rect class="nb convert" x="664.0" y="86.0" width="236" height="43.0" rx="7"/>
+<text class="nt convert" x="782.0" y="105.0">/book-a-call/</text>
+<text class="ns" x="782.0" y="119.0">the ONE conversion destination</text>
+<rect class="nb feed" x="664.0" y="142.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="782.0" y="161.0">✉ newsletter</text>
+<text class="ns" x="782.0" y="175.0">the channel no algorithm throttles</text>
+<rect class="nb hub" x="332.0" y="102.5" width="236" height="66.0" rx="7"/>
+<text class="nt hub" x="450.0" y="121.5">THE MONEY LAYER</text>
+<text class="ns" x="450.0" y="135.5">homepage KD 17 · 4 parents ·</text>
+<text class="ns" x="450.0" y="147.0">/industries/ · /case-studies/ ·</text>
+<text class="ns" x="450.0" y="158.5">cost pillar</text>
+</svg>
+</div>
+<!--mermaid
+flowchart TD
+  HOME["🏠 HOMEPAGE · KD 17"]
+  P1["⚙️ PARENT 1 · KD 13"]; P2["⚙️ PARENT 2 · KD 24"]; P3["⚙️ PARENT 3 consulting"]; P4["⚙️ PARENT 4 hire/managed"]
+  IND["🏢 /industries/ HUB"]; CASE["📊 /case-studies/ HUB"]; COST["💰 COST PILLAR + CALCULATOR"]
+  GLO["📖 /glossary/ — before demand"]; RES["🧲 /resources/ + downloadables"]; AIN["🤖 /mcp/ + /prompts/"]
+  BOOK["📅 /book-a-call/"]; NEWS["✉️ newsletter"]
+  HOME --&gt; P1 & P2 & P3 & P4 & IND & CASE & COST
+  P1 --&gt; CASE & COST & IND
+  P2 --&gt; CASE & COST
+  IND --&gt; P1 & CASE
+  CASE --&gt; P1 & IND
+  GLO --&gt; P1 & COST
+  RES ==>|earns external links| P1
+  RES ==> NEWS
+  AIN ==>|earns AI citations| P1
+  P1 & P2 & P3 & P4 & IND & CASE & COST & RES & AIN ==> BOOK
+-->
+<div class="dgwrap"><p class="dgcap">The insurance cluster — replicate this exact shape for every vertical</p>
+<svg class="dg" viewBox="0 0 900 311" width="100%" style="max-width:900px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+
+<text class="ct" x="118.0" y="14.0">5 BLOGS FEED IT</text>
+<text class="ct" x="450.0" y="14.0">THE BEACHHEAD PAGE</text>
+<text class="ct" x="782.0" y="14.0">IT LINKS OUT TO</text>
+<path class="ed " d="M236.0,51.5 C284.0,51.5 284.0,163.5 325.0,163.5" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,107.5 C284.0,107.5 284.0,163.5 325.0,163.5" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,163.5 C284.0,163.5 284.0,163.5 325.0,163.5" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,219.5 C284.0,219.5 284.0,163.5 325.0,163.5" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,275.5 C284.0,275.5 284.0,163.5 325.0,163.5" marker-end="url(#ah)"/>
+<path class="ed " d="M568.0,163.5 C616.0,163.5 616.0,96.8 657.0,96.8" marker-end="url(#ah)"/>
+<path class="ed " d="M568.0,163.5 C616.0,163.5 616.0,141.2 657.0,141.2" marker-end="url(#ah)"/>
+<path class="ed " d="M568.0,163.5 C616.0,163.5 616.0,185.8 657.0,185.8" marker-end="url(#ah)"/>
+<path class="ed strong" d="M568.0,163.5 C616.0,163.5 616.0,230.2 657.0,230.2" marker-end="url(#ah2)"/>
+<rect class="nb feed" x="0.0" y="30.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="49.0">insurance claims automation</text>
+<text class="ns" x="118.0" y="63.0">556 · KD 7 · D14</text>
+<rect class="nb feed" x="0.0" y="86.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="105.0">claims processing automation</text>
+<text class="ns" x="118.0" y="119.0">248 · KD 6 · D15</text>
+<rect class="nb feed" x="0.0" y="142.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="161.0">why insurance AI pilots fail</text>
+<text class="ns" x="118.0" y="175.0">D17 · citation bait</text>
+<rect class="nb feed" x="0.0" y="198.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="217.0">legacy integration</text>
+<text class="ns" x="118.0" y="231.0">D22</text>
+<rect class="nb feed" x="0.0" y="254.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="273.0">compliance + agents</text>
+<text class="ns" x="118.0" y="287.0">D23</text>
+<rect class="nb money" x="664.0" y="81.0" width="236" height="31.5" rx="7"/>
+<text class="nt money" x="782.0" y="100.0">flagship service page</text>
+<rect class="nb money" x="664.0" y="125.5" width="236" height="31.5" rx="7"/>
+<text class="nt money" x="782.0" y="144.5">cost pillar</text>
+<rect class="nb money" x="664.0" y="170.0" width="236" height="31.5" rx="7"/>
+<text class="nt money" x="782.0" y="189.0">2 insurance case studies</text>
+<rect class="nb convert" x="664.0" y="214.5" width="236" height="31.5" rx="7"/>
+<text class="nt convert" x="782.0" y="233.5">/book-a-call/</text>
+<rect class="nb hub" x="332.0" y="142.0" width="236" height="43.0" rx="7"/>
+<text class="nt hub" x="450.0" y="161.0">/industries/ai-agents-for-insurance/</text>
+<text class="ns" x="450.0" y="175.0">70 · KD 3 · $10 CPC · D16</text>
+</svg>
+</div>
+<!--mermaid
+flowchart TD
+  subgraph A["INSURANCE — replicate this exact shape per vertical"]
+    B1["blog: insurance claims automation<br/>556 · KD 7 · D14"]; B2["blog: claims processing automation<br/>248 · KD 6 · D15"]
+    B3["blog: why insurance AI pilots fail<br/>D17 · citation bait"]; B4["blog: legacy integration · D22"]; B5["blog: compliance + agents · D23"]
+    IP["🎯 /industries/ai-agents-for-insurance/<br/>70 · KD 3 · $10 CPC"]; C1["📊 case A"]; C2["📊 case B"]
+    B1 & B2 & B3 & B4 & B5 --&gt; IP
+    B1 --&gt; C1; B2 --&gt; C2; IP --&gt; C1 & C2; C1 & C2 --&gt; IP
+  end
+  IP --&gt; SVC["⚙️ flagship"] & COST["💰 cost pillar"]
+  IP & C1 & C2 ==> BOOK["📅 book-a-call"]
+-->
+<div class="dgwrap"><p class="dgcap">The cost cluster — highest commercial intent on the site</p>
+<svg class="dg" viewBox="0 0 900 434" width="100%" style="max-width:900px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+
+<text class="ct" x="118.0" y="14.0">7 BLOGS FEED IT</text>
+<text class="ct" x="450.0" y="14.0">HIGHEST COMMERCIAL INTENT</text>
+<text class="ct" x="782.0" y="14.0">IT LINKS OUT TO</text>
+<path class="ed " d="M236.0,51.5 C284.0,51.5 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,107.5 C284.0,107.5 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,163.5 C284.0,163.5 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,219.5 C284.0,219.5 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,281.2 C284.0,281.2 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,343.0 C284.0,343.0 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,399.0 C284.0,399.0 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
+<path class="ed " d="M568.0,225.2 C616.0,225.2 616.0,168.2 657.0,168.2" marker-end="url(#ah)"/>
+<path class="ed " d="M568.0,225.2 C616.0,225.2 616.0,219.5 657.0,219.5" marker-end="url(#ah)"/>
+<path class="ed strong" d="M568.0,225.2 C616.0,225.2 616.0,276.5 657.0,276.5" marker-end="url(#ah2)"/>
+<rect class="nb feed" x="0.0" y="30.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="49.0">how much does an agent cost</text>
+<text class="ns" x="118.0" y="63.0">D19</text>
+<rect class="nb feed" x="0.0" y="86.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="105.0">ai agent pricing</text>
+<text class="ns" x="118.0" y="119.0">150 · KD 7 · D20</text>
+<rect class="nb feed" x="0.0" y="142.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="161.0">chatbot development cost</text>
+<text class="ns" x="118.0" y="175.0">197 · KD 9 · D21</text>
+<rect class="nb feed" x="0.0" y="198.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="217.0">cost to build</text>
+<text class="ns" x="118.0" y="231.0">D23</text>
+<rect class="nb feed" x="0.0" y="254.0" width="236" height="54.5" rx="7"/>
+<text class="nt feed" x="118.0" y="273.0">what agents cost to RUN</text>
+<text class="ns" x="118.0" y="287.0">D29 · page 1 is Reddit only. Own</text>
+<text class="ns" x="118.0" y="298.5">it.</text>
+<rect class="nb feed" x="0.0" y="321.5" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="340.5">build vs buy</text>
+<text class="ns" x="118.0" y="354.5">D26</text>
+<rect class="nb feed" x="0.0" y="377.5" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="396.5">ROI measurement</text>
+<text class="ns" x="118.0" y="410.5">D30</text>
+<rect class="nb money" x="664.0" y="152.5" width="236" height="31.5" rx="7"/>
+<text class="nt money" x="782.0" y="171.5">all 4 parent services</text>
+<rect class="nb money" x="664.0" y="197.0" width="236" height="45.0" rx="7"/>
+<text class="nt money" x="782.0" y="216.0">3 case studies with real</text>
+<text class="nt money" x="782.0" y="229.5">numbers</text>
+<rect class="nb convert" x="664.0" y="255.0" width="236" height="43.0" rx="7"/>
+<text class="nt convert" x="782.0" y="274.0">/book-a-call/</text>
+<text class="ns" x="782.0" y="288.0">calculator → form</text>
+<rect class="nb hub" x="332.0" y="191.2" width="236" height="68.0" rx="7"/>
+<text class="nt hub" x="450.0" y="210.2">/guide/ai-agent-development-cost/</text>
+<text class="nt hub" x="450.0" y="223.8">+ CALCULATOR</text>
+<text class="ns" x="450.0" y="237.8">KD 8 — a DR-3 site holds #1 today</text>
+<text class="ns" x="450.0" y="249.2">· D19</text>
+</svg>
+</div>
+<!--mermaid
+flowchart TD
+  subgraph B["COST CLUSTER — highest commercial intent"]
+    K1["how much does an agent cost · D19"]; K2["ai agent pricing · 150 · KD 7 · D20"]
+    K3["chatbot development cost · 197 · KD 9 · D21"]; K4["cost to build · D23"]
+    K5["⚡ what agents cost to RUN · D29<br/>page 1 = Reddit only. Own it."]; K6["build vs buy · D26"]; K7["ROI measurement · D30"]
+    CP["💰 /guide/ai-agent-development-cost/ + CALCULATOR<br/>KD 8 — a DR-3 site holds #1 today"]
+    K1 & K2 & K3 & K4 & K5 & K6 & K7 --&gt; CP
+  end
+  CP --&gt; ALL["⚙️ all 4 parents"] & C3["📊 3 cases with real numbers"]
+  CP ==>|"calculator → form"| BOOK["📅 book-a-call"]
+-->
+<div class="dgwrap"><p class="dgcap">The mechanics cluster — nine blogs feeding four service pages</p>
+<svg class="dg" viewBox="0 0 900 356" width="100%" style="max-width:900px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+
+<text class="ct" x="118.0" y="14.0">6 BLOGS FEED THE FLAGSHIP</text>
+<text class="ct" x="450.0" y="14.0">PARENT SERVICE</text>
+<text class="ct" x="782.0" y="14.0">CONVERTS TO</text>
+<path class="ed " d="M236.0,51.5 C284.0,51.5 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,107.5 C284.0,107.5 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,163.5 C284.0,163.5 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,219.5 C284.0,219.5 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,275.5 C284.0,275.5 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
+<path class="ed " d="M236.0,325.8 C284.0,325.8 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
+<path class="ed strong" d="M568.0,185.8 C616.0,185.8 616.0,185.8 657.0,185.8" marker-end="url(#ah2)"/>
+<rect class="nb feed" x="0.0" y="30.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="49.0">ai agent examples</text>
+<text class="ns" x="118.0" y="63.0">631 · KD 11</text>
+<rect class="nb feed" x="0.0" y="86.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="105.0">ai agent use cases</text>
+<text class="ns" x="118.0" y="119.0">783 · KD 20</text>
+<rect class="nb feed" x="0.0" y="142.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="161.0">ai agent vs chatbot</text>
+<text class="ns" x="118.0" y="175.0">713 · KD 23</text>
+<rect class="nb feed" x="0.0" y="198.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="217.0">how to build an ai agent</text>
+<text class="ns" x="118.0" y="231.0">6,195 · KD 18 ★ biggest prize</text>
+<rect class="nb feed" x="0.0" y="254.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="273.0">ai agent frameworks</text>
+<text class="ns" x="118.0" y="287.0">1,534 · KD 26</text>
+<rect class="nb feed" x="0.0" y="310.0" width="236" height="31.5" rx="7"/>
+<text class="nt feed" x="118.0" y="329.0">agent memory &amp; state</text>
+<rect class="nb convert" x="664.0" y="170.0" width="236" height="31.5" rx="7"/>
+<text class="nt convert" x="782.0" y="189.0">/book-a-call/</text>
+<rect class="nb hub" x="332.0" y="164.2" width="236" height="43.0" rx="7"/>
+<text class="nt hub" x="450.0" y="183.2">/ai-agent-development-services/</text>
+<text class="ns" x="450.0" y="197.2">the flagship · 403 · KD 13 · D01</text>
+</svg>
+<svg class="dg" viewBox="0 0 568 217" width="100%" style="max-width:568px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+
+<text class="ct" x="118.0" y="14.0">THREE MORE BLOGS</text>
+<text class="ct" x="450.0" y="14.0">EACH FEEDS ITS OWN CHILD</text>
+<path class="ed strong" d="M236.0,51.5 C284.0,51.5 284.0,51.5 325.0,51.5" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M236.0,112.5 C284.0,112.5 284.0,112.5 325.0,112.5" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M236.0,173.5 C284.0,173.5 284.0,173.5 325.0,173.5" marker-end="url(#ah2)"/>
+<rect class="nb feed" x="0.0" y="30.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="49.0">rag vs fine tuning</text>
+<text class="ns" x="118.0" y="63.0">503 · KD 16 · D17</text>
+<rect class="nb hub" x="332.0" y="35.8" width="236" height="31.5" rx="7"/>
+<text class="nt hub" x="450.0" y="54.8">/rag-development-services/</text>
+<rect class="nb feed" x="0.0" y="91.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="110.0">multi-agent orchestration</text>
+<text class="ns" x="118.0" y="124.0">D30</text>
+<rect class="nb hub" x="332.0" y="96.8" width="236" height="31.5" rx="7"/>
+<text class="nt hub" x="450.0" y="115.8">/multi-agent-system-development/</text>
+<rect class="nb feed" x="0.0" y="152.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="171.0">guardrails &amp; evals</text>
+<text class="ns" x="118.0" y="185.0">D25</text>
+<rect class="nb hub" x="332.0" y="152.0" width="236" height="43.0" rx="7"/>
+<text class="nt hub" x="450.0" y="171.0">/managed-ai-agent-services/</text>
+<text class="ns" x="450.0" y="185.0">the retainer page</text>
+</svg>
+<div class="dg-never"><strong>⛔ NEVER TARGET:</strong> "what is an ai agent" — 16,114 volume, KD 83. Wikipedia, IBM and AWS own page 1 permanently. At DR 0 this is unwinnable and the traffic would not convert anyway.</div>
+</div>
+<!--mermaid
+flowchart TD
+  subgraph C["MECHANICS — feeds the flagship"]
+    M1["ai agent examples · 631 · KD 11"]; M2["use cases · 783 · KD 20"]; M3["agent vs chatbot · 713 · KD 23"]
+    M4["how to build an ai agent · 6,195 · KD 18 ★"]; M5["frameworks · 1,534 · KD 26"]; M6["memory & state"]
+    M7["guardrails & evals"]; M8["multi-agent orchestration"]; M9["rag vs fine tuning · 503 · KD 16"]
+    SVC["⚙️ flagship"]
+    M1 & M2 & M3 & M4 & M5 & M6 --&gt; SVC
+    M9 --&gt; RAG["/rag-development-services/"]; M8 --&gt; MAS["/multi-agent-system-development/"]; M7 --&gt; MAN["/managed-ai-agent-services/"]
+  end
+  X["⛔ NEVER: 'what is an ai agent' 16,114 · KD 83<br/>Wikipedia/IBM/AWS own it permanently at DR 0"]
+  SVC ==> BOOK["📅 book-a-call"]
+-->
+<div class="dgwrap"><p class="dgcap">Ecommerce, automation and stack — one blog, one money page, every time</p>
+<svg class="dg" viewBox="0 0 568 509" width="100%" style="max-width:568px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+
+<text class="ct" x="118.0" y="14.0">THE BLOG THAT FEEDS IT</text>
+<text class="ct" x="450.0" y="14.0">THE MONEY PAGE IT FEEDS</text>
+<path class="ed strong" d="M236.0,57.2 C284.0,57.2 284.0,57.2 325.0,57.2" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M236.0,130.8 C284.0,130.8 284.0,130.8 325.0,130.8" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M236.0,198.5 C284.0,198.5 284.0,198.5 325.0,198.5" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M236.0,259.5 C284.0,259.5 284.0,259.5 325.0,259.5" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M236.0,326.2 C284.0,326.2 284.0,326.2 325.0,326.2" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M236.0,393.0 C284.0,393.0 284.0,393.0 325.0,393.0" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M236.0,459.8 C284.0,459.8 284.0,459.8 325.0,459.8" marker-end="url(#ah2)"/>
+<rect class="nb feed" x="0.0" y="30.0" width="236" height="54.5" rx="7"/>
+<text class="nt feed" x="118.0" y="49.0">ecommerce automation</text>
+<text class="ns" x="118.0" y="63.0">1,377 · KD 3 ★ best ratio on the</text>
+<text class="ns" x="118.0" y="74.5">list</text>
+<rect class="nb hub" x="332.0" y="35.8" width="236" height="43.0" rx="7"/>
+<text class="nt hub" x="450.0" y="54.8">/industries/ai-agents-for-ecommerce/</text>
+<text class="ns" x="450.0" y="68.8">300 · KD 1 · D17</text>
+<rect class="nb feed" x="0.0" y="102.5" width="236" height="56.5" rx="7"/>
+<text class="nt feed" x="118.0" y="121.5">order status · returns ·</text>
+<text class="nt feed" x="118.0" y="135.0">catalog</text>
+<text class="ns" x="118.0" y="149.0">D16 · D18 · D20</text>
+<rect class="nb hub" x="332.0" y="109.2" width="236" height="43.0" rx="7"/>
+<text class="nt hub" x="450.0" y="128.2">/industries/ai-agents-for-ecommerce/</text>
+<text class="ns" x="450.0" y="142.2">300 · KD 1 · D17</text>
+<rect class="nb feed" x="0.0" y="177.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="196.0">invoice processing</text>
+<text class="ns" x="118.0" y="210.0">902 · KD 9 · D16</text>
+<rect class="nb hub" x="332.0" y="177.0" width="236" height="43.0" rx="7"/>
+<text class="nt hub" x="450.0" y="196.0">/business-process-automation-services/</text>
+<text class="ns" x="450.0" y="210.0">1,820 · KD 8 · D09</text>
+<rect class="nb feed" x="0.0" y="238.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="257.0">customer service automation</text>
+<text class="ns" x="118.0" y="271.0">2,173 · KD 19 · D20</text>
+<rect class="nb hub" x="332.0" y="238.0" width="236" height="43.0" rx="7"/>
+<text class="nt hub" x="450.0" y="257.0">/industries/ai-agents-for-customer-service/</text>
+<text class="ns" x="450.0" y="271.0">500 · KD 28 · D26</text>
+<rect class="nb feed" x="0.0" y="299.0" width="236" height="54.5" rx="7"/>
+<text class="nt feed" x="118.0" y="318.0">n8n vs zapier vs make</text>
+<text class="ns" x="118.0" y="332.0">⚡ open goal — no agency owns page</text>
+<text class="ns" x="118.0" y="343.5">1</text>
+<rect class="nb hub" x="332.0" y="304.8" width="236" height="43.0" rx="7"/>
+<text class="nt hub" x="450.0" y="323.8">/n8n-automation-agency/</text>
+<text class="ns" x="450.0" y="337.8">450 · KD 33 · D11</text>
+<rect class="nb feed" x="0.0" y="371.5" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="390.5">agents + CRM / HubSpot</text>
+<text class="ns" x="118.0" y="404.5">D27</text>
+<rect class="nb hub" x="332.0" y="371.5" width="236" height="43.0" rx="7"/>
+<text class="nt hub" x="450.0" y="390.5">/integrations/ × 80–120</text>
+<text class="ns" x="450.0" y="404.5">programmatic · D20–30</text>
+<rect class="nb feed" x="0.0" y="438.2" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="457.2">MCP explained for buyers</text>
+<text class="ns" x="118.0" y="471.2">D26</text>
+<rect class="nb hub" x="332.0" y="432.5" width="236" height="54.5" rx="7"/>
+<text class="nt hub" x="450.0" y="451.5">/mcp/</text>
+<text class="ns" x="450.0" y="465.5">what nobody else in this market</text>
+<text class="ns" x="450.0" y="477.0">ships</text>
+</svg>
+</div>
+<!--mermaid
+flowchart TD
+  subgraph D["ECOMMERCE + AUTOMATION + STACK"]
+    E1["ecommerce automation · 1,377 · KD 3 ★ best ratio"] --&gt; ECO["🏢 /industries/ai-agents-for-ecommerce/ · KD 1"]
+    E2["order-status · returns · catalog"] --&gt; ECO
+    A1["invoice processing · 902 · KD 9"] --&gt; BPA["⚙️ /business-process-automation-services/ · KD 8"]
+    A2["customer service automation · 2,173 · KD 19"] --&gt; CS["🏢 CS vertical"]
+    S1["n8n vs zapier vs make ⚡ open"] --&gt; N8N["⚙️ /n8n-automation-agency/"]
+    S2["agents + CRM / HubSpot"] --&gt; INT["🔗 /integrations/ × 80–120"]
+    S3["MCP explained for buyers"] --&gt; MCP["🤖 /mcp/"]
+  end
+  ECO & BPA & CS & N8N & INT & MCP ==> BOOK["📅 book-a-call"]
+-->
 <h2 id="linking">4 · The linking law</h2>
 <div class="tbl"><table>
   <thead><tr><th>Page type</th><th>MUST link out to</th><th>MUST be linked from</th><th>Never</th></tr></thead>
@@ -539,44 +856,75 @@ The underlying competitor audits — including the named backlink-vendor finding
 <h2 id="dist">5 · The content distribution system</h2>
 <p class="prose">Your LinkedIn engine already works — 20–30 high-quality posts a month, millions of impressions. The website is currently disconnected from it. This is the loop that connects them, and it's the part most agencies never build.</p>
 
-<div class="chart"><div class="dgm">
-<div class="dgm-s">👷 50 engineers — real delivery work</div><ul class="dgm-l">
-<li>one insight</li>
-</ul>
-<div class="dgm-s">one insight</div><ul class="dgm-l">
-<li>LinkedIn post — (text-first, 3×/wk)</li>
-<li>Instagram reel — (video-first)</li>
-</ul>
-<div class="dgm-s">LinkedIn post — (text-first, 3×/wk)</div><ul class="dgm-l">
-<li>engagement + — comments</li>
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">engagement + — comments</div><ul class="dgm-l">
-<li>blog post on YOUR site — (targets a keyword)</li>
-<li>Reddit answer — r/AI_Agents · r/automation</li>
-</ul>
-<div class="dgm-s">blog post on YOUR site — (targets a keyword)</div><ul class="dgm-l">
-<li>⚙️ money page</li>
-<li>✉️ newsletter issue</li>
-<li>🔍 Google SERP</li>
-<li>🤖 AI engines cite you</li>
-</ul>
-<div class="dgm-s">Reddit answer — r/AI_Agents · r/automation</div><ul class="dgm-l">
-<li><span class="dgm-e">[Reddit ranks page-1&lt;br/&gt;on your keywords]</span> 🔍 Google SERP</li>
-</ul>
-<div class="dgm-s">✉️ newsletter issue</div><ul class="dgm-l">
-<li>returning readers — → branded search</li>
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">returning readers — → branded search</div><ul class="dgm-l">
-<li>🔍 Google SERP</li>
-</ul>
-<div class="dgm-s">🔍 Google SERP</div><ul class="dgm-l">
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">🤖 AI engines cite you</div><ul class="dgm-l">
-<li>📅 /book-a-call/</li>
-</ul></div></div>
+<div class="dgwrap"><p class="dgcap">The content distribution system — one insight, five channels, one destination</p>
+<svg class="dg" viewBox="0 0 1564 209" width="100%" style="max-width:1564px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+
+<text class="ct" x="118.0" y="14.0">SOURCE</text>
+<text class="ct" x="450.0" y="14.0">DISTRIBUTION</text>
+<text class="ct" x="782.0" y="14.0">PERMANENT ASSETS</text>
+<text class="ct" x="1114.0" y="14.0">WHERE IT LANDS</text>
+<text class="ct" x="1446.0" y="14.0">CONVERSION</text>
+<path class="ed strong" d="M236.0,112.5 C284.0,112.5 284.0,84.5 325.0,84.5" marker-end="url(#ah2)"/>
+<path class="ed " d="M236.0,112.5 C284.0,112.5 284.0,140.5 325.0,140.5" marker-end="url(#ah)"/>
+<path class="ed strong" d="M568.0,84.5 C616.0,84.5 616.0,84.5 657.0,84.5" marker-end="url(#ah2)"/>
+<text class="el" x="616.0" y="80.5">engagement</text>
+<path class="ed " d="M568.0,84.5 C616.0,84.5 616.0,140.5 657.0,140.5" marker-end="url(#ah)"/>
+<path class="ed strong" d="M900.0,84.5 C948.0,84.5 948.0,45.8 989.0,45.8" marker-end="url(#ah2)"/>
+<path class="ed " d="M900.0,84.5 C948.0,84.5 948.0,90.2 989.0,90.2" marker-end="url(#ah)"/>
+<path class="ed " d="M900.0,84.5 C948.0,84.5 948.0,134.8 989.0,134.8" marker-end="url(#ah)"/>
+<path class="ed " d="M900.0,84.5 C948.0,84.5 948.0,179.2 989.0,179.2" marker-end="url(#ah)"/>
+<path class="ed dash" d="M900.0,140.5 C948.0,140.5 948.0,134.8 989.0,134.8" marker-end="url(#ah2)"/>
+<text class="el" x="948.0" y="133.6">ranks p1</text>
+<path class="ed strong" d="M1232.0,45.8 C1280.0,45.8 1280.0,112.5 1321.0,112.5" marker-end="url(#ah2)"/>
+<path class="ed " d="M1232.0,90.2 C1280.0,90.2 1280.0,112.5 1321.0,112.5" marker-end="url(#ah)"/>
+<path class="ed strong" d="M1232.0,134.8 C1280.0,134.8 1280.0,112.5 1321.0,112.5" marker-end="url(#ah2)"/>
+<path class="ed " d="M1232.0,179.2 C1280.0,179.2 1280.0,112.5 1321.0,112.5" marker-end="url(#ah)"/>
+<rect class="nb feed" x="0.0" y="91.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="118.0" y="110.0">50 engineers</text>
+<text class="ns" x="118.0" y="124.0">real delivery work</text>
+<rect class="nb feed" x="332.0" y="63.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="450.0" y="82.0">LinkedIn post</text>
+<text class="ns" x="450.0" y="96.0">text-first, 3×/week</text>
+<rect class="nb feed" x="332.0" y="119.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="450.0" y="138.0">Instagram reel</text>
+<text class="ns" x="450.0" y="152.0">same insight, video-first</text>
+<rect class="nb feed" x="664.0" y="63.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="782.0" y="82.0">blog post on YOUR site</text>
+<text class="ns" x="782.0" y="96.0">targets a real keyword</text>
+<rect class="nb feed" x="664.0" y="119.0" width="236" height="43.0" rx="7"/>
+<text class="nt feed" x="782.0" y="138.0">Reddit answer</text>
+<text class="ns" x="782.0" y="152.0">r/AI_Agents · r/automation · r/n8n</text>
+<rect class="nb money" x="996.0" y="30.0" width="236" height="31.5" rx="7"/>
+<text class="nt money" x="1114.0" y="49.0">money page</text>
+<rect class="nb feed" x="996.0" y="74.5" width="236" height="31.5" rx="7"/>
+<text class="nt feed" x="1114.0" y="93.5">✉ newsletter issue</text>
+<rect class="nb money" x="996.0" y="119.0" width="236" height="31.5" rx="7"/>
+<text class="nt money" x="1114.0" y="138.0">Google SERP</text>
+<rect class="nb money" x="996.0" y="163.5" width="236" height="31.5" rx="7"/>
+<text class="nt money" x="1114.0" y="182.5">AI engines cite you</text>
+<rect class="nb convert" x="1328.0" y="96.8" width="236" height="31.5" rx="7"/>
+<text class="nt convert" x="1446.0" y="115.8">/book-a-call/</text>
+</svg>
+</div>
+<!--mermaid
+flowchart LR
+  SME["👷 50 engineers<br/>real delivery work"] --> IDEA["one insight"]
+  IDEA --> LI["LinkedIn post<br/>(text-first, 3×/wk)"]
+  IDEA --> IG["Instagram reel<br/>(video-first)"]
+  LI --> ENG["engagement +<br/>comments"]
+  ENG --> BLOG["blog post on YOUR site<br/>(targets a keyword)"]
+  BLOG --> MONEY["⚙️ money page"]
+  BLOG --> NEWS["✉️ newsletter issue"]
+  ENG --> REDDIT["Reddit answer<br/>r/AI_Agents · r/automation"]
+  REDDIT -.->|"Reddit ranks page-1<br/>on your keywords"| SERP["🔍 Google SERP"]
+  BLOG --> SERP
+  NEWS --> RETURN["returning readers<br/>→ branded search"]
+  RETURN --> SERP
+  BLOG --> AICITE["🤖 AI engines cite you"]
+  SERP & AICITE & LI & NEWS ==> BOOK["📅 /book-a-call/"]
+-->
 
 <h3>The five channels, and what each one's job is</h3>
 <div class="tbl"><table>
