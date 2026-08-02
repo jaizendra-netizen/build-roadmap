@@ -8,7 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>AI-Agent Niche Research — Keywords, Positioning, Timeline</title>
+<title>AI-Agent Niche Research. Keywords, Positioning, Timeline</title>
 <style>
   :root {
     color-scheme: light;
@@ -75,29 +75,47 @@
 </style>
 <style>
   *,*::before,*::after{box-sizing:border-box}
-  img{max-width:100%;height:auto}
-  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
-       padding:14px 18px;margin:16px 0;font-size:.86rem}
-  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
-  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
-  .dgm-s:first-of-type{margin-top:0}
-  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
-  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
-  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
-  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
-    /* PDF links are real annotations, so do NOT also print the raw href:
-       it doubled line length and pushed the URL tree off the right edge. */
     a{color:#1a4fd6;text-decoration:underline}
-    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
     .tree{white-space:pre-wrap!important;overflow:visible!important;
           word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
-    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll,.mmwrap{overflow:visible!important}
     table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
     th,td{word-break:break-word;padding:4px 6px!important}
     pre,code{white-space:pre-wrap!important;word-break:break-word}
-    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital,.dgwrap,.mmwrap{break-inside:avoid}
     h2,h3{break-after:avoid}
   }
 
@@ -129,7 +147,7 @@
   .lib-grid a:hover{text-decoration:underline}
   .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
   .lib-grid li.here a{color:var(--ink,#111110)}
-  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+  .lib-grid li.here a::after{content:": you are here";font-weight:400;
     font-size:.74rem;color:var(--mut,#8a8781)}
   @media print{.lib-nav,.lib-foot{display:none}}
 </style>
@@ -139,12 +157,12 @@
 <header>
   <div class="eyebrow">Niche research · 2 Aug 2026 · Ahrefs Keywords Explorer (US) + Appinventiv sitemap/schema forensics</div>
   <h1>The AI-agent lane: what Appinventiv is doing, which keywords are crackable, and how you position to win</h1>
-  <p class="prose">Everything you asked for, measured: Appinventiv's complete AI-agent playbook (their posts, cadence, refresh rhythm), the real keyword map with volume + difficulty + timelines, the verdict on your scope to grow, the positioning recommendation, and the LinkedIn post list. Research only — you read, absorb, then we turn it into the action plan.</p>
+  <p class="prose">Everything you asked for, measured: Appinventiv's complete AI-agent playbook (their posts, cadence, refresh rhythm), the real keyword map with volume + difficulty + timelines, the verdict on your scope to grow, the positioning recommendation, and the LinkedIn post list. Research only: you read, absorb, then we turn it into the action plan.</p>
 </header>
 
-<h2 id="verdict">0 · The verdict first: yes, there is real scope — and the window is open NOW</h2>
+<h2 id="verdict">0 · The verdict first: yes, there is real scope: and the window is open NOW</h2>
 <div class="see"><span class="lbl">The one-paragraph answer</span>
-<p>The AI-agent services category is <strong>young enough that difficulty hasn't caught up to demand</strong>: "enterprise ai agents" gets 2,250 US searches/month at difficulty 5; "ai agents for business" 1,680 at KD 6; "ai agent development company" 1,417 at KD 17 — with $9–15 CPCs proving these are buyers. Appinventiv (DR 77) only started its AI-agent cluster in <strong>mid-2025</strong> — the incumbents have an 12–18-month head start, not a decade. Compare: their legacy market's "mobile app development services" money terms took ten years of authority to win. <strong>This is the best category-timing window we've seen in any of the five sites we studied.</strong> Your realistic curve on a fresh domain with honest execution + your 350k social distribution: Tier-1 keywords ranking in months 2–4, category terms months 5–9, head terms months 10–18. But the 30–40 meetings/month goal in the first 2–3 months comes from LinkedIn + Instagram + directories + your network — SEO joins the meeting-machine from month ~4 and compounds to lead it by month ~9–12.</p></div>
+<p>The AI-agent services category is <strong>young enough that difficulty hasn't caught up to demand</strong>: "enterprise ai agents" gets 2,250 US searches/month at difficulty 5; "ai agents for business" 1,680 at KD 6; "ai agent development company" 1,417 at KD 17. With $9–15 CPCs proving these are buyers. Appinventiv (DR 77) only started its AI-agent cluster in <strong>mid-2025</strong>: the incumbents have an 12–18-month head start, not a decade. Compare: their legacy market's "mobile app development services" money terms took ten years of authority to win. <strong>This is the best category-timing window we've seen in any of the five sites we studied.</strong> Your realistic curve on a fresh domain with honest execution + your 350k social distribution: Tier-1 keywords ranking in months 2–4, category terms months 5–9, head terms months 10–18. But the 30–40 meetings/month goal in the first 2–3 months comes from LinkedIn + Instagram + directories + your network. SEO joins the meeting-machine from month ~4 and compounds to lead it by month ~9–12.</p></div>
 
 <h2 id="appinventiv">1 · Appinventiv's AI-agent playbook, mapped completely</h2>
 <h3>Their AI-agent asset inventory (what "mirroring them" actually means)</h3>
@@ -152,8 +170,8 @@
   <thead><tr><th>Asset type</th><th>What they built</th></tr></thead>
   <tbody>
     <tr><td><strong>Money pages (2+1)</strong></td><td><a href="https://appinventiv.com/ai-agent-development-services/">/ai-agent-development-services/</a> (the category service page) · <a href="https://appinventiv.com/ai-voice-agent-development-services/">/ai-voice-agent-development-services/</a> (sub-category) · <a href="https://appinventiv.com/ae/ai-agent-development-services-in-dubai/">/ae/ai-agent-development-services-in-dubai/</a> (geo variant)</td></tr>
-    <tr><td><strong>Proof (1)</strong></td><td>/portfolio/tootle-ai-powered-intelligent-agent/ — a named AI-agent case study</td></tr>
-    <tr><td><strong>Blog cluster (41 posts)</strong></td><td>Four sub-clusters: <strong>verticals</strong> (agents in retail, finance, banking, insurance, customer service, fraud prevention, trading) · <strong>frontier topics</strong> (agentic RAG ×2, agentic payments, agentic commerce, browser agents, video agents, coding agents, voice-agent security, governance frameworks) · <strong>geo-flavored posts</strong> (Australia ×3, Dubai/Middle East ×4 — they localize BLOG topics, not just landing pages: "agentic-ai-roi-dubai-cxo-guide") · <strong>buyer-stage posts</strong> (cost-to-build, "how to choose the best ai agent development company" — they wrote the article that ranks for their own buying keyword)</td></tr>
+    <tr><td><strong>Proof (1)</strong></td><td>/portfolio/tootle-ai-powered-intelligent-agent/ · a named AI-agent case study</td></tr>
+    <tr><td><strong>Blog cluster (41 posts)</strong></td><td>Four sub-clusters: <strong>verticals</strong> (agents in retail, finance, banking, insurance, customer service, fraud prevention, trading) · <strong>frontier topics</strong> (agentic RAG ×2, agentic payments, agentic commerce, browser agents, video agents, coding agents, voice-agent security, governance frameworks) · <strong>geo-flavored posts</strong> (Australia ×3, Dubai/Middle East ×4 · they localize BLOG topics, not just landing pages: "agentic-ai-roi-dubai-cxo-guide") · <strong>buyer-stage posts</strong> (cost-to-build, "how to choose the best ai agent development company" · they wrote the article that ranks for their own buying keyword)</td></tr>
   </tbody>
 </table></div>
 
@@ -165,16 +183,16 @@
     <tr><td>how-to-choose-the-best-ai-agent-development-company</td><td>2025-08-20</td><td>2025-12-18</td><td>refreshed at 4 mo</td></tr>
     <tr><td>agentic-ai-roi-dubai-cxo-guide</td><td>2025-09-25</td><td>2026-04-13</td><td>refreshed at ~7 mo</td></tr>
     <tr><td>build-ai-agents-for-insurance</td><td>2026-02-12</td><td>2026-07-30</td><td>refreshed at 5.5 mo</td></tr>
-    <tr><td>agentic-rag-implementation-in-enterprise</td><td>2026-02-27</td><td>— (still v1)</td><td>—</td></tr>
-    <tr><td>why-ai-voice-agents-fail</td><td>2026-05-07</td><td>— (still v1)</td><td>—</td></tr>
+    <tr><td>agentic-rag-implementation-in-enterprise</td><td>2026-02-27</td><td>· (still v1)</td><td>·</td></tr>
+    <tr><td>why-ai-voice-agents-fail</td><td>2026-05-07</td><td>· (still v1)</td><td>·</td></tr>
   </tbody>
 </table></div>
-<p class="prose"><strong>The operating rhythm you'd be mirroring:</strong> the AI-agent cluster started ~June 2025 and grows at roughly <strong>2–4 new agent posts per month</strong> (41 posts in ~14 months), each post <strong>refreshed once at the 4–7-month mark</strong>. Site-wide, their sitemap shows 150–190 URLs touched in a typical month and a 551-URL mass-refresh wave in July 2026 — the "refresh machine" at work. Total new-post rate across all topics: ~15–20/month with a full content team; <strong>your version at your scale: 6–8 new pieces/month + refresh everything at 4–6 months</strong> — quality bar per piece matching theirs (4,000+ words on money pages, real examples, FAQ close).</p>
+<p class="prose"><strong>The operating rhythm you'd be mirroring:</strong> the AI-agent cluster started ~June 2025 and grows at roughly <strong>2–4 new agent posts per month</strong> (41 posts in ~14 months), each post <strong>refreshed once at the 4–7-month mark</strong>. Site-wide, their sitemap shows 150–190 URLs touched in a typical month and a 551-URL mass-refresh wave in July 2026, the "refresh machine" at work. Total new-post rate across all topics: ~15–20/month with a full content team; <strong>your version at your scale: 6–8 new pieces/month + refresh everything at 4–6 months</strong>: quality bar per piece matching theirs (4,000+ words on money pages, real examples, FAQ close).</p>
 
-<h2 id="keywords">2 · The keyword map — volume, difficulty, and when you can win each</h2>
-<p class="prose">All data: Ahrefs Keywords Explorer, US, pulled today. KD (difficulty) estimates the backlink bar for top-10 — treat ≤15 as winnable on a young domain with good content, 16–35 as needing some authority (DR ~25+), 40+ as year-two targets. CPC in dollars shows commercial intent (a $10+ CPC keyword = advertisers pay $10 per click = buyers live here).</p>
+<h2 id="keywords">2 · The keyword map: volume, difficulty, and when you can win each</h2>
+<p class="prose">All data: Ahrefs Keywords Explorer, US, pulled today. KD (difficulty) estimates the backlink bar for top-10: treat ≤15 as winnable on a young domain with good content, 16–35 as needing some authority (DR ~25+), 40+ as year-two targets. CPC in dollars shows commercial intent (a $10+ CPC keyword = advertisers pay $10 per click = buyers live here).</p>
 
-<h3><span class="tier t1">TIER 1</span> Crack in months 1–4 (KD ≤ 12 — content quality wins these)</h3>
+<h3><span class="tier t1">TIER 1</span> Crack in months 1–4 (KD ≤ 12: content quality wins these)</h3>
 <div class="tbl-scroll"><table>
   <thead><tr><th>Keyword</th><th class="num">Vol/mo</th><th class="num">KD</th><th class="num">CPC</th><th>Page that wins it</th></tr></thead>
   <tbody>
@@ -184,7 +202,7 @@
     <tr><td>business process automation services</td><td class="num">1,820</td><td class="num">8</td><td class="num">$1</td><td>Service page</td></tr>
     <tr><td>ai automation for small business</td><td class="num">1,314</td><td class="num">12</td><td class="num">$1</td><td>Guide (if SMB is in your ICP)</td></tr>
     <tr><td>agentic ai development company</td><td class="num">400</td><td class="num">12</td><td class="num">$9</td><td>Homepage/service page</td></tr>
-    <tr><td>top ai agent development companies</td><td class="num">300</td><td class="num">1</td><td class="num">—</td><td>Your own honest listicle (incl. competitors)</td></tr>
+    <tr><td>top ai agent development companies</td><td class="num">300</td><td class="num">1</td><td class="num">·</td><td>Your own honest listicle (incl. competitors)</td></tr>
     <tr><td>ai agents for ecommerce</td><td class="num">300</td><td class="num">1</td><td class="num">$5</td><td>Vertical page</td></tr>
     <tr><td>ai agent consulting</td><td class="num">200</td><td class="num">11</td><td class="num">$10</td><td>Service page</td></tr>
     <tr><td>hire ai agent developers</td><td class="num">150</td><td class="num">10</td><td class="num">$13</td><td>Hire page</td></tr>
@@ -195,22 +213,22 @@
   </tbody>
 </table></div>
 
-<h3><span class="tier t2">TIER 2</span> Months 4–9 (KD 13–35 — needs DR ~20–35 + internal links from Tier-1 wins)</h3>
+<h3><span class="tier t2">TIER 2</span> Months 4–9 (KD 13–35: needs DR ~20–35 + internal links from Tier-1 wins)</h3>
 <div class="tbl-scroll"><table>
   <thead><tr><th>Keyword</th><th class="num">Vol/mo</th><th class="num">KD</th><th class="num">CPC</th></tr></thead>
   <tbody>
-    <tr><td><strong>ai agent development company</strong> — your category head term</td><td class="num">1,417</td><td class="num">17</td><td class="num">$10</td></tr>
+    <tr><td><strong>ai agent development company</strong> · your category head term</td><td class="num">1,417</td><td class="num">17</td><td class="num">$10</td></tr>
     <tr><td>ai agent development services</td><td class="num">403</td><td class="num">13</td><td class="num">$15</td></tr>
     <tr><td>ai automation services</td><td class="num">1,633</td><td class="num">24</td><td class="num">$6</td></tr>
     <tr><td>ai agents for healthcare</td><td class="num">291</td><td class="num">24</td><td class="num">$5</td></tr>
     <tr><td>ai agents for customer service</td><td class="num">500</td><td class="num">28</td><td class="num">$1</td></tr>
     <tr><td>workflow automation services</td><td class="num">658</td><td class="num">28</td><td class="num">$19</td></tr>
     <tr><td>ai integration services</td><td class="num">2,056</td><td class="num">32</td><td class="num">$1</td></tr>
-    <tr><td>n8n automation agency (+ n8n consultant, zapier automation agency)</td><td class="num">450+600</td><td class="num">33</td><td class="num">—</td></tr>
+    <tr><td>n8n automation agency (+ n8n consultant, zapier automation agency)</td><td class="num">450+600</td><td class="num">33</td><td class="num">·</td></tr>
   </tbody>
 </table></div>
 
-<h3><span class="tier t3">TIER 3</span> Months 9–18+ (KD 40+ — the year-two campaign, after authority compounds)</h3>
+<h3><span class="tier t3">TIER 3</span> Months 9–18+ (KD 40+: the year-two campaign, after authority compounds)</h3>
 <div class="tbl-scroll"><table>
   <thead><tr><th>Keyword</th><th class="num">Vol/mo</th><th class="num">KD</th><th class="num">CPC</th></tr></thead>
   <tbody>
@@ -225,32 +243,32 @@
   </tbody>
 </table></div>
 <div class="see"><span class="lbl">Two honesty notes on this data</span>
-<p>(1) KD is Ahrefs' backlink-based estimate — always eyeball the live SERP before committing a page (e.g. "custom software development company" shows KD 12 but its page-1 is wall-to-wall DR-70+ brands; KD under-counts brand dominance). (2) These are US volumes; your ES/PL/DE lane multiplies each keyword with near-zero local competition — "agencia de agentes de IA" style queries are effectively unclaimed, exactly the empty-lane finding from the platform report.</p></div>
+<p>(1) KD is Ahrefs' backlink-based estimate. Always eyeball the live SERP before committing a page (e.g. "custom software development company" shows KD 12 but its page-1 is wall-to-wall DR-70+ brands; KD under-counts brand dominance). (2) These are US volumes; your ES/PL/DE lane multiplies each keyword with near-zero local competition: "agencia de agentes de IA" style queries are effectively unclaimed, exactly the empty-lane finding from the platform report.</p></div>
 
 <h2 id="positioning">3 · Positioning: pick the beachhead, then widen</h2>
-<p class="prose">"AI-native automation company that automates businesses in every way" is a company <em>mission</em>, not a market <em>position</em> — nobody searches it, and it ranks for nothing. The data says run a three-layer position:</p>
+<p class="prose">"AI-native automation company that automates businesses in every way" is a company <em>mission</em>, not a market <em>position</em>: nobody searches it, and it ranks for nothing. The data says run a three-layer position:</p>
 <ol class="prose">
-  <li><strong>Category claim (the SEO spine):</strong> "AI agent development company" — KD 17 with real volume and a $10 CPC, reachable by month ~6. Every page, schema, directory profile and LinkedIn headline uses this exact phrase. You are not an "automation company" (KD 43–63 territory, commoditized) — you are an <em>AI agent development company</em>, the young category with the open window.</li>
-  <li><strong>Beachhead vertical (the meetings engine):</strong> pick ONE vertical where at least 3 of your existing 10–12 clients cluster — that's where your case studies, testimonial reel, and stat posts already have proof. The keyword map says the cheapest vertical doors are <strong>ecommerce (KD 1), insurance (KD 3, $10 CPC), real estate (KD 12)</strong> — all with instant-win difficulty and AI-citation upside. Sales conversations lead with the vertical ("we build AI agents for insurance ops"); the website keeps the broader category spine.</li>
-  <li><strong>Proof flavor (the differentiator):</strong> "N agents in production across 12 companies — here's the measured data" — the original-data position none of the five audited competitors can claim honestly. This feeds your stats asset, your LinkedIn, and your AI citations simultaneously.</li>
+  <li><strong>Category claim (the SEO spine):</strong> "AI agent development company": KD 17 with real volume and a $10 CPC, reachable by month ~6. Every page, schema, directory profile and LinkedIn headline uses this exact phrase. You are not an "automation company" (KD 43–63 territory, commoditized). You are an <em>AI agent development company</em>, the young category with the open window.</li>
+  <li><strong>Beachhead vertical (the meetings engine):</strong> pick ONE vertical where at least 3 of your existing 10–12 clients cluster: that's where your case studies, testimonial reel, and stat posts already have proof. The keyword map says the cheapest vertical doors are <strong>ecommerce (KD 1), insurance (KD 3, $10 CPC), real estate (KD 12)</strong>, all with instant-win difficulty and AI-citation upside. Sales conversations lead with the vertical ("we build AI agents for insurance ops"); the website keeps the broader category spine.</li>
+  <li><strong>Proof flavor (the differentiator):</strong> "N agents in production across 12 companies. Here's the measured data". The original-data position none of the five audited competitors can claim honestly. This feeds your stats asset, your LinkedIn, and your AI citations simultaneously.</li>
 </ol>
-<p class="prose"><strong>Your first 8 website money pages, in build order:</strong> (1) /ai-agent-development-services (flagship, Appinventiv-template: 4,500+ words, proof strips, FAQ) · (2) /ai-agent-development-cost — guide + interactive calculator (their highest-leverage element, now aimed at KD-8 keywords) · (3–5) three vertical pages (your beachhead + 2 cheapest doors) · (6) /ai-chatbot-development-services (KD-4 side door, 2,666 vol) · (7) /business-process-automation-services (KD 8) · (8) the stats asset: "State of AI Agents in Production 2026" from your own client data.</p>
+<p class="prose"><strong>Your first 8 website money pages, in build order:</strong> (1) /ai-agent-development-services (flagship, Appinventiv-template: 4,500+ words, proof strips, FAQ) · (2) /ai-agent-development-cost: guide + interactive calculator (their highest-leverage element, now aimed at KD-8 keywords) · (3–5) three vertical pages (your beachhead + 2 cheapest doors) · (6) /ai-chatbot-development-services (KD-4 side door, 2,666 vol) · (7) /business-process-automation-services (KD 8) · (8) the stats asset: "State of AI Agents in Production 2026" from your own client data.</p>
 
 <h2 id="linkedin">4 · The LinkedIn post list (first month, 12 posts, 3×/week)</h2>
 <p class="prose">Built to the Zero-Click rules: text-first, standalone value, 5 deposits per 1 ask, founder page carries POV. Structures deliberately varied:</p>
 <div class="tbl-scroll"><table>
   <thead><tr><th>#</th><th>Post</th><th>Type / structure</th></tr></thead>
   <tbody>
-    <tr><td>1</td><td><strong>The founder thesis:</strong> why we rebuilt the company AI-native — what changed in our delivery when agents entered production</td><td>Story (withdrawal-free)</td></tr>
-    <tr><td>2</td><td><strong>Teardown #1:</strong> one real client automation — the before-process, the agent architecture (tools, memory, guardrails labeled), the measured after. Diagram included.</td><td>Mechanics + visual</td></tr>
+    <tr><td>1</td><td><strong>The founder thesis:</strong> why we rebuilt the company AI-native · what changed in our delivery when agents entered production</td><td>Story (withdrawal-free)</td></tr>
+    <tr><td>2</td><td><strong>Teardown #1:</strong> one real client automation · the before-process, the agent architecture (tools, memory, guardrails labeled), the measured after. Diagram included.</td><td>Mechanics + visual</td></tr>
     <tr><td>3</td><td><strong>Original stat drop:</strong> "Across our deployments, X% of agent projects stall at the same step. Here's the step." (from your 12 clients)</td><td>Single-claim + proof</td></tr>
-    <tr><td>4</td><td><strong>Contrarian:</strong> an AI agent is not a chatbot with better marketing — the three mechanical differences (tool use, state, autonomy loops)</td><td>Definition expansion</td></tr>
-    <tr><td>5</td><td><strong>Cost transparency:</strong> what an AI agent actually costs to build AND run (build cost vs token cost vs maintenance — the numbers nobody publishes)</td><td>Data post → feeds your cost-guide page later</td></tr>
-    <tr><td>6</td><td><strong>Teardown #2</strong> (different vertical, different structure — screenshot + 6 lines)</td><td>Visual + short</td></tr>
-    <tr><td>7</td><td><strong>The graveyard post:</strong> why most AI agents never reach production — the failure modes we've had to engineer around (your version of Appinventiv's "why-ai-voice-agents-fail")</td><td>Hot take + evidence</td></tr>
-    <tr><td>8</td><td><strong>Stack mechanics:</strong> when we use n8n vs when we write code — the actual decision logic, with a real workflow shown</td><td>Process + tools</td></tr>
+    <tr><td>4</td><td><strong>Contrarian:</strong> an AI agent is not a chatbot with better marketing · the three mechanical differences (tool use, state, autonomy loops)</td><td>Definition expansion</td></tr>
+    <tr><td>5</td><td><strong>Cost transparency:</strong> what an AI agent actually costs to build AND run (build cost vs token cost vs maintenance · the numbers nobody publishes)</td><td>Data post → feeds your cost-guide page later</td></tr>
+    <tr><td>6</td><td><strong>Teardown #2</strong> (different vertical, different structure · screenshot + 6 lines)</td><td>Visual + short</td></tr>
+    <tr><td>7</td><td><strong>The graveyard post:</strong> why most AI agents never reach production · the failure modes we've had to engineer around (your version of Appinventiv's "why-ai-voice-agents-fail")</td><td>Hot take + evidence</td></tr>
+    <tr><td>8</td><td><strong>Stack mechanics:</strong> when we use n8n vs when we write code · the actual decision logic, with a real workflow shown</td><td>Process + tools</td></tr>
     <tr><td>9</td><td><strong>Client voice:</strong> 45-second clip from your testimonial reel + one line of context</td><td>Video (the IG-first asset, cross-posted)</td></tr>
-    <tr><td>10</td><td><strong>Reader question post:</strong> "What's the one process in your company you'd hand to an agent tomorrow?" — engagement harvest that doubles as ICP research</td><td>Question</td></tr>
+    <tr><td>10</td><td><strong>Reader question post:</strong> "What's the one process in your company you'd hand to an agent tomorrow?" · engagement harvest that doubles as ICP research</td><td>Question</td></tr>
     <tr><td>11</td><td><strong>Teardown #3</strong> + soft withdrawal: "we're opening N build slots for [vertical] this quarter" (the 1-in-5 ask)</td><td>Story + CTA</td></tr>
     <tr><td>12</td><td><strong>The measured-truth post:</strong> what the data from N production agents says about where AI automation actually pays back first (preview of your stats asset)</td><td>Data narrative</td></tr>
   </tbody>
@@ -261,18 +279,18 @@
 <div class="tbl-scroll"><table>
   <thead><tr><th>Phase</th><th>SEO reality</th><th>Where the 30–40 meetings come from</th></tr></thead>
   <tbody>
-    <tr><td><strong>Months 1–2</strong></td><td>Site live: 8 money pages + first 8 posts + GEO layer (llms.txt, /ai-info, schema) + Clutch/GoodFirms/DesignRush profiles with your 10–12 clients' reviews. Google indexing, first impressions on Tier-1 long-tails.</td><td>LinkedIn 3×/wk + IG reels + your network + directory inquiries + outbound assist. SEO contribution: ~0 meetings. Target: 15–25 meetings/mo — honest ramp toward the goal.</td></tr>
+    <tr><td><strong>Months 1–2</strong></td><td>Site live: 8 money pages + first 8 posts + GEO layer (llms.txt, /ai-info, schema) + Clutch/GoodFirms/DesignRush profiles with your 10–12 clients' reviews. Google indexing, first impressions on Tier-1 long-tails.</td><td>LinkedIn 3×/wk + IG reels + your network + directory inquiries + outbound assist. SEO contribution: ~0 meetings. Target: 15–25 meetings/mo · honest ramp toward the goal.</td></tr>
     <tr><td><strong>Months 3–4</strong></td><td>Tier-1 rankings land (KD ≤12 terms, page 1–3 climbing to top-5): first 300–800 organic visits/mo, first AI-engine citations (they favor fresh structured content).</td><td>Social + directories compounding with retargeting from site traffic. SEO contribution: 2–5 meetings/mo. Target: 30–40/mo becomes reachable if LinkedIn cadence held.</td></tr>
     <tr><td><strong>Months 5–8</strong></td><td>Tier-2 campaign ("ai agent development company" top-10): 1,500–4,000 visits/mo. Refresh cycle begins (every asset touched at 4–6 mo, the Appinventiv rhythm).</td><td>SEO becomes a steady 8–15 meetings/mo channel; branded search grows from social.</td></tr>
     <tr><td><strong>Months 9–18</strong></td><td>Tier-3 assault ("ai automation agency", "ai receptionist") from DR 30–40 base: 5,000–15,000 visits/mo, ES/PL/DE localization of top 20 pages.</td><td>Inbound-led pipeline: SEO + AI citations + brand = the majority of meetings. 5–10 closes/mo sustainable.</td></tr>
   </tbody>
 </table></div>
 <div class="see"><span class="lbl">The calibration that keeps this honest</span>
-<p>The 30–40 meetings goal at month 2–3 is a <strong>distribution goal, not an SEO goal</strong> — your 200k LinkedIn + 150k IG + 12 warm clients + directories can plausibly hit it; a two-month-old website cannot, and any SEO hire promising otherwise is selling you the Genesys sprint. The website's job in months 1–3 is to <em>convert</em> the attention your social creates (remember TechGropse's math: ~24 qualified leads from ~2,000 relevant visits + directories) and to plant the keyword positions that take over the pipeline from month 4 onward. Every number in this document is re-checkable: keywords in Ahrefs, Appinventiv's cadence in their own sitemaps and page schema.</p></div>
+<p>The 30–40 meetings goal at month 2–3 is a <strong>distribution goal, not an SEO goal</strong>. Your 200k LinkedIn + 150k IG + 12 warm clients + directories can plausibly hit it; a two-month-old website cannot, and any SEO hire promising otherwise is selling you the Genesys sprint. The website's job in months 1–3 is to <em>convert</em> the attention your social creates (remember TechGropse's math: ~24 qualified leads from ~2,000 relevant visits + directories) and to plant the keyword positions that take over the pipeline from month 4 onward. Every number in this document is re-checkable: keywords in Ahrefs, Appinventiv's cadence in their own sitemaps and page schema.</p></div>
 
 <div class="foot">
-  <p>Data: Ahrefs Keywords Explorer API (US, 2 Aug 2026 — volumes are monthly averages, KD is backlink-based and SERP-verify before committing), Appinventiv post/page sitemaps + live JSON-LD schema dates. Series: <a href="audit-appinventiv.html">Appinventiv blueprint</a> · <a href="seo-from-zero.html">SEO From Zero</a> · <a href="zero-click-marketing.html">Zero-Click talk</a> · <a href="audit-techgropse.html">TechGropse</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appwrk.html">APPWRK</a>. Next step when you've absorbed this: the full action plan — content calendar, page briefs, link plan, and the SEO hire's marching orders.</p>
+  <p>Data: Ahrefs Keywords Explorer API (US, 2 Aug 2026: volumes are monthly averages, KD is backlink-based and SERP-verify before committing), Appinventiv post/page sitemaps + live JSON-LD schema dates. Series: <a href="audit-appinventiv.html">Appinventiv blueprint</a> · <a href="seo-from-zero.html">SEO From Zero</a> · <a href="zero-click-marketing.html">Zero-Click talk</a> · <a href="audit-techgropse.html">TechGropse</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appwrk.html">APPWRK</a>. Next step when you've absorbed this: the full action plan: content calendar, page briefs, link plan, and the SEO hire's marching orders.</p>
 </div>
 </div>
-<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li class="here"><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence: open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open: money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li class="here"><a href="niche-research.html">Niche Research</a><span>The keyword source data: volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page: each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like: homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise: and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits: internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy: page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages: and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
 </html>

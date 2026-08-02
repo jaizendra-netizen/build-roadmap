@@ -8,7 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>Your Site Blueprint — Every URL, Every Link, Every Step</title>
+<title>Your Site Blueprint: Every URL, Every Link, Every Step</title>
 <style>
   :root {
     color-scheme: light;
@@ -76,32 +76,104 @@
   .badge { display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 0 7px; border-radius: 99px; border: 1px solid currentColor; }
   .b1 { color: var(--good); } .b2 { color: var(--warn); } .b3 { color: var(--crit); }
   .foot { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--grid); font-size: 0.8rem; color: var(--muted); }
+
+  .mmwrap{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);
+          border-radius:12px;padding:16px 18px 18px;margin:18px 0;overflow-x:auto}
+  .mmkey{margin:0 0 12px;font-size:.79rem;color:var(--ink2,#54524d);line-height:1.6}
+  .mmkey .k-bad{color:var(--crit,#c4372c)}
+  .mmkey .k-good{color:var(--good,#0c7a3e)}
+  .mmkey .k-dead{color:var(--mut,#8a8781)}
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
 </style>
 <style>
   *,*::before,*::after{box-sizing:border-box}
-  img{max-width:100%;height:auto}
-  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
-       padding:14px 18px;margin:16px 0;font-size:.86rem}
-  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
-  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
-  .dgm-s:first-of-type{margin-top:0}
-  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
-  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
-  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
-  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
-    /* PDF links are real annotations, so do NOT also print the raw href:
-       it doubled line length and pushed the URL tree off the right edge. */
     a{color:#1a4fd6;text-decoration:underline}
-    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
     .tree{white-space:pre-wrap!important;overflow:visible!important;
           word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
-    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll,.mmwrap{overflow:visible!important}
     table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
     th,td{word-break:break-word;padding:4px 6px!important}
     pre,code{white-space:pre-wrap!important;word-break:break-word}
-    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital,.dgwrap,.mmwrap{break-inside:avoid}
     h2,h3{break-after:avoid}
   }
 
@@ -133,7 +205,7 @@
   .lib-grid a:hover{text-decoration:underline}
   .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
   .lib-grid li.here a{color:var(--ink,#111110)}
-  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+  .lib-grid li.here a::after{content:": you are here";font-weight:400;
     font-size:.74rem;color:var(--mut,#8a8781)}
   @media print{.lib-nav,.lib-foot{display:none}}
 </style>
@@ -143,8 +215,8 @@
 <header>
   <div class="eyebrow">Build blueprint · 2 Aug 2026 · every URL mapped to a researched keyword</div>
   <h1>Your site, drawn: every page, every subfolder, every internal link, in build order</h1>
-  <p class="prose">This is the practical version — no theory. Below is the complete URL tree for your AI-agent company, with each page's exact slug, the keyword it targets (volume + difficulty from our research), what links to it, what it links out to, and the week it gets built. Hand this to a developer and they can scaffold the entire site. Companion research: <a href="niche-research.html">keyword + positioning brief</a> · <a href="audit-appinventiv.html">Appinventiv blueprint</a>.</p>
-  <div class="see"><span class="lbl">Domain placeholder</span><p>Everything below uses <code>yourdomain.com</code>. Whatever you register (aijtech.com, jainendra.com…), the structure is identical — <strong>never split into multiple domains</strong>. Countries and languages are subfolders on this one domain.</p></div>
+  <p class="prose">This is the practical version, no theory. Below is the complete URL tree for your AI-agent company, with each page's exact slug, the keyword it targets (volume + difficulty from our research), what links to it, what it links out to, and the week it gets built. Hand this to a developer and they can scaffold the entire site. Companion research: <a href="niche-research.html">keyword + positioning brief</a> · <a href="audit-appinventiv.html">Appinventiv blueprint</a>.</p>
+  <div class="see"><span class="lbl">Domain placeholder</span><p>Everything below uses <code>yourdomain.com</code>. Whatever you register (aijtech.com, jainendra.com…), the structure is identical · <strong>never split into multiple domains</strong>. Countries and languages are subfolders on this one domain.</p></div>
 </header>
 
 <h2 id="tree">1 · The complete URL tree</h2>
@@ -153,7 +225,7 @@
 │
 ├── <b>/</b>                                          <i>HOMEPAGE → "ai agent development company" (1,417 · KD 17)</i>
 │
-├── <b>SERVICES — the money layer</b>
+├── <b>SERVICES · the money layer</b>
 │   ├── /ai-agent-development-services/            <i>★ CATEGORY PAGE → "ai agent development services" (403 · KD 13)</i>
 │   │   ├── /ai-voice-agent-development-services/  <i>sub → "ai voice agent for business" (70 · KD low)</i>
 │   │   ├── /ai-chatbot-development-services/      <i>sub → 2,666 · KD 4  ← easiest big win on the site</i>
@@ -180,144 +252,267 @@
 │   ├── /case-studies/<i>client-02-slug</i>/
 │   └── … × 12                                     <i>3–4 get the DEEP treatment, rest are cards</i>
 │
-├── <b>/guide/</b>                                     <i>PILLAR layer — where authority is earned</i>
+├── <b>/guide/</b>                                     <i>PILLAR layer · where authority is earned</i>
 │   ├── /guide/ai-agent-development-cost/          <i>★★ + INTERACTIVE CALCULATOR → 127 combined · KD 8</i>
 │   ├── /guide/enterprise-ai-agents/               <i>★ 2,250 · KD 5  ← biggest easy keyword</i>
 │   ├── /guide/ai-agents-for-business/             <i>★ 1,680 · KD 6</i>
 │   └── /guide/ai-automation-for-small-business/   <i>1,314 · KD 12 (if SMB is in ICP)</i>
 │
-├── <b>/resources/</b>                                 <i>LINK MAGNETS — the only pages built to be cited</i>
+├── <b>/resources/</b>                                 <i>LINK MAGNETS · the only pages built to be cited</i>
 │   ├── /resources/ai-agents-in-production-2026/   <i>★ YOUR ORIGINAL DATA from 12 clients</i>
 │   └── /resources/ai-agent-statistics/            <i>the aggregated-stats page (citation bait)</i>
 │
-├── <b>/blog/</b>                                      <i>HUB + real pagination (/blog/page/2…) — never cap at 20</i>
-│   └── <i>posts organised in clusters — see §3</i>
+├── <b>/blog/</b>                                      <i>HUB + real pagination (/blog/page/2…) · never cap at 20</i>
+│   └── <i>posts organised in clusters · see §3</i>
 │
 ├── <b>/compare/</b>                                   <i>DECISION-STAGE pages (month 3+)</i>
-│   ├── /compare/best-ai-automation-agencies/      <i>80 · KD 2 — honest listicle, competitors included</i>
+│   ├── /compare/best-ai-automation-agencies/      <i>80 · KD 2 · honest listicle, competitors included</i>
 │   └── /compare/n8n-vs-zapier-vs-make/            <i>tool comparison, high intent</i>
 │
-├── <b>GEO layer</b> <i>(month 3+ — subfolders, never separate domains)</i>
-│   ├── /ae/ai-agent-development-company-dubai/    <i>UAE — Appinventiv's exact play</i>
-│   ├── /es/…  /de/…  /pl/…                        <i>Spanish / German / Polish — the empty lane</i>
+├── <b>GEO layer</b> <i>(month 3+ · subfolders, never separate domains)</i>
+│   ├── /ae/ai-agent-development-company-dubai/    <i>UAE · Appinventiv's exact play</i>
+│   ├── /es/…  /de/…  /pl/…                        <i>Spanish / German / Polish · the empty lane</i>
 │   └── <i>hreflang tags linking all locale variants</i>
 │
 ├── <b>TRUST + CONVERSION</b>
 │   ├── /about/                                    <i>real team, real bios, real photos (E-E-A-T)</i>
-│   ├── /team/<i>your-name</i>/                          <i>author page — every post bylined to a REAL human</i>
+│   ├── /team/<i>your-name</i>/                          <i>author page · every post bylined to a REAL human</i>
 │   ├── /contact/
-│   └── <b>/book-a-call/</b>                             <i>★ THE MEETING LINK — one page, every CTA points here</i>
+│   └── <b>/book-a-call/</b>                             <i>★ THE MEETING LINK · one page, every CTA points here</i>
 │
 └── <b>MACHINE layer</b> <i>(invisible, week 1)</i>
     ├── /robots.txt        <i>welcome GPTBot, ClaudeBot, PerplexityBot, Googlebot by name</i>
     ├── /llms.txt          <i>site summary for AI models (llmstxt.org spec)</i>
     ├── /ai-info/          <i>AI fact sheet: facts, services, clients, limitations, guidelines</i>
-    └── /sitemap.xml       <i>with real lastmod dates — auto-generated by RankMath</i>
+    └── /sitemap.xml       <i>with real lastmod dates · auto-generated by RankMath</i>
 </pre>
 
 <h2 id="flow">2 · How the pages link to each other (the part that decides if it works)</h2>
-<p class="prose">Genesys had 365 posts and 94% of them linked to nothing — that's why they died. Appinventiv's blogs each push 2–3 links into service pages — that's why they win. Here is your linking law, drawn:</p>
+<p class="prose">Genesys had 365 posts and 94% of them linked to nothing · that's why they died. Appinventiv's blogs each push 2–3 links into service pages · that's why they win. Here is your linking law, drawn:</p>
 
-<div class="chart-scroll">
-<div class="dgm">
-<div class="dgm-s">BLOG POST — (one per long-tail keyword)</div><ul class="dgm-l">
-<li><span class="dgm-e">[2–3 in-body links]</span> CATEGORY SERVICE PAGE — /ai-agent-development-services/</li>
-<li><span class="dgm-e">[1 link]</span> CASE STUDY — /case-studies/client-01/</li>
-<li><span class="dgm-e">[2–3 links]</span> sibling posts — in same cluster</li>
-<li><span class="dgm-e">[1 link]</span> PILLAR GUIDE — /guide/enterprise-ai-agents/</li>
-</ul>
-<div class="dgm-s">PILLAR GUIDE — /guide/enterprise-ai-agents/</div><ul class="dgm-l">
-<li><span class="dgm-e">[3–5 links]</span> CATEGORY SERVICE PAGE — /ai-agent-development-services/</li>
-<li><span class="dgm-e">[1 link]</span> COST GUIDE + CALCULATOR — /guide/ai-agent-development-cost/</li>
-<li><span class="dgm-e">[2 links]</span> CASE STUDY — /case-studies/client-01/</li>
-</ul>
-<div class="dgm-s">LINK MAGNET — /resources/ai-agents-in-production-2026/</div><ul class="dgm-l">
-<li><span class="dgm-e">[earns external backlinks →&lt;br/&gt;passes authority inward]</span> CATEGORY SERVICE PAGE — /ai-agent-development-services/</li>
-<li><span class="dgm-e">[1 link]</span> 📅 /book-a-call/ — THE ONLY CONVERSION PAGE</li>
-</ul>
-<div class="dgm-s">CATEGORY SERVICE PAGE — /ai-agent-development-services/</div><ul class="dgm-l">
-<li>SUB-SERVICE — /ai-chatbot-development-services/</li>
-<li><span class="dgm-e">[3–5 proof strips]</span> CASE STUDY — /case-studies/client-01/</li>
-<li><span class="dgm-e">[&#x27;what does it cost?&#x27;]</span> COST GUIDE + CALCULATOR — /guide/ai-agent-development-cost/</li>
-<li><span class="dgm-e">[industries we serve]</span> INDUSTRY PAGE — /industries/ai-agents-for-insurance/</li>
-<li>📅 /book-a-call/ — THE ONLY CONVERSION PAGE</li>
-</ul>
-<div class="dgm-s">INDUSTRY PAGE — /industries/ai-agents-for-insurance/</div><ul class="dgm-l">
-<li><span class="dgm-e">[back to parent]</span> CATEGORY SERVICE PAGE — /ai-agent-development-services/</li>
-<li><span class="dgm-e">[2 vertical-matched]</span> CASE STUDY — /case-studies/client-01/</li>
-<li>📅 /book-a-call/ — THE ONLY CONVERSION PAGE</li>
-</ul>
-<div class="dgm-s">CASE STUDY — /case-studies/client-01/</div><ul class="dgm-l">
-<li><span class="dgm-e">[the service it proves]</span> CATEGORY SERVICE PAGE — /ai-agent-development-services/</li>
-<li><span class="dgm-e">[the vertical it&#x27;s in]</span> INDUSTRY PAGE — /industries/ai-agents-for-insurance/</li>
-<li><span class="dgm-e">[2 other cases]</span> sibling case studies</li>
-<li>📅 /book-a-call/ — THE ONLY CONVERSION PAGE</li>
-</ul>
-<div class="dgm-s">COST GUIDE + CALCULATOR — /guide/ai-agent-development-cost/</div><ul class="dgm-l">
-<li><span class="dgm-e">[calculator quiz → form]</span> 📅 /book-a-call/ — THE ONLY CONVERSION PAGE</li>
-</ul>
-<div class="dgm-s">HOMEPAGE</div><ul class="dgm-l">
-<li>CATEGORY SERVICE PAGE — /ai-agent-development-services/</li>
-<li>INDUSTRY PAGE — /industries/ai-agents-for-insurance/</li>
-<li><span class="dgm-e">[6 featured]</span> CASE STUDY — /case-studies/client-01/</li>
-<li>📅 /book-a-call/ — THE ONLY CONVERSION PAGE</li>
-</ul></div>
+<div class="mmwrap"><p class="mmkey">Reads top to bottom. <b class="k-bad">Red dashed</b> = manufactured or low-quality. <b class="k-good">Green</b> = genuine and earning. <b class="k-dead">Grey dashed</b> = dead weight.</p>
+<svg class="dg mm" viewBox="0 0 652 566" width="100%" style="max-width:652px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="mah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="maw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--crit,#c4372c)"/></marker><marker id="mas" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<path class="me " d="M100.0,55.4 C100.0,132.1 326.0,132.1 326.0,208.8" marker-end="url(#mah)"/>
+<text class="mel" x="213.0" y="129.1">2–3 in-body links</text>
+<path class="me " d="M100.0,55.4 C100.0,231.5 326.0,231.5 326.0,407.6" marker-end="url(#mah)"/>
+<text class="mel" x="213.0" y="228.5">1 link</text>
+<path class="me " d="M100.0,55.4 C100.0,82.4 439.0,82.4 439.0,109.4" marker-end="url(#mah)"/>
+<text class="mel" x="269.5" y="79.4">2–3 links</text>
+<path class="me " d="M100.0,55.4 C100.0,82.4 213.0,82.4 213.0,109.4" marker-end="url(#mah)"/>
+<text class="mel" x="156.5" y="79.4">1 link</text>
+<path class="me " d="M213.0,154.8 C213.0,181.8 326.0,181.8 326.0,208.8" marker-end="url(#mah)"/>
+<text class="mel" x="269.5" y="178.8">3–5 links</text>
+<path class="me " d="M213.0,154.8 C213.0,231.5 552.0,231.5 552.0,308.2" marker-end="url(#mah)"/>
+<text class="mel" x="382.5" y="228.5">1 link</text>
+<path class="me " d="M213.0,154.8 C213.0,281.2 326.0,281.2 326.0,407.6" marker-end="url(#mah)"/>
+<text class="mel" x="269.5" y="278.2">2 links</text>
+<path class="me hard" d="M326.0,55.4 C326.0,132.1 326.0,132.1 326.0,208.8" marker-end="url(#mas)"/>
+<text class="mel" x="326.0" y="129.1">earns external backlinks →&lt;br/&gt;passes authority inward</text>
+<path class="me " d="M326.0,55.4 C326.0,281.2 213.0,281.2 213.0,507.0" marker-end="url(#mah)"/>
+<text class="mel" x="269.5" y="278.2">1 link</text>
+<path class="me " d="M326.0,254.2 C326.0,281.2 100.0,281.2 100.0,308.2" marker-end="url(#mah)"/>
+<path class="me " d="M326.0,254.2 C326.0,330.9 326.0,330.9 326.0,407.6" marker-end="url(#mah)"/>
+<text class="mel" x="326.0" y="327.9">3–5 proof strips</text>
+<path class="me " d="M326.0,254.2 C326.0,281.2 552.0,281.2 552.0,308.2" marker-end="url(#mah)"/>
+<text class="mel" x="439.0" y="278.2">'what does it cost?'</text>
+<path class="me " d="M326.0,254.2 C326.0,281.2 326.0,281.2 326.0,308.2" marker-end="url(#mah)"/>
+<text class="mel" x="326.0" y="278.2">industries we serve</text>
+<path class="me hard" d="M326.0,254.2 C326.0,380.6 213.0,380.6 213.0,507.0" marker-end="url(#mas)"/>
+<path class="me " d="M426.0,333.9 C426.0,284.2 426.0,284.2 426.0,234.5" marker-end="url(#mah)"/>
+<text class="mel" x="426.0" y="281.2">back to parent</text>
+<path class="me " d="M326.0,353.6 C326.0,380.6 326.0,380.6 326.0,407.6" marker-end="url(#mah)"/>
+<text class="mel" x="326.0" y="377.6">2 vertical-matched</text>
+<path class="me hard" d="M326.0,353.6 C326.0,430.3 213.0,430.3 213.0,507.0" marker-end="url(#mas)"/>
+<path class="me " d="M426.0,433.3 C426.0,333.9 426.0,333.9 426.0,234.5" marker-end="url(#mah)"/>
+<text class="mel" x="426.0" y="330.9">the service it proves</text>
+<path class="me " d="M426.0,433.3 C426.0,383.6 426.0,383.6 426.0,333.9" marker-end="url(#mah)"/>
+<text class="mel" x="426.0" y="380.6">the vertical it's in</text>
+<path class="me " d="M326.0,453.0 C326.0,480.0 439.0,480.0 439.0,507.0" marker-end="url(#mah)"/>
+<text class="mel" x="382.5" y="477.0">2 other cases</text>
+<path class="me hard" d="M326.0,453.0 C326.0,480.0 213.0,480.0 213.0,507.0" marker-end="url(#mas)"/>
+<path class="me hard" d="M552.0,353.6 C552.0,430.3 213.0,430.3 213.0,507.0" marker-end="url(#mas)"/>
+<text class="mel" x="382.5" y="427.3">calculator quiz → form</text>
+<path class="me " d="M552.0,43.2 C552.0,126.0 326.0,126.0 326.0,208.8" marker-end="url(#mah)"/>
+<path class="me " d="M552.0,43.2 C552.0,175.7 326.0,175.7 326.0,308.2" marker-end="url(#mah)"/>
+<path class="me " d="M552.0,43.2 C552.0,225.4 326.0,225.4 326.0,407.6" marker-end="url(#mah)"/>
+<text class="mel" x="439.0" y="222.4">6 featured</text>
+<path class="me hard" d="M552.0,43.2 C552.0,275.1 213.0,275.1 213.0,507.0" marker-end="url(#mas)"/>
+<rect class="mn" x="0.0" y="16.0" width="200" height="39.4" rx="7"/>
+<text class="mt" x="100.0" y="32.7">BLOG POST</text>
+<text class="ms" x="100.0" y="44.9">(one per long-tail keyword)</text>
+<rect class="mn" x="113.0" y="115.4" width="200" height="39.4" rx="7"/>
+<text class="mt" x="213.0" y="132.1">PILLAR GUIDE</text>
+<text class="ms" x="213.0" y="144.3">/guide/enterprise-ai-agents/</text>
+<rect class="mn" x="226.0" y="16.0" width="200" height="39.4" rx="7"/>
+<text class="mt" x="326.0" y="32.7">LINK MAGNET</text>
+<text class="ms" x="326.0" y="44.9">/resources/ai-agents-in-production-2026/</text>
+<rect class="mn" x="226.0" y="214.8" width="200" height="39.4" rx="7"/>
+<text class="mt" x="326.0" y="231.5">CATEGORY SERVICE PAGE</text>
+<text class="ms" x="326.0" y="243.7">/ai-agent-development-services/</text>
+<rect class="mn" x="0.0" y="314.2" width="200" height="39.4" rx="7"/>
+<text class="mt" x="100.0" y="330.9">SUB-SERVICE</text>
+<text class="ms" x="100.0" y="343.1">/ai-chatbot-development-services/</text>
+<rect class="mn" x="226.0" y="314.2" width="200" height="39.4" rx="7"/>
+<text class="mt" x="326.0" y="330.9">INDUSTRY PAGE</text>
+<text class="ms" x="326.0" y="343.1">/industries/ai-agents-for-insurance/</text>
+<rect class="mn" x="226.0" y="413.6" width="200" height="39.4" rx="7"/>
+<text class="mt" x="326.0" y="430.3">CASE STUDY</text>
+<text class="ms" x="326.0" y="442.5">/case-studies/client-01/</text>
+<rect class="mn" x="452.0" y="314.2" width="200" height="39.4" rx="7"/>
+<text class="mt" x="552.0" y="330.9">COST GUIDE + CALCULATOR</text>
+<text class="ms" x="552.0" y="343.1">/guide/ai-agent-development-cost/</text>
+<rect class="mn" x="113.0" y="513.0" width="200" height="39.4" rx="7"/>
+<text class="mt" x="213.0" y="529.7">📅 /book-a-call/</text>
+<text class="ms" x="213.0" y="541.9">THE ONLY CONVERSION PAGE</text>
+<rect class="mn" x="452.0" y="16.0" width="200" height="27.2" rx="7"/>
+<text class="mt" x="552.0" y="32.7">HOMEPAGE</text>
+<rect class="mn" x="339.0" y="115.4" width="200" height="39.4" rx="7"/>
+<text class="mt" x="439.0" y="132.1">sibling posts</text>
+<text class="ms" x="439.0" y="144.3">in same cluster</text>
+<rect class="mn" x="339.0" y="513.0" width="200" height="27.2" rx="7"/>
+<text class="mt" x="439.0" y="529.7">sibling case studies</text>
+</svg>
 </div>
+<!--mermaid
+flowchart TD
+  BLOG["BLOG POST<br/>(one per long-tail keyword)"]
+  GUIDE["PILLAR GUIDE<br/>/guide/enterprise-ai-agents/"]
+  RES["LINK MAGNET<br/>/resources/ai-agents-in-production-2026/"]
+  SVC["CATEGORY SERVICE PAGE<br/>/ai-agent-development-services/"]
+  SUB["SUB-SERVICE<br/>/ai-chatbot-development-services/"]
+  IND["INDUSTRY PAGE<br/>/industries/ai-agents-for-insurance/"]
+  CASE["CASE STUDY<br/>/case-studies/client-01/"]
+  COST["COST GUIDE + CALCULATOR<br/>/guide/ai-agent-development-cost/"]
+  BOOK["📅 /book-a-call/<br/>THE ONLY CONVERSION PAGE"]
+  HOME["HOMEPAGE"]
 
-<div class="see"><span class="lbl">The five linking rules — put these in your content brief so nobody forgets</span>
-<p><strong>1.</strong> Every blog post: minimum 2 links to a service/industry page, 1 to a case study, 2–3 to sibling posts. No exceptions — a post that can't link to a money page shouldn't be written.<br>
+  BLOG --&gt;|"2–3 in-body links"| SVC
+  BLOG --&gt;|"1 link"| CASE
+  BLOG --&gt;|"2–3 links"| BLOG2["sibling posts<br/>in same cluster"]
+  BLOG --&gt;|"1 link"| GUIDE
+
+  GUIDE --&gt;|"3–5 links"| SVC
+  GUIDE --&gt;|"1 link"| COST
+  GUIDE --&gt;|"2 links"| CASE
+
+  RES ==>|"earns external backlinks →<br/>passes authority inward"| SVC
+  RES --&gt;|"1 link"| BOOK
+
+  SVC --&gt; SUB
+  SVC --&gt;|"3–5 proof strips"| CASE
+  SVC --&gt;|"'what does it cost?'"| COST
+  SVC --&gt;|"industries we serve"| IND
+  SVC ==> BOOK
+
+  IND --&gt;|"back to parent"| SVC
+  IND --&gt;|"2 vertical-matched"| CASE
+  IND ==> BOOK
+
+  CASE --&gt;|"the service it proves"| SVC
+  CASE --&gt;|"the vertical it's in"| IND
+  CASE --&gt;|"2 other cases"| CASE2["sibling case studies"]
+  CASE ==> BOOK
+
+  COST ==>|"calculator quiz → form"| BOOK
+  HOME --&gt; SVC
+  HOME --&gt; IND
+  HOME --&gt;|"6 featured"| CASE
+  HOME ==> BOOK
+-->
+
+<div class="see"><span class="lbl">The five linking rules. Put these in your content brief so nobody forgets</span>
+<p><strong>1.</strong> Every blog post: minimum 2 links to a service/industry page, 1 to a case study, 2–3 to sibling posts. No exceptions. A post that can't link to a money page shouldn't be written.<br>
 <strong>2.</strong> Every service page: links to 3–5 case studies (as Challenge/Solution/Impact strips), its sub-services, the cost guide, and the industries it serves.<br>
 <strong>3.</strong> Every case study: links back to the service it proves + its industry page + 2 sibling cases. Never a dead end.<br>
 <strong>4.</strong> One conversion destination: <code>/book-a-call/</code>. Every CTA on the site points there. No competing forms, no scattered Calendly embeds.<br>
-<strong>5.</strong> Never orphan: if a page exists, at least 3 other pages link to it. Run a monthly check — if a URL has zero internal links, either link it or delete it.</p></div>
+<strong>5.</strong> Never orphan: if a page exists, at least 3 other pages link to it. Run a monthly check · if a URL has zero internal links, either link it or delete it.</p></div>
 
 <h3>Zoom in: one cluster, fully wired (your insurance beachhead)</h3>
-<div class="chart-scroll">
-<div class="dgm">
-<div class="dgm-s">/blog/ai-agents-for-claims-processing/</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 searches · KD 3 · $10 CPC</li>
-<li>/case-studies/insurance-client-a/</li>
-</ul>
-<div class="dgm-s">/blog/insurance-underwriting-automation/</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 searches · KD 3 · $10 CPC</li>
-<li>/case-studies/insurance-client-b/</li>
-</ul>
-<div class="dgm-s">/blog/ai-agent-compliance-insurance/</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 searches · KD 3 · $10 CPC</li>
-</ul>
-<div class="dgm-s">/blog/cost-to-automate-claims-intake/</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 searches · KD 3 · $10 CPC</li>
-<li>/guide/ai-agent-development-cost/</li>
-</ul>
-<div class="dgm-s">/blog/why-insurance-ai-pilots-fail/</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 searches · KD 3 · $10 CPC</li>
-</ul>
-<div class="dgm-s">P1 &lt;</div><ul class="dgm-l">
-<li>/blog/insurance-underwriting-automation/</li>
-</ul>
-<div class="dgm-s">P2 &lt;</div><ul class="dgm-l">
-<li>/blog/ai-agent-compliance-insurance/</li>
-</ul>
-<div class="dgm-s">P3 &lt;</div><ul class="dgm-l">
-<li>/blog/why-insurance-ai-pilots-fail/</li>
-</ul>
-<div class="dgm-s">🎯 /industries/ai-agents-for-insurance/ — 70 searches · KD 3 · $10 CPC</div><ul class="dgm-l">
-<li>/ai-agent-development-services/</li>
-<li>/case-studies/insurance-client-a/</li>
-<li>/case-studies/insurance-client-b/</li>
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">/case-studies/insurance-client-a/</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 searches · KD 3 · $10 CPC</li>
-<li>📅 /book-a-call/</li>
-</ul>
-<div class="dgm-s">/case-studies/insurance-client-b/</div><ul class="dgm-l">
-<li>🎯 /industries/ai-agents-for-insurance/ — 70 searches · KD 3 · $10 CPC</li>
-</ul></div>
-</div>
-<p class="prose">Five posts, one industry page, two case studies, one cost guide, one booking page. <strong>Replicate this exact shape for each vertical you enter.</strong> That's the whole machine — Appinventiv just runs 35 of these clusters at once.</p>
+<div class="mmwrap"><p class="mmkey">Reads top to bottom. <b class="k-bad">Red dashed</b> = manufactured or low-quality. <b class="k-good">Green</b> = genuine and earning. <b class="k-dead">Grey dashed</b> = dead weight.</p>
+<svg class="dg mm" viewBox="0 0 1154 430" width="100%" style="max-width:1154px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<h2 id="blogmap">3 · The blog map — every post slot, pre-assigned</h2>
+<defs><marker id="mah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="maw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--crit,#c4372c)"/></marker><marker id="mas" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<path class="me " d="M105.0,43.2 C105.0,113.8 577.0,113.8 577.0,184.4" marker-end="url(#mah)"/>
+<path class="me " d="M341.0,43.2 C341.0,113.8 577.0,113.8 577.0,184.4" marker-end="url(#mah)"/>
+<path class="me " d="M577.0,43.2 C577.0,113.8 577.0,113.8 577.0,184.4" marker-end="url(#mah)"/>
+<path class="me " d="M813.0,43.2 C813.0,113.8 577.0,113.8 577.0,184.4" marker-end="url(#mah)"/>
+<path class="me " d="M813.0,43.2 C813.0,70.2 577.0,70.2 577.0,97.2" marker-end="url(#mah)"/>
+<path class="me " d="M1049.0,43.2 C1049.0,113.8 577.0,113.8 577.0,184.4" marker-end="url(#mah)"/>
+<path class="me " d="M105.0,43.2 C105.0,169.6 577.0,169.6 577.0,296.0" marker-end="url(#mah)"/>
+<path class="me " d="M341.0,43.2 C341.0,169.6 803.0,169.6 803.0,296.0" marker-end="url(#mah)"/>
+<path class="me " d="M577.0,242.0 C577.0,269.0 351.0,269.0 351.0,296.0" marker-end="url(#mah)"/>
+<path class="me " d="M577.0,242.0 C577.0,269.0 577.0,269.0 577.0,296.0" marker-end="url(#mah)"/>
+<path class="me " d="M577.0,242.0 C577.0,269.0 803.0,269.0 803.0,296.0" marker-end="url(#mah)"/>
+<path class="me hard" d="M577.0,242.0 C577.0,312.6 577.0,312.6 577.0,383.2" marker-end="url(#mas)"/>
+<path class="me " d="M677.0,315.6 C677.0,265.9 677.0,265.9 677.0,216.2" marker-end="url(#mah)"/>
+<path class="me " d="M903.0,315.6 C903.0,265.9 677.0,265.9 677.0,216.2" marker-end="url(#mah)"/>
+<path class="me hard" d="M577.0,329.2 C577.0,356.2 577.0,356.2 577.0,383.2" marker-end="url(#mas)"/>
+<rect class="mn" x="0.0" y="16.0" width="210" height="27.2" rx="7"/>
+<text class="mt" x="105.0" y="32.7">/blog/ai-agents-for-claims-processing/</text>
+<rect class="mn" x="236.0" y="16.0" width="210" height="27.2" rx="7"/>
+<text class="mt" x="341.0" y="32.7">/blog/insurance-underwriting-automation/</text>
+<rect class="mn" x="472.0" y="16.0" width="210" height="27.2" rx="7"/>
+<text class="mt" x="577.0" y="32.7">/blog/ai-agent-compliance-insurance/</text>
+<rect class="mn" x="708.0" y="16.0" width="210" height="27.2" rx="7"/>
+<text class="mt" x="813.0" y="32.7">/blog/cost-to-automate-claims-intake/</text>
+<rect class="mn" x="944.0" y="16.0" width="210" height="27.2" rx="7"/>
+<text class="mt" x="1049.0" y="32.7">/blog/why-insurance-ai-pilots-fail/</text>
+<rect class="mn" x="477.0" y="190.4" width="200" height="51.6" rx="7"/>
+<text class="mt" x="577.0" y="207.1">🎯</text>
+<text class="ms" x="577.0" y="219.3">/industries/ai-agents-for-insurance/</text>
+<text class="ms" x="577.0" y="231.5">70 searches · KD 3 · $10 CPC</text>
+<rect class="mn" x="251.0" y="302.0" width="200" height="27.2" rx="7"/>
+<text class="mt" x="351.0" y="318.7">/ai-agent-development-services/</text>
+<rect class="mn" x="477.0" y="302.0" width="200" height="27.2" rx="7"/>
+<text class="mt" x="577.0" y="318.7">/case-studies/insurance-client-a/</text>
+<rect class="mn" x="703.0" y="302.0" width="200" height="27.2" rx="7"/>
+<text class="mt" x="803.0" y="318.7">/case-studies/insurance-client-b/</text>
+<rect class="mn" x="477.0" y="103.2" width="200" height="27.2" rx="7"/>
+<text class="mt" x="577.0" y="119.9">/guide/ai-agent-development-cost/</text>
+<rect class="mn" x="477.0" y="389.2" width="200" height="27.2" rx="7"/>
+<text class="mt" x="577.0" y="405.9">📅 /book-a-call/</text>
+</svg>
+</div>
+<!--mermaid
+flowchart TD
+  P1["/blog/ai-agents-for-claims-processing/"]
+  P2["/blog/insurance-underwriting-automation/"]
+  P3["/blog/ai-agent-compliance-insurance/"]
+  P4["/blog/cost-to-automate-claims-intake/"]
+  P5["/blog/why-insurance-ai-pilots-fail/"]
+
+  IND["🎯 /industries/ai-agents-for-insurance/<br/>70 searches · KD 3 · $10 CPC"]
+  SVC["/ai-agent-development-services/"]
+  C1["/case-studies/insurance-client-a/"]
+  C2["/case-studies/insurance-client-b/"]
+  COST["/guide/ai-agent-development-cost/"]
+  BOOK["📅 /book-a-call/"]
+
+  P1 --&gt; IND
+  P2 --&gt; IND
+  P3 --&gt; IND
+  P4 --&gt; IND
+  P4 --&gt; COST
+  P5 --&gt; IND
+  P1 --&gt; C1
+  P2 --&gt; C2
+  P1 <--&gt; P2
+  P2 <--&gt; P3
+  P3 <--&gt; P5
+
+  IND --&gt; SVC
+  IND --&gt; C1
+  IND --&gt; C2
+  IND ==> BOOK
+  C1 --&gt; IND
+  C2 --&gt; IND
+  C1 ==> BOOK
+-->
+<p class="prose">Five posts, one industry page, two case studies, one cost guide, one booking page. <strong>Replicate this exact shape for each vertical you enter.</strong> That's the whole machine. Appinventiv just runs 35 of these clusters at once.</p>
+
+<h2 id="blogmap">3 · The blog map: every post slot, pre-assigned</h2>
 <p class="prose">You don't need the titles yet; you need the <em>slots</em>. Six clusters, each post pointing at a parent page. At 6–8 posts a month, this is your first ~6 months of publishing:</p>
 <div class="tbl-scroll"><table>
   <thead><tr><th>Cluster</th><th class="num">Posts</th><th>Parent page it feeds</th><th>Post-slot topics</th></tr></thead>
@@ -327,18 +522,18 @@
     <tr><td><strong>C · Mechanics / education</strong></td><td class="num">8</td><td>/guide/enterprise-ai-agents/ + /ai-agent-development-services/</td><td>agent vs chatbot vs workflow · agent architecture explained · tool-use &amp; function calling · memory &amp; state · guardrails &amp; evals · multi-agent orchestration · RAG vs fine-tuning · agent security</td></tr>
     <tr><td><strong>D · Buyer-stage</strong></td><td class="num">6</td><td>/guide/ai-agent-development-cost/ + service pages</td><td>build vs buy · what agents actually cost to run (tokens) · how to choose an AI agent partner · in-house vs agency · pilot-to-production checklist · ROI measurement</td></tr>
     <tr><td><strong>E · Stack / tools</strong></td><td class="num">6</td><td>/n8n-automation-agency/ + /ai-automation-services/</td><td>n8n vs code · Make vs n8n vs Zapier · LangGraph/CrewAI comparison · connecting agents to CRM · agent + HubSpot · self-hosting vs cloud</td></tr>
-    <tr><td><strong>F · Original data</strong></td><td class="num">4</td><td>/resources/ai-agents-in-production-2026/</td><td>quarterly stats drops from YOUR deployments — the pages that earn backlinks and AI citations</td></tr>
+    <tr><td><strong>F · Original data</strong></td><td class="num">4</td><td>/resources/ai-agents-in-production-2026/</td><td>quarterly stats drops from YOUR deployments · the pages that earn backlinks and AI citations</td></tr>
   </tbody>
 </table></div>
-<p class="prose"><strong>Slug convention:</strong> <code>/blog/descriptive-keyword-phrase/</code> — lowercase, hyphens, no dates, no year in the URL (so the annual refresh keeps the same URL and all its accumulated authority). Every post gets a real human byline linking to <code>/team/your-name/</code>.</p>
+<p class="prose"><strong>Slug convention:</strong> <code>/blog/descriptive-keyword-phrase/</code> · lowercase, hyphens, no dates, no year in the URL (so the annual refresh keeps the same URL and all its accumulated authority). Every post gets a real human byline linking to <code>/team/your-name/</code>.</p>
 
-<h2 id="build">4 · Build order — what gets made, week by week</h2>
+<h2 id="build">4 · Build order: what gets made, week by week</h2>
 <div class="tbl-scroll"><table>
   <thead><tr><th>When</th><th>Build</th><th>Why this order</th></tr></thead>
   <tbody>
-    <tr><td><strong>Week 1</strong></td><td>Domain + WordPress + lightweight theme + RankMath. Machine layer: robots.txt, llms.txt, /ai-info/, sitemap, Organization schema. <code>/book-a-call/</code> live with Calendly.</td><td>The conversion page and the AI layer exist before any content — nothing you publish later is wasted</td></tr>
+    <tr><td><strong>Week 1</strong></td><td>Domain + WordPress + lightweight theme + RankMath. Machine layer: robots.txt, llms.txt, /ai-info/, sitemap, Organization schema. <code>/book-a-call/</code> live with Calendly.</td><td>The conversion page and the AI layer exist before any content · nothing you publish later is wasted</td></tr>
     <tr><td><strong>Week 2</strong></td><td><code>/</code> homepage + <code>/ai-agent-development-services/</code> + <code>/about/</code> + <code>/team/you/</code></td><td>Category claim planted; a real human byline exists so every future post has E-E-A-T</td></tr>
-    <tr><td><strong>Week 3</strong></td><td>3 deep case studies (your best clients) + <code>/case-studies/</code> hub + the other 8–9 as cards. Film the multi-client testimonial reel.</td><td>Proof before promotion — these are what close the meetings your LinkedIn is already generating</td></tr>
+    <tr><td><strong>Week 3</strong></td><td>3 deep case studies (your best clients) + <code>/case-studies/</code> hub + the other 8–9 as cards. Film the multi-client testimonial reel.</td><td>Proof before promotion · these are what close the meetings your LinkedIn is already generating</td></tr>
     <tr><td><strong>Week 4</strong></td><td><code>/guide/ai-agent-development-cost/</code> + the interactive calculator</td><td>Appinventiv's single highest-leverage element, aimed at a KD-8 keyword</td></tr>
     <tr><td><strong>Weeks 5–6</strong></td><td><code>/industries/</code> hub + insurance + ecommerce pages. <code>/ai-chatbot-development-services/</code> (KD 4). First 4 blog posts (cluster A).</td><td>Cheapest keywords on the map get pages first</td></tr>
     <tr><td><strong>Weeks 7–8</strong></td><td><code>/guide/enterprise-ai-agents/</code> (KD 5) + <code>/guide/ai-agents-for-business/</code> (KD 6) + <code>/resources/ai-agents-in-production-2026/</code> (your data)</td><td>The two biggest easy keywords + the asset that earns your first real backlinks</td></tr>
@@ -349,19 +544,19 @@
 
 <h2 id="rules">5 · The non-negotiables (taped above the developer's desk)</h2>
 <ol class="prose">
-  <li><strong>One domain.</strong> Countries are subfolders (<code>/ae/</code>, <code>/de/</code>). Never a second domain — that was TechGropse's escape route from a burned site, not a strategy.</li>
-  <li><strong>No year in any URL.</strong> <code>/guide/ai-agent-development-cost/</code>, never <code>…-2026/</code>. Put the year in the title tag and refresh annually — the URL keeps its authority forever.</li>
+  <li><strong>One domain.</strong> Countries are subfolders (<code>/ae/</code>, <code>/de/</code>). Never a second domain · that was TechGropse's escape route from a burned site, not a strategy.</li>
+  <li><strong>No year in any URL.</strong> <code>/guide/ai-agent-development-cost/</code>, never <code>…-2026/</code>. Put the year in the title tag and refresh annually · the URL keeps its authority forever.</li>
   <li><strong>Every page has one job and one keyword family.</strong> Two pages must never target the same query (APPWRK ran five cities with two competing pages each).</li>
   <li><strong>Real bylines, real bios, real photos.</strong> No "Ray Hudson" ghost authors, no single CEO byline on 490 articles.</li>
-  <li><strong>Schema validated once per template.</strong> Run every template through the Rich Results Test before it ships — all three broken sites shipped their bug in a template.</li>
+  <li><strong>Schema validated once per template.</strong> Run every template through the Rich Results Test before it ships. All three broken sites shipped their bug in a template.</li>
   <li><strong>Nothing covers the fold.</strong> No timer popups. Trust badges live on the page, not inside a modal.</li>
   <li><strong>Never buy links.</strong> The stats asset and directory profiles are the plan. If a vendor offers DR growth, they're reselling the network we caught three times.</li>
   <li><strong>Refresh calendar from day one.</strong> Every published page gets a review date 4–6 months out, in the same sheet as the publishing calendar.</li>
 </ol>
 
 <div class="foot">
-  <p>Keyword volumes and difficulty: Ahrefs Keywords Explorer (US), pulled 2 Aug 2026 — SERP-verify before committing a page. Structural patterns derived from the <a href="audit-appinventiv.html">Appinventiv architecture audit</a> and the failure modes documented in the <a href="audit-genesysgrowth.html">Genesys</a>, <a href="audit-omnibound.html">Omnibound</a>, <a href="audit-appwrk.html">APPWRK</a> and <a href="audit-techgropse.html">TechGropse</a> audits. Full keyword brief: <a href="niche-research.html">AI-agent niche research</a>.</p>
+  <p>Keyword volumes and difficulty: Ahrefs Keywords Explorer (US), pulled 2 Aug 2026. SERP-verify before committing a page. Structural patterns derived from the <a href="audit-appinventiv.html">Appinventiv architecture audit</a> and the failure modes documented in the <a href="audit-genesysgrowth.html">Genesys</a>, <a href="audit-omnibound.html">Omnibound</a>, <a href="audit-appwrk.html">APPWRK</a> and <a href="audit-techgropse.html">TechGropse</a> audits. Full keyword brief: <a href="niche-research.html">AI-agent niche research</a>.</p>
 </div>
 </div>
-<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li class="here"><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence: open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open: money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data: volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page: each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like: homepage, service page, case study, cost pillar.</span></li><li class="here"><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise: and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits: internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy: page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages: and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
 </html>

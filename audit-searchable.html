@@ -8,7 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>searchable.com — Complete SEO Audit</title>
+<title>searchable.com. Complete SEO Audit</title>
 <style>
   :root {
     color-scheme: light;
@@ -108,29 +108,47 @@
 </style>
 <style>
   *,*::before,*::after{box-sizing:border-box}
-  img{max-width:100%;height:auto}
-  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
-       padding:14px 18px;margin:16px 0;font-size:.86rem}
-  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
-  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
-  .dgm-s:first-of-type{margin-top:0}
-  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
-  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
-  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
-  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
-    /* PDF links are real annotations, so do NOT also print the raw href:
-       it doubled line length and pushed the URL tree off the right edge. */
     a{color:#1a4fd6;text-decoration:underline}
-    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
     .tree{white-space:pre-wrap!important;overflow:visible!important;
           word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
-    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll,.mmwrap{overflow:visible!important}
     table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
     th,td{word-break:break-word;padding:4px 6px!important}
     pre,code{white-space:pre-wrap!important;word-break:break-word}
-    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital,.dgwrap,.mmwrap{break-inside:avoid}
     h2,h3{break-after:avoid}
   }
 
@@ -162,7 +180,7 @@
   .lib-grid a:hover{text-decoration:underline}
   .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
   .lib-grid li.here a{color:var(--ink,#111110)}
-  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+  .lib-grid li.here a::after{content:": you are here";font-weight:400;
     font-size:.74rem;color:var(--mut,#8a8781)}
   @media print{.lib-nav,.lib-foot{display:none}}
 </style>
@@ -171,8 +189,8 @@
 <div class="wrap">
 <header>
   <div class="eyebrow">Complete deep-dive · 2 Aug 2026 · seo-audit skill · content + backlinks + GEO specialists · Ahrefs API v3</div>
-  <h1>searchable.com — the smartest site in our study, and the one caught not doing what it sells</h1>
-  <p class="prose">Searchable Limited (London, founded 2025, $14M seed from Freestyle Capital) sells <em>AI-search visibility tracking</em> — the product tells you whether ChatGPT and Perplexity can see and cite your brand. They went <strong>0 → 2,229 organic visits in six months on only 156 URLs</strong>, which is the single most replicable growth story we found. They also serve GPTBot a <strong>532-byte stub</strong> where a human gets 565KB, and their DR 48 rests on a <strong>PBN</strong>. Both halves are worth your time: the first is the playbook, the second is the warning. Companions in this series: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appwrk.html">APPWRK</a> · <a href="audit-techgropse.html">TechGropse</a> · <a href="audit-appinventiv.html">Appinventiv blueprint</a>.</p>
+  <h1>searchable.com: the smartest site in our study, and the one caught not doing what it sells</h1>
+  <p class="prose">Searchable Limited (London, founded 2025, $14M seed from Freestyle Capital) sells <em>AI-search visibility tracking</em>. The product tells you whether ChatGPT and Perplexity can see and cite your brand. They went <strong>0 → 2,229 organic visits in six months on only 156 URLs</strong>, which is the single most replicable growth story we found. They also serve GPTBot a <strong>532-byte stub</strong> where a human gets 565KB, and their DR 48 rests on a <strong>PBN</strong>. Both halves are worth your time: the first is the playbook, the second is the warning. Companions in this series: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appwrk.html">APPWRK</a> · <a href="audit-techgropse.html">TechGropse</a> · <a href="audit-appinventiv.html">Appinventiv blueprint</a>.</p>
 </header>
 
 <div class="scores">
@@ -184,52 +202,52 @@
 </div>
 
 <div class="see"><span class="lbl">Why this audit matters more than the other six</span>
-<p>Genesys, Omnibound, APPWRK and TechGropse show you what failure looks like. Searchable shows you what <strong>working</strong> looks like — a six-month-old domain beating established agencies on a category it defined — and then shows you the exact seams where a sophisticated team still shipped something broken. <strong>Copy sections 2 and 3. Read section 4 as the thing to test on your own site. Read section 5 as the thing never to buy.</strong></p></div>
+<p>Genesys, Omnibound, APPWRK and TechGropse show you what failure looks like. Searchable shows you what <strong>working</strong> looks like. A six-month-old domain beating established agencies on a category it defined, and then shows you the exact seams where a sophisticated team still shipped something broken. <strong>Copy sections 2 and 3. Read section 4 as the thing to test on your own site. Read section 5 as the thing never to buy.</strong></p></div>
 
 <h2 id="growth">1 · The number to explain: 0 → 2,229 in six months, on 156 pages</h2>
 <div class="tbl-scroll"><table>
   <thead><tr><th>Month</th><th class="num">Organic visits</th><th>What was happening</th></tr></thead>
   <tbody>
     <tr><td>Aug–Dec 2025</td><td class="num">0</td><td>18 posts published into a category with no search volume. Zero traffic for six months.</td></tr>
-    <tr><td>Feb 2026</td><td class="num">0</td><td><strong>16 posts in one month</strong> — almost all definitional: "what is AEO", "GEO vs SEO vs AEO", "llm-seo", four "best &lt;engine&gt; tracking tools" posts on a single day. Still zero.</td></tr>
+    <tr><td>Feb 2026</td><td class="num">0</td><td><strong>16 posts in one month</strong> · almost all definitional: "what is AEO", "GEO vs SEO vs AEO", "llm-seo", four "best &lt;engine&gt; tracking tools" posts on a single day. Still zero.</td></tr>
     <tr><td>Mar 2026</td><td class="num">360</td><td>The category starts being searched. The pages are already ranking.</td></tr>
-    <tr><td>Jun 2026</td><td class="num">963</td><td>Zero posts published in June. Traffic keeps climbing — June is being earned by February's content.</td></tr>
+    <tr><td>Jun 2026</td><td class="num">963</td><td>Zero posts published in June. Traffic keeps climbing · June is being earned by February's content.</td></tr>
     <tr><td>Aug 2026</td><td class="num"><strong>2,229</strong></td><td>156 URLs total. No programmatic pages. No location pages.</td></tr>
   </tbody>
 </table></div>
-<p class="prose"><strong>They did not out-produce anyone.</strong> 156 pages is smaller than most agency blogs. What they did was publish the dictionary for a category <em>two to four months before the category had search volume</em> — so when "AEO" and "AI visibility" inflected in H1 2026, the pages were already sitting at the top with no incumbent to displace. The content did not get better. The queries caught up to it.</p>
+<p class="prose"><strong>They did not out-produce anyone.</strong> 156 pages is smaller than most agency blogs. What they did was publish the dictionary for a category <em>two to four months before the category had search volume</em>, so when "AEO" and "AI visibility" inflected in H1 2026, the pages were already sitting at the top with no incumbent to displace. The content did not get better. The queries caught up to it.</p>
 <div class="see"><span class="lbl">The transferable version</span>
-<p>Your category has the same window right now. Terms like <em>agentic ops</em>, <em>tool use</em>, <em>agent memory</em>, <em>eval suite</em>, <em>guardrail</em>, <em>agent drift</em>, <em>confidence gate</em> are pre-volume today. A 40–60 entry glossary sprint costs a fraction of one pillar page, ranks against nobody, and is the cheapest compounding asset available to a DR-0 domain. The lag is real — Searchable ate six months of zero — but the six months were going to pass anyway.</p></div>
+<p>Your category has the same window right now. Terms like <em>agentic ops</em>, <em>tool use</em>, <em>agent memory</em>, <em>eval suite</em>, <em>guardrail</em>, <em>agent drift</em>, <em>confidence gate</em> are pre-volume today. A 40–60 entry glossary sprint costs a fraction of one pillar page, ranks against nobody, and is the cheapest compounding asset available to a DR-0 domain. The lag is real. Searchable ate six months of zero, but the six months were going to pass anyway.</p></div>
 
 <h2 id="eeat">2 · The authority play: one real expert, hired first</h2>
 <p class="prose">A brand-new domain cannot buy expertise signals. Searchable rented them, openly and legitimately.</p>
 <ul>
-  <li><strong>Shaun Anderson</strong> — founder of the Hobo SEO Blog (running since 2006, independently well-known), 20+ years in technical SEO, credited as <strong>Advisor</strong>, not staff. His six articles are the <strong>earliest-dated posts on the entire blog</strong>: deep technical engagement with the Google Content Warehouse leak, <code>contentEffort</code>, <code>siteAuthority</code>, <code>predictedDefaultNsr</code>. Not generic filler — checkable, specific, and correct.</li>
-  <li><strong>A disclosed 16-person named bench</strong> — co-founders plus freelancers credited by name with real bios ("How-To Geek contributor, 100+ published articles"). Outsourced, and <em>said so</em>.</li>
-  <li><strong>Writer + reviewer bylines</strong> — top posts carry "written by Jason Dookeran, reviewed by JP Garbaccio, Head of SEO &amp; AEO." The pattern borrowed from medical/YMYL publishing.</li>
+  <li><strong>Shaun Anderson</strong>: founder of the Hobo SEO Blog (running since 2006, independently well-known), 20+ years in technical SEO, credited as <strong>Advisor</strong>, not staff. His six articles are the <strong>earliest-dated posts on the entire blog</strong>: deep technical engagement with the Google Content Warehouse leak, <code>contentEffort</code>, <code>siteAuthority</code>, <code>predictedDefaultNsr</code>. Not generic filler · checkable, specific, and correct.</li>
+  <li><strong>A disclosed 16-person named bench</strong>: co-founders plus freelancers credited by name with real bios ("How-To Geek contributor, 100+ published articles"). Outsourced, and <em>said so</em>.</li>
+  <li><strong>Writer + reviewer bylines</strong>: top posts carry "written by Jason Dookeran, reviewed by JP Garbaccio, Head of SEO &amp; AEO." The pattern borrowed from medical/YMYL publishing.</li>
 </ul>
-<div class="see"><span class="lbl">Why this is the highest-leverage thing on their site — and directly yours</span>
-<p>Compare: one competitor bylined 83% of posts to a persona with no photo. Another put one CEO on 490 articles spanning HIPAA to frontend internals. Both collapsed. Searchable found <em>one real, Googleable practitioner</em>, credited them prominently, and paired staff writing with their named review.<br><br><strong>You have 50 engineers doing real delivery work.</strong> That is 50 checkable practitioners — a bigger genuine bench than Searchable bought. Author pages with <code>Person</code> schema, real photos and LinkedIn links, on day 2 of the build.</p></div>
+<div class="see"><span class="lbl">Why this is the highest-leverage thing on their site, and directly yours</span>
+<p>Compare: one competitor bylined 83% of posts to a persona with no photo. Another put one CEO on 490 articles spanning HIPAA to frontend internals. Both collapsed. Searchable found <em>one real, Googleable practitioner</em>, credited them prominently, and paired staff writing with their named review.<br><br><strong>You have 50 engineers doing real delivery work.</strong> That is 50 checkable practitioners, a bigger genuine bench than Searchable bought. Author pages with <code>Person</code> schema, real photos and LinkedIn links, on day 2 of the build.</p></div>
 <div class="warn"><span class="lbl">And the part that undercuts it</span>
-<p><code>/customers</code> carries three real, attributed case studies with named founders and hard numbers ("£1m+ pipeline, 206% share of voice"). Below them sits a logo wall — <strong>American Express, Siemens, Pfizer, KPMG, BCG, H&amp;M, Wayfair</strong> — under "Powering 1,000+ ambitious teams", with <strong>no case study, no quote, no named contact</strong> on a single one. These are very plausibly free-report users. It is the largest trust liability on an otherwise credible site, and it is the one thing on this page you should not copy. Separately: the review badge reads <strong>98 reviews on the homepage and 93 on a feature page</strong>, crawled the same day.</p></div>
+<p><code>/customers</code> carries three real, attributed case studies with named founders and hard numbers ("£1m+ pipeline, 206% share of voice"). Below them sits a logo wall · <strong>American Express, Siemens, Pfizer, KPMG, BCG, H&amp;M, Wayfair</strong> · under "Powering 1,000+ ambitious teams", with <strong>no case study, no quote, no named contact</strong> on a single one. These are very plausibly free-report users. It is the largest trust liability on an otherwise credible site, and it is the one thing on this page you should not copy. Separately: the review badge reads <strong>98 reviews on the homepage and 93 on a feature page</strong>, crawled the same day.</p></div>
 
-<h2 id="machine">3 · The machine layer — genuinely ahead, and worth stealing wholesale</h2>
+<h2 id="machine">3 · The machine layer: genuinely ahead, and worth stealing wholesale</h2>
 <div class="tbl-scroll"><table>
   <thead><tr><th>Asset</th><th>What they ship</th><th>Verdict</th></tr></thead>
   <tbody>
-    <tr><td><code>robots.txt</code></td><td>21 crawlers named individually — GPTBot, ChatGPT-User, ClaudeBot, Claude-Web, anthropic-ai, CCBot, cohere-ai, PerplexityBot, Amazonbot, Applebot, Applebot-Extended, Google-Extended — every one <code>Allow: /</code></td><td class="g">Copy it</td></tr>
+    <tr><td><code>robots.txt</code></td><td>21 crawlers named individually · GPTBot, ChatGPT-User, ClaudeBot, Claude-Web, anthropic-ai, CCBot, cohere-ai, PerplexityBot, Amazonbot, Applebot, Applebot-Extended, Google-Extended · every one <code>Allow: /</code></td><td class="g">Copy it</td></tr>
     <tr><td><code>llms.txt</code></td><td>5,959 bytes, spec-correct: H1 + blockquote summary + categorised H2 sections. Links every feature, workflow, data report, team member and legal page individually.</td><td class="g">Best-structured one we found</td></tr>
-    <tr><td>Markdown mirror</td><td>Middleware inspects User-Agent and rewrites (not redirects) to markdown at the same URL. Homepage 177KB HTML → 4KB markdown.</td><td class="w">Right idea, broken build — §4</td></tr>
+    <tr><td>Markdown mirror</td><td>Middleware inspects User-Agent and rewrites (not redirects) to markdown at the same URL. Homepage 177KB HTML → 4KB markdown.</td><td class="w">Right idea, broken build · §4</td></tr>
     <tr><td>Per-article AI buttons</td><td>"Read with ChatGPT / Read with Claude / Read with AI Mode" pipe the article straight into a chat interface. On every post.</td><td class="g">Cheap, nobody else does it</td></tr>
-    <tr><td>Docs subdomain</td><td>Real populated <code>.well-known/mcp/server-card.json</code> with two documented tools, plus <code>agent-card.json</code>, <code>agent-skills/index.json</code>, <code>api-catalog</code> — advertised via <code>Link:</code> headers on every page.</td><td class="g">Mintlify default, but real</td></tr>
-    <tr><td>Free instant tool</td><td><code>/free-visibility-report</code> — enter a domain, no card, result first. Email only for the full report.</td><td class="g">The PLG loop to model</td></tr>
-    <tr><td><code>/llms-full.txt</code></td><td>Does not exist — but returns <strong>HTTP 200</strong> with the homepage shell.</td><td class="r">Soft-404, fools checkers</td></tr>
-    <tr><td><code>OAI-SearchBot</code></td><td><strong>Not named anywhere</strong> — falls through to the wildcard.</td><td class="r">See §4</td></tr>
+    <tr><td>Docs subdomain</td><td>Real populated <code>.well-known/mcp/server-card.json</code> with two documented tools, plus <code>agent-card.json</code>, <code>agent-skills/index.json</code>, <code>api-catalog</code> · advertised via <code>Link:</code> headers on every page.</td><td class="g">Mintlify default, but real</td></tr>
+    <tr><td>Free instant tool</td><td><code>/free-visibility-report</code> · enter a domain, no card, result first. Email only for the full report.</td><td class="g">The PLG loop to model</td></tr>
+    <tr><td><code>/llms-full.txt</code></td><td>Does not exist · but returns <strong>HTTP 200</strong> with the homepage shell.</td><td class="r">Soft-404, fools checkers</td></tr>
+    <tr><td><code>OAI-SearchBot</code></td><td><strong>Not named anywhere</strong> · falls through to the wildcard.</td><td class="r">See §4</td></tr>
   </tbody>
 </table></div>
 
 <h2 id="broken">4 · The finding: an AI-visibility company is partly invisible to AI</h2>
-<p class="prose">Searchable published an engineering post — <code>/blog/we-built-a-dual-served-content-system-for-ai-crawlers</code>, by co-founder Sam Hogan — describing their architecture with justified pride:</p>
+<p class="prose">Searchable published an engineering post <code>/blog/we-built-a-dual-served-content-system-for-ai-crawlers</code>, by co-founder Sam Hogan · describing their architecture with justified pride:</p>
 <blockquote>"We built a system that serves clean markdown to AI crawlers and full React pages to humans at the same URL… Our homepage went from 177KB of HTML to 4KB of markdown."</blockquote>
 <p class="prose">We tested it. Same URL, curl, only the User-Agent varying:</p>
 <div class="tbl-scroll"><table>
@@ -239,53 +257,53 @@
     <tr><td>GPTBot</td><td>text/markdown</td><td class="num r"><strong>532</strong></td><td>A generic template stub</td></tr>
     <tr><td>ClaudeBot</td><td>text/markdown</td><td class="num r"><strong>532</strong></td><td>Identical stub</td></tr>
     <tr><td>PerplexityBot</td><td>text/markdown</td><td class="num r"><strong>532</strong></td><td>Identical stub</td></tr>
-    <tr><td><strong>OAI-SearchBot</strong></td><td>text/html</td><td class="num">565,578</td><td>Not in the allowlist at all — gets the raw 565KB</td></tr>
+    <tr><td><strong>OAI-SearchBot</strong></td><td>text/html</td><td class="num">565,578</td><td>Not in the allowlist at all · gets the raw 565KB</td></tr>
   </tbody>
 </table></div>
 <div class="vs">
   <div><span class="h">What a human reads on the homepage</span>Trusted by 12,000+ users · built by people with agency backgrounds · "Your growth command center" · "Get content briefs optimized for AI citation" · three persona-specific value propositions (ecommerce / B2B / local) · £1M+ pipeline proof</div>
-  <div><span class="h">What GPTBot receives — the entire 532 bytes</span><code># Searchable<br><br>Page: /home<br><br>Searchable is an AI-powered SEO and AEO platform that helps brands track, understand, and improve their visibility in AI search engines.<br><br>## Quick Links<br>About | Pricing | Blog | Guides | Documentation</code></div>
+  <div><span class="h">What GPTBot receives · the entire 532 bytes</span><code># Searchable<br><br>Page: /home<br><br>Searchable is an AI-powered SEO and AEO platform that helps brands track, understand, and improve their visibility in AI search engines.<br><br>## Quick Links<br>About | Pricing | Blog | Guides | Documentation</code></div>
 </div>
-<p class="prose">Their own post describes the logic: serve a colocated <code>machine.md</code> if one exists, else fall back to a generic template. <strong>The homepage — the highest-authority URL on the domain — is running on the fallback.</strong> A random blog post gets 8–18KB of rich markdown; the front door gets a stub.</p>
+<p class="prose">Their own post describes the logic: serve a colocated <code>machine.md</code> if one exists, else fall back to a generic template. <strong>The homepage · the highest-authority URL on the domain · is running on the fallback.</strong> A random blog post gets 8–18KB of rich markdown; the front door gets a stub.</p>
 
 <h3>4a · Three compounding failures, each independently verifiable</h3>
 <ul>
-  <li><span class="sev c">Critical</span><strong>The FAQ answers never reach any AI crawler.</strong> On both sampled posts, the markdown contains <code>## Frequently Asked Questions</code> followed by a <strong>completely empty div</strong>. We cross-checked the page's own <code>FAQPage</code> JSON-LD and the answers exist and are good — <em>"GEO is not the same as SEO, but there is considerable overlap. Around 80-90% of GEO and AEO practices come from traditional SEO fundamentals…"</em> That answer exists only in the JS-hydrated version. GPTBot, ClaudeBot and PerplexityBot never see it. The single most citable content on the page is the content that fails to arrive.</li>
-  <li><span class="sev c">Critical</span><strong>The stripping pass leaks its own scaffolding.</strong> Orphaned <code>&lt;/KeyTakeaways&gt;</code> closing tags with no opening tag; "Six myths and misconceptions to consider:" followed by an empty <code>&lt;div className="not-prose"&gt;</code> where the six myths should be; on the second post, <strong>at least 8 empty divs</strong> where stat cards and a "Trust Chain" diagram used to be. The loss is not random — it strips exactly the structured, schema-marked, stat-card content that is most citation-friendly, and leaves plain prose intact.</li>
-  <li><span class="sev h">High</span><strong><code>/mcp</code> — their own MCP Agent product page — has zero server-rendered content.</strong> 1,593 characters of raw HTML, 100% nav and footer. No <code>&lt;h1&gt;</code>. No product copy. And it gets the generic 532-byte markdown fallback too. Neither path carries anything. <strong>The page selling AI-agent compatibility is invisible to AI agents.</strong> Note that GPTBot, ClaudeBot and PerplexityBot do not execute JavaScript — that is published in their own crawler documentation.</li>
+  <li><span class="sev c">Critical</span><strong>The FAQ answers never reach any AI crawler.</strong> On both sampled posts, the markdown contains <code>## Frequently Asked Questions</code> followed by a <strong>completely empty div</strong>. We cross-checked the page's own <code>FAQPage</code> JSON-LD and the answers exist and are good · <em>"GEO is not the same as SEO, but there is considerable overlap. Around 80-90% of GEO and AEO practices come from traditional SEO fundamentals…"</em> That answer exists only in the JS-hydrated version. GPTBot, ClaudeBot and PerplexityBot never see it. The single most citable content on the page is the content that fails to arrive.</li>
+  <li><span class="sev c">Critical</span><strong>The stripping pass leaks its own scaffolding.</strong> Orphaned <code>&lt;/KeyTakeaways&gt;</code> closing tags with no opening tag; "Six myths and misconceptions to consider:" followed by an empty <code>&lt;div className="not-prose"&gt;</code> where the six myths should be; on the second post, <strong>at least 8 empty divs</strong> where stat cards and a "Trust Chain" diagram used to be. The loss is not random · it strips exactly the structured, schema-marked, stat-card content that is most citation-friendly, and leaves plain prose intact.</li>
+  <li><span class="sev h">High</span><strong><code>/mcp</code> · their own MCP Agent product page · has zero server-rendered content.</strong> 1,593 characters of raw HTML, 100% nav and footer. No <code>&lt;h1&gt;</code>. No product copy. And it gets the generic 532-byte markdown fallback too. Neither path carries anything. <strong>The page selling AI-agent compatibility is invisible to AI agents.</strong> Note that GPTBot, ClaudeBot and PerplexityBot do not execute JavaScript · that is published in their own crawler documentation.</li>
 </ul>
 <div class="see"><span class="lbl">The rule this hands you, for free</span>
-<p><strong>Build the pattern, then test what actually arrives.</strong> A markdown mirror is the right architecture — we recommend it. But a team that sells AI visibility, that wrote the public blog post about this exact system, shipped it with empty FAQ blocks on their best content and a stub on their homepage, and did not notice.<br><br>Your Day-30 sweep runs <code>curl -A "GPTBot" yoursite.com/&lt;page&gt;</code> on ten pages and <em>reads what comes back</em>. Then repeats for <code>OAI-SearchBot</code> — the crawler behind live ChatGPT citations, missing from Searchable's list and from most robots.txt files you will ever see.</p></div>
+<p><strong>Build the pattern, then test what actually arrives.</strong> A markdown mirror is the right architecture. We recommend it. But a team that sells AI visibility, that wrote the public blog post about this exact system, shipped it with empty FAQ blocks on their best content and a stub on their homepage, and did not notice.<br><br>Your Day-30 sweep runs <code>curl -A "GPTBot" yoursite.com/&lt;page&gt;</code> on ten pages and <em>reads what comes back</em>. Then repeats for <code>OAI-SearchBot</code> · the crawler behind live ChatGPT citations, missing from Searchable's list and from most robots.txt files you will ever see.</p></div>
 
-<h2 id="links">5 · DR 48 — and what's holding it up</h2>
-<p class="prose">Ahrefs reports <strong>35,377 live backlinks from 996 referring domains — 35.5 links per domain.</strong> An organic profile runs 2–3. We traced the gap.</p>
-<blockquote>"I remember when searchable.com was barely getting noticed online, just a few dozen visitors each month. After trying SEOExpress.org for their SEO packages, I saw my traffic leap to over 3,000 monthly visitors in just two months!…"<br><span style="font-size:.86em">— verbatim anchor text on <strong>205 referring domains</strong>, flagged <code>is_spam: true</code></span></blockquote>
+<h2 id="links">5 · DR 48: and what's holding it up</h2>
+<p class="prose">Ahrefs reports <strong>35,377 live backlinks from 996 referring domains. 35.5 links per domain.</strong> An organic profile runs 2–3. We traced the gap.</p>
+<blockquote>"I remember when searchable.com was barely getting noticed online, just a few dozen visitors each month. After trying SEOExpress.org for their SEO packages, I saw my traffic leap to over 3,000 monthly visitors in just two months!…"<br><span style="font-size:.86em"> verbatim anchor text on <strong>205 referring domains</strong>, flagged <code>is_spam: true</code></span></blockquote>
 <p class="prose">That is the same spun testimonial found on three other sites in this study. One vendor is quietly fulfilling "SEO packages" across this entire market segment.</p>
 <ul>
-  <li><strong>The farm, named:</strong> <code>seogear.shop</code>, <code>seoprime.shop</code>, <code>rankcart.shop</code>, <code>backlinkorbit.shop</code>, <code>seodepot.shop</code>, <code>ranktrove.shop</code>, <code>rankstock.shop</code>, <code>seopicks.shop</code>, <code>primebacklinks.shop</code>, <code>seotrove.shop</code>, <code>linkwares.shop</code>, <code>rankgear.shop</code>, <code>primeseo.xyz</code> and a dozen more — each DR 0.7 or below, each contributing an almost identical <strong>87–91 links</strong>. <strong>23 of the top 30 domains by volume (77%)</strong> are seller-branded <code>.shop</code>/<code>.xyz</code> shells.</li>
+  <li><strong>The farm, named:</strong> <code>seogear.shop</code>, <code>seoprime.shop</code>, <code>rankcart.shop</code>, <code>backlinkorbit.shop</code>, <code>seodepot.shop</code>, <code>ranktrove.shop</code>, <code>rankstock.shop</code>, <code>seopicks.shop</code>, <code>primebacklinks.shop</code>, <code>seotrove.shop</code>, <code>linkwares.shop</code>, <code>rankgear.shop</code>, <code>primeseo.xyz</code> and a dozen more · each DR 0.7 or below, each contributing an almost identical <strong>87–91 links</strong>. <strong>23 of the top 30 domains by volume (77%)</strong> are seller-branded <code>.shop</code>/<code>.xyz</code> shells.</li>
   <li><strong>They did not hide it.</strong> Live URL slugs include <code>backlinkorbit.shop/x3v5cv1-best-<strong>pbn-backlinks</strong>-pharmaceutical-2025-compared-6-providers-roi/</code>. The words "pbn-backlinks" are in the URL.</li>
-  <li><strong>~26 more anchors are the vendor's own sales copy</strong>, auto-varied around a fake compound token: <em>"Complete SEO for brand<strong>searchable.com</strong>: high-quality backlinks, guest posts… delivering a strong DR/DA/TF increase in any language."</em> Then <code>adminsearchable.com</code>, <code>salessearchable.com</code>, <code>funnelsearchable.com</code> — 20+ variants, 41–44 domains each, all flagged spam.</li>
+  <li><strong>~26 more anchors are the vendor's own sales copy</strong>, auto-varied around a fake compound token: <em>"Complete SEO for brand<strong>searchable.com</strong>: high-quality backlinks, guest posts… delivering a strong DR/DA/TF increase in any language."</em> Then <code>adminsearchable.com</code>, <code>salessearchable.com</code>, <code>funnelsearchable.com</code> · 20+ variants, 41–44 domains each, all flagged spam.</li>
   <li><strong>The fingerprint in one line:</strong> the homepage has <strong>945 referring domains and a URL Rating of 6.0</strong> against a site-wide DR of 48. Genuinely earned links from 945 domains would put UR far higher. Mass low-power injection, not authority.</li>
 </ul>
 <div class="see"><span class="lbl">What's actually real underneath</span>
-<p>A genuine layer does exist: google.com, wikipedia.org, forbes.com, prnewswire.com, g2.com, crunchbase.com, similarweb.com, builtin.com, techtimes.com — each giving <strong>1–4 links</strong>, the exact shape of normal press, directory and job-board mentions for a funded young SaaS. Roughly <strong>100–150 real referring domains</strong>. Our estimate: <strong>DR 26–32 is durable</strong>; 16–22 points are manufactured and likely to erode as <code>.shop</code> clusters get deindexed.<br><br>Their 2,229 visits are almost certainly earned by the content, not the links — which makes the purchase both risky and, apparently, unnecessary.</p></div>
+<p>A genuine layer does exist: google.com, wikipedia.org, forbes.com, prnewswire.com, g2.com, crunchbase.com, similarweb.com, builtin.com, techtimes.com, each giving <strong>1–4 links</strong>, the exact shape of normal press, directory and job-board mentions for a funded young SaaS. Roughly <strong>100–150 real referring domains</strong>. Our estimate: <strong>DR 26–32 is durable</strong>; 16–22 points are manufactured and likely to erode as <code>.shop</code> clusters get deindexed.<br><br>Their 2,229 visits are almost certainly earned by the content, not the links · which makes the purchase both risky and, apparently, unnecessary.</p></div>
 <div class="warn"><span class="lbl">The one line to take from this section</span>
-<p>The best-executed content strategy in this study still bought links. When a vendor offers you DR growth, this is what you are buying — a farm of <code>.shop</code> shells running spun testimonials with your domain in them, sitting in Google's link-spam crosshairs. <strong>You now know the fingerprint: check links-per-domain, and check homepage UR against site DR.</strong></p></div>
+<p>The best-executed content strategy in this study still bought links. When a vendor offers you DR growth, this is what you are buying, a farm of <code>.shop</code> shells running spun testimonials with your domain in them, sitting in Google's link-spam crosshairs. <strong>You now know the fingerprint: check links-per-domain, and check homepage UR against site DR.</strong></p></div>
 
-<h2 id="verdict">6 · Verdict — and the six things to copy</h2>
+<h2 id="verdict">6 · Verdict: and the six things to copy</h2>
 <p class="prose">Searchable is the most sophisticated operator we audited and the clearest proof that the strategy in your roadmap works: <strong>a six-month-old domain, 156 pages, no programmatic play, beating established agencies in a category it defined.</strong> It is also proof that sophistication does not prevent shipping a broken pipeline or buying a bad link package.</p>
 <ol class="prose">
   <li><strong>Publish the dictionary before the category has volume.</strong> 40–60 glossary entries, batched. Zero competition, ranks by the time demand arrives, cheapest compounding asset a DR-0 site has.</li>
-  <li><strong>One real, checkable expert as your first author</strong> — plus a disclosed named bench and a writer+reviewer byline on every post. You have 50 engineers; this costs you nothing but a photo and a schema block.</li>
-  <li><strong>Ship the machine layer on day zero</strong> — robots.txt naming every AI crawler individually, a spec-correct llms.txt that links your best pages, and <strong>OAI-SearchBot in the list</strong>.</li>
-  <li><strong>Build the markdown mirror — then verify it.</strong> <code>curl -A "GPTBot"</code> and read the output. Their FAQ answers vanish; yours must not.</li>
+  <li><strong>One real, checkable expert as your first author</strong>. Plus a disclosed named bench and a writer+reviewer byline on every post. You have 50 engineers; this costs you nothing but a photo and a schema block.</li>
+  <li><strong>Ship the machine layer on day zero</strong>, robots.txt naming every AI crawler individually, a spec-correct llms.txt that links your best pages, and <strong>OAI-SearchBot in the list</strong>.</li>
+  <li><strong>Build the markdown mirror, then verify it.</strong> <code>curl -A "GPTBot"</code> and read the output. Their FAQ answers vanish; yours must not.</li>
   <li><strong>A free instant diagnostic, result before email.</strong> Their visibility report is the loop; your cost calculator and readiness scorecard are the same mechanic.</li>
   <li><strong>Never buy links, and never claim a logo you cannot back with a quote.</strong> The two things that cost them here are the two things that cost nothing to avoid.</li>
 </ol>
 
 <div class="foot">
-  <p>Method: seo-audit skill (<a href="https://github.com/AgriciDaniel/claude-seo">github.com/AgriciDaniel/claude-seo</a>) — content, backlinks and GEO specialists. Live UA-switched fetches, full 156-URL sitemap parse, Playwright rendering, Ahrefs API v3 (<code>refdomains</code>, <code>anchors</code>, <code>best-by-external-links</code>, <code>all-backlinks</code>). Confidence 0.95 on Ahrefs figures; the <code>links_to_target</code> field is known to overstate non-PBN rows and was spot-verified against raw backlinks. Full evidence: <code>~/clients/onegtmlab/new-venture-website/searchable.com-audit/findings/</code>. Data pulled 2 Aug 2026 — positions move; re-verify before acting. Companion documents in this series are separate files: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appwrk.html">APPWRK</a> · <a href="audit-techgropse.html">TechGropse</a> · <a href="audit-appinventiv.html">Appinventiv</a> · <em>the build roadmap</em>.</p>
+  <p>Method: seo-audit skill (<a href="https://github.com/AgriciDaniel/claude-seo">github.com/AgriciDaniel/claude-seo</a>): content, backlinks and GEO specialists. Live UA-switched fetches, full 156-URL sitemap parse, Playwright rendering, Ahrefs API v3 (<code>refdomains</code>, <code>anchors</code>, <code>best-by-external-links</code>, <code>all-backlinks</code>). Confidence 0.95 on Ahrefs figures; the <code>links_to_target</code> field is known to overstate non-PBN rows and was spot-verified against raw backlinks. Full evidence: <code>~/clients/onegtmlab/new-venture-website/searchable.com-audit/findings/</code>. Data pulled 2 Aug 2026 · positions move; re-verify before acting. Companion documents in this series are separate files: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appwrk.html">APPWRK</a> · <a href="audit-techgropse.html">TechGropse</a> · <a href="audit-appinventiv.html">Appinventiv</a> · <em>the build roadmap</em>.</p>
 </div>
 </div>
-<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li class="here"><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence: open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open: money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data: volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page: each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like: homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise: and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits: internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy: page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li class="here"><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages: and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
 </html>

@@ -8,7 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>Zero-Click Marketing — Visual Summary & Our Playbook</title>
+<title>Zero-Click Marketing. Visual Summary & Our Playbook</title>
 <style>
   :root {
     color-scheme: light;
@@ -79,32 +79,127 @@
   .bar-fill { height: 100%; border-radius: 0 4px 4px 0; background: var(--bar); min-width: 2px; }
   .bar-val { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); }
   .foot { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--grid); font-size: 0.8rem; color: var(--muted); }
+
+  .mmwrap{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);
+          border-radius:12px;padding:16px 18px 18px;margin:18px 0;overflow-x:auto}
+  .mmkey{margin:0 0 12px;font-size:.79rem;color:var(--ink2,#54524d);line-height:1.6}
+  .mmkey .k-bad{color:var(--crit,#c4372c)}
+  .mmkey .k-good{color:var(--good,#0c7a3e)}
+  .mmkey .k-dead{color:var(--mut,#8a8781)}
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
 </style>
 <style>
   *,*::before,*::after{box-sizing:border-box}
-  img{max-width:100%;height:auto}
-  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
-       padding:14px 18px;margin:16px 0;font-size:.86rem}
-  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
-  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
-  .dgm-s:first-of-type{margin-top:0}
-  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
-  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
-  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
-  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
-    /* PDF links are real annotations, so do NOT also print the raw href:
-       it doubled line length and pushed the URL tree off the right edge. */
     a{color:#1a4fd6;text-decoration:underline}
-    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
     .tree{white-space:pre-wrap!important;overflow:visible!important;
           word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
-    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll,.mmwrap{overflow:visible!important}
     table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
     th,td{word-break:break-word;padding:4px 6px!important}
     pre,code{white-space:pre-wrap!important;word-break:break-word}
-    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital,.dgwrap,.mmwrap{break-inside:avoid}
     h2,h3{break-after:avoid}
   }
 
@@ -136,7 +231,7 @@
   .lib-grid a:hover{text-decoration:underline}
   .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
   .lib-grid li.here a{color:var(--ink,#111110)}
-  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+  .lib-grid li.here a::after{content:": you are here";font-weight:400;
     font-size:.74rem;color:var(--mut,#8a8781)}
   @media print{.lib-nav,.lib-foot{display:none}}
 </style>
@@ -146,11 +241,11 @@
 <header>
   <div class="eyebrow">Talk summary · Amanda Natividad (SparkToro) at MicroConf · from your downloaded transcript · 2 Aug 2026</div>
   <h1>Zero-Click Marketing: how founders win when Google, social &amp; LLMs stop sending clicks</h1>
-  <p class="prose">A structured, visual summary of the full talk — every number preserved — followed by the part you asked for: <strong>exactly what we take from it into our website + LinkedIn + Instagram plan.</strong> This talk is the strategic layer that explains everything our four site audits found.</p>
+  <p class="prose">A structured, visual summary of the full talk, every number preserved, followed by the part you asked for: <strong>exactly what we take from it into our website + LinkedIn + Instagram plan.</strong> This talk is the strategic layer that explains everything our four site audits found.</p>
 </header>
 
 <h2>1 · The diagnosis: the web now shows you, but doesn't send you</h2>
-<p class="prose">The "alligator graph": impressions keep rising, clicks keep falling — the jaws keep opening. It's structural, not a content problem (major publishers see the same). Search itself is <em>growing</em> — but a bigger share of searches end without any click.</p>
+<p class="prose">The "alligator graph": impressions keep rising, clicks keep falling, the jaws keep opening. It's structural, not a content problem (major publishers see the same). Search itself is <em>growing</em>, but a bigger share of searches end without any click.</p>
 
 <h3>Where 1,000 US Google searches actually go (SparkToro/Datos 2024 clickstream)</h3>
 <div class="bars">
@@ -167,56 +262,93 @@
   <div class="stat"><div class="n">Google ≈ 13</div><div class="l">Google alone gets as many visits as the next 13 biggest sites combined</div></div>
 </div>
 <div class="see"><span class="lbl">The core reframe</span>
-<p><strong>"Your homepage has changed."</strong> Your first impression now happens on a Google snippet, inside a ChatGPT answer, in a LinkedIn post, in a Slack mention — before anyone visits your .com. Amanda's own example: she became a paying Formspree customer <em>from inside a Claude response</em>, without ever seeing their website. Your brand was either present on that surface or it wasn't.</p></div>
+<p><strong>"Your homepage has changed."</strong> Your first impression now happens on a Google snippet, inside a ChatGPT answer, in a LinkedIn post, in a Slack mention, before anyone visits your .com. Amanda's own example: she became a paying Formspree customer <em>from inside a Claude response</em>, without ever seeing their website. Your brand was either present on that surface or it wasn't.</p></div>
 
 <h2>2 · The second problem: your analytics are lying to you</h2>
 <ul class="prose">
   <li><strong>Tracking is blind:</strong> ~30% cookie acceptance · 20–60% run blockers (60% for tech audiences) · 3.6 devices per person · GDPR/CCPA limits.</li>
-  <li><strong>Dark social experiment</strong> (SparkToro, 1,100 tracked visits): traffic from TikTok, Slack, Discord, WhatsApp arrived labeled <strong>100% "direct"</strong> — your Slack/WhatsApp wins are invisible in GA.</li>
-  <li><strong>The Dropbox blackout study</strong> (peer-reviewed, IEEE): attributed ROAS said mobile ads = 1.53 and search ads = 2.0; <em>causal</em> ROAS (measured by switching channels off) was 0.7 and 0.92 — <strong>both actually underwater</strong>. Attribution overstates impact 2–10×. Dropbox moved $25M and improved LTV:CAC by 53%.</li>
+  <li><strong>Dark social experiment</strong> (SparkToro, 1,100 tracked visits): traffic from TikTok, Slack, Discord, WhatsApp arrived labeled <strong>100% "direct"</strong>. Your Slack/WhatsApp wins are invisible in GA.</li>
+  <li><strong>The Dropbox blackout study</strong> (peer-reviewed, IEEE): attributed ROAS said mobile ads = 1.53 and search ads = 2.0; <em>causal</em> ROAS (measured by switching channels off) was 0.7 and 0.92 <strong>both actually underwater</strong>. Attribution overstates impact 2–10×. Dropbox moved $25M and improved LTV:CAC by 53%.</li>
 </ul>
-<div class="see"><span class="lbl">Why this matters to us</span><p>This is the answer to "how will we know the LinkedIn/Instagram work is driving the website leads?" We won't — not in analytics. We'll know by <strong>correlation</strong> (section 4), which is exactly how we'll report, and exactly the trap our future SEO hire must not fall into (optimizing only what's attributable).</p></div>
+<div class="see"><span class="lbl">Why this matters to us</span><p>This is the answer to "how will we know the LinkedIn/Instagram work is driving the website leads?" We won't, not in analytics. We'll know by <strong>correlation</strong> (section 4), which is exactly how we'll report, and exactly the trap our future SEO hire must not fall into (optimizing only what's attributable).</p></div>
 
-<h2>3 · The invisible buyer journey — why "organic search" steals the credit</h2>
-<div class="chart-scroll">
-<div class="dgm">
-<div class="dgm-s">1 · Sees founder&#x27;s — LinkedIn post</div><ul class="dgm-l">
-<li>2 · Hears founder — on a podcast</li>
-</ul>
-<div class="dgm-s">2 · Hears founder — on a podcast</div><ul class="dgm-l">
-<li>3 · Reads a newsletter — mention</li>
-</ul>
-<div class="dgm-s">3 · Reads a newsletter — mention</div><ul class="dgm-l">
-<li>4 · Peer drops the brand — in a Slack group</li>
-</ul>
-<div class="dgm-s">4 · Peer drops the brand — in a Slack group</div><ul class="dgm-l">
-<li>5 · Googles the — BRAND NAME</li>
-</ul>
-<div class="dgm-s">5 · Googles the — BRAND NAME</div><ul class="dgm-l">
-<li>Converts ✅ — GA says: &#x27;organic search&#x27;</li>
-</ul></div>
+<h2>3 · The invisible buyer journey: why "organic search" steals the credit</h2>
+<div class="mmwrap"><p class="mmkey">Reads top to bottom. <b class="k-bad">Red dashed</b> = manufactured or low-quality. <b class="k-good">Green</b> = genuine and earning. <b class="k-dead">Grey dashed</b> = dead weight.</p>
+<svg class="dg mm" viewBox="0 0 560 566" width="100%" style="max-width:560px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="mah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="maw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--crit,#c4372c)"/></marker><marker id="mas" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<path class="me " d="M280.0,55.4 C280.0,82.4 280.0,82.4 280.0,109.4" marker-end="url(#mah)"/>
+<path class="me " d="M280.0,154.8 C280.0,181.8 280.0,181.8 280.0,208.8" marker-end="url(#mah)"/>
+<path class="me " d="M280.0,254.2 C280.0,281.2 280.0,281.2 280.0,308.2" marker-end="url(#mah)"/>
+<path class="me " d="M280.0,353.6 C280.0,380.6 280.0,380.6 280.0,407.6" marker-end="url(#mah)"/>
+<path class="me " d="M280.0,453.0 C280.0,480.0 280.0,480.0 280.0,507.0" marker-end="url(#mah)"/>
+<rect class="mn" x="180.0" y="16.0" width="200" height="39.4" rx="7"/>
+<text class="mt" x="280.0" y="32.7">1 · Sees founder's</text>
+<text class="ms" x="280.0" y="44.9">LinkedIn post</text>
+<rect class="mn" x="180.0" y="115.4" width="200" height="39.4" rx="7"/>
+<text class="mt" x="280.0" y="132.1">2 · Hears founder</text>
+<text class="ms" x="280.0" y="144.3">on a podcast</text>
+<rect class="mn" x="180.0" y="214.8" width="200" height="39.4" rx="7"/>
+<text class="mt" x="280.0" y="231.5">3 · Reads a newsletter</text>
+<text class="ms" x="280.0" y="243.7">mention</text>
+<rect class="mn" x="180.0" y="314.2" width="200" height="39.4" rx="7"/>
+<text class="mt" x="280.0" y="330.9">4 · Peer drops the brand</text>
+<text class="ms" x="280.0" y="343.1">in a Slack group</text>
+<rect class="mn" x="180.0" y="413.6" width="200" height="39.4" rx="7"/>
+<text class="mt" x="280.0" y="430.3">5 · Googles the</text>
+<text class="ms" x="280.0" y="442.5">BRAND NAME</text>
+<rect class="mn good" x="180.0" y="513.0" width="200" height="39.4" rx="7"/>
+<text class="mt good" x="280.0" y="529.7">Converts GA says: 'organic</text>
+<text class="ms good" x="280.0" y="541.9">search'</text>
+</svg>
 </div>
-<p class="prose">Steps 1–4 <strong>created</strong> the demand; Google merely <strong>captured</strong> it. So the job is not just to rank — it's to <strong>influence the public record</strong>: reviews, Reddit threads, podcasts, third-party mentions, and the pages AI systems cite. Two proof stories from the talk:</p>
+<!--mermaid
+flowchart LR
+  A["1 · Sees founder's<br/>LinkedIn post"] --&gt; B["2 · Hears founder<br/>on a podcast"]
+  B --&gt; C["3 · Reads a newsletter<br/>mention"]
+  C --&gt; D["4 · Peer drops the brand<br/>in a Slack group"]
+  D --&gt; E["5 · Googles the<br/>BRAND NAME"]
+  E --&gt; F["Converts ✅<br/>GA says: 'organic search'"]
+  style F stroke-width:2px
+-->
+<p class="prose">Steps 1–4 <strong>created</strong> the demand; Google merely <strong>captured</strong> it. So the job is not just to rank. It's to <strong>influence the public record</strong>: reviews, Reddit threads, podcasts, third-party mentions, and the pages AI systems cite. Two proof stories from the talk:</p>
 <ul class="prose">
-  <li><strong>Reddit outranks every B2B SaaS vendor simultaneously on 50–66% of shared keywords</strong> (Foundation Inc. analysis) — buyers form opinions in subreddits before visiting any vendor site. Be in those threads authentically or be invisible at the decision moment.</li>
-  <li><strong>The Seer story:</strong> ONE negative review theme got repeated <strong>67 times in AI outputs</strong> (ChatGPT, Perplexity amplified one data point into a "trend"). Fix: they published real retention data — after just 2 citations, the LLMs flipped. Caveat: it needed refreshing every few weeks. Lesson: <strong>if your proof lives in Slack or your head, it's not in the public record — and AI can only repeat what's published.</strong></li>
+  <li><strong>Reddit outranks every B2B SaaS vendor simultaneously on 50–66% of shared keywords</strong> (Foundation Inc. analysis). Buyers form opinions in subreddits before visiting any vendor site. Be in those threads authentically or be invisible at the decision moment.</li>
+  <li><strong>The Seer story:</strong> ONE negative review theme got repeated <strong>67 times in AI outputs</strong> (ChatGPT, Perplexity amplified one data point into a "trend"). Fix: they published real retention data: after just 2 citations, the LLMs flipped. Caveat: it needed refreshing every few weeks. Lesson: <strong>if your proof lives in Slack or your head, it's not in the public record, and AI can only repeat what's published.</strong></li>
 </ul>
 
 <h2>4 · Measure the right things: the 4-layer dashboard</h2>
-<div class="chart-scroll">
-<div class="dgm">
-<div class="dgm-s">AUDIENCE — are you building one? — followers · returning visitors · newsletter list</div><ul class="dgm-l">
-<li>REACH — are you being seen? — impressions · views · email subscribers</li>
-</ul>
-<div class="dgm-s">REACH — are you being seen? — impressions · views · email subscribers</div><ul class="dgm-l">
-<li>INTEREST — are they engaging? — comments · shares · product-page views · BRANDED SEARCH volume</li>
-</ul>
-<div class="dgm-s">INTEREST — are they engaging? — comments · shares · product-page views · BRANDED SEARCH volume</div><ul class="dgm-l">
-<li>SALES — the only primary KPI — qualified leads · conversions · incremental lift</li>
-</ul></div>
+<div class="mmwrap"><p class="mmkey">Reads top to bottom. <b class="k-bad">Red dashed</b> = manufactured or low-quality. <b class="k-good">Green</b> = genuine and earning. <b class="k-dead">Grey dashed</b> = dead weight.</p>
+<svg class="dg mm" viewBox="0 0 560 416" width="100%" style="max-width:560px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="mah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="maw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--crit,#c4372c)"/></marker><marker id="mas" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<path class="me " d="M280.0,67.6 C280.0,94.6 280.0,94.6 280.0,121.6" marker-end="url(#mah)"/>
+<path class="me " d="M280.0,179.2 C280.0,206.2 280.0,206.2 280.0,233.2" marker-end="url(#mah)"/>
+<path class="me " d="M280.0,290.8 C280.0,317.8 280.0,317.8 280.0,344.8" marker-end="url(#mah)"/>
+<rect class="mn" x="180.0" y="16.0" width="200" height="51.6" rx="7"/>
+<text class="mt" x="280.0" y="32.7">AUDIENCE. Are you building one?</text>
+<text class="ms" x="280.0" y="44.9">followers · returning visitors ·</text>
+<text class="ms" x="280.0" y="57.1">newsletter list</text>
+<rect class="mn" x="180.0" y="127.6" width="200" height="51.6" rx="7"/>
+<text class="mt" x="280.0" y="144.3">REACH. Are you being seen?</text>
+<text class="ms" x="280.0" y="156.5">impressions · views · email</text>
+<text class="ms" x="280.0" y="168.7">subscribers</text>
+<rect class="mn" x="180.0" y="239.2" width="200" height="51.6" rx="7"/>
+<text class="mt" x="280.0" y="255.9">INTEREST. Are they engaging?</text>
+<text class="ms" x="280.0" y="268.1">comments · shares · product-page</text>
+<text class="ms" x="280.0" y="280.3">views · BRANDED SEARCH volume</text>
+<rect class="mn" x="180.0" y="350.8" width="200" height="51.6" rx="7"/>
+<text class="mt" x="280.0" y="367.5">SALES, the only primary KPI</text>
+<text class="ms" x="280.0" y="379.7">qualified leads · conversions ·</text>
+<text class="ms" x="280.0" y="391.9">incremental lift</text>
+</svg>
 </div>
+<!--mermaid
+flowchart TD
+  A["AUDIENCE — are you building one?<br/>followers · returning visitors · newsletter list"] --&gt; B["REACH. Are you being seen?<br/>impressions · views · email subscribers"] B --&gt; C["INTEREST. Are they engaging?<br/>comments · shares · product-page views · BRANDED SEARCH volume"] C --&gt; D["SALES, the only primary KPI<br/>qualified leads · conversions · incremental lift"]
+-->
 <ul class="prose">
-  <li><strong>Drop traffic as a KPI.</strong> The proof: HubSpot's organic traffic fell <strong>80%</strong> after AI Overviews — and Q4 2025 revenue hit an all-time high. Traffic ≠ revenue. (Our version of this: TechGropse's 24 qualified leads/month matter; their 65k lost visits didn't.)</li>
+  <li><strong>Drop traffic as a KPI.</strong> The proof: HubSpot's organic traffic fell <strong>80%</strong> after AI Overviews, and Q4 2025 revenue hit an all-time high. Traffic ≠ revenue. (Our version of this: TechGropse's 24 qualified leads/month matter; their 65k lost visits didn't.)</li>
   <li><strong>Report by correlation, not attribution:</strong> "LinkedIn impressions +52% this month → did branded search rise? did the email list grow? did demo requests increase?" Patterns over time, not single-touch proof. SparkToro sees zero-click social correlate with signups 2–4 weeks later; Dreamdata's employee-advocacy program grew demos without knowing which post did it.</li>
 </ul>
 
@@ -225,60 +357,78 @@
   <thead><tr><th>#</th><th>Move</th><th>The one-line version</th></tr></thead>
   <tbody>
     <tr><td>1</td><td><strong>Build on rented land</strong></td><td>For every 1 website visitor, ~100 people meet you on platforms you don't control. Publish native, standalone value in-feed (no click required). Channel mix is unique to YOUR audience.</td></tr>
-    <tr><td>2</td><td><strong>Keep ONE owned channel strong: email</strong></td><td>Open rates 30% (2005) → 34% (2024) — twenty years of "email is dead" and it never moved. No algorithm sits between you and the list. Every rented-land effort feeds the list.</td></tr>
+    <tr><td>2</td><td><strong>Keep ONE owned channel strong: email</strong></td><td>Open rates 30% (2005) → 34% (2024) · twenty years of "email is dead" and it never moved. No algorithm sits between you and the list. Every rented-land effort feeds the list.</td></tr>
     <tr><td>3</td><td><strong>Drop traffic as KPI</strong></td><td>Use the 4-layer dashboard; primary KPI = incremental sales/leads.</td></tr>
-    <tr><td>4</td><td><strong>Influence the public record</strong></td><td>Search captures demand; public evidence CREATES it. Reviews, Reddit, podcasts, published proof data — the surfaces AI cites.</td></tr>
+    <tr><td>4</td><td><strong>Influence the public record</strong></td><td>Search captures demand; public evidence CREATES it. Reviews, Reddit, podcasts, published proof data · the surfaces AI cites.</td></tr>
     <tr><td>5</td><td><strong>Content-as-a-Service (CaaS)</strong></td><td>Every asset has an internal client + job + metric: case study→sales (win rate) · how-to→customer success (ticket deflection) · benchmark report→comms (backlinks/invites). 10-field intake form; can't fill it = don't make it. At Fitbit B2B this REDUCED output and multiplied impact.</td></tr>
   </tbody>
 </table></div>
 
-<div class="chart-scroll">
-<div class="dgm">
-<div class="dgm-s">1 · Pick 2–3 channels where — your audience actually is</div><ul class="dgm-l">
-<li>2 · Publish 1–2 zero-click — assets per week</li>
-</ul>
-<div class="dgm-s">2 · Publish 1–2 zero-click — assets per week</div><ul class="dgm-l">
-<li>3 · Repurpose one insight: — LinkedIn → blog → newsletter → podcast point</li>
-</ul>
-<div class="dgm-s">3 · Repurpose one insight: — LinkedIn → blog → newsletter → podcast point</div><ul class="dgm-l">
-<li>4 · Capture demand: — email signup · branded search · demo</li>
-</ul>
-<div class="dgm-s">4 · Capture demand: — email signup · branded search · demo</div><ul class="dgm-l">
-<li>5 · Monthly correlation review — quarterly channel adjustment</li>
-</ul>
-<div class="dgm-s">5 · Monthly correlation review — quarterly channel adjustment</div><ul class="dgm-l">
-<li>1 · Pick 2–3 channels where — your audience actually is</li>
-</ul></div>
+<div class="mmwrap"><p class="mmkey">Reads top to bottom. <b class="k-bad">Red dashed</b> = manufactured or low-quality. <b class="k-good">Green</b> = genuine and earning. <b class="k-dead">Grey dashed</b> = dead weight.</p>
+<svg class="dg mm" viewBox="0 0 560 491" width="100%" style="max-width:560px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="mah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="maw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--crit,#c4372c)"/></marker><marker id="mas" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<path class="me " d="M280.0,55.4 C280.0,82.4 280.0,82.4 280.0,109.4" marker-end="url(#mah)"/>
+<path class="me " d="M280.0,154.8 C280.0,181.8 280.0,181.8 280.0,208.8" marker-end="url(#mah)"/>
+<path class="me " d="M280.0,266.4 C280.0,293.4 280.0,293.4 280.0,320.4" marker-end="url(#mah)"/>
+<path class="me " d="M280.0,378.0 C280.0,405.0 280.0,405.0 280.0,432.0" marker-end="url(#mah)"/>
+<path class="me " d="M380.0,457.7 C380.0,246.7 380.0,246.7 380.0,35.7" marker-end="url(#mah)"/>
+<rect class="mn" x="180.0" y="16.0" width="200" height="39.4" rx="7"/>
+<text class="mt" x="280.0" y="32.7">1 · Pick 2–3 channels where</text>
+<text class="ms" x="280.0" y="44.9">your audience actually is</text>
+<rect class="mn" x="180.0" y="115.4" width="200" height="39.4" rx="7"/>
+<text class="mt" x="280.0" y="132.1">2 · Publish 1–2 zero-click</text>
+<text class="ms" x="280.0" y="144.3">assets per week</text>
+<rect class="mn" x="180.0" y="214.8" width="200" height="51.6" rx="7"/>
+<text class="mt" x="280.0" y="231.5">3 · Repurpose one insight:</text>
+<text class="ms" x="280.0" y="243.7">LinkedIn → blog → newsletter →</text>
+<text class="ms" x="280.0" y="255.9">podcast point</text>
+<rect class="mn" x="180.0" y="326.4" width="200" height="51.6" rx="7"/>
+<text class="mt" x="280.0" y="343.1">4 · Capture demand:</text>
+<text class="ms" x="280.0" y="355.3">email signup · branded search ·</text>
+<text class="ms" x="280.0" y="367.5">demo</text>
+<rect class="mn" x="180.0" y="438.0" width="200" height="39.4" rx="7"/>
+<text class="mt" x="280.0" y="454.7">5 · Monthly correlation review</text>
+<text class="ms" x="280.0" y="466.9">quarterly channel adjustment</text>
+</svg>
 </div>
-<div class="see"><span class="lbl">The banking mental model</span><p>Every zero-click post that delivers standalone value = a <strong>deposit</strong> (algorithmic goodwill + audience trust). The ask — subscribe, book a demo — is a <strong>withdrawal</strong>. Ratio: <strong>5 deposits : 1 withdrawal</strong>. Don't make the click your only mechanism of value; make the value obvious in-feed, and the action obvious with a link when you do ask.</p></div>
+<!--mermaid
+flowchart LR
+  A["1 · Pick 2–3 channels where<br/>your audience actually is"] --&gt; B["2 · Publish 1–2 zero-click<br/>assets per week"]
+  B --&gt; C["3 · Repurpose one insight:<br/>LinkedIn → blog → newsletter → podcast point"]
+  C --&gt; D["4 · Capture demand:<br/>email signup · branded search · demo"]
+  D --&gt; E["5 · Monthly correlation review<br/>quarterly channel adjustment"]
+  E --&gt; A
+-->
+<div class="see"><span class="lbl">The banking mental model</span><p>Every zero-click post that delivers standalone value = a <strong>deposit</strong> (algorithmic goodwill + audience trust). The ask: subscribe, book a demo. Is a <strong>withdrawal</strong>. Ratio: <strong>5 deposits : 1 withdrawal</strong>. Don't make the click your only mechanism of value; make the value obvious in-feed, and the action obvious with a link when you do ask.</p></div>
 
 <h3>Q&amp;A gold (tactical, verbatim-level)</h3>
 <ul class="prose">
-  <li><strong>LinkedIn cadence: 3×/week, not 2×/day</strong> — posting twice within 18–24h throttles your previous post; the algorithm rewards signal over volume.</li>
-  <li><strong>Personal page beats company page</strong> for engagement — treat the company page as the news feed of record; the founder's page carries the point of view.</li>
-  <li><strong>Text beats video on LinkedIn</strong> — her embedded-video reach runs 8–10× LOWER than text-only posts. (Video wins on Instagram.)</li>
-  <li><strong>AI in content:</strong> use it as an editor/stress-tester ("poke holes, where is this weak?") — never the copywriter. The voice must be yours, or you forget what good is.</li>
+  <li><strong>LinkedIn cadence: 3×/week, not 2×/day</strong>. Posting twice within 18–24h throttles your previous post; the algorithm rewards signal over volume.</li>
+  <li><strong>Personal page beats company page</strong> for engagement. Treat the company page as the news feed of record; the founder's page carries the point of view.</li>
+  <li><strong>Text beats video on LinkedIn</strong>. Her embedded-video reach runs 8–10× LOWER than text-only posts. (Video wins on Instagram.)</li>
+  <li><strong>AI in content:</strong> use it as an editor/stress-tester ("poke holes, where is this weak?"), never the copywriter. The voice must be yours, or you forget what good is.</li>
 </ul>
 
-<h2>6 · What WE do with this — mapped straight onto our build</h2>
+<h2>6 · What WE do with this: mapped straight onto our build</h2>
 <div class="tbl-scroll"><table>
   <thead><tr><th>Talk principle</th><th>Our implementation (goes into the 3–4 month roadmap)</th></tr></thead>
   <tbody>
     <tr><td>Rented land + founder page + 3×/week text</td><td>Your 200k LinkedIn + 150k Instagram becomes the primary demand-CREATION engine: founder posts 3×/week (text-first on LinkedIn, video-first on IG), teaching AI-automation mechanics with zero-click value; company page = news feed. 5:1 deposit/withdrawal ratio enforced in the calendar.</td></tr>
-    <tr><td>One owned channel: email</td><td>Newsletter from week 1; every stats asset, checker and LinkedIn post feeds it. This is the asset no algorithm can throttle — and the bridge between social attention and the website.</td></tr>
-    <tr><td>Drop traffic as KPI</td><td>The SEO hire's dashboard = the 4 layers, reported monthly by correlation. Primary KPI: <strong>15–50 qualified leads/month</strong> — never traffic. (Our audits already proved why: TechGropse at 65k visits and Genesys at DR 66 both had nothing.)</td></tr>
+    <tr><td>One owned channel: email</td><td>Newsletter from week 1; every stats asset, checker and LinkedIn post feeds it. This is the asset no algorithm can throttle · and the bridge between social attention and the website.</td></tr>
+    <tr><td>Drop traffic as KPI</td><td>The SEO hire's dashboard = the 4 layers, reported monthly by correlation. Primary KPI: <strong>15–50 qualified leads/month</strong> · never traffic. (Our audits already proved why: TechGropse at 65k visits and Genesys at DR 66 both had nothing.)</td></tr>
     <tr><td>Influence the public record</td><td>Clutch/GoodFirms/DesignRush profiles + reviews from your 10–12 clients (TechGropse's actual lead engine); authentic Reddit presence in automation/AI subreddits; podcast guesting; publish original client-outcome data quarterly (the Seer lesson: published + refreshed proof is what AI repeats).</td></tr>
-    <tr><td>Zero-click surfaces = your homepage</td><td>The GEO layer we already designed (llms.txt, /ai-info, schema, citation-ready stat blocks) IS zero-click marketing for AI surfaces — this talk is the strategic justification for it.</td></tr>
-    <tr><td>Content-as-a-Service + intake form</td><td>Every website asset in the roadmap gets a client + job + metric before it's written: case studies→sales, cost guide + calculator→lead capture, stats pages→links/AI citations, how-tos→topical authority. The 10-field intake form becomes our content brief template — and the discipline that prevents a Genesys-style 364-post junk pile.</td></tr>
-    <tr><td>Correlation reporting</td><td>Monthly review: LinkedIn impressions vs branded-search volume vs newsletter growth vs inquiries — one simple dashboard, patterns over time.</td></tr>
+    <tr><td>Zero-click surfaces = your homepage</td><td>The GEO layer we already designed (llms.txt, /ai-info, schema, citation-ready stat blocks) IS zero-click marketing for AI surfaces · this talk is the strategic justification for it.</td></tr>
+    <tr><td>Content-as-a-Service + intake form</td><td>Every website asset in the roadmap gets a client + job + metric before it's written: case studies→sales, cost guide + calculator→lead capture, stats pages→links/AI citations, how-tos→topical authority. The 10-field intake form becomes our content brief template · and the discipline that prevents a Genesys-style 364-post junk pile.</td></tr>
+    <tr><td>Correlation reporting</td><td>Monthly review: LinkedIn impressions vs branded-search volume vs newsletter growth vs inquiries · one simple dashboard, patterns over time.</td></tr>
   </tbody>
 </table></div>
 
-<p class="prose"><strong>The closing line of the talk, which is now the thesis of our whole plan:</strong> the job of marketing is no longer to drive the click — it's to create understanding, trust, recall and preference wherever the buyer already is. Our four audits showed what happens to sites that ignore this (or fake it); this talk supplies the operating system for doing it honestly — and you happen to already own the hardest part to build: the audience.</p>
+<p class="prose"><strong>The closing line of the talk, which is now the thesis of our whole plan:</strong> the job of marketing is no longer to drive the click: it's to create understanding, trust, recall and preference wherever the buyer already is. Our four audits showed what happens to sites that ignore this (or fake it); this talk supplies the operating system for doing it honestly, and you happen to already own the hardest part to build: the audience.</p>
 
 <div class="foot">
-  <p>Source: your downloaded transcript — "Zero-Click Marketing: How Founders Win When Google, Social &amp; LLMs Stop Sending Clicks," Amanda Natividad (VP Marketing, SparkToro) at MicroConf; data cited in-talk from SparkToro/Datos State of Search Q4 2025, Ahrefs traffic panel, Meta Widely Viewed Content reports, SimilarWeb Jan 2026, the Dropbox IEEE incrementality study, Foundation Inc., and Seer Interactive. Companions: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-appinventiv.html">Appinventiv blueprint</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a>.</p>
+  <p>Source: your downloaded transcript, "Zero-Click Marketing: How Founders Win When Google, Social &amp; LLMs Stop Sending Clicks," Amanda Natividad (VP Marketing, SparkToro) at MicroConf; data cited in-talk from SparkToro/Datos State of Search Q4 2025, Ahrefs traffic panel, Meta Widely Viewed Content reports, SimilarWeb Jan 2026, the Dropbox IEEE incrementality study, Foundation Inc., and Seer Interactive. Companions: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-appinventiv.html">Appinventiv blueprint</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a>.</p>
 </div>
 </div>
-<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li class="here"><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence: open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open: money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data: volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page: each with a live example.</span></li><li class="here"><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like: homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise: and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits: internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy: page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages: and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
 </html>

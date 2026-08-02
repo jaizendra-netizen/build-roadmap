@@ -8,205 +8,69 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>WordPress vs Webflow — SEO Platform Decision</title>
+<title>WordPress vs Webflow. SEO Platform Decision</title>
+<style> :root { color-scheme: light; --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10); --wp: #2a78d6; /* categorical slot 1. WordPress */ --wf: #eb6834; /* categorical slot 2. Webflow */ --cu: #1baf7a; /* categorical slot 3. Custom / hybrid */ --good-text: #006300; --crit: #d03b3b; --accent: #1c5cab; } @media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) { color-scheme: dark; --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10); --wp: #3987e5; --wf: #d95926; --cu: #199e70; --good-text: #0ca30c; --crit: #d03b3b; --accent: #86b6ef; } } :root[data-theme="dark"] { color-scheme: dark; --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10); --wp: #3987e5; --wf: #d95926; --cu: #199e70; --good-text: #0ca30c; --crit: #d03b3b; --accent: #86b6ef; } :root[data-theme="light"] { color-scheme: light; --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10); --wp: #2a78d6; --wf: #eb6834; --cu: #1baf7a; --good-text: #006300; --crit: #d03b3b; --accent: #1c5cab; } body { background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.55; margin: 0; padding: 0 20px 80px; } .wrap { max-width: 880px; margin: 0 auto; } .prose { max-width: 720px; } h1, h2, h3 { font-family: Charter, Georgia, "Times New Roman", serif; text-wrap: balance; } h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); line-height: 1.12; margin: 0 0 10px; letter-spacing: -0.01em; } h2 { font-size: 1.45rem; margin: 56px 0 12px; } h3 { font-size: 1.12rem; margin: 28px 0 8px; } p { margin: 0 0 14px; color: var(--ink-2); } p strong, li strong { color: var(--ink); } ul, ol { color: var(--ink-2); padding-left: 1.3em; margin: 0 0 14px; } li { margin-bottom: 6px; } a { color: var(--accent); } .eyebrow { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 44px 0 14px; font-weight: 600; } header.top { padding-top: 52px; } .dek { font-size: 1.05rem; color: var(--ink-2); max-width: 680px; } .verdict { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 22px 24px; margin: 30px 0 8px; } .verdict .v-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--good-text); font-weight: 700; margin-bottom: 6px; } .verdict p { margin-bottom: 10px; } .verdict p:last-child { margin-bottom: 0; } .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 26px 0; } .tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 16px 18px; } .tile .n { font-size: 1.7rem; font-weight: 650; line-height: 1.1; } .tile .n small { font-size: 0.95rem; font-weight: 500; color: var(--ink-2); } .tile .l { font-size: 0.82rem; color: var(--muted); margin-top: 4px; } .tile.bad .n { color: var(--crit); } .tile.good .n { color: var(--good-text); } figure { margin: 26px 0; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 18px 18px 12px; } figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 10px; } .fig-title { font-weight: 650; font-size: 0.98rem; margin-bottom: 2px; color: var(--ink); } .fig-sub { font-size: 0.84rem; color: var(--muted); margin-bottom: 12px; } .chart-scroll { overflow-x: auto; } #collapse-chart { display: block; width: 100%; height: auto; touch-action: pan-y; } #tip { position: fixed; pointer-events: none; display: none; z-index: 10; background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; padding: 7px 10px; font-size: 0.8rem; box-shadow: 0 4px 14px rgba(0,0,0,0.13); color: var(--ink); white-space: nowrap; } #tip .t-date { color: var(--muted); font-weight: 600; } #tip .t-row { display: flex; align-items: center; gap: 6px; margin-top: 2px; font-variant-numeric: tabular-nums; } .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 0.82rem; color: var(--ink-2); margin: 2px 0 14px; } .legend span { display: inline-flex; align-items: center; gap: 7px; } .sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; } .bars { display: grid; gap: 7px; } .bar-row { display: grid; grid-template-columns: 172px 1fr 84px; align-items: center; gap: 10px; font-size: 0.86rem; } .bar-row .dom { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .bar-track { height: 16px; position: relative; } .bar-fill { height: 100%; border-radius: 0 4px 4px 0; min-width: 2px; transition: opacity 0.12s; } .bar-row:hover .bar-fill { opacity: 0.82; } .bar-val { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); } .chip { display: inline-block; font-size: 0.7rem; font-weight: 650; letter-spacing: 0.03em; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--ring); color: var(--ink); } .chip::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; } .chip.wp::before { background: var(--wp); } .chip.wf::before { background: var(--wf); } .chip.cu::before { background: var(--cu); } .tbl-scroll { overflow-x: auto; margin: 20px 0; border: 1px solid var(--ring); border-radius: 10px; background: var(--surface); } table { border-collapse: collapse; width: 100%; font-size: 0.86rem; min-width: 720px; } th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--grid); vertical-align: top; } th { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; } td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; } tr:last-child td { border-bottom: none; } td .sub { display: block; font-size: 0.76rem; color: var(--muted); } table.narrow { min-width: 520px; } .compare th:first-child { width: 200px; } .compare td { color: var(--ink-2); } .compare td.win { color: var(--good-text); font-weight: 600; } .callout { border-left: 3px solid var(--crit); padding: 4px 0 4px 16px; margin: 22px 0; } .callout.pos { border-left-color: var(--good-text); } .callout p { margin-bottom: 6px; } .foot { margin-top: 60px; padding-top: 18px; border-top: 1px solid var(--grid); font-size: 0.8rem; color: var(--muted); } .foot a { color: var(--muted); } @media (prefers-reduced-motion: reduce) { * { transition: none !important; } } @media (max-width: 640px) { .bar-row { grid-template-columns: 120px 1fr 70px; } }
+
+  .mmwrap{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);
+          border-radius:12px;padding:16px 18px 18px;margin:18px 0;overflow-x:auto}
+  .mmkey{margin:0 0 12px;font-size:.79rem;color:var(--ink2,#54524d);line-height:1.6}
+  .mmkey .k-bad{color:var(--crit,#c4372c)}
+  .mmkey .k-good{color:var(--good,#0c7a3e)}
+  .mmkey .k-dead{color:var(--mut,#8a8781)}
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
 <style>
-  :root {
-    color-scheme: light;
-    --page: #f9f9f7;
-    --surface: #fcfcfb;
-    --ink: #0b0b0b;
-    --ink-2: #52514e;
-    --muted: #898781;
-    --grid: #e1e0d9;
-    --baseline: #c3c2b7;
-    --ring: rgba(11,11,11,0.10);
-    --wp: #2a78d6;      /* categorical slot 1 — WordPress */
-    --wf: #eb6834;      /* categorical slot 2 — Webflow */
-    --cu: #1baf7a;      /* categorical slot 3 — Custom / hybrid */
-    --good-text: #006300;
-    --crit: #d03b3b;
-    --accent: #1c5cab;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:where(:not([data-theme="light"])) {
-      color-scheme: dark;
-      --page: #0d0d0d;
-      --surface: #1a1a19;
-      --ink: #ffffff;
-      --ink-2: #c3c2b7;
-      --muted: #898781;
-      --grid: #2c2c2a;
-      --baseline: #383835;
-      --ring: rgba(255,255,255,0.10);
-      --wp: #3987e5;
-      --wf: #d95926;
-      --cu: #199e70;
-      --good-text: #0ca30c;
-      --crit: #d03b3b;
-      --accent: #86b6ef;
-    }
-  }
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-    --page: #0d0d0d;
-    --surface: #1a1a19;
-    --ink: #ffffff;
-    --ink-2: #c3c2b7;
-    --muted: #898781;
-    --grid: #2c2c2a;
-    --baseline: #383835;
-    --ring: rgba(255,255,255,0.10);
-    --wp: #3987e5;
-    --wf: #d95926;
-    --cu: #199e70;
-    --good-text: #0ca30c;
-    --crit: #d03b3b;
-    --accent: #86b6ef;
-  }
-  :root[data-theme="light"] {
-    color-scheme: light;
-    --page: #f9f9f7;
-    --surface: #fcfcfb;
-    --ink: #0b0b0b;
-    --ink-2: #52514e;
-    --muted: #898781;
-    --grid: #e1e0d9;
-    --baseline: #c3c2b7;
-    --ring: rgba(11,11,11,0.10);
-    --wp: #2a78d6;
-    --wf: #eb6834;
-    --cu: #1baf7a;
-    --good-text: #006300;
-    --crit: #d03b3b;
-    --accent: #1c5cab;
-  }
-
-  body {
-    background: var(--page);
-    color: var(--ink);
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    line-height: 1.55;
-    margin: 0;
-    padding: 0 20px 80px;
-  }
-  .wrap { max-width: 880px; margin: 0 auto; }
-  .prose { max-width: 720px; }
-
-  h1, h2, h3 { font-family: Charter, Georgia, "Times New Roman", serif; text-wrap: balance; }
-  h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); line-height: 1.12; margin: 0 0 10px; letter-spacing: -0.01em; }
-  h2 { font-size: 1.45rem; margin: 56px 0 12px; }
-  h3 { font-size: 1.12rem; margin: 28px 0 8px; }
-  p { margin: 0 0 14px; color: var(--ink-2); }
-  p strong, li strong { color: var(--ink); }
-  ul, ol { color: var(--ink-2); padding-left: 1.3em; margin: 0 0 14px; }
-  li { margin-bottom: 6px; }
-  a { color: var(--accent); }
-
-  .eyebrow {
-    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--muted); margin: 44px 0 14px; font-weight: 600;
-  }
-  header.top { padding-top: 52px; }
-  .dek { font-size: 1.05rem; color: var(--ink-2); max-width: 680px; }
-
-  .verdict {
-    background: var(--surface); border: 1px solid var(--ring); border-radius: 10px;
-    padding: 22px 24px; margin: 30px 0 8px;
-  }
-  .verdict .v-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--good-text); font-weight: 700; margin-bottom: 6px; }
-  .verdict p { margin-bottom: 10px; }
-  .verdict p:last-child { margin-bottom: 0; }
-
-  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 26px 0; }
-  .tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 16px 18px; }
-  .tile .n { font-size: 1.7rem; font-weight: 650; line-height: 1.1; }
-  .tile .n small { font-size: 0.95rem; font-weight: 500; color: var(--ink-2); }
-  .tile .l { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
-  .tile.bad .n { color: var(--crit); }
-  .tile.good .n { color: var(--good-text); }
-
-  figure { margin: 26px 0; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 18px 18px 12px; }
-  figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 10px; }
-  .fig-title { font-weight: 650; font-size: 0.98rem; margin-bottom: 2px; color: var(--ink); }
-  .fig-sub { font-size: 0.84rem; color: var(--muted); margin-bottom: 12px; }
-
-  .chart-scroll { overflow-x: auto; }
-  #collapse-chart { display: block; width: 100%; height: auto; touch-action: pan-y; }
-  #tip {
-    position: fixed; pointer-events: none; display: none; z-index: 10;
-    background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
-    padding: 7px 10px; font-size: 0.8rem; box-shadow: 0 4px 14px rgba(0,0,0,0.13);
-    color: var(--ink); white-space: nowrap;
-  }
-  #tip .t-date { color: var(--muted); font-weight: 600; }
-  #tip .t-row { display: flex; align-items: center; gap: 6px; margin-top: 2px; font-variant-numeric: tabular-nums; }
-
-  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 0.82rem; color: var(--ink-2); margin: 2px 0 14px; }
-  .legend span { display: inline-flex; align-items: center; gap: 7px; }
-  .sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
-
-  .bars { display: grid; gap: 7px; }
-  .bar-row { display: grid; grid-template-columns: 172px 1fr 84px; align-items: center; gap: 10px; font-size: 0.86rem; }
-  .bar-row .dom { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .bar-track { height: 16px; position: relative; }
-  .bar-fill { height: 100%; border-radius: 0 4px 4px 0; min-width: 2px; transition: opacity 0.12s; }
-  .bar-row:hover .bar-fill { opacity: 0.82; }
-  .bar-val { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); }
-
-  .chip { display: inline-block; font-size: 0.7rem; font-weight: 650; letter-spacing: 0.03em; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--ring); color: var(--ink); }
-  .chip::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
-  .chip.wp::before { background: var(--wp); }
-  .chip.wf::before { background: var(--wf); }
-  .chip.cu::before { background: var(--cu); }
-
-  .tbl-scroll { overflow-x: auto; margin: 20px 0; border: 1px solid var(--ring); border-radius: 10px; background: var(--surface); }
-  table { border-collapse: collapse; width: 100%; font-size: 0.86rem; min-width: 720px; }
-  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--grid); vertical-align: top; }
-  th { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
-  tr:last-child td { border-bottom: none; }
-  td .sub { display: block; font-size: 0.76rem; color: var(--muted); }
-  table.narrow { min-width: 520px; }
-
-  .compare th:first-child { width: 200px; }
-  .compare td { color: var(--ink-2); }
-  .compare td.win { color: var(--good-text); font-weight: 600; }
-
-  .callout { border-left: 3px solid var(--crit); padding: 4px 0 4px 16px; margin: 22px 0; }
-  .callout.pos { border-left-color: var(--good-text); }
-  .callout p { margin-bottom: 6px; }
-
-  .foot { margin-top: 60px; padding-top: 18px; border-top: 1px solid var(--grid); font-size: 0.8rem; color: var(--muted); }
-  .foot a { color: var(--muted); }
-
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-  @media (max-width: 640px) { .bar-row { grid-template-columns: 120px 1fr 70px; } }
+  .gl{stroke:var(--grid,#e1e0d9);stroke-width:1}
+  .ax{font:400 9.4px system-ui,sans-serif;fill:var(--muted,#8a8781)}
+  .ln{fill:none;stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+  .ln.ai{stroke:var(--accent,#1a4fd6)} .ln.tg{stroke:var(--crit,#c4372c)}
+  .dot.ai{fill:var(--accent,#1a4fd6)} .dot.tg{fill:var(--crit,#c4372c)}
+  .cal{font:700 9.8px system-ui,sans-serif}
+  .cal.ai{fill:var(--accent,#1a4fd6)} .cal.tg{fill:var(--crit,#c4372c)}
 </style>
 <style>
   *,*::before,*::after{box-sizing:border-box}
-  img{max-width:100%;height:auto}
-  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
-       padding:14px 18px;margin:16px 0;font-size:.86rem}
-  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
-  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
-  .dgm-s:first-of-type{margin-top:0}
-  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
-  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
-  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
-  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
-    /* PDF links are real annotations, so do NOT also print the raw href:
-       it doubled line length and pushed the URL tree off the right edge. */
     a{color:#1a4fd6;text-decoration:underline}
-    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
     .tree{white-space:pre-wrap!important;overflow:visible!important;
           word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
-    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll,.mmwrap{overflow:visible!important}
     table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
     th,td{word-break:break-word;padding:4px 6px!important}
     pre,code{white-space:pre-wrap!important;word-break:break-word}
-    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital,.dgwrap,.mmwrap{break-inside:avoid}
     h2,h3{break-after:avoid}
   }
 
@@ -238,7 +102,7 @@
   .lib-grid a:hover{text-decoration:underline}
   .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
   .lib-grid li.here a{color:var(--ink,#111110)}
-  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+  .lib-grid li.here a::after{content:": you are here";font-weight:400;
     font-size:.74rem;color:var(--mut,#8a8781)}
   @media print{.lib-nav,.lib-foot{display:none}}
 </style>
@@ -248,26 +112,26 @@
 <header class="top">
   <div class="eyebrow">Platform decision · Data pulled 2 Aug 2026 · Ahrefs + live site inspection</div>
   <h1>WordPress vs Webflow for your AI‑automation site: what the data actually says</h1>
-  <p class="dek">We inspected the live code, sitemaps, and Ahrefs traffic of workflows.io, TechGropse, and 14 comparable companies. Three of the four assumptions behind this decision turned out to be wrong — and the platform question turns out to be the smallest question in the room.</p>
+  <p class="dek">We inspected the live code, sitemaps, and Ahrefs traffic of workflows.io, TechGropse, and 14 comparable companies. Three of the four assumptions behind this decision turned out to be wrong, and the platform question turns out to be the smallest question in the room.</p>
 </header>
 
 <div class="verdict">
   <div class="v-label">Verdict</div>
-  <p><strong>Choose WordPress</strong> (self-hosted, Yoast or RankMath, Polylang/WPML for ES·PL·DE) — but understand that the data shows <strong>platform explains almost none of the outcome</strong>. The #1 site in the scan runs Webflow (Copy.ai, 139k visits/mo) and the #2 runs WordPress (Appinventiv, 107k visits/mo); both platforms also host sites with 1,600+ posts and under 1,000 visits. WordPress wins <em>for your specific constraints</em>: four target countries (unlimited locales at fixed plugin cost vs per-locale Webflow fees), unlimited pages for programmatic SEO (Webflow caps CMS items), the proven stack of the winners in your exact agency niche, and a small non-engineering team.</p>
-  <p><strong>The bigger finding:</strong> the strategy you planned to copy is dead. TechGropse hit 65,845 visits/mo in Nov 2023 — exactly your 50k–100k target — and Google's 2024 updates erased 99% of it. Copying their publishing model on any platform reproduces their collapse, not their peak.</p>
+  <p><strong>Choose WordPress</strong> (self-hosted, Yoast or RankMath, Polylang/WPML for ES·PL·DE), but understand that the data shows <strong>platform explains almost none of the outcome</strong>. The #1 site in the scan runs Webflow (Copy.ai, 139k visits/mo) and the #2 runs WordPress (Appinventiv, 107k visits/mo); both platforms also host sites with 1,600+ posts and under 1,000 visits. WordPress wins <em>for your specific constraints</em>: four target countries (unlimited locales at fixed plugin cost vs per-locale Webflow fees), unlimited pages for programmatic SEO (Webflow caps CMS items), the proven stack of the winners in your exact agency niche, and a small non-engineering team.</p>
+  <p><strong>The bigger finding:</strong> the strategy you planned to copy is dead. TechGropse hit 65,845 visits/mo in Nov 2023, exactly your 50k–100k target, and Google's 2024 updates erased 99% of it. Copying their publishing model on any platform reproduces their collapse, not their peak.</p>
 </div>
 
 <div class="tiles">
   <div class="tile bad"><div class="n">−99%</div><div class="l">TechGropse organic traffic, Nov 2023 → Aug 2026 (623/mo today)</div></div>
-  <div class="tile good"><div class="n">106,745</div><div class="l">Appinventiv organic visits in Aug 2026 — same niche, thriving now</div></div>
-  <div class="tile"><div class="n">2 <small>of 16</small></div><div class="l">sites at your 50k+ target — one Webflow, one WordPress</div></div>
-  <div class="tile"><div class="n">0 <small>of 16</small></div><div class="l">do real multilingual SEO — ES/PL/DE is an open lane</div></div>
+  <div class="tile good"><div class="n">106,745</div><div class="l">Appinventiv organic visits in Aug 2026: same niche, thriving now</div></div>
+  <div class="tile"><div class="n">2 <small>of 16</small></div><div class="l">sites at your 50k+ target · one Webflow, one WordPress</div></div>
+  <div class="tile"><div class="n">0 <small>of 16</small></div><div class="l">do real multilingual SEO · ES/PL/DE is an open lane</div></div>
 </div>
 
 <h2>1 · What we verified about your two reference sites</h2>
 <div class="prose">
-<p><strong>workflows.io is not built on Webflow.</strong> The homepage source shows a custom Next.js application deployed on Vercel (<code>_next/static</code> chunks, Vercel deployment IDs). More important: Ahrefs shows workflows.io had <strong>zero organic search traffic until December 2025</strong> and sits at ~163 visits/mo today, ranking for 5 keywords. Their client acquisition engine is the founder's LinkedIn brand, not their website. They are a marketing benchmark, not a technology benchmark — nothing about their stack choice tells you anything about SEO.</p>
-<p><strong>TechGropse is only half WordPress.</strong> The main site — 481 pages of services and ~60 country/city landing pages — is custom-coded (Bootstrap, no CMS). Only the blog at <code>/blog/</code> runs WordPress 6.9 with Yoast. So "TechGropse ranks because of WordPress" was never true; their SEO ran on hand-built country pages plus a WordPress content farm bolted on the side.</p>
+<p><strong>workflows.io is not built on Webflow.</strong> The homepage source shows a custom Next.js application deployed on Vercel (<code>_next/static</code> chunks, Vercel deployment IDs). More important: Ahrefs shows workflows.io had <strong>zero organic search traffic until December 2025</strong> and sits at ~163 visits/mo today, ranking for 5 keywords. Their client acquisition engine is the founder's LinkedIn brand, not their website. They are a marketing benchmark, not a technology benchmark · nothing about their stack choice tells you anything about SEO.</p>
+<p><strong>TechGropse is only half WordPress.</strong> The main site. 481 pages of services and ~60 country/city landing pages: is custom-coded (Bootstrap, no CMS). Only the blog at <code>/blog/</code> runs WordPress 6.9 with Yoast. So "TechGropse ranks because of WordPress" was never true; their SEO ran on hand-built country pages plus a WordPress content farm bolted on the side.</p>
 </div>
 
 <h2>2 · Same niche, same Google, opposite curves: Appinventiv vs TechGropse</h2>
@@ -275,7 +139,7 @@
 <p>Both are Noida-origin app-development companies selling to the same global buyers. Full monthly data, August 2023 through <strong>August 2026 (current)</strong>:</p>
 </div>
 <figure>
-  <div class="fig-title">Monthly organic traffic — Appinventiv vs TechGropse (Ahrefs)</div>
+  <div class="fig-title">Monthly organic traffic. Appinventiv vs TechGropse (Ahrefs)</div>
   <div class="fig-sub">Aug 2023 – Aug 2026 · all subdomains · note both share one axis</div>
   <div class="legend">
     <span><span class="sw" style="background:var(--wp)"></span>Appinventiv (WordPress)</span>
@@ -284,10 +148,8 @@
   <div class="chart-scroll">
     <svg id="collapse-chart" viewBox="0 0 820 320" role="img" aria-label="Two-line chart. Appinventiv grows from 76,875 visits per month in August 2023 through the March 2024 Google core update to a peak of 181,339 in April 2025, dips to 61,373 in November 2025 during the AI Overviews era, and recovers to 106,745 by August 2026. TechGropse peaks at 65,845 in November 2023, collapses after the March 2024 update, and flatlines near zero, ending at 623 in August 2026."></svg>
   </div>
-  <figcaption>The same March 2024 core update that cut TechGropse by two-thirds saw Appinventiv <em>grow</em>. Appinventiv also took a hit in mid-2025 (AI Overviews era: 181k → 61k) — but recovered to 107k by Aug 2026. TechGropse never recovered. Resilience, not immunity, is what quality buys.</figcaption>
+  <figcaption>The same March 2024 core update that cut TechGropse by two-thirds saw Appinventiv <em>grow</em>. Appinventiv also took a hit in mid-2025 (AI Overviews era: 181k → 61k), but recovered to 107k by Aug 2026. TechGropse never recovered. Resilience, not immunity, is what quality buys.</figcaption>
 </figure>
-<div id="tip"></div>
-
 <h3>Why Appinventiv ranks and TechGropse doesn't</h3>
 <div class="prose">
 <p><strong>Where the traffic lands is the whole story.</strong> Appinventiv's top pages are commercial service pages that close deals; TechGropse's are junk blog posts that can't. Appinventiv's top US keywords, today:</p>
@@ -310,11 +172,11 @@
 <div class="prose">
 <p>Compare the two sites' top-traffic pages side by side:</p>
 <ul>
-  <li><strong>Appinventiv:</strong> /mobile-app-development-services/ (9,023 visits), /web-application-development/ (8,527), /ai-development-services/ (4,971), /ae/mobile-app-development-company-dubai/ (1,606), /guide/mobile-app-development-cost/ (1,487 visits across <strong>185 keywords</strong> — one evergreen cost guide).</li>
+  <li><strong>Appinventiv:</strong> /mobile-app-development-services/ (9,023 visits), /web-application-development/ (8,527), /ai-development-services/ (4,971), /ae/mobile-app-development-company-dubai/ (1,606), /guide/mobile-app-development-cost/ (1,487 visits across <strong>185 keywords</strong>. One evergreen cost guide).</li>
   <li><strong>TechGropse:</strong> blog posts about GB WhatsApp (101), "fun websites to cure boredom" (36), Emirates-ID tracking (16), buffstreams (12). Zero buyer intent anywhere in the top 10.</li>
 </ul>
-<p><strong>Appinventiv is a refresh machine, not a publish machine.</strong> Their post sitemap shows <strong>551 of their 2,204 posts were updated in July 2026 alone</strong> — they systematically re-work old content instead of pumping out new posts and abandoning them. TechGropse published 161 <em>new</em> posts in January 2026 and its traffic still fell.</p>
-<p><strong>The structural gaps:</strong> Appinventiv is one WordPress + Yoast install (DR 77) with a real architecture — service pages, a <code>/guide/</code> hub, geo pages for buying markets (Dubai, Australia), 8 named authors, press releases. TechGropse (DR 50) is a custom site whose money pages don't rank plus a blog aimed at traffic that never buys. Same country, same niche, same algorithm — quality of target and maintenance discipline is the entire difference.</p>
+<p><strong>Appinventiv is a refresh machine, not a publish machine.</strong> Their post sitemap shows <strong>551 of their 2,204 posts were updated in July 2026 alone</strong>. They systematically re-work old content instead of pumping out new posts and abandoning them. TechGropse published 161 <em>new</em> posts in January 2026 and its traffic still fell.</p>
+<p><strong>The structural gaps:</strong> Appinventiv is one WordPress + Yoast install (DR 77) with a real architecture, service pages, a <code>/guide/</code> hub, geo pages for buying markets (Dubai, Australia), 8 named authors, press releases. TechGropse (DR 50) is a custom site whose money pages don't rank plus a blog aimed at traffic that never buys. Same country, same niche, same algorithm · quality of target and maintenance discipline is the entire difference.</p>
 </div>
 
 <h2>3 · The cohort: 16 sites, three platforms, one pattern</h2>
@@ -329,7 +191,19 @@
     <span><span class="sw" style="background:var(--wf)"></span>Webflow</span>
     <span><span class="sw" style="background:var(--cu)"></span>Custom / hybrid</span>
   </div>
-  <div class="bars" id="bars"></div>
+  <div class="mmwrap">
+<p class="mmkey">Monthly organic visits, Aug 2023 to Aug 2026. Ahrefs.
+<b style="color:var(--acc,#1a4fd6)">Appinventiv</b> on one WordPress domain against
+<b style="color:var(--crit,#c4372c)">TechGropse</b>, who split their authority and collapsed.</p>
+<svg class="dg" viewBox="0 0 1060 330" width="100%" style="max-width:1060px;height:auto"
+     role="img" xmlns="http://www.w3.org/2000/svg">
+
+<line class="gl" x1="62" y1="286.0" x2="928" y2="286.0"/><line class="gl" x1="62" y1="221.0" x2="928" y2="221.0"/><line class="gl" x1="62" y1="156.0" x2="928" y2="156.0"/><line class="gl" x1="62" y1="91.0" x2="928" y2="91.0"/><line class="gl" x1="62" y1="26.0" x2="928" y2="26.0"/><text class="ax" x="53" y="289.4" text-anchor="end">0k</text><text class="ax" x="53" y="224.4" text-anchor="end">45k</text><text class="ax" x="53" y="159.4" text-anchor="end">90k</text><text class="ax" x="53" y="94.4" text-anchor="end">136k</text><text class="ax" x="53" y="29.4" text-anchor="end">181k</text><text class="ax" x="62.0" y="304.0" text-anchor="middle">2023-08</text><text class="ax" x="206.3" y="304.0" text-anchor="middle">2024-02</text><text class="ax" x="350.7" y="304.0" text-anchor="middle">2024-08</text><text class="ax" x="495.0" y="304.0" text-anchor="middle">2025-02</text><text class="ax" x="639.3" y="304.0" text-anchor="middle">2025-08</text><text class="ax" x="783.7" y="304.0" text-anchor="middle">2026-02</text><text class="ax" x="928.0" y="304.0" text-anchor="middle">2026-08</text>
+<path class="ln ai" d="M62.0,175.8 L86.1,184.0 L110.1,177.7 L134.2,171.9 L158.2,165.1 L182.3,157.8 L206.3,143.4 L230.4,144.1 L254.4,144.0 L278.5,148.2 L302.6,151.3 L326.6,149.6 L350.7,139.4 L374.7,139.2 L398.8,115.5 L422.8,94.8 L446.9,96.1 L470.9,83.2 L495.0,67.6 L519.1,29.1 L543.1,26.0 L567.2,44.1 L591.2,110.0 L615.3,142.8 L639.3,182.3 L663.4,153.2 L687.4,184.6 L711.5,198.0 L735.6,188.8 L759.6,178.4 L783.7,176.5 L807.7,182.0 L831.8,185.9 L855.8,193.7 L879.9,159.9 L903.9,137.1 L928.0,133.0"/>
+<path class="ln tg" d="M62.0,284.4 L86.1,261.6 L110.1,196.3 L134.2,191.6 L158.2,221.8 L182.3,240.9 L206.3,248.1 L230.4,255.5 L254.4,250.4 L278.5,267.3 L302.6,276.3 L326.6,266.7 L350.7,272.1 L374.7,281.6 L398.8,283.8 L422.8,283.9 L446.9,283.8 L470.9,284.0 L495.0,284.1 L519.1,283.8 L543.1,283.3 L567.2,282.9 L591.2,283.3 L615.3,280.7 L639.3,279.6 L663.4,279.5 L687.4,281.6 L711.5,276.2 L735.6,279.1 L759.6,284.3 L783.7,284.8 L807.7,284.6 L831.8,284.7 L855.8,284.6 L879.9,285.2 L903.9,284.2 L928.0,285.1"/>
+<circle class="dot tg" cx="134.2" cy="191.6" r="4"/><text class="cal tg" x="142.2" y="183.6">peak 65,845 · 2023-11</text><circle class="dot tg" cx="928.0" cy="285.1" r="4"/><text class="cal tg" x="937.0" y="289.1">TechGropse 623/mo</text><circle class="dot ai" cx="928.0" cy="133.0" r="4"/><text class="cal ai" x="937.0" y="137.0">Appinventiv 106,745/mo</text>
+</svg>
+</div>
   <figcaption>Winners and losers exist on every platform. The gulf between #1 and #16 is ~900×, and none of it is explained by CMS choice.</figcaption>
 </figure>
 
@@ -339,38 +213,38 @@
     <th>Site</th><th>Platform</th><th class="num">DR</th><th class="num">Organic/mo</th><th class="num">Pages</th><th class="num">Posts</th><th>What the data shows</th>
   </tr></thead>
   <tbody>
-    <tr><td>copy.ai</td><td><span class="chip wf">Webflow</span></td><td class="num">86</td><td class="num">139,428</td><td class="num">3,254</td><td class="num">1,655</td><td>Programmatic machine: 354 GTM-tool pages, 337 glossary, 192 ABM pages — all one Webflow project</td></tr>
-    <tr><td>lindy.ai</td><td><span class="chip wf">Webflow</span></td><td class="num">77</td><td class="num">122,033</td><td class="num">2,404</td><td class="num">547</td><td>1,559 programmatic <code>/integrations/</code> pages carry the site — closest model to an AI-automation service</td></tr>
+    <tr><td>copy.ai</td><td><span class="chip wf">Webflow</span></td><td class="num">86</td><td class="num">139,428</td><td class="num">3,254</td><td class="num">1,655</td><td>Programmatic machine: 354 GTM-tool pages, 337 glossary, 192 ABM pages · all one Webflow project</td></tr>
+    <tr><td>lindy.ai</td><td><span class="chip wf">Webflow</span></td><td class="num">77</td><td class="num">122,033</td><td class="num">2,404</td><td class="num">547</td><td>1,559 programmatic <code>/integrations/</code> pages carry the site · closest model to an AI-automation service</td></tr>
     <tr><td>appinventiv.com</td><td><span class="chip wp">WordPress</span></td><td class="num">77</td><td class="num">106,773</td><td class="num">2,650</td><td class="num">2,204</td><td>The winner in TechGropse's exact niche: one WP + Yoast install, 62% US traffic, ~$423k/mo traffic value</td></tr>
-    <tr><td>leewayhertz.com</td><td><span class="chip wp">WordPress</span></td><td class="num">71</td><td class="num">28,220</td><td class="num">694</td><td class="num">439</td><td>Quality over volume: only 439 posts, 47% of keywords rank top-3 — highest efficiency in the scan</td></tr>
-    <tr><td>bacancytechnology.com</td><td><span class="chip cu">Custom + WP</span></td><td class="num">64</td><td class="num">21,813</td><td class="num">3,698</td><td class="num">1,454</td><td>797 programmatic Q&amp;A pages; the only site with any locale folders (/de/: 6 URLs — trivial)</td></tr>
-    <tr><td>hyperlinkinfosystem.com</td><td><span class="chip cu">Custom (CodeIgniter)</span></td><td class="num">66</td><td class="num">10,849</td><td class="num">5,361</td><td class="num">1,791</td><td>Biggest sitemap in the scan, mediocre capture — most traffic is India, not buyer geos</td></tr>
-    <tr><td>bardeen.ai</td><td><span class="chip wf">Webflow</span></td><td class="num">72</td><td class="num">10,683</td><td class="num">3,128</td><td class="num">126</td><td>1,295 answer pages + 951 playbooks, only 126 blog posts — architecture over articles</td></tr>
+    <tr><td>leewayhertz.com</td><td><span class="chip wp">WordPress</span></td><td class="num">71</td><td class="num">28,220</td><td class="num">694</td><td class="num">439</td><td>Quality over volume: only 439 posts, 47% of keywords rank top-3 · highest efficiency in the scan</td></tr>
+    <tr><td>bacancytechnology.com</td><td><span class="chip cu">Custom + WP</span></td><td class="num">64</td><td class="num">21,813</td><td class="num">3,698</td><td class="num">1,454</td><td>797 programmatic Q&amp;A pages; the only site with any locale folders (/de/: 6 URLs · trivial)</td></tr>
+    <tr><td>hyperlinkinfosystem.com</td><td><span class="chip cu">Custom (CodeIgniter)</span></td><td class="num">66</td><td class="num">10,849</td><td class="num">5,361</td><td class="num">1,791</td><td>Biggest sitemap in the scan, mediocre capture · most traffic is India, not buyer geos</td></tr>
+    <tr><td>bardeen.ai</td><td><span class="chip wf">Webflow</span></td><td class="num">72</td><td class="num">10,683</td><td class="num">3,128</td><td class="num">126</td><td>1,295 answer pages + 951 playbooks, only 126 blog posts · architecture over articles</td></tr>
     <tr><td>mindinventory.com</td><td><span class="chip cu">Custom + WP blog</span></td><td class="num">64</td><td class="num">6,334</td><td class="num">1,243</td><td class="num">795</td><td>Same hybrid pattern as TechGropse; US keywords carry 85% of the traffic value</td></tr>
     <tr><td>spaceotechnologies.com</td><td><span class="chip wp">WordPress</span></td><td class="num">64</td><td class="num">4,744</td><td class="num">753</td><td class="num">401</td><td>61 programmatic "hire developers" pages + 15 cost calculators</td></tr>
-    <tr><td>code-brew.com</td><td><span class="chip wp">WordPress</span></td><td class="num">54</td><td class="num">3,011</td><td class="num">1,412</td><td class="num">967</td><td>Dubai/MENA geo pages (Riyadh, Jeddah, Dubai, Qatar) — your Dubai comparison case</td></tr>
-    <tr><td>markovate.com</td><td><span class="chip wp">WordPress</span></td><td class="num">54</td><td class="num">995</td><td class="num">928</td><td class="num">356</td><td>AI-dev positioning, thin results — content exists but no authority</td></tr>
+    <tr><td>code-brew.com</td><td><span class="chip wp">WordPress</span></td><td class="num">54</td><td class="num">3,011</td><td class="num">1,412</td><td class="num">967</td><td>Dubai/MENA geo pages (Riyadh, Jeddah, Dubai, Qatar) · your Dubai comparison case</td></tr>
+    <tr><td>markovate.com</td><td><span class="chip wp">WordPress</span></td><td class="num">54</td><td class="num">995</td><td class="num">928</td><td class="num">356</td><td>AI-dev positioning, thin results · content exists but no authority</td></tr>
     <tr><td>techugo.com</td><td><span class="chip cu">Next.js + WP blog</span></td><td class="num">41</td><td class="num">941</td><td class="num">556</td><td class="num">338</td><td>Same hybrid as TechGropse, same weak outcome</td></tr>
     <tr><td>solulab.com</td><td><span class="chip wp">WordPress</span></td><td class="num">58</td><td class="num">891</td><td class="num">1,624</td><td class="num">1,624</td><td><strong>WordPress + 1,624 posts → 891 visits.</strong> Proof that platform + volume ≠ traffic; collapsed like TechGropse</td></tr>
-    <tr><td>techgropse.com</td><td><span class="chip cu">Custom + WP blog</span></td><td class="num">50</td><td class="num">618</td><td class="num">1,397</td><td class="num">916</td><td>Top pages rank for "GB WhatsApp", "buffstreams", "fun websites" — traffic that never buys</td></tr>
-    <tr><td>workflows.io</td><td><span class="chip cu">Next.js (Vercel)</span></td><td class="num">—</td><td class="num">163</td><td class="num">217</td><td class="num">25</td><td>Zero organic until Dec 2025; growth engine is LinkedIn, not search</td></tr>
-    <tr><td>morningside.ai</td><td><span class="chip wf">Webflow</span></td><td class="num">38</td><td class="num">156</td><td class="num">10</td><td class="num">0</td><td>AI-automation agency on Webflow, 10-page brochure, no content engine — platform bought them nothing</td></tr>
+    <tr><td>techgropse.com</td><td><span class="chip cu">Custom + WP blog</span></td><td class="num">50</td><td class="num">618</td><td class="num">1,397</td><td class="num">916</td><td>Top pages rank for "GB WhatsApp", "buffstreams", "fun websites" · traffic that never buys</td></tr>
+    <tr><td>workflows.io</td><td><span class="chip cu">Next.js (Vercel)</span></td><td class="num">·</td><td class="num">163</td><td class="num">217</td><td class="num">25</td><td>Zero organic until Dec 2025; growth engine is LinkedIn, not search</td></tr>
+    <tr><td>morningside.ai</td><td><span class="chip wf">Webflow</span></td><td class="num">38</td><td class="num">156</td><td class="num">10</td><td class="num">0</td><td>AI-automation agency on Webflow, 10-page brochure, no content engine · platform bought them nothing</td></tr>
   </tbody>
 </table>
 </div>
 
 <div class="callout">
-  <p><strong>The pattern that actually predicts traffic</strong> — every site above 20k visits/mo has all three; every site below 1k is missing at least two:</p>
+  <p><strong>The pattern that actually predicts traffic</strong>. Every site above 20k visits/mo has all three; every site below 1k is missing at least two:</p>
   <ul>
     <li><strong>Programmatic page architecture</strong>, not blog volume: integration pages (Lindy: 1,559), glossary/tool pages (Copy.ai), answer/playbook pages (Bardeen), Q&amp;A pages (Bacancy), hire/cost pages (Space-O).</li>
-    <li><strong>Domain Rating 64+</strong> — real backlinks. Every winner is DR 71–86; every loser is DR 38–58.</li>
-    <li><strong>Buyer-intent topics</strong> — the losers rank for junk (GB WhatsApp, buffstreams); the winners rank for "AI agent for X", "how much does Y cost".</li>
+    <li><strong>Domain Rating 64+</strong>, real backlinks. Every winner is DR 71–86; every loser is DR 38–58.</li>
+    <li><strong>Buyer-intent topics</strong>: the losers rank for junk (GB WhatsApp, buffstreams); the winners rank for "AI agent for X", "how much does Y cost".</li>
   </ul>
 </div>
 
 <h2>4 · The multi-country dimension (US · ES · PL · DE)</h2>
 <div class="prose">
-<p>This is where your requirements actually separate the platforms — and where the market is empty: <strong>not one of the 16 sites does real hreflang localization.</strong> The only locale folders found anywhere were 7 URLs on Bacancy. Everyone competes in English and lets Google sort out the geography. Spanish, Polish and German content for AI-automation services is an open lane — a genuine 2–3-month opportunity, because you'd be competing against translated nothing.</p>
+<p>This is where your requirements actually separate the platforms, and where the market is empty: <strong>not one of the 16 sites does real hreflang localization.</strong> The only locale folders found anywhere were 7 URLs on Bacancy. Everyone competes in English and lets Google sort out the geography. Spanish, Polish and German content for AI-automation services is an open lane: a genuine 2–3-month opportunity, because you'd be competing against translated nothing.</p>
 </div>
 <div class="tbl-scroll">
 <table class="compare">
@@ -379,181 +253,36 @@
     <tr><td>4 locales (EN + ES/PL/DE)</td><td class="win">Polylang free / WPML ~€99/yr, unlimited locales, full URL control</td><td>Localization add-on: $9/locale/mo (annual) for up to 3 secondary locales = ~$324/yr, auto-hreflang; 10k machine-translated words/locale/mo on Essential</td></tr>
     <tr><td>Programmatic pages at scale (the winning pattern)</td><td class="win">Unlimited posts/pages; custom post types + a sheet-to-page plugin, no dev needed</td><td>CMS item caps by plan (2,000–10,000 items); Copy.ai/Lindy prove it works, but they run top-tier plans with dev support</td></tr>
     <tr><td>50k–100k visitors/mo, managed cheaply</td><td class="win">Hosting you control (~$30–60/mo at that scale on managed WP)</td><td>Bandwidth-priced plans; costs step up with traffic and locales</td></tr>
-    <tr><td>No "very smart engineers" on staff</td><td>Easy to run, but you own updates/security — a maintenance plan or managed host (Kinsta/WP Engine) removes this</td><td class="win">Zero maintenance, hosting/CDN/security handled — genuinely simpler ops</td></tr>
+    <tr><td>No "very smart engineers" on staff</td><td>Easy to run, but you own updates/security · a maintenance plan or managed host (Kinsta/WP Engine) removes this</td><td class="win">Zero maintenance, hosting/CDN/security handled · genuinely simpler ops</td></tr>
     <tr><td>Content team publishing weekly</td><td class="win">The standard workflow every writer/editor already knows; Yoast/RankMath guardrails built in</td><td>Editor is fine but slower for content ops; fewer writers know it</td></tr>
     <tr><td>Technical SEO ceiling</td><td class="win">Full control: robots, schema per template, faceted-nav rules, any plugin</td><td>Good defaults, clean code; edge cases need custom code or Cloudflare Workers</td></tr>
   </tbody>
 </table>
 </div>
 <div class="prose">
-<p>Score it honestly: WordPress wins 5 of 6 rows for <em>your</em> constraints, and the row Webflow wins (zero maintenance) is purchasable on WordPress for ~$30/mo of managed hosting. If you expected to stay under ~50 pages and never localize, Webflow would be the better answer — that's not your plan.</p>
+<p>Score it honestly: WordPress wins 5 of 6 rows for <em>your</em> constraints, and the row Webflow wins (zero maintenance) is purchasable on WordPress for ~$30/mo of managed hosting. If you expected to stay under ~50 pages and never localize, Webflow would be the better answer. That's not your plan.</p>
 </div>
 
 <h2>5 · What to actually build (the part that determines the outcome)</h2>
 <div class="prose">
-<p><strong>Recommended stack:</strong> WordPress on managed hosting (Kinsta / WP Engine / Cloudways), lightweight theme (GeneratePress/Blocksy — not Elementor page-soup like SoluLab), RankMath or Yoast, WPML or Polylang with proper hreflang, WP Rocket. Total ~$40–70/mo. Everything in this stack is operable by a non-engineer.</p>
+<p><strong>Recommended stack:</strong> WordPress on managed hosting (Kinsta / WP Engine / Cloudways), lightweight theme (GeneratePress/Blocksy, not Elementor page-soup like SoluLab), RankMath or Yoast, WPML or Polylang with proper hreflang, WP Rocket. Total ~$40–70/mo. Everything in this stack is operable by a non-engineer.</p>
 <p><strong>Copy the winners' architecture, not TechGropse's blog farm:</strong></p>
 <ol>
-  <li><strong>Programmatic service × use-case × industry pages</strong> — "AI automation for [insurance claims / invoice processing / lead routing]", "n8n / Make / Zapier automation agency", integration-pair pages like Lindy's. These are your Copy.ai/Lindy equivalent, and they are buyer-intent by construction.</li>
-  <li><strong>Geo pages for buying markets</strong> — a handful of deep country pages (US, DE, ES, PL, UAE) like Appinventiv/Code Brew, localized properly, not 60 thin city clones.</li>
-  <li><strong>5–8 genuinely deep posts/month</strong> — LeewayHertz publishes least in the winner group and converts best. Cost guides, "how we built X" teardowns, comparison pages. Never chase volume keywords outside your buyer's world.</li>
-  <li><strong>Refresh, don't just publish</strong> — Appinventiv updates ~550 old posts a month; that maintenance discipline is what recovery from algorithm updates looks like.</li>
-  <li><strong>Backlinks from day one</strong> — DR 64 is the observed entry ticket. Founder content, tool directories, integration-partner listings, guest data studies. Without this, no platform ranks you.</li>
-  <li><strong>ES/PL/DE localization of your best 20 pages</strong> in month 2–3 — the uncontested lane nobody in the cohort occupies.</li>
+  <li><strong>Programmatic service × use-case × industry pages</strong>: "AI automation for [insurance claims / invoice processing / lead routing]", "n8n / Make / Zapier automation agency", integration-pair pages like Lindy's. These are your Copy.ai/Lindy equivalent, and they are buyer-intent by construction.</li>
+  <li><strong>Geo pages for buying markets</strong>: a handful of deep country pages (US, DE, ES, PL, UAE) like Appinventiv/Code Brew, localized properly, not 60 thin city clones.</li>
+  <li><strong>5–8 genuinely deep posts/month</strong>. LeewayHertz publishes least in the winner group and converts best. Cost guides, "how we built X" teardowns, comparison pages. Never chase volume keywords outside your buyer's world.</li>
+  <li><strong>Refresh, don't just publish</strong>. Appinventiv updates ~550 old posts a month; that maintenance discipline is what recovery from algorithm updates looks like.</li>
+  <li><strong>Backlinks from day one</strong>. DR 64 is the observed entry ticket. Founder content, tool directories, integration-partner listings, guest data studies. Without this, no platform ranks you.</li>
+  <li><strong>ES/PL/DE localization of your best 20 pages</strong> in month 2–3. The uncontested lane nobody in the cohort occupies.</li>
 </ol>
 </div>
 <div class="callout pos">
-  <p><strong>Reality check on "inbound in 2–3 months":</strong> on a fresh domain, months 2–3 can deliver long-tail bottom-funnel rankings (cost/comparison/integration queries) and localized-market rankings — not head terms. TechGropse needed ~14 months to reach 17k/mo even in 2023's much easier algorithm. Plan for LinkedIn + outbound to carry pipeline while SEO compounds; that is exactly the workflows.io lesson.</p>
+  <p><strong>Reality check on "inbound in 2–3 months":</strong> on a fresh domain, months 2–3 can deliver long-tail bottom-funnel rankings (cost/comparison/integration queries) and localized-market rankings, not head terms. TechGropse needed ~14 months to reach 17k/mo even in 2023's much easier algorithm. Plan for LinkedIn + outbound to carry pipeline while SEO compounds; that is exactly the workflows.io lesson.</p>
 </div>
 
 <div class="foot">
-  <p>Method: live HTML/source inspection (curl) for CMS detection; XML sitemaps for page counts; Ahrefs API v3 (metrics, metrics-by-country, metrics-history, top-pages, organic-keywords) for traffic, pulled 2 Aug 2026. Traffic figures are Ahrefs monthly estimates — directionally reliable, not absolute. Localization pricing: <a href="https://clearbrand.com/webflow-localization/">ClearBrand — Webflow Localization guide</a> · <a href="https://www.tunel.studio/webflow-wiki/pricing/webflow-localization-pricing-and-plans">Tunel Studio — Localization pricing</a> · <a href="https://www.loopexdigital.com/blog/webflow-vs-wordpress-for-seo">Loopex — WordPress vs Webflow for SEO</a> · <a href="https://thestacc.com/blog/wordpress-vs-webflow-seo/">theStacc — honest comparison</a>.</p>
+  <p>Method: live HTML/source inspection (curl) for CMS detection; XML sitemaps for page counts; Ahrefs API v3 (metrics, metrics-by-country, metrics-history, top-pages, organic-keywords) for traffic, pulled 2 Aug 2026. Traffic figures are Ahrefs monthly estimates: directionally reliable, not absolute. Localization pricing: <a href="https://clearbrand.com/webflow-localization/">ClearBrand. Webflow Localization guide</a> · <a href="https://www.tunel.studio/webflow-wiki/pricing/webflow-localization-pricing-and-plans">Tunel Studio. Localization pricing</a> · <a href="https://www.loopexdigital.com/blog/webflow-vs-wordpress-for-seo">Loopex. WordPress vs Webflow for SEO</a> · <a href="https://thestacc.com/blog/wordpress-vs-webflow-seo/">theStacc, honest comparison</a>.</p>
 </div>
 </div>
-
-<script>
-(function () {
-  var LABELS = ["2023-08","2023-09","2023-10","2023-11","2023-12","2024-01","2024-02","2024-03","2024-04","2024-05","2024-06","2024-07","2024-08","2024-09","2024-10","2024-11","2024-12","2025-01","2025-02","2025-03","2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05","2026-06","2026-07","2026-08"];
-  var AI = [76875,71136,75549,79595,84297,89427,99423,98957,99028,96091,93940,95147,102261,102369,118946,133365,132436,141423,152357,179200,181339,168692,122737,99881,72333,92650,70741,61373,67802,75025,76393,72560,69836,64357,87956,103829,106745];
-  var TG = [1083,17047,62560,65845,44767,31421,26422,21251,24832,13051,6794,13474,9678,3084,1538,1472,1542,1389,1313,1509,1911,2190,1897,3700,4473,4539,3084,6818,4831,1154,851,1006,916,969,587,1243,623];
-
-  var svg = document.getElementById("collapse-chart");
-  var NS = "http://www.w3.org/2000/svg";
-  var W = 820, H = 320, PL = 60, PR = 16, PT = 26, PB = 34;
-  var iw = W - PL - PR, ih = H - PT - PB;
-  var maxV = 200000;
-  var css = getComputedStyle(document.documentElement);
-  function tok(n) { return css.getPropertyValue(n).trim(); }
-  function el(name, attrs) {
-    var e = document.createElementNS(NS, name);
-    for (var k in attrs) e.setAttribute(k, attrs[k]);
-    return e;
-  }
-  function x(i) { return PL + (i / (LABELS.length - 1)) * iw; }
-  function y(v) { return PT + ih - (v / maxV) * ih; }
-
-  function draw() {
-    css = getComputedStyle(document.documentElement);
-    while (svg.firstChild) svg.removeChild(svg.firstChild);
-    var grid = tok("--grid"), baseline = tok("--baseline"), muted = tok("--muted"),
-        cAI = tok("--wp"), cTG = tok("--cu"), ink = tok("--ink"), surface = tok("--surface");
-    [0, 50000, 100000, 150000, 200000].forEach(function (v) {
-      svg.appendChild(el("line", { x1: PL, x2: W - PR, y1: y(v), y2: y(v), stroke: v === 0 ? baseline : grid, "stroke-width": 1 }));
-      var t = el("text", { x: PL - 8, y: y(v) + 4, "text-anchor": "end", "font-size": 11, fill: muted, "font-family": "system-ui, sans-serif" });
-      t.textContent = v === 0 ? "0" : (v / 1000) + "k";
-      svg.appendChild(t);
-    });
-    LABELS.forEach(function (d, i) {
-      if (d.slice(5) === "01" || i === 0) {
-        var t = el("text", { x: x(i), y: H - 12, "text-anchor": "middle", "font-size": 11, fill: muted, "font-family": "system-ui, sans-serif" });
-        t.textContent = d.slice(0, 4);
-        svg.appendChild(t);
-      }
-    });
-    // Mar 2024 core update marker (index 7)
-    var updI = 7;
-    svg.appendChild(el("line", { x1: x(updI), x2: x(updI), y1: PT, y2: PT + ih, stroke: muted, "stroke-width": 1, "stroke-dasharray": "3 3" }));
-    var ut = el("text", { x: x(updI) + 6, y: PT + 12, "font-size": 11, fill: muted, "font-family": "system-ui, sans-serif" });
-    ut.textContent = "Mar 2024 core update";
-    svg.appendChild(ut);
-    // series
-    [[TG, cTG], [AI, cAI]].forEach(function (s) {
-      var pts = s[0].map(function (v, i) { return x(i) + "," + y(v); });
-      svg.appendChild(el("path", { d: "M" + pts.join(" L"), fill: "none", stroke: s[1], "stroke-width": 2, "stroke-linejoin": "round" }));
-    });
-    // direct labels
-    var last = LABELS.length - 1;
-    [[AI, cAI, "Appinventiv 106,745", -6, -10], [TG, cTG, "TechGropse 623", -6, -8]].forEach(function (a) {
-      svg.appendChild(el("circle", { cx: x(last), cy: y(a[0][last]), r: 4, fill: a[1], stroke: surface, "stroke-width": 2 }));
-      var t = el("text", { x: x(last) + a[3], y: y(a[0][last]) + a[4], "font-size": 11.5, "font-weight": 650, fill: ink, "text-anchor": "end", "font-family": "system-ui, sans-serif" });
-      t.textContent = a[2];
-      svg.appendChild(t);
-    });
-    // peaks
-    var aiPeak = 20, tgPeak = 3;
-    svg.appendChild(el("circle", { cx: x(aiPeak), cy: y(AI[aiPeak]), r: 4, fill: cAI, stroke: surface, "stroke-width": 2 }));
-    var pt1 = el("text", { x: x(aiPeak), y: y(AI[aiPeak]) - 10, "font-size": 11.5, "font-weight": 650, fill: ink, "text-anchor": "middle", "font-family": "system-ui, sans-serif" });
-    pt1.textContent = "Peak 181,339";
-    svg.appendChild(pt1);
-    svg.appendChild(el("circle", { cx: x(tgPeak), cy: y(TG[tgPeak]), r: 4, fill: cTG, stroke: surface, "stroke-width": 2 }));
-    var pt2 = el("text", { x: x(tgPeak) + 8, y: y(TG[tgPeak]) - 8, "font-size": 11.5, "font-weight": 650, fill: ink, "font-family": "system-ui, sans-serif" });
-    pt2.textContent = "Peak 65,845";
-    svg.appendChild(pt2);
-    // crosshair
-    var cross = el("line", { y1: PT, y2: PT + ih, stroke: baseline, "stroke-width": 1, visibility: "hidden" });
-    var d1 = el("circle", { r: 4.5, fill: cAI, stroke: surface, "stroke-width": 2, visibility: "hidden" });
-    var d2 = el("circle", { r: 4.5, fill: cTG, stroke: surface, "stroke-width": 2, visibility: "hidden" });
-    svg.appendChild(cross); svg.appendChild(d1); svg.appendChild(d2);
-    svg._cross = cross; svg._d1 = d1; svg._d2 = d2; svg._cAI = cAI; svg._cTG = cTG;
-  }
-
-  var tip = document.getElementById("tip");
-  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  svg.addEventListener("pointermove", function (ev) {
-    var r = svg.getBoundingClientRect();
-    var px = (ev.clientX - r.left) * (W / r.width);
-    var i = Math.round(((px - PL) / iw) * (LABELS.length - 1));
-    if (i < 0 || i > LABELS.length - 1 || px < PL - 10 || px > W - PR + 10) return hide();
-    var cx = x(i);
-    svg._cross.setAttribute("x1", cx); svg._cross.setAttribute("x2", cx);
-    svg._cross.setAttribute("visibility", "visible");
-    svg._d1.setAttribute("cx", cx); svg._d1.setAttribute("cy", y(AI[i])); svg._d1.setAttribute("visibility", "visible");
-    svg._d2.setAttribute("cx", cx); svg._d2.setAttribute("cy", y(TG[i])); svg._d2.setAttribute("visibility", "visible");
-    tip.style.display = "block";
-    tip.innerHTML = '<span class="t-date">' + MONTHS[+LABELS[i].slice(5) - 1] + " " + LABELS[i].slice(0, 4) + "</span>" +
-      '<div class="t-row"><span class="sw" style="background:' + svg._cAI + '"></span>Appinventiv&nbsp;<strong>' + AI[i].toLocaleString() + "</strong></div>" +
-      '<div class="t-row"><span class="sw" style="background:' + svg._cTG + '"></span>TechGropse&nbsp;<strong>' + TG[i].toLocaleString() + "</strong></div>";
-    var tx = ev.clientX + 14, ty = ev.clientY - 12;
-    if (tx + tip.offsetWidth > window.innerWidth - 8) tx = ev.clientX - tip.offsetWidth - 14;
-    tip.style.left = tx + "px"; tip.style.top = ty + "px";
-  });
-  function hide() {
-    tip.style.display = "none";
-    svg._cross.setAttribute("visibility", "hidden");
-    svg._d1.setAttribute("visibility", "hidden");
-    svg._d2.setAttribute("visibility", "hidden");
-  }
-  svg.addEventListener("pointerleave", hide);
-
-  // ---- cohort bars ----
-  var COHORT = [
-    ["copy.ai", 139428, "wf", "Webflow"],
-    ["lindy.ai", 122033, "wf", "Webflow"],
-    ["appinventiv.com", 106773, "wp", "WordPress"],
-    ["leewayhertz.com", 28220, "wp", "WordPress"],
-    ["bacancytechnology.com", 21813, "cu", "Custom + WP"],
-    ["hyperlinkinfosystem.com", 10849, "cu", "Custom"],
-    ["bardeen.ai", 10683, "wf", "Webflow"],
-    ["mindinventory.com", 6334, "cu", "Custom + WP"],
-    ["spaceotechnologies.com", 4744, "wp", "WordPress"],
-    ["code-brew.com", 3011, "wp", "WordPress"],
-    ["markovate.com", 995, "wp", "WordPress"],
-    ["techugo.com", 941, "cu", "Next.js + WP"],
-    ["solulab.com", 891, "wp", "WordPress"],
-    ["techgropse.com", 618, "cu", "Custom + WP"],
-    ["workflows.io", 163, "cu", "Next.js"],
-    ["morningside.ai", 156, "wf", "Webflow"]
-  ];
-  var COLOR = { wp: "--wp", wf: "--wf", cu: "--cu" };
-  var bars = document.getElementById("bars");
-  var maxT = COHORT[0][1];
-  COHORT.forEach(function (c) {
-    var row = document.createElement("div");
-    row.className = "bar-row";
-    row.title = c[0] + " — " + c[3] + " — " + c[1].toLocaleString() + " organic visits/mo";
-    var pct = Math.max((c[1] / maxT) * 100, 0.35);
-    row.innerHTML =
-      '<span class="dom">' + c[0] + "</span>" +
-      '<span class="bar-track"><span class="bar-fill" style="width:' + pct.toFixed(2) + "%;background:var(" + COLOR[c[2]] + ')"></span></span>' +
-      '<span class="bar-val">' + c[1].toLocaleString() + "</span>";
-    bars.appendChild(row);
-  });
-
-  draw();
-  var mq = window.matchMedia("(prefers-color-scheme: dark)");
-  mq.addEventListener && mq.addEventListener("change", draw);
-  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-})();
-</script>
-<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li class="here"><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence: open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open: money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data: volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page: each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li class="here"><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like: homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise: and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits: internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy: page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages: and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
 </html>

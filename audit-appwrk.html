@@ -8,7 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>appwrk.com — Complete SEO Audit</title>
+<title>appwrk.com. Complete SEO Audit</title>
 <style>
   :root {
     color-scheme: light;
@@ -83,32 +83,81 @@
   .chart-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 14px; margin: 20px 0; }
   pre.mermaid { margin: 0 auto; background: transparent; }
   .foot { margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--grid); font-size: 0.8rem; color: var(--muted); }
+
+  .mmwrap{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);
+          border-radius:12px;padding:16px 18px 18px;margin:18px 0;overflow-x:auto}
+  .mmkey{margin:0 0 12px;font-size:.79rem;color:var(--ink2,#54524d);line-height:1.6}
+  .mmkey .k-bad{color:var(--crit,#c4372c)}
+  .mmkey .k-good{color:var(--good,#0c7a3e)}
+  .mmkey .k-dead{color:var(--mut,#8a8781)}
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
 </style>
 <style>
   *,*::before,*::after{box-sizing:border-box}
-  img{max-width:100%;height:auto}
-  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
-       padding:14px 18px;margin:16px 0;font-size:.86rem}
-  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
-  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
-  .dgm-s:first-of-type{margin-top:0}
-  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
-  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
-  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
-  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
-    /* PDF links are real annotations, so do NOT also print the raw href:
-       it doubled line length and pushed the URL tree off the right edge. */
     a{color:#1a4fd6;text-decoration:underline}
-    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
     .tree{white-space:pre-wrap!important;overflow:visible!important;
           word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
-    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll,.mmwrap{overflow:visible!important}
     table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
     th,td{word-break:break-word;padding:4px 6px!important}
     pre,code{white-space:pre-wrap!important;word-break:break-word}
-    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital,.dgwrap,.mmwrap{break-inside:avoid}
     h2,h3{break-after:avoid}
   }
 
@@ -140,7 +189,7 @@
   .lib-grid a:hover{text-decoration:underline}
   .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
   .lib-grid li.here a{color:var(--ink,#111110)}
-  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+  .lib-grid li.here a::after{content:": you are here";font-weight:400;
     font-size:.74rem;color:var(--mut,#8a8781)}
   @media print{.lib-nav,.lib-foot{display:none}}
 </style>
@@ -149,8 +198,8 @@
 <div class="wrap">
 <header>
   <div class="eyebrow">Complete deep-dive · 2 Aug 2026 · seo-audit skill (github.com/AgriciDaniel/claude-seo) · 9 specialists + Ahrefs API v3</div>
-  <h1>appwrk.com — a real agency that poisoned itself with every shortcut at once</h1>
-  <p class="prose">APPWRK IT Solutions is a genuine business — founded 2012, six real offices, ISO-certified, 98 named case studies, a live Shopify client roster. This audit found a real company buried under a content farm, doorway pages, fake star ratings, hollow badge links, purchased Telegram spam, a fold-covering popup, and a cache bug serving the wrong pages. The fourth case study in our series — and the lowest score yet. Companions: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appinventiv.html">Appinventiv blueprint</a>.</p>
+  <h1>appwrk.com: a real agency that poisoned itself with every shortcut at once</h1>
+  <p class="prose">APPWRK IT Solutions is a genuine business: founded 2012, six real offices, ISO-certified, 98 named case studies, a live Shopify client roster. This audit found a real company buried under a content farm, doorway pages, fake star ratings, hollow badge links, purchased Telegram spam, a fold-covering popup, and a cache bug serving the wrong pages. The fourth case study in our series, and the lowest score yet. Companions: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appinventiv.html">Appinventiv blueprint</a>.</p>
 </header>
 
 <div class="hero">
@@ -162,113 +211,200 @@
     <div class="val">49<small>/100</small></div>
   </div>
   <div class="hero-txt">
-    <p><strong>SEO Health Score 49/100 — the lowest of our three full audits</strong> (Genesys 54, Omnibound 54). Traffic: peaked <strong>25,700/mo (late 2024) → ~1,185 now, −95%</strong>. Paper DR 61; true durable authority ≈ high-teens to low-20s. Publishing frozen since April 2026.</p>
-    <p>Scores — GEO 64 · Technical 61 · SXO 52 · Sitemap 48 · Performance 42 · Visual 42 · Content 39 · Schema 32 · <strong>Backlinks 14 (MIXED — badge-link machine + bought spam)</strong>.</p>
+    <p><strong>SEO Health Score 49/100, the lowest of our three full audits</strong> (Genesys 54, Omnibound 54). Traffic: peaked <strong>25,700/mo (late 2024) → ~1,185 now, −95%</strong>. Paper DR 61; true durable authority ≈ high-teens to low-20s. Publishing frozen since April 2026.</p>
+    <p>Scores. GEO 64 · Technical 61 · SXO 52 · Sitemap 48 · Performance 42 · Visual 42 · Content 39 · Schema 32 · <strong>Backlinks 14 (MIXED, badge-link machine + bought spam)</strong>.</p>
   </div>
 </div>
 
-<h2 id="tree">1 · The full map — authority in, traffic reality, leads out</h2>
-<div class="chart-scroll">
-<div class="dgm">
-<div class="dgm-t">WHO LINKS IN (2,089 domains → paper DR 61)</div>
-<div class="dgm-s">⚠ Client-theme credit badges — &#x27;Design &amp; Developed by APPWRK&#x27; in Shopify themes — glopalstore.com ALONE = 51.7% of all links — top-10 domains = 82.8% (53.6 links/domain)</div><ul class="dgm-l">
-<li>appwrk.com — WordPress, DR 61 paper — true ≈ high-teens–low-20s · ~1,185 visits/mo — (peak 25,700 late 2024, −95%)</li>
-</ul>
-<div class="dgm-s">🚩 Purchased black-hat layer — Telegram link-seller anchors on ~49% of top-30 domains — (&#x27;ACCESS TO HACKED SITES FOR SEO&#x27;) — + 3rd confirmed SEOExpress.org sighting</div><ul class="dgm-l">
-<li>appwrk.com — WordPress, DR 61 paper — true ≈ high-teens–low-20s · ~1,185 visits/mo — (peak 25,700 late 2024, −95%)</li>
-</ul>
-<div class="dgm-s">✅ Genuine: content citations — (migration-cost, Stripe-integration guides) — + Shopify Partners / G2 listings</div><ul class="dgm-l">
-<li>appwrk.com — WordPress, DR 61 paper — true ≈ high-teens–low-20s · ~1,185 visits/mo — (peak 25,700 late 2024, −95%)</li>
-</ul>
-<div class="dgm-s">appwrk.com — WordPress, DR 61 paper — true ≈ high-teens–low-20s · ~1,185 visits/mo — (peak 25,700 late 2024, −95%)</div><ul class="dgm-l">
-<li>/industries — 160 pages — templated verticals, 53% untouched since 2022-23</li>
-<li>✅ /case-studies — 99 pages — real named clients (1 returns HTTP 500)</li>
-<li>/hire — 85 role/tech pages — best one (#1 ionic) stale since May 2023</li>
-<li>/services — 43 pages — templated skeletons, incl. live + &#x27;-old&#x27; duplicate</li>
-<li>🚩 36 geo doorway pages — Texas suburbs 98.3–99.2% identical — 5 cities with TWO competing pages each</li>
-<li>/blog posts — 319 — 110 published Sept 2024 (46 in one day) — content-farm keywords, 1 CEO byline on all</li>
-<li>✅ /insights — 171 — genuinely good (sourced, Key Takeaways) — but frozen since Apr 2026, no recovery</li>
-<li>CONVERSION LAYER — 🚩 full-screen popup at 1.2–1.5s covers H1+CTA+nav — trust badges (Clutch 4.8★, Google 5.0★) live ONLY inside it — forms themselves fine; contact page clean</li>
-</ul>
-<div class="dgm-s">/blog posts — 319 — 110 published Sept 2024 (46 in one day) — content-farm keywords, 1 CEO byline on all</div><ul class="dgm-l">
-<li>The traffic illusion: — #1 &#x27;what is mcp&#x27; (4,700 vol) = 0 visits — #1 &#x27;best workout apps&#x27; (2,900) = 0 — absent from &#x27;custom software development company&#x27; — homepage: 23 visits/mo</li>
-</ul></div>
+<h2 id="tree">1 · The full map: authority in, traffic reality, leads out</h2>
+<div class="mmwrap"><p class="mmkey">Reads top to bottom. <b class="k-bad">Red dashed</b> = manufactured or low-quality. <b class="k-good">Green</b> = genuine and earning. <b class="k-dead">Grey dashed</b> = dead weight.</p>
+<svg class="dg mm" viewBox="0 0 1382 642" width="100%" style="max-width:1160px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="mah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="maw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--crit,#c4372c)"/></marker><marker id="mas" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<text class="msub" x="4" y="14">WHO LINKS IN (2,089 domains → paper DR 61)</text>
+<path class="me weak" d="M465.0,134.4 C465.0,161.4 691.0,161.4 691.0,188.4" marker-end="url(#maw)"/>
+<path class="me weak" d="M691.0,134.4 C691.0,161.4 691.0,161.4 691.0,188.4" marker-end="url(#maw)"/>
+<path class="me hard" d="M917.0,97.8 C917.0,143.1 691.0,143.1 691.0,188.4" marker-end="url(#mas)"/>
+<path class="me " d="M691.0,270.4 C691.0,297.4 75.0,297.4 75.0,324.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,270.4 C691.0,297.4 251.0,297.4 251.0,324.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,270.4 C691.0,297.4 427.0,297.4 427.0,324.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,270.4 C691.0,297.4 603.0,297.4 603.0,324.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,270.4 C691.0,297.4 779.0,297.4 779.0,324.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,270.4 C691.0,297.4 955.0,297.4 955.0,324.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,270.4 C691.0,297.4 1131.0,297.4 1131.0,324.4" marker-end="url(#mah)"/>
+<path class="me " d="M955.0,406.4 C955.0,457.8 691.0,457.8 691.0,509.2" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,270.4 C691.0,297.4 1307.0,297.4 1307.0,324.4" marker-end="url(#mah)"/>
+<rect class="mn bad" x="365.0" y="34.0" width="200" height="100.4" rx="7"/>
+<text class="mt bad" x="465.0" y="50.7">Client-theme credit badges</text>
+<text class="ms bad" x="465.0" y="62.9">'Design &amp; Developed by APPWRK' in</text>
+<text class="ms bad" x="465.0" y="75.1">Shopify themes</text>
+<text class="ms bad" x="465.0" y="87.3">glopalstore.com ALONE = 51.7% of</text>
+<text class="ms bad" x="465.0" y="99.5">all links</text>
+<text class="ms bad" x="465.0" y="111.7">top-10 domains = 82.8% (53.6</text>
+<text class="ms bad" x="465.0" y="123.9">links/domain)</text>
+<rect class="mn bad" x="591.0" y="34.0" width="200" height="100.4" rx="7"/>
+<text class="mt bad" x="691.0" y="50.7">Purchased black-hat layer</text>
+<text class="ms bad" x="691.0" y="62.9">Telegram link-seller anchors on</text>
+<text class="ms bad" x="691.0" y="75.1">~49% of top-30 domains</text>
+<text class="ms bad" x="691.0" y="87.3">('ACCESS TO HACKED SITES FOR</text>
+<text class="ms bad" x="691.0" y="99.5">SEO')</text>
+<text class="ms bad" x="691.0" y="111.7">+ 3rd confirmed SEOExpress.org</text>
+<text class="ms bad" x="691.0" y="123.9">sighting</text>
+<rect class="mn good" x="817.0" y="34.0" width="200" height="63.8" rx="7"/>
+<text class="mt good" x="917.0" y="50.7">Genuine: content citations</text>
+<text class="ms good" x="917.0" y="62.9">(migration-cost,</text>
+<text class="ms good" x="917.0" y="75.1">Stripe-integration guides)</text>
+<text class="ms good" x="917.0" y="87.3">+ Shopify Partners / G2 listings</text>
+<rect class="mn" x="591.0" y="194.4" width="200" height="76.0" rx="7"/>
+<text class="mt" x="691.0" y="211.1">appwrk.com. WordPress, DR 61</text>
+<text class="ms" x="691.0" y="223.3">paper</text>
+<text class="ms" x="691.0" y="235.5">true ≈ high-teens–low-20s ·</text>
+<text class="ms" x="691.0" y="247.7">~1,185 visits/mo</text>
+<text class="ms" x="691.0" y="259.9">(peak 25,700 late 2024, −95%)</text>
+<rect class="mn" x="0.0" y="330.4" width="150" height="51.6" rx="7"/>
+<text class="mt" x="75.0" y="347.1">/industries. 160 pages</text>
+<text class="ms" x="75.0" y="359.3">templated verticals, 53%</text>
+<text class="ms" x="75.0" y="371.5">untouched since 2022-23</text>
+<rect class="mn good" x="176.0" y="330.4" width="150" height="51.6" rx="7"/>
+<text class="mt good" x="251.0" y="347.1">/case-studies. 99 pages</text>
+<text class="ms good" x="251.0" y="359.3">real named clients (1</text>
+<text class="ms good" x="251.0" y="371.5">returns HTTP 500)</text>
+<rect class="mn" x="352.0" y="330.4" width="150" height="63.8" rx="7"/>
+<text class="mt" x="427.0" y="347.1">/hire. 85 role/tech</text>
+<text class="ms" x="427.0" y="359.3">pages</text>
+<text class="ms" x="427.0" y="371.5">best one (#1 ionic) stale</text>
+<text class="ms" x="427.0" y="383.7">since May 2023</text>
+<rect class="mn" x="528.0" y="330.4" width="150" height="63.8" rx="7"/>
+<text class="mt" x="603.0" y="347.1">/services. 43 pages</text>
+<text class="ms" x="603.0" y="359.3">templated skeletons,</text>
+<text class="ms" x="603.0" y="371.5">incl. live + '-old'</text>
+<text class="ms" x="603.0" y="383.7">duplicate</text>
+<rect class="mn bad" x="704.0" y="330.4" width="150" height="76.0" rx="7"/>
+<text class="mt bad" x="779.0" y="347.1">36 geo doorway pages</text>
+<text class="ms bad" x="779.0" y="359.3">Texas suburbs 98.3–99.2%</text>
+<text class="ms bad" x="779.0" y="371.5">identical</text>
+<text class="ms bad" x="779.0" y="383.7">5 cities with TWO</text>
+<text class="ms bad" x="779.0" y="395.9">competing pages each</text>
+<rect class="mn" x="880.0" y="330.4" width="150" height="76.0" rx="7"/>
+<text class="mt" x="955.0" y="347.1">/blog posts. 319</text>
+<text class="ms" x="955.0" y="359.3">110 published Sept 2024</text>
+<text class="ms" x="955.0" y="371.5">(46 in one day)</text>
+<text class="ms" x="955.0" y="383.7">content-farm keywords, 1</text>
+<text class="ms" x="955.0" y="395.9">CEO byline on all</text>
+<rect class="mn good" x="1056.0" y="330.4" width="150" height="76.0" rx="7"/>
+<text class="mt good" x="1131.0" y="347.1">/insights. 171</text>
+<text class="ms good" x="1131.0" y="359.3">genuinely good (sourced,</text>
+<text class="ms good" x="1131.0" y="371.5">Key Takeaways)</text>
+<text class="ms good" x="1131.0" y="383.7">but frozen since Apr</text>
+<text class="ms good" x="1131.0" y="395.9">2026, no recovery</text>
+<rect class="mn" x="591.0" y="515.2" width="200" height="112.6" rx="7"/>
+<text class="mt" x="691.0" y="531.9">The traffic illusion:</text>
+<text class="ms" x="691.0" y="544.1">#1 'what is mcp' (4,700 vol) = 0</text>
+<text class="ms" x="691.0" y="556.3">visits</text>
+<text class="ms" x="691.0" y="568.5">#1 'best workout apps' (2,900) =</text>
+<text class="ms" x="691.0" y="580.7">0</text>
+<text class="ms" x="691.0" y="592.9">absent from 'custom software</text>
+<text class="ms" x="691.0" y="605.1">development company'</text>
+<text class="ms" x="691.0" y="617.3">homepage: 23 visits/mo</text>
+<rect class="mn bad" x="1232.0" y="330.4" width="150" height="124.8" rx="7"/>
+<text class="mt bad" x="1307.0" y="347.1">CONVERSION LAYER</text>
+<text class="ms bad" x="1307.0" y="359.3">full-screen popup at</text>
+<text class="ms bad" x="1307.0" y="371.5">1.2–1.5s covers</text>
+<text class="ms bad" x="1307.0" y="383.7">H1+CTA+nav</text>
+<text class="ms bad" x="1307.0" y="395.9">trust badges (Clutch 4.8,</text>
+<text class="ms bad" x="1307.0" y="408.1">Google 5.0) live ONLY</text>
+<text class="ms bad" x="1307.0" y="420.3">inside it</text>
+<text class="ms bad" x="1307.0" y="432.5">forms themselves fine;</text>
+<text class="ms bad" x="1307.0" y="444.7">contact page clean</text>
+</svg>
 </div>
+<!--mermaid
+flowchart TD
+  subgraph L1["WHO LINKS IN (2,089 domains → paper DR 61)"]
+    BADGE["⚠ Client-theme credit badges<br/>'Design &amp; Developed by APPWRK' in Shopify themes<br/>glopalstore.com ALONE = 51.7% of all links<br/>top-10 domains = 82.8% (53.6 links/domain)"]
+    TG["🚩 Purchased black-hat layer<br/>Telegram link-seller anchors on ~49% of top-30 domains<br/>('ACCESS TO HACKED SITES FOR SEO')<br/>+ 3rd confirmed SEOExpress.org sighting"]
+    REAL["✅ Genuine: content citations<br/>(migration-cost, Stripe-integration guides)<br/>+ Shopify Partners / G2 listings"] end DOM["appwrk.com: WordPress, DR 61 paper<br/>true ≈ high-teens–low-20s · ~1,185 visits/mo<br/>(peak 25,700 late 2024, −95%)"] BADGE -.-> DOM TG -.-> DOM REAL ==> DOM DOM --&gt; IND["/industries. 160 pages<br/>templated verticals, 53% untouched since 2022-23"] DOM --&gt; CASE["✅ /case-studies. 99 pages<br/>real named clients (1 returns HTTP 500)"] DOM --&gt; HIRE["/hire. 85 role/tech pages<br/>best one (#1 ionic) stale since May 2023"] DOM --&gt; SVC["/services. 43 pages<br/>templated skeletons, incl. live + '-old' duplicate"]
+  DOM --&gt; GEOP["🚩 36 geo doorway pages<br/>Texas suburbs 98.3–99.2% identical<br/>5 cities with TWO competing pages each"] DOM --&gt; POSTS["/blog posts. 319<br/>110 published Sept 2024 (46 in one day)<br/>content-farm keywords, 1 CEO byline on all"] DOM --&gt; INS["✅ /insights. 171<br/>genuinely good (sourced, Key Takeaways)<br/>but frozen since Apr 2026, no recovery"]
+
+  POSTS --&gt; KW["The traffic illusion:<br/>#1 'what is mcp' (4,700 vol) = 0 visits<br/>#1 'best workout apps' (2,900) = 0<br/>absent from 'custom software development company'<br/>homepage: 23 visits/mo"]
+
+  DOM --&gt; CONV["CONVERSION LAYER<br/>🚩 full-screen popup at 1.2–1.5s covers H1+CTA+nav<br/>trust badges (Clutch 4.8★, Google 5.0★) live ONLY inside it<br/>forms themselves fine; contact page clean"]
+-->
 
 <h2 id="timeline">2 · The timeline of a self-inflicted collapse</h2>
 <div class="tbl-scroll"><table>
   <thead><tr><th>When</th><th class="num">DR</th><th class="num">Organic/mo</th><th>Event</th></tr></thead>
   <tbody>
     <tr><td>Aug 2023</td><td class="num">38</td><td class="num">5,000</td><td>Steady mid-size agency site</td></tr>
-    <tr><td><strong>Sep 2024</strong></td><td class="num">~46</td><td class="num">~25,000</td><td><strong>110 posts in one month</strong> — 46 in a single day, 15 unrelated posts in 83 minutes</td></tr>
+    <tr><td><strong>Sep 2024</strong></td><td class="num">~46</td><td class="num">~25,000</td><td><strong>110 posts in one month</strong> · 46 in a single day, 15 unrelated posts in 83 minutes</td></tr>
     <tr><td>Nov 2024</td><td class="num">~48</td><td class="num"><strong>25,736 (peak)</strong></td><td>Dec adds 61 more posts; Jan 2025 adds 44</td></tr>
     <tr><td>Feb–Aug 2025</td><td class="num">51→56</td><td class="num">16,656 → 9,475</td><td>Google's 2025 update cycle unwinds it; pivot to better "insights" begins Jun 2025</td></tr>
-    <tr><td>Feb 2026</td><td class="num">59</td><td class="num">3,958</td><td>18 months of good insights content — no recovery (persistent site-wide demotion)</td></tr>
-    <tr><td><strong>Apr 16, 2026</strong></td><td class="num">—</td><td class="num">—</td><td><strong>Publishing stops entirely</strong> — the site has been frozen since</td></tr>
+    <tr><td>Feb 2026</td><td class="num">59</td><td class="num">3,958</td><td>18 months of good insights content · no recovery (persistent site-wide demotion)</td></tr>
+    <tr><td><strong>Apr 16, 2026</strong></td><td class="num">·</td><td class="num">·</td><td><strong>Publishing stops entirely</strong> · the site has been frozen since</td></tr>
     <tr><td>Aug 2026</td><td class="num">61</td><td class="num"><strong>1,185</strong></td><td>−95% from peak; DR still climbing on badge+spam links while traffic dies</td></tr>
   </tbody>
 </table></div>
 
 <h2 id="backlinks">3 · The two-layer backlink machine (verdict: MIXED, 14/100)</h2>
-<h3>3a. The badge-link machine — a new pattern in our series</h3>
-<p class="prose">APPWRK builds Shopify stores, and their theme ships a footer credit: <code>Design &amp; Developed by <a>APPWRK</a></code> — dofollow, on <em>every page</em> of every client's catalog. Result: <strong>one client store (glopalstore.com, DR 69) supplies 51.7% of all 111,845 links</strong>; icrafttransfers.com adds 13,603; the top 10 domains carry 82.8%. These are real, operating businesses — but it's one template decision masquerading as thousands of endorsements, which is why Ahrefs counts 53.6 links per domain and passes almost no real equity. <strong>Lesson for us:</strong> if we ever credit-badge client builds, it's nofollow or one homepage link — never a sitewide dofollow footer.</p>
-<h3>3b. The bought layer — and the vendor we keep meeting</h3>
-<blockquote>"🍪 TELEGRAM @SALESOVEN | ACCESS TO HACKED SITES FOR SEO" — 39 referring domains<br>"TG @LINKS_DEALER | EFFECTIVE SEO LINKS FOR APPWRK.COM" — 20 domains<br>"When starting out with appwrk.com, I had no idea how powerful good SEO could be until hiring SEOExpress.org…" — 200 domains</blockquote>
-<p class="prose">Telegram link-seller channel names as literal anchor text across ~49% of the top-30 referring domains — and the <strong>third confirmed sighting of the SEOExpress.org spun-testimonial network</strong>, now proven on Genesys, Omnibound, and APPWRK. One spam operator is quietly fulfilling "SEO packages" across this entire market segment. If a vendor ever promises your site DR growth, assume this is what they resell — you now know the fingerprint.</p>
+<h3>3a. The badge-link machine: a new pattern in our series</h3>
+<p class="prose">APPWRK builds Shopify stores, and their theme ships a footer credit: <code>Design &amp; Developed by <a>APPWRK</a></code> · dofollow, on <em>every page</em> of every client's catalog. Result: <strong>one client store (glopalstore.com, DR 69) supplies 51.7% of all 111,845 links</strong>; icrafttransfers.com adds 13,603; the top 10 domains carry 82.8%. These are real, operating businesses · but it's one template decision masquerading as thousands of endorsements, which is why Ahrefs counts 53.6 links per domain and passes almost no real equity. <strong>Lesson for us:</strong> if we ever credit-badge client builds, it's nofollow or one homepage link · never a sitewide dofollow footer.</p>
+<h3>3b. The bought layer: and the vendor we keep meeting</h3>
+<blockquote>"🍪 TELEGRAM @SALESOVEN | ACCESS TO HACKED SITES FOR SEO". 39 referring domains<br>"TG @LINKS_DEALER | EFFECTIVE SEO LINKS FOR APPWRK.COM". 20 domains<br>"When starting out with appwrk.com, I had no idea how powerful good SEO could be until hiring SEOExpress.org…". 200 domains</blockquote>
+<p class="prose">Telegram link-seller channel names as literal anchor text across ~49% of the top-30 referring domains, and the <strong>third confirmed sighting of the SEOExpress.org spun-testimonial network</strong>, now proven on Genesys, Omnibound, and APPWRK. One spam operator is quietly fulfilling "SEO packages" across this entire market segment. If a vendor ever promises your site DR growth, assume this is what they resell. You now know the fingerprint.</p>
 
 <h2 id="findings">4 · Every specialist's key findings</h2>
 
-<h3>4a. Content — 39/100 (the collapse's cause)</h3>
+<h3>4a. Content: 39/100 (the collapse's cause)</h3>
 <ul>
-  <li><span class="sev c">Critical</span><strong>Mass-publishing fingerprint, timestamped:</strong> 110 posts in Sept 2024, 61 in Dec, 44 in Jan 2025 — single-day bursts of 46/25/21; 15 unrelated posts inside 83 minutes; 6 posts in 27 minutes on New Year's Day. Traffic peaked exactly then and died all 2025.</li>
-  <li><span class="sev h">High</span><strong>One byline for 490 articles:</strong> the author sitemap has exactly one entry — the CEO — with the identical verbatim bio pasted from HIPAA compliance posts to frontend framework internals. A real team exists (About page) and is never used.</li>
+  <li><span class="sev c">Critical</span><strong>Mass-publishing fingerprint, timestamped:</strong> 110 posts in Sept 2024, 61 in Dec, 44 in Jan 2025, single-day bursts of 46/25/21; 15 unrelated posts inside 83 minutes; 6 posts in 27 minutes on New Year's Day. Traffic peaked exactly then and died all 2025.</li>
+  <li><span class="sev h">High</span><strong>One byline for 490 articles:</strong> the author sitemap has exactly one entry, the CEO. With the identical verbatim bio pasted from HIPAA compliance posts to frontend framework internals. A real team exists (About page) and is never used.</li>
   <li><span class="sev h">High</span>Fabricated-sounding experience claims (precise uncited dollar figures, plural "hospital chains" not in the 98-case portfolio) inside otherwise well-sourced insights.</li>
   <li><span class="sev m">Medium</span>Confirmed fake freshness (2021 post's lastmod bumped to 2024 with zero changes, still citing 2020 stats).</li>
-  <li><span class="sev p">Works</span>The insights pivot (171 articles since Jun 2025) is genuinely good — sourced McKinsey/NVIDIA stats, Key Takeaways blocks — proof they know how; it just can't outweigh the un-removed toxic mass.</li>
+  <li><span class="sev p">Works</span>The insights pivot (171 articles since Jun 2025) is genuinely good: sourced McKinsey/NVIDIA stats, Key Takeaways blocks, proof they know how; it just can't outweigh the un-removed toxic mass.</li>
 </ul>
 
-<h3>4b. SXO — 52/100 (the traffic illusion)</h3>
+<h3>4b. SXO: 52/100 (the traffic illusion)</h3>
 <ul>
-  <li><span class="sev c">Critical</span>#1 rankings with zero yield: "what is mcp" (4,700 vol), "best workout apps" (2,900), "flutter vs react native" (1,900) — high-volume definitionals that AI Overviews and zero-click now absorb entirely. 226 top-3 rankings ÷ 1,185 visits ≈ 5 visits/keyword.</li>
-  <li><span class="sev c">Critical</span>Absent from their own money SERP: "custom software development company" shows Avenga/Itransition/Luxoft — APPWRK nowhere. The highest-intent buyer persona scored <strong>0/100 — completely unserved</strong>.</li>
+  <li><span class="sev c">Critical</span>#1 rankings with zero yield: "what is mcp" (4,700 vol), "best workout apps" (2,900), "flutter vs react native" (1,900). High-volume definitionals that AI Overviews and zero-click now absorb entirely. 226 top-3 rankings ÷ 1,185 visits ≈ 5 visits/keyword.</li>
+  <li><span class="sev c">Critical</span>Absent from their own money SERP: "custom software development company" shows Avenga/Itransition/Luxoft. APPWRK nowhere. The highest-intent buyer persona scored <strong>0/100, completely unserved</strong>.</li>
   <li><span class="sev m">Medium</span>Awareness-stage pages drop hard commercial CTAs ("what is Shopify" → "hire Shopify developer"); best commercial page stale since May 2023.</li>
 </ul>
 
-<h3>4c. Schema — 32/100 (the third flavor of schema disaster)</h3>
+<h3>4c. Schema: 32/100 (the third flavor of schema disaster)</h3>
 <ul>
-  <li><span class="sev c">Critical</span>Hand-pasted JSON-LD with literal <code>//Organization Schema:</code> comment lines inside = <strong>invalid JSON on every page sampled</strong> (Genesys had template variables, Omnibound had empty images, APPWRK has JS comments — three platforms, same negligence).</li>
-  <li><span class="sev h">High</span><strong>Two self-invented star ratings</strong> (4.8★/250 on the homepage, 4.7★/1,251 on a service page — different, unlinked, unverifiable) — a live manual-action risk under Google's self-serving-review policy; a third (4.3★/724) sits on an unrelated blog post.</li>
+  <li><span class="sev c">Critical</span>Hand-pasted JSON-LD with literal <code>//Organization Schema:</code> comment lines inside = <strong>invalid JSON on every page sampled</strong> (Genesys had template variables, Omnibound had empty images, APPWRK has JS comments · three platforms, same negligence).</li>
+  <li><span class="sev h">High</span><strong>Two self-invented star ratings</strong> (4.8★/250 on the homepage, 4.7★/1,251 on a service page, different, unlinked, unverifiable). A live manual-action risk under Google's self-serving-review policy; a third (4.3★/724) sits on an unrelated blog post.</li>
   <li><span class="sev m">Medium</span>Empty publisher fields, two contradictory publish dates on one post, nonsensical nested office "departments," no Service schema on an IT-services site.</li>
 </ul>
 
-<h3>4d. Technical — 61/100 · Performance — 42/100</h3>
+<h3>4d. Technical: 61/100 · Performance 42/100</h3>
 <ul>
-  <li><span class="sev c">Critical</span><strong>Cache cross-contamination, reproduced live:</strong> the Chandigarh page served the food-delivery page's complete head and H1 (same URL, minutes apart, tagged "cached") — Google can index the wrong content under the wrong URL.</li>
-  <li><span class="sev c">Critical</span><strong>HTML never edge-cached:</strong> pages ship <code>Cache-Control: private</code> so Cloudflare won't cache them — even though the WP page-cache has them ready. Result: 1.1–2.8s median TTFB with 7s spikes (Omnibound: 35ms). A one-header fix.</li>
+  <li><span class="sev c">Critical</span><strong>Cache cross-contamination, reproduced live:</strong> the Chandigarh page served the food-delivery page's complete head and H1 (same URL, minutes apart, tagged "cached"). Google can index the wrong content under the wrong URL.</li>
+  <li><span class="sev c">Critical</span><strong>HTML never edge-cached:</strong> pages ship <code>Cache-Control: private</code> so Cloudflare won't cache them · even though the WP page-cache has them ready. Result: 1.1–2.8s median TTFB with 7s spikes (Omnibound: 35ms). A one-header fix.</li>
   <li><span class="sev h">High</span>Dirty sitemap: live page + its "-old" twin listed together, a noindexed junk page, an HTTP-500 case study, redirect artifacts (~6.7% of sampled entries dead); 3 generations of theme assets loaded simultaneously; 96% of homepage images missing dimensions.</li>
-  <li><span class="sev p">Works</span>WAF does NOT block real crawlers — Googlebot/GPTBot/ClaudeBot/PerplexityBot all get 200 (only script UAs + CCBot get 406); clean redirects; strong HSTS; full server rendering.</li>
+  <li><span class="sev p">Works</span>WAF does NOT block real crawlers. Googlebot/GPTBot/ClaudeBot/PerplexityBot all get 200 (only script UAs + CCBot get 406); clean redirects; strong HSTS; full server rendering.</li>
 </ul>
 
-<h3>4e. Visual — 42/100 · GEO — 64/100</h3>
+<h3>4e. Visual: 42/100 · GEO 64/100</h3>
 <ul>
-  <li><span class="sev c">Critical</span><strong>The popup:</strong> "Leaving so soon?" fires at 1.2–1.5s on a flat timer (fake exit-intent), covering H1+hero CTA+nav for 100% of visitors on both devices — and the site's ONLY above-fold trust proof (Clutch 4.8★, GoodFirms 4.8★, Google 5.0★, Upwork 99%) lives inside that dismissible popup. Next trust element: 6,500px down.</li>
-  <li><span class="sev h">High</span>Generic H1 ("Transform Your Business with Latest Technology Solutions") — the title tag sells better than the hero.</li>
+  <li><span class="sev c">Critical</span><strong>The popup:</strong> "Leaving so soon?" fires at 1.2–1.5s on a flat timer (fake exit-intent), covering H1+hero CTA+nav for 100% of visitors on both devices, and the site's ONLY above-fold trust proof (Clutch 4.8★, GoodFirms 4.8★, Google 5.0★, Upwork 99%) lives inside that dismissible popup. Next trust element: 6,500px down.</li>
+  <li><span class="sev h">High</span>Generic H1 ("Transform Your Business with Latest Technology Solutions"). The title tag sells better than the hero.</li>
   <li><span class="sev m">GEO</span>No llms.txt; entity descriptions inconsistent; freshness frozen 3.5 months; the insights template is their best AI-citable asset and it's idle. Quick wins: fix the JSON-LD, publish llms.txt, retrofit Key-Takeaways onto top old posts, unblock CCBot.</li>
 </ul>
 
 <h2 id="lessons">5 · What APPWRK adds to our playbook (4th case, 6 new rules)</h2>
 <ol class="prose">
-  <li><strong>Definitional keywords are dead money.</strong> #1 on 4,700-volume "what is X" = 0 visits in the AI Overviews era. Every keyword we target must have buyer intent — this hardens our cost-guide/service-family strategy.</li>
+  <li><strong>Definitional keywords are dead money.</strong> #1 on 4,700-volume "what is X" = 0 visits in the AI Overviews era. Every keyword we target must have buyer intent. This hardens our cost-guide/service-family strategy.</li>
   <li><strong>A quality pivot can't outrun un-removed junk.</strong> 18 months of genuinely good content didn't lift a demoted site while 319 farm posts + 36 doorways + fake ratings stayed live. If we ever inherit a demoted site: prune first, publish second.</li>
-  <li><strong>Client credit-badges are hollow DR</strong> — sitewide dofollow footer links from client builds inflate the number and pass nothing. Ours (if any): nofollow, or one link, ever.</li>
+  <li><strong>Client credit-badges are hollow DR</strong>. Sitewide dofollow footer links from client builds inflate the number and pass nothing. Ours (if any): nofollow, or one link, ever.</li>
   <li><strong>Never invent ratings in schema.</strong> Their three fake AggregateRatings are a standing manual-action invitation. Ours: only real Clutch/G2 numbers, linked to the source.</li>
-  <li><strong>The popup rule:</strong> nothing covers the fold, ever — and trust proof lives ON the page, not inside a dismissible modal. (The Zero-Click talk's point made flesh: they fought for the click, then smothered it.)</li>
+  <li><strong>The popup rule:</strong> nothing covers the fold, ever, and trust proof lives ON the page, not inside a dismissible modal. (The Zero-Click talk's point made flesh: they fought for the click, then smothered it.)</li>
   <li><strong>WordPress needs an operator:</strong> the cache-contamination and never-edge-cached bugs are what "set up plugins and walk away" looks like at year 12. Our stack gets a monthly infra check on the SEO hire's checklist.</li>
 </ol>
 
 <div class="foot">
-  <p>Method: seo-audit skill (<a href="https://github.com/AgriciDaniel/claude-seo">github.com/AgriciDaniel/claude-seo</a>) — nine specialist agents, live fetches (browser-header WAF bypass), Playwright screenshots (8), Ahrefs API v3, live SERP checks. Full evidence: <code>~/clients/onegtmlab/new-venture-website/appwrk.com-audit/</code> (9 findings files + screenshots + raw JSON). Series: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys 54</a> · <a href="audit-omnibound.html">Omnibound 54</a> · <a href="audit-appinventiv.html">Appinventiv (the model)</a> · APPWRK 49. Data pulled 2 Aug 2026; Ahrefs figures are estimates.</p>
+  <p>Method: seo-audit skill (<a href="https://github.com/AgriciDaniel/claude-seo">github.com/AgriciDaniel/claude-seo</a>): nine specialist agents, live fetches (browser-header WAF bypass), Playwright screenshots (8), Ahrefs API v3, live SERP checks. Full evidence: <code>~/clients/onegtmlab/new-venture-website/appwrk.com-audit/</code> (9 findings files + screenshots + raw JSON). Series: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys 54</a> · <a href="audit-omnibound.html">Omnibound 54</a> · <a href="audit-appinventiv.html">Appinventiv (the model)</a> · APPWRK 49. Data pulled 2 Aug 2026; Ahrefs figures are estimates.</p>
 </div>
 </div>
-<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li class="here"><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence: open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open: money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data: volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page: each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like: homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise: and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits: internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy: page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages: and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li class="here"><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
 </html>

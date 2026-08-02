@@ -8,7 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>genesysgrowth.com — Complete Deep-Dive</title>
+<title>genesysgrowth.com. Complete Deep-Dive</title>
 <style>
   :root {
     color-scheme: light;
@@ -84,32 +84,81 @@
   .chart-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 14px; margin: 20px 0; }
   pre.mermaid { margin: 0; min-width: 640px; background: transparent; }
   .foot { margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--grid); font-size: 0.8rem; color: var(--muted); }
+
+  .mmwrap{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);
+          border-radius:12px;padding:16px 18px 18px;margin:18px 0;overflow-x:auto}
+  .mmkey{margin:0 0 12px;font-size:.79rem;color:var(--ink2,#54524d);line-height:1.6}
+  .mmkey .k-bad{color:var(--crit,#c4372c)}
+  .mmkey .k-good{color:var(--good,#0c7a3e)}
+  .mmkey .k-dead{color:var(--mut,#8a8781)}
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
 </style>
 <style>
   *,*::before,*::after{box-sizing:border-box}
-  img{max-width:100%;height:auto}
-  .dgm{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);border-radius:10px;
-       padding:14px 18px;margin:16px 0;font-size:.86rem}
-  .dgm-t{font-weight:700;color:var(--ink,#111);margin-bottom:8px}
-  .dgm-s{font-weight:700;color:var(--ink,#111);margin:10px 0 2px}
-  .dgm-s:first-of-type{margin-top:0}
-  .dgm-l{list-style:none;margin:0 0 0 4px;padding:0}
-  .dgm-l li{color:var(--ink2,#54524d);margin:0;padding-left:18px;position:relative;line-height:1.5}
-  .dgm-l li::before{content:"\2192";position:absolute;left:0;color:var(--acc,#1a4fd6);font-weight:700}
-  .dgm-e{color:var(--mut,#8a8781);font-style:italic}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
-    /* PDF links are real annotations, so do NOT also print the raw href:
-       it doubled line length and pushed the URL tree off the right edge. */
     a{color:#1a4fd6;text-decoration:underline}
-    /* anything that scrolls sideways on screen must WRAP on paper, never clip */
     .tree{white-space:pre-wrap!important;overflow:visible!important;
           word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
-    .tbl,.chart,.tbl-scroll,.chart-scroll{overflow:visible!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll,.mmwrap{overflow:visible!important}
     table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
     th,td{word-break:break-word;padding:4px 6px!important}
     pre,code{white-space:pre-wrap!important;word-break:break-word}
-    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital{break-inside:avoid}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital,.dgwrap,.mmwrap{break-inside:avoid}
     h2,h3{break-after:avoid}
   }
 
@@ -141,7 +190,7 @@
   .lib-grid a:hover{text-decoration:underline}
   .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
   .lib-grid li.here a{color:var(--ink,#111110)}
-  .lib-grid li.here a::after{content:" — you are here";font-weight:400;
+  .lib-grid li.here a::after{content:": you are here";font-weight:400;
     font-size:.74rem;color:var(--mut,#8a8781)}
   @media print{.lib-nav,.lib-foot{display:none}}
 </style>
@@ -150,8 +199,8 @@
 <div class="wrap">
 <header>
   <div class="eyebrow">Complete deep-dive · data pulled 2 Aug 2026 · seo-audit skill (github.com/AgriciDaniel/claude-seo) · 9 specialists + Ahrefs API v3</div>
-  <h1>genesysgrowth.com — the complete autopsy, with the map</h1>
-  <p class="prose">Every finding from all nine specialist audits, unpacked in plain language with click-and-verify links; the full site tree with where the traffic actually flows; and the exact websites their DR 66 was assembled from. Read alongside the <a href="seo-from-zero.html">SEO From Zero course</a> — every technical term used here is defined there.</p>
+  <h1>genesysgrowth.com: the complete autopsy, with the map</h1>
+  <p class="prose">Every finding from all nine specialist audits, unpacked in plain language with click-and-verify links; the full site tree with where the traffic actually flows; and the exact websites their DR 66 was assembled from. Read alongside the <a href="seo-from-zero.html">SEO From Zero course</a>. Every technical term used here is defined there.</p>
 </header>
 
 <div class="hero">
@@ -164,79 +213,155 @@
   </div>
   <div class="hero-txt">
     <p><strong>SEO Health Score 54/100.</strong> A real, credentialed consultancy (founder Matteo Titta; real clients: Toast, Ahrefs, Strapi, Fiverr) wearing a manufactured SEO shell. Traffic −50% in three months and falling. Platform: Framer. 476 pages.</p>
-    <p>Category scores — Technical 78 · Visual 78 · AI-readiness 73 · Images 70 · Performance 62 · Sitemap 58 · SXO 46 · Schema 38 · Content 32 · <strong>Backlink genuineness 22 (MANUFACTURED)</strong>.</p>
+    <p>Category scores. Technical 78 · Visual 78 · AI-readiness 73 · Images 70 · Performance 62 · Sitemap 58 · SXO 46 · Schema 38 · Content 32 · <strong>Backlink genuineness 22 (MANUFACTURED)</strong>.</p>
   </div>
 </div>
 
-<h2 id="tree">1 · The site tree — structure, traffic flow, and authority flow in one map</h2>
+<h2 id="tree">1 · The site tree: structure, traffic flow, and authority flow in one map</h2>
 <p class="prose">You asked for the tree: main domain → sections → clusters, with the visitors each cluster earns and where authority comes from. Here it is, built from their <a href="https://genesysgrowth.com/sitemap.xml">sitemap</a> (page counts) and Ahrefs top-50-pages data (traffic). Left side = what links INTO the site (authority). Right side = the pages and where the ~516 monthly organic visits actually land.</p>
 
-<div class="chart-scroll">
-<div class="dgm">
-<div class="dgm-t">WHO LINKS TO THEM (1,403 domains → paper DR 66)</div>
-<div class="dgm-s">🚩 PBN spam network — 207 domains, one spun paragraph — (nofollow — inflates DR only)</div><ul class="dgm-l">
-<li>genesysgrowth.com — DR 66 paper / UR 8 real — ~516 organic visits/mo</li>
-</ul>
-<div class="dgm-s">🚩 Guest-post mill — ~30 SaaS micro-tools, 12–114 links each — (typefully, weglot, sozee.ai, averi.ai…)</div><ul class="dgm-l">
-<li>genesysgrowth.com — DR 66 paper / UR 8 real — ~516 organic visits/mo</li>
-</ul>
-<div class="dgm-s">🚩 Self-serve platform pages — github, medium, substack, forbes, — hubspot, carrd, clutch (1–5 links each)</div><ul class="dgm-l">
-<li>genesysgrowth.com — DR 66 paper / UR 8 real — ~516 organic visits/mo</li>
-</ul>
-<div class="dgm-s">✅ GENUINE: writers citing their — stats posts (~90+ domains, — real stat pull-quote anchors)</div><ul class="dgm-l">
-<li>genesysgrowth.com — DR 66 paper / UR 8 real — ~516 organic visits/mo</li>
-</ul>
-<div class="dgm-s">genesysgrowth.com — DR 66 paper / UR 8 real — ~516 organic visits/mo</div><ul class="dgm-l">
-<li>/blog — 365 posts — ≈97% of ALL traffic (~502/mo)</li>
-<li>/tools — 32 pages — ≈0 visits</li>
-<li>/case-studies — 41 pages — ~12 visits</li>
-<li>/faqs — 21 pages — ≈0 visits</li>
-<li>/partners — 10 pages — 0 visits · gives OUT dofollow links — (litebox.ai?ref=genesys)</li>
-<li>Core 7: /pricing /about /manifesto — /ai-info /testimonials — ≈0 organic — but = the conversion + GEO layer</li>
-</ul>
-<div class="dgm-s">/blog — 365 posts — ≈97% of ALL traffic (~502/mo)</div><ul class="dgm-l">
-<li>✅ Stats roundups (~10 posts) — ~300 visits/mo — 60% of everything — + earns the ONLY real backlinks</li>
-<li>Tool-vs-tool (~206 posts: — 143 &#x27;GG vs rival&#x27;, 63 off-topic) — ~150 visits/mo, buyer-fit 42/100</li>
-<li>&#x27;Alternatives&#x27; (91 posts) — ~10 visits/mo</li>
-<li>⚫ 344 ORPHANS (94%) — no internal link path — — blog index capped at 20, no pagination</li>
-</ul></div>
-</div>
+<div class="mmwrap"><p class="mmkey">Reads top to bottom. <b class="k-bad">Red dashed</b> = manufactured or low-quality. <b class="k-good">Green</b> = genuine and earning. <b class="k-dead">Grey dashed</b> = dead weight.</p>
+<svg class="dg mm" viewBox="0 0 1150 508" width="100%" style="max-width:1150px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<p class="prose"><strong>How to read this map — the three fatal mismatches it shows:</strong></p>
+<defs><marker id="mah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="maw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--crit,#c4372c)"/></marker><marker id="mas" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<text class="msub" x="4" y="14">WHO LINKS TO THEM (1,403 domains → paper DR 66)</text>
+<path class="me weak" d="M236.0,85.6 C236.0,124.8 575.0,124.8 575.0,164.0" marker-end="url(#maw)"/>
+<path class="me weak" d="M462.0,110.0 C462.0,137.0 575.0,137.0 575.0,164.0" marker-end="url(#maw)"/>
+<path class="me weak" d="M688.0,97.8 C688.0,130.9 575.0,130.9 575.0,164.0" marker-end="url(#maw)"/>
+<path class="me hard" d="M914.0,85.6 C914.0,124.8 575.0,124.8 575.0,164.0" marker-end="url(#mas)"/>
+<path class="me " d="M575.0,221.6 C575.0,248.6 85.0,248.6 85.0,275.6" marker-end="url(#mah)"/>
+<path class="me " d="M575.0,221.6 C575.0,248.6 281.0,248.6 281.0,275.6" marker-end="url(#mah)"/>
+<path class="me " d="M575.0,221.6 C575.0,248.6 477.0,248.6 477.0,275.6" marker-end="url(#mah)"/>
+<path class="me " d="M575.0,221.6 C575.0,248.6 673.0,248.6 673.0,275.6" marker-end="url(#mah)"/>
+<path class="me " d="M575.0,221.6 C575.0,248.6 869.0,248.6 869.0,275.6" marker-end="url(#mah)"/>
+<path class="me " d="M575.0,221.6 C575.0,248.6 1065.0,248.6 1065.0,275.6" marker-end="url(#mah)"/>
+<path class="me " d="M85.0,333.2 C85.0,378.5 236.0,378.5 236.0,423.8" marker-end="url(#mah)"/>
+<path class="me " d="M85.0,333.2 C85.0,378.5 462.0,378.5 462.0,423.8" marker-end="url(#mah)"/>
+<path class="me " d="M85.0,333.2 C85.0,378.5 688.0,378.5 688.0,423.8" marker-end="url(#mah)"/>
+<path class="me " d="M85.0,333.2 C85.0,378.5 914.0,378.5 914.0,423.8" marker-end="url(#mah)"/>
+<path class="me weak" d="M336.0,461.7 C336.0,393.7 1150.0,393.7 1150.0,325.7" marker-end="url(#maw)"/>
+<text class="mel" x="743.0" y="390.7">should link to but barely feeds</text>
+<rect class="mn bad" x="136.0" y="34.0" width="200" height="51.6" rx="7"/>
+<text class="mt bad" x="236.0" y="50.7">PBN spam network</text>
+<text class="ms bad" x="236.0" y="62.9">207 domains, one spun paragraph</text>
+<text class="ms bad" x="236.0" y="75.1">(nofollow, inflates DR only)</text>
+<rect class="mn bad" x="362.0" y="34.0" width="200" height="76.0" rx="7"/>
+<text class="mt bad" x="462.0" y="50.7">Guest-post mill</text>
+<text class="ms bad" x="462.0" y="62.9">~30 SaaS micro-tools, 12–114</text>
+<text class="ms bad" x="462.0" y="75.1">links each</text>
+<text class="ms bad" x="462.0" y="87.3">(typefully, weglot, sozee.ai,</text>
+<text class="ms bad" x="462.0" y="99.5">averi.ai…)</text>
+<rect class="mn bad" x="588.0" y="34.0" width="200" height="63.8" rx="7"/>
+<text class="mt bad" x="688.0" y="50.7">Self-serve platform pages</text>
+<text class="ms bad" x="688.0" y="62.9">github, medium, substack, forbes,</text>
+<text class="ms bad" x="688.0" y="75.1">hubspot, carrd, clutch (1–5 links</text>
+<text class="ms bad" x="688.0" y="87.3">each)</text>
+<rect class="mn good" x="814.0" y="34.0" width="200" height="51.6" rx="7"/>
+<text class="mt good" x="914.0" y="50.7">GENUINE: writers citing their</text>
+<text class="ms good" x="914.0" y="62.9">stats posts (~90+ domains,</text>
+<text class="ms good" x="914.0" y="75.1">real stat pull-quote anchors)</text>
+<rect class="mn" x="475.0" y="170.0" width="200" height="51.6" rx="7"/>
+<text class="mt" x="575.0" y="186.7">genesysgrowth.com</text>
+<text class="ms" x="575.0" y="198.9">DR 66 paper / UR 8 real</text>
+<text class="ms" x="575.0" y="211.1">~516 organic visits/mo</text>
+<rect class="mn" x="0.0" y="281.6" width="170" height="51.6" rx="7"/>
+<text class="mt" x="85.0" y="298.3">/blog. 365 posts</text>
+<text class="ms" x="85.0" y="310.5">≈97% of ALL traffic</text>
+<text class="ms" x="85.0" y="322.7">(~502/mo)</text>
+<rect class="mn" x="196.0" y="281.6" width="170" height="39.4" rx="7"/>
+<text class="mt" x="281.0" y="298.3">/tools. 32 pages</text>
+<text class="ms" x="281.0" y="310.5">≈0 visits</text>
+<rect class="mn" x="392.0" y="281.6" width="170" height="39.4" rx="7"/>
+<text class="mt" x="477.0" y="298.3">/case-studies. 41 pages</text>
+<text class="ms" x="477.0" y="310.5">~12 visits</text>
+<rect class="mn" x="588.0" y="281.6" width="170" height="39.4" rx="7"/>
+<text class="mt" x="673.0" y="298.3">/faqs. 21 pages</text>
+<text class="ms" x="673.0" y="310.5">≈0 visits</text>
+<rect class="mn" x="784.0" y="281.6" width="170" height="63.8" rx="7"/>
+<text class="mt" x="869.0" y="298.3">/partners. 10 pages</text>
+<text class="ms" x="869.0" y="310.5">0 visits · gives OUT</text>
+<text class="ms" x="869.0" y="322.7">dofollow links</text>
+<text class="ms" x="869.0" y="334.9">(litebox.ai?ref=genesys)</text>
+<rect class="mn" x="980.0" y="281.6" width="170" height="88.2" rx="7"/>
+<text class="mt" x="1065.0" y="298.3">Core 7: /pricing /about</text>
+<text class="ms" x="1065.0" y="310.5">/manifesto</text>
+<text class="ms" x="1065.0" y="322.7">/ai-info /testimonials, ≈0</text>
+<text class="ms" x="1065.0" y="334.9">organic</text>
+<text class="ms" x="1065.0" y="347.1">but = the conversion + GEO</text>
+<text class="ms" x="1065.0" y="359.3">layer</text>
+<rect class="mn good" x="136.0" y="429.8" width="200" height="63.8" rx="7"/>
+<text class="mt good" x="236.0" y="446.5">Stats roundups (~10 posts)</text>
+<text class="ms good" x="236.0" y="458.7">~300 visits/mo. 60% of</text>
+<text class="ms good" x="236.0" y="470.9">everything</text>
+<text class="ms good" x="236.0" y="483.1">+ earns the ONLY real backlinks</text>
+<rect class="mn" x="362.0" y="429.8" width="200" height="51.6" rx="7"/>
+<text class="mt" x="462.0" y="446.5">Tool-vs-tool (~206 posts:</text>
+<text class="ms" x="462.0" y="458.7">143 'GG vs rival', 63 off-topic)</text>
+<text class="ms" x="462.0" y="470.9">~150 visits/mo, buyer-fit 42/100</text>
+<rect class="mn" x="588.0" y="429.8" width="200" height="39.4" rx="7"/>
+<text class="mt" x="688.0" y="446.5">'Alternatives' (91 posts)</text>
+<text class="ms" x="688.0" y="458.7">~10 visits/mo</text>
+<rect class="mn dead" x="814.0" y="429.8" width="200" height="63.8" rx="7"/>
+<text class="mt dead" x="914.0" y="446.5">344 ORPHANS (94%)</text>
+<text class="ms dead" x="914.0" y="458.7">no internal link path </text>
+<text class="ms dead" x="914.0" y="470.9">blog index capped at 20, no</text>
+<text class="ms dead" x="914.0" y="483.1">pagination</text>
+</svg>
+</div>
+<!--mermaid
+flowchart LR
+  subgraph LINKS["WHO LINKS TO THEM (1,403 domains → paper DR 66)"]
+    PBN["🚩 PBN spam network<br/>207 domains, one spun paragraph<br/>(nofollow, inflates DR only)"] MILL["🚩 Guest-post mill<br/>~30 SaaS micro-tools, 12–114 links each<br/>(typefully, weglot, sozee.ai, averi.ai…)"]
+    UGC["🚩 Self-serve platform pages<br/>github, medium, substack, forbes,<br/>hubspot, carrd, clutch (1–5 links each)"]
+    REAL["✅ GENUINE: writers citing their<br/>stats posts (~90+ domains,<br/>real stat pull-quote anchors)"]
+  end
+
+  DOM["genesysgrowth.com<br/>DR 66 paper / UR 8 real<br/>~516 organic visits/mo"] PBN -.-> DOM MILL -.-> DOM UGC -.-> DOM REAL ==> DOM DOM --&gt; BLOG["/blog. 365 posts<br/>≈97% of ALL traffic (~502/mo)"] DOM --&gt; TOOLS["/tools. 32 pages<br/>≈0 visits"] DOM --&gt; CASE["/case-studies. 41 pages<br/>~12 visits"] DOM --&gt; FAQ["/faqs. 21 pages<br/>≈0 visits"] DOM --&gt; PART["/partners. 10 pages<br/>0 visits · gives OUT dofollow links<br/>(litebox.ai?ref=genesys)"]
+  DOM --&gt; CORE["Core 7: /pricing /about /manifesto<br/>/ai-info /testimonials, ≈0 organic<br/>but = the conversion + GEO layer"]
+
+  BLOG --&gt; STATS["✅ Stats roundups (~10 posts)<br/>~300 visits/mo. 60% of everything<br/>+ earns the ONLY real backlinks"]
+  BLOG --&gt; VS["Tool-vs-tool (~206 posts:<br/>143 'GG vs rival', 63 off-topic)<br/>~150 visits/mo, buyer-fit 42/100"]
+  BLOG --&gt; ALT["'Alternatives' (91 posts)<br/>~10 visits/mo"]
+  BLOG --&gt; ORPH["⚫ 344 ORPHANS (94%)<br/>no internal link path <br/>blog index capped at 20, no pagination"]
+
+  STATS -. "should link to but barely feeds" .-> CORE
+-->
+
+<p class="prose"><strong>How to read this map. The three fatal mismatches it shows:</strong></p>
 <ol class="prose">
   <li><strong>Authority flows in from junk</strong> (dashed lines): 3 of the 4 inbound-link sources are manufactured, which is why the domain says DR 66 while the homepage's page-level score (UR) is 8/100. Only the stats-post citations (solid line) are real.</li>
-  <li><strong>Traffic lands where money isn't:</strong> ~97% of visits land in /blog — and mostly on posts for video-editor and transcription-tool shoppers. The pages that sell (/pricing, /tools, case studies) get effectively zero organic visitors.</li>
-  <li><strong>The internal pipes are cut:</strong> 344 of 365 posts are orphans (black node), and even the performing posts barely link down to the money pages — the exact opposite of Appinventiv's design, where every post is a pipe feeding service pages.</li>
+  <li><strong>Traffic lands where money isn't:</strong> ~97% of visits land in /blog, and mostly on posts for video-editor and transcription-tool shoppers. The pages that sell (/pricing, /tools, case studies) get effectively zero organic visitors.</li>
+  <li><strong>The internal pipes are cut:</strong> 344 of 365 posts are orphans (black node), and even the performing posts barely link down to the money pages: the exact opposite of Appinventiv's design, where every post is a pipe feeding service pages.</li>
 </ol>
 
-<h2 id="timeline">2 · The timeline — DR and traffic, month by month</h2>
+<h2 id="timeline">2 · The timeline: DR and traffic, month by month</h2>
 <div class="tbl-scroll"><table>
   <thead><tr><th>When</th><th class="num">DR</th><th class="num">Organic/mo</th><th>Event</th></tr></thead>
   <tbody>
     <tr><td>Jan 2025</td><td class="num">8</td><td class="num">4</td><td>Normal young site</td></tr>
-    <tr><td>Apr 2025</td><td class="num">9</td><td class="num">10</td><td>—</td></tr>
+    <tr><td>Apr 2025</td><td class="num">9</td><td class="num">10</td><td>·</td></tr>
     <tr><td>Jul 2025</td><td class="num">11</td><td class="num">35</td><td>Link acquisition begins</td></tr>
-    <tr><td>Oct 2025</td><td class="num">22</td><td class="num">20</td><td>DR doubling, traffic flat — the first red flag</td></tr>
+    <tr><td>Oct 2025</td><td class="num">22</td><td class="num">20</td><td>DR doubling, traffic flat · the first red flag</td></tr>
     <tr><td>Jan 2026</td><td class="num">50</td><td class="num">346</td><td><strong>DR 11→50 in 6 months</strong> (Appinventiv needed years for the same climb)</td></tr>
-    <tr><td><strong>Feb 4–6, 2026</strong></td><td class="num">—</td><td class="num">—</td><td><strong>364 posts published in one 3-day window</strong> (from the posts' own page dates)</td></tr>
+    <tr><td><strong>Feb 4–6, 2026</strong></td><td class="num">·</td><td class="num">·</td><td><strong>364 posts published in one 3-day window</strong> (from the posts' own page dates)</td></tr>
     <tr><td>Mar 2026</td><td class="num">55</td><td class="num">428</td><td>Content indexing, rankings forming</td></tr>
-    <tr><td>May 2026</td><td class="num">62</td><td class="num"><strong>1,021</strong></td><td>Peak — the shortcut "works" for one quarter</td></tr>
-    <tr><td>Jun 2026</td><td class="num">—</td><td class="num">734</td><td>The turn</td></tr>
-    <tr><td>Jul 2026</td><td class="num">—</td><td class="num">553</td><td>Second consecutive drop</td></tr>
+    <tr><td>May 2026</td><td class="num">62</td><td class="num"><strong>1,021</strong></td><td>Peak · the shortcut "works" for one quarter</td></tr>
+    <tr><td>Jun 2026</td><td class="num">·</td><td class="num">734</td><td>The turn</td></tr>
+    <tr><td>Jul 2026</td><td class="num">·</td><td class="num">553</td><td>Second consecutive drop</td></tr>
     <tr><td>Aug 2026</td><td class="num">66</td><td class="num"><strong>515</strong></td><td>DR still rising, traffic −50% from peak: links keep arriving, Google keeps discounting</td></tr>
   </tbody>
 </table></div>
-<p class="prose">Direct answers: <strong>DR 66 took ~13 months to assemble</strong> (8→66), with the decisive 11→50 sprint in six months — velocity that essentially never occurs naturally. <strong>"Google unwinding since May"</strong> = the three-consecutive-month decline you see above, the staircase signature of site-wide quality re-scoring (not a one-day penalty; no manual action involved).</p>
+<p class="prose">Direct answers: <strong>DR 66 took ~13 months to assemble</strong> (8→66), with the decisive 11→50 sprint in six months, velocity that essentially never occurs naturally. <strong>"Google unwinding since May"</strong> = the three-consecutive-month decline you see above, the staircase signature of site-wide quality re-scoring (not a one-day penalty; no manual action involved).</p>
 
-<h2 id="backlinks">3 · Exactly where the DR 66 came from — the full backlink evidence</h2>
+<h2 id="backlinks">3 · Exactly where the DR 66 came from: the full backlink evidence</h2>
 <p class="prose">This is the section you asked for: "these are the exact backlinks, this is the website from which they drive them." All from Ahrefs API v3, confidence 1.00, full raw file at <code>findings/backlinks.md</code>.</p>
 
-<h3>3a. The PBN spam layer — the #1 anchor, verbatim</h3>
-<p class="prose">The single most common anchor text pointing at genesysgrowth.com — used identically across <strong>207 different domains</strong> (213 links, 100% nofollow) — is this spun fake testimonial <em>advertising a different SEO vendor</em>:</p>
-<blockquote>"When running genesysgrowth.com felt like an uphill battle financially, I discovered that quality SEO didn't have to cost a fortune after all thanks to SEOExpress.org. Their content marketing strategy gave me fantastic ROI as visitor numbers rose dramatically—from mere hundreds to over four thousand a month! Affordable yet effective—they're what every website needs 🌟"</blockquote>
-<p class="prose">207 unrelated websites do not organically publish the same paragraph — one link-farm network pastes it. Two more top-30 anchors are literal link-selling ad copy: <em>"Rank genesysgrowth.com higher with premium guest posts, high-quality backlinks, on-page SEO…"</em> (36 domains) and <em>"Complete SEO for genesysgrowth.com: contextual backlinks, premium guest posts…"</em> (4 domains). Combined: <strong>247 of 1,403 referring domains (17.6%) traced to just 3 spam templates — and that's a floor</strong>, from sampling only the top 30 anchors. A bonus tell: one anchor reads "The Genesys The GenesysBy Matteo Tittarelli" — duplicated text and a mangled founder name, the fingerprint of auto-spun scraped content.</p>
+<h3>3a. The PBN spam layer: the #1 anchor, verbatim</h3>
+<p class="prose">The single most common anchor text pointing at genesysgrowth.com, used identically across <strong>207 different domains</strong> (213 links, 100% nofollow). Is this spun fake testimonial <em>advertising a different SEO vendor</em>:</p>
+<blockquote>"When running genesysgrowth.com felt like an uphill battle financially, I discovered that quality SEO didn't have to cost a fortune after all thanks to SEOExpress.org. Their content marketing strategy gave me fantastic ROI as visitor numbers rose dramatically from mere hundreds to over four thousand a month! Affordable yet effective they're what every website needs 🌟"</blockquote>
+<p class="prose">207 unrelated websites do not organically publish the same paragraph, one link-farm network pastes it. Two more top-30 anchors are literal link-selling ad copy: <em>"Rank genesysgrowth.com higher with premium guest posts, high-quality backlinks, on-page SEO…"</em> (36 domains) and <em>"Complete SEO for genesysgrowth.com: contextual backlinks, premium guest posts…"</em> (4 domains). Combined: <strong>247 of 1,403 referring domains (17.6%) traced to just 3 spam templates, and that's a floor</strong>, from sampling only the top 30 anchors. A bonus tell: one anchor reads "The Genesys The GenesysBy Matteo Tittarelli": duplicated text and a mangled founder name, the fingerprint of auto-spun scraped content.</p>
 
-<h3>3b. The guest-post mill — the exact domains</h3>
+<h3>3b. The guest-post mill: the exact domains</h3>
 <div class="tbl-scroll"><table>
   <thead><tr><th>Referring domain</th><th class="num">DR</th><th class="num">Links to Genesys</th></tr></thead>
   <tbody>
@@ -254,12 +379,12 @@
     <tr><td>+ ~18 more (stripo.email, eesel.ai, prospeo.io, maestra.io, blogpros.com, embertribe.com…)</td><td class="num">7–78</td><td class="num">12–19 each</td></tr>
   </tbody>
 </table></div>
-<p class="prose"><strong>Why this pattern is damning:</strong> a genuine editorial citation is almost always ONE link from a domain. Dozens of small SaaS tools each sending 12–114 links = paid guest posts with multiple embedded links per placement. And remember the anchor ad copy above sells exactly this service ("premium guest posts… SaaS tools") — the agency appears to have run its own link-building product on itself.</p>
+<p class="prose"><strong>Why this pattern is damning:</strong> a genuine editorial citation is almost always ONE link from a domain. Dozens of small SaaS tools each sending 12–114 links = paid guest posts with multiple embedded links per placement. And remember the anchor ad copy above sells exactly this service ("premium guest posts… SaaS tools"). The agency appears to have run its own link-building product on itself.</p>
 
 <h3>3c. The platform-laundering layer</h3>
-<p class="prose">Their highest-DR referring domains — github.com (97), shopify.com (96), medium.com (94), <strong>forbes.com (94)</strong>, substack.com (94), hubspot.com (93), note.com (92), framer.com (91), carrd.co (91), luma.com (91), clutch.co (91), hackernoon.com (88) — each contribute only 1–5 links. These are <strong>self-serve pages anyone can create</strong> (a Medium article, a Substack, a GitHub profile, a Carrd one-pager, an event on Luma). The platform's DR gets counted; no editor at Forbes or HubSpot ever endorsed Genesys. (The 2 Forbes links are unverified — could be a genuine mention or a paid contributor post; we flag, not assert.)</p>
+<p class="prose">Their highest-DR referring domains, github.com (97), shopify.com (96), medium.com (94), <strong>forbes.com (94)</strong>, substack.com (94), hubspot.com (93), note.com (92), framer.com (91), carrd.co (91), luma.com (91), clutch.co (91), hackernoon.com (88), each contribute only 1–5 links. These are <strong>self-serve pages anyone can create</strong> (a Medium article, a Substack, a GitHub profile, a Carrd one-pager, an event on Luma). The platform's DR gets counted; no editor at Forbes or HubSpot ever endorsed Genesys. (The 2 Forbes links are unverified. Could be a genuine mention or a paid contributor post; we flag, not assert.)</p>
 
-<h3>3d. The proof Google isn't fooled — the UR table</h3>
+<h3>3d. The proof Google isn't fooled: the UR table</h3>
 <div class="tbl-scroll"><table>
   <thead><tr><th>Page</th><th class="num">Referring domains</th><th class="num">URL Rating (0–100)</th></tr></thead>
   <tbody>
@@ -270,102 +395,102 @@
     <tr><td>/blog/social-proof-conversion-stats…</td><td class="num">84</td><td class="num">4.8</td></tr>
   </tbody>
 </table></div>
-<p class="prose">A page with 400+ <em>earned</em> referring domains scores UR 30–60+. UR 8 means the page-level algorithm — which behaves much more like Google — already discounts nearly all of it. <strong>"Propped up" in plain words:</strong> the DR 66 is scaffolding; the building underneath (durable, editorially-earned authority) we estimate at DR high-20s to mid-30s — roughly what 13 months of honest work produces anyway.</p>
+<p class="prose">A page with 400+ <em>earned</em> referring domains scores UR 30–60+. UR 8 means the page-level algorithm, which behaves much more like Google, already discounts nearly all of it. <strong>"Propped up" in plain words:</strong> the DR 66 is scaffolding; the building underneath (durable, editorially-earned authority) we estimate at DR high-20s to mid-30s. Roughly what 13 months of honest work produces anyway.</p>
 
-<h3>3e. The genuine layer — what to copy</h3>
-<p class="prose">~90+ domains cite their stats posts with real editorial anchors — specific stat pull-quotes ("36% of marketing leaders…", "270%") and direct URLs to posts like <a href="https://genesysgrowth.com/blog/content-marketing-roi-stats-for-marketing-leaders">content-marketing-roi-stats-for-marketing-leaders</a> (215 referring domains on that one page). Writers really do cite statistics roundups. This is the one link-building engine on the site that is legitimate, working, and worth replicating.</p>
+<h3>3e. The genuine layer: what to copy</h3>
+<p class="prose">~90+ domains cite their stats posts with real editorial anchors: specific stat pull-quotes ("36% of marketing leaders…", "270%") and direct URLs to posts like <a href="https://genesysgrowth.com/blog/content-marketing-roi-stats-for-marketing-leaders">content-marketing-roi-stats-for-marketing-leaders</a> (215 referring domains on that one page). Writers really do cite statistics roundups. This is the one link-building engine on the site that is legitimate, working, and worth replicating.</p>
 
-<h3>3f. The partner pages — links as a commercial lever</h3>
-<p class="prose">Their 10 <code>/partners/</code> pages hand OUT fully-dofollow links (no <code>rel</code> attribute at all) to partner agencies — and <a href="https://genesysgrowth.com/partners/litebox">/partners/litebox</a> links to <code>litebox.ai/?ref=genesys</code>, a referral-tracking parameter proving a commercial relationship. We checked both sampled partners' own backlink lists: no confirmed reciprocal link back (inconclusive, not disproven). Either way it shows the mindset: links treated as a commercial instrument throughout.</p>
-<h2 id="findings">4 · Every specialist finding, unpacked — nothing skipped</h2>
+<h3>3f. The partner pages: links as a commercial lever</h3>
+<p class="prose">Their 10 <code>/partners/</code> pages hand OUT fully-dofollow links (no <code>rel</code> attribute at all) to partner agencies · and <a href="https://genesysgrowth.com/partners/litebox">/partners/litebox</a> links to <code>litebox.ai/?ref=genesys</code>, a referral-tracking parameter proving a commercial relationship. We checked both sampled partners' own backlink lists: no confirmed reciprocal link back (inconclusive, not disproven). Either way it shows the mindset: links treated as a commercial instrument throughout.</p>
+<h2 id="findings">4 · Every specialist finding, unpacked: nothing skipped</h2>
 
-<h3>4a. Technical SEO — 78/100</h3>
+<h3>4a. Technical SEO: 78/100</h3>
 <ul>
-  <li><span class="sev c">Critical</span><strong>Broken BlogPosting schema on all ~364 posts.</strong> Careful — two different "title" problems exist on this site and you asked to separate them. THIS one is the hidden machine-readable ID card (schema): it contains literal unrendered template variables. <span class="see" style="display:block"><span class="lbl">Click &amp; verify</span><p>Open <a href="https://genesysgrowth.com/blog/fathom-vs-fireflies-ai-vs-otter-ai">this post</a> → right-click → View Page Source → ⌘F for <code>{{</code> → you'll read <code>"headline": "{{Title}}", "description": "{{Excerpt}}", "url": ".../blog/{{Slug}}", "datePublished": "{{Published date}}"</code>. It should read <code>"headline": "Fathom vs Fireflies AI vs Otter AI", "datePublished": "2026-02-05"</code>. Cause: a Webflow schema recipe pasted into Framer, which never fills Webflow's variables. Confirmed on every post sampled by three independent specialists.</p></span></li>
-  <li><span class="sev h">High</span><strong>Meta descriptions ~597 characters on tool pages</strong> — this is the OTHER "title-ish" problem, and it's about length, not brokenness: the grey snippet text Google shows is limited to ~155–160 characters; theirs is nearly 4× over, so Google truncates or rewrites it. <span class="see" style="display:block"><span class="lbl">Click &amp; verify</span><p>Open <a href="https://genesysgrowth.com/tools/clay">/tools/clay</a> → View Page Source → ⌘F <code>name="description"</code> → count the text. Template-level, so likely all 32 /tools pages. Fix: rewrite to ≤160 characters that make a searcher click.</p></span></li>
-  <li><span class="sev h">High</span><strong>The /blog hub only server-renders links to 20 of 364 posts</strong> — the rest need JavaScript to appear, so non-JS crawlers can't discover them from the hub (the sitemap still lists them, so indexing isn't blocked — but link equity and discovery are).</li>
-  <li><span class="sev m">Medium</span><strong>426 KB of inline, uncacheable CSS</strong> on the homepage (38.8% of a 1.05 MB document) + only 2 of 201 images lazy-loaded — the main mobile-speed risk. Framer-structural.</li>
+  <li><span class="sev c">Critical</span><strong>Broken BlogPosting schema on all ~364 posts.</strong> Careful. Two different "title" problems exist on this site and you asked to separate them. THIS one is the hidden machine-readable ID card (schema): it contains literal unrendered template variables. <span class="see" style="display:block"><span class="lbl">Click &amp; verify</span><p>Open <a href="https://genesysgrowth.com/blog/fathom-vs-fireflies-ai-vs-otter-ai">this post</a> → right-click → View Page Source → ⌘F for <code>{{</code> → you'll read <code>"headline": "{{Title}}", "description": "{{Excerpt}}", "url": ".../blog/{{Slug}}", "datePublished": "{{Published date}}"</code>. It should read <code>"headline": "Fathom vs Fireflies AI vs Otter AI", "datePublished": "2026-02-05"</code>. Cause: a Webflow schema recipe pasted into Framer, which never fills Webflow's variables. Confirmed on every post sampled by three independent specialists.</p></span></li>
+  <li><span class="sev h">High</span><strong>Meta descriptions ~597 characters on tool pages</strong>: this is the OTHER "title-ish" problem, and it's about length, not brokenness: the grey snippet text Google shows is limited to ~155–160 characters; theirs is nearly 4× over, so Google truncates or rewrites it. <span class="see" style="display:block"><span class="lbl">Click &amp; verify</span><p>Open <a href="https://genesysgrowth.com/tools/clay">/tools/clay</a> → View Page Source → ⌘F <code>name="description"</code> → count the text. Template-level, so likely all 32 /tools pages. Fix: rewrite to ≤160 characters that make a searcher click.</p></span></li>
+  <li><span class="sev h">High</span><strong>The /blog hub only server-renders links to 20 of 364 posts</strong>: the rest need JavaScript to appear, so non-JS crawlers can't discover them from the hub (the sitemap still lists them, so indexing isn't blocked, but link equity and discovery are).</li>
+  <li><span class="sev m">Medium</span><strong>426 KB of inline, uncacheable CSS</strong> on the homepage (38.8% of a 1.05 MB document) + only 2 of 201 images lazy-loaded, the main mobile-speed risk. Framer-structural.</li>
   <li><span class="sev m">Medium</span><strong>No CSP / X-Frame-Options / Referrer-Policy security headers</strong> (Framer platform limitation). HSTS and nosniff ARE present.</li>
   <li><span class="sev p">Works well</span>Perfect redirect hygiene (http→https and www→apex as clean 308s); genuinely pre-rendered HTML (19,877 characters of body text retrievable with zero JavaScript); correct canonicals everywhere sampled; real HTTP 404 + noindex on missing pages (not soft-200); valid 476-URL sitemap.</li>
 </ul>
 
-<h3>4b. Content quality — 32/100 (the site's worst score)</h3>
+<h3>4b. Content quality: 32/100 (the site's worst score)</h3>
 <ul>
-  <li><span class="sev c">Critical</span><strong>76% of all URLs (364/476) are combinatorial template output</strong> from ~6 slug patterns: 143 "Genesys Growth vs [rival] vs [rival]" reputation plays, 91 "[tool] alternatives", ~63 tool-vs-tool comparisons in categories unrelated to their business (meeting transcription, video editors, form builders), 10 stats roundups, ~23 page-design guides, ~26 niche-agency lists. <span class="see" style="display:block"><span class="lbl">Click &amp; verify the templating</span><p>Open <a href="https://genesysgrowth.com/blog/fathom-vs-fireflies-ai-vs-otter-ai">fathom-vs-fireflies-ai-vs-otter-ai</a> and <a href="https://genesysgrowth.com/blog/descript-vs-capcut-vs-clipchamp">descript-vs-capcut-vs-clipchamp</a> side by side: same skeleton, same section rhythm, measured 6,377 vs 6,378 words — one word apart.</p></span></li>
+  <li><span class="sev c">Critical</span><strong>76% of all URLs (364/476) are combinatorial template output</strong> from ~6 slug patterns: 143 "Genesys Growth vs [rival] vs [rival]" reputation plays, 91 "[tool] alternatives", ~63 tool-vs-tool comparisons in categories unrelated to their business (meeting transcription, video editors, form builders), 10 stats roundups, ~23 page-design guides, ~26 niche-agency lists. <span class="see" style="display:block"><span class="lbl">Click &amp; verify the templating</span><p>Open <a href="https://genesysgrowth.com/blog/fathom-vs-fireflies-ai-vs-otter-ai">fathom-vs-fireflies-ai-vs-otter-ai</a> and <a href="https://genesysgrowth.com/blog/descript-vs-capcut-vs-clipchamp">descript-vs-capcut-vs-clipchamp</a> side by side: same skeleton, same section rhythm, measured 6,377 vs 6,378 words, one word apart.</p></span></li>
   <li><span class="sev c">Critical</span><strong>Batch-publish-and-abandon:</strong> every sampled post published Feb 4–6, 2026; zero updates since (~6 months); yield ~1.4 visits/post/month and −50% in 3 months with no editorial response.</li>
-  <li><span class="sev h">High</span><strong>Fabricated first-hand experience:</strong> posts claim "hands-on testing" and a "Transcription Speed Test" with no screenshots, no methodology, no dates — an E-E-A-T signal <em>against</em> them.</li>
+  <li><span class="sev h">High</span><strong>Fabricated first-hand experience:</strong> posts claim "hands-on testing" and a "Transcription Speed Test" with no screenshots, no methodology, no dates, an E-E-A-T signal <em>against</em> them.</li>
   <li><span class="sev m">Medium</span><strong>Manipulative citation pattern:</strong> their own /pricing page is cited as a data "Source" alongside real research; 66 self-vs-competitor posts function as reputation gaming; no per-article author bios/schema.</li>
   <li><span class="sev p">Works well</span>The ~30 non-blog pages are genuinely credible: real UK company (#14363665), authentic case studies with named, titled, quoted clients (<a href="https://genesysgrowth.com/case-studies">see them</a>), honest /about and /manifesto; stats posts source claims to real third-party citations.</li>
 </ul>
 
-<h3>4c. Sitemap — 58/100</h3>
+<h3>4c. Sitemap: 58/100</h3>
 <ul>
-  <li><span class="sev c">Critical</span><strong>344 of 365 posts (94%) have no internal link path</strong> — the blog index collection is hard-limited to 20 items (<code>"limit":{"value":20}</code> found in the page's own embedded config), no pagination, no load-more, no post-to-post links. <span class="see" style="display:block"><span class="lbl">Click &amp; verify</span><p><a href="https://genesysgrowth.com/blog">genesysgrowth.com/blog</a> — scroll to the bottom: ~20 cards, no page 2. <a href="https://genesysgrowth.com/sitemap.xml">The sitemap</a> lists 365. The gap is the orphan population.</p></span></li>
+  <li><span class="sev c">Critical</span><strong>344 of 365 posts (94%) have no internal link path</strong>. The blog index collection is hard-limited to 20 items (<code>"limit":{"value":20}</code> found in the page's own embedded config), no pagination, no load-more, no post-to-post links. <span class="see" style="display:block"><span class="lbl">Click &amp; verify</span><p><a href="https://genesysgrowth.com/blog">genesysgrowth.com/blog</a>, scroll to the bottom: ~20 cards, no page 2. <a href="https://genesysgrowth.com/sitemap.xml">The sitemap</a> lists 365. The gap is the orphan population.</p></span></li>
   <li><span class="sev m">Medium</span><strong>Two case studies orphaned by a CMS bug:</strong> the cards for <code>ethena</code> and <code>kolleno</code> on /case-studies link OUT to the clients' own sites instead of to the internal case-study pages.</li>
-  <li><span class="sev m">Medium</span><strong>0 of 476 URLs carry a lastmod date</strong> (Framer doesn't emit them) — Google can't tell what's fresh; the real dates exist inside Framer's CMS JSON but are never surfaced. HTTP Last-Modified headers don't compensate (they all show one deploy date).</li>
-  <li><span class="sev m">Info</span>Structure itself is valid: clean XML, correct namespace, robots.txt points to it, all 8 sampled URLs return 200 + self-canonical + indexable; changefreq/priority correctly omitted (Google ignores them — don't let an SEO vendor sell you those).</li>
-  <li><span class="sev h">Watch</span>281 of 365 posts follow 4 templated URL patterns; the two pairs spot-checked showed only 8–11% text overlap (differentiated), but 2 pairs out of 234 possible is a sample — a full uniqueness audit is required before scaling patterns like this.</li>
+  <li><span class="sev m">Medium</span><strong>0 of 476 URLs carry a lastmod date</strong> (Framer doesn't emit them). Google can't tell what's fresh; the real dates exist inside Framer's CMS JSON but are never surfaced. HTTP Last-Modified headers don't compensate (they all show one deploy date).</li>
+  <li><span class="sev m">Info</span>Structure itself is valid: clean XML, correct namespace, robots.txt points to it, all 8 sampled URLs return 200 + self-canonical + indexable; changefreq/priority correctly omitted (Google ignores them. Don't let an SEO vendor sell you those).</li>
+  <li><span class="sev h">Watch</span>281 of 365 posts follow 4 templated URL patterns; the two pairs spot-checked showed only 8–11% text overlap (differentiated), but 2 pairs out of 234 possible is a sample. A full uniqueness audit is required before scaling patterns like this.</li>
 </ul>
 
-<h3>4d. Schema — 38/100</h3>
+<h3>4d. Schema: 38/100</h3>
 <ul>
-  <li><span class="sev c">Critical</span>The broken BlogPosting template (see 4a) — the largest content type on the site fails validation outright.</li>
-  <li><span class="sev h">High</span><strong>19 real FAQ answers on <a href="https://genesysgrowth.com/faqs">/faqs</a> with zero FAQPage markup</strong> — free AI-citation value forgone. Bonus content bug found while extracting them: "How does your pricing work?" is answered with a verbatim copy of "What's your time commitment?"</li>
-  <li><span class="sev h">High</span><strong>No BreadcrumbList anywhere</strong> despite clean URL hierarchy — one template would benefit ~450 pages.</li>
+  <li><span class="sev c">Critical</span>The broken BlogPosting template (see 4a). The largest content type on the site fails validation outright.</li>
+  <li><span class="sev h">High</span><strong>19 real FAQ answers on <a href="https://genesysgrowth.com/faqs">/faqs</a> with zero FAQPage markup</strong>, free AI-citation value forgone. Bonus content bug found while extracting them: "How does your pricing work?" is answered with a verbatim copy of "What's your time commitment?"</li>
+  <li><span class="sev h">High</span><strong>No BreadcrumbList anywhere</strong> despite clean URL hierarchy. One template would benefit ~450 pages.</li>
   <li><span class="sev m">Medium</span>No Article schema on 40 case studies and 31 tool pages; founder exists only as a 2-property stub (no standalone Person schema); no <code>@graph</code> entity linking; "Genesys"/"Genesis" name inconsistency between name and legalName fields.</li>
   <li><span class="sev p">Works well</span>Organization schema is above average (founder, address, 7 sameAs profiles, contactPoint); /pricing has a proper Service + OfferCatalog with 3 tiers; JSON-LD-only (the correct format choice). Fix-ready JSON-LD for the two big gaps is written in <code>findings/schema.md</code>.</li>
 </ul>
 
-<h3>4e. Performance — 62/100 (lab proxy; Google field data unavailable without an API key)</h3>
+<h3>4e. Performance: 62/100 (lab proxy; Google field data unavailable without an API key)</h3>
 <ul>
   <li><span class="sev p">Works well</span>Server answers in 88–110ms warm (edge-cached, <code>ssg-status: optimized</code>); zero render-blocking JavaScript (all async); real AVIF/WebP image negotiation on their CDN (36–49% smaller when properly requested); zero layout-shift risk (all sampled images carry width/height + engineered font fallbacks with size-adjust).</li>
-  <li><span class="sev h">High</span>274–426KB of render-blocking inline CSS per page — Framer's per-breakpoint CSS duplication, structural to the platform, the main LCP risk.</li>
-  <li><span class="sev m">Medium</span>654–767KB of JavaScript per page (gtag.js alone is 184KB — bigger than the entire homepage HTML); lazy-loading on only 2–4 of ~200 images; zero preload hints; homepage DOM is 3,042 elements (guideline: ~1,500); 5 fonts served as raw uncompressed .ttf.</li>
-  <li><span class="sev m">Info</span>Most of these are Framer-platform characteristics the site owner cannot fix — factor that into your own platform choice.</li>
+  <li><span class="sev h">High</span>274–426KB of render-blocking inline CSS per page: Framer's per-breakpoint CSS duplication, structural to the platform, the main LCP risk.</li>
+  <li><span class="sev m">Medium</span>654–767KB of JavaScript per page (gtag.js alone is 184KB, bigger than the entire homepage HTML); lazy-loading on only 2–4 of ~200 images; zero preload hints; homepage DOM is 3,042 elements (guideline: ~1,500); 5 fonts served as raw uncompressed .ttf.</li>
+  <li><span class="sev m">Info</span>Most of these are Framer-platform characteristics the site owner cannot fix, factor that into your own platform choice.</li>
 </ul>
 
-<h3>4f. Visual / mobile — 78/100 (real screenshots captured, desktop + mobile)</h3>
+<h3>4f. Visual / mobile: 78/100 (real screenshots captured, desktop + mobile)</h3>
 <ul>
-  <li><span class="sev h">High</span><strong>Mobile-only typo in the money claim:</strong> <a href="https://genesysgrowth.com/pricing">/pricing</a>'s mobile headline renders "transparent <strong>priciing</strong>" (desktop is correct — a Framer per-breakpoint text override bug). Check it on your phone.</li>
-  <li><span class="sev m">Medium</span>Mobile hamburger menu is a bare <code>&lt;div&gt;</code> (33×33px) with no button role/label — invisible to screen readers, under every touch-target guideline. Announcement bar pushes a competing course-signup CTA above the primary offer sitewide.</li>
+  <li><span class="sev h">High</span><strong>Mobile-only typo in the money claim:</strong> <a href="https://genesysgrowth.com/pricing">/pricing</a>'s mobile headline renders "transparent <strong>priciing</strong>" (desktop is correct, a Framer per-breakpoint text override bug). Check it on your phone.</li>
+  <li><span class="sev m">Medium</span>Mobile hamburger menu is a bare <code>&lt;div&gt;</code> (33×33px) with no button role/label · invisible to screen readers, under every touch-target guideline. Announcement bar pushes a competing course-signup CTA above the primary offer sitewide.</li>
   <li><span class="sev m">Low</span>Mobile body text clusters at 14px (16px is the readable-without-zoom floor); pricing CTA sits only 67px above the fold-edge on smaller phones.</li>
   <li><span class="sev p">Works well</span>Clear founder-led hero ("Book a call with Matteo") with 60+ client logos immediately visible; primary CTA above the fold on both viewports; published real pricing (rare, disarming); no horizontal scroll; no flash-of-invisible-text.</li>
 </ul>
 
-<h3>4g. AI-search readiness — 73/100 (their best work — dissected fully in the <em>course</em>, Part 3)</h3>
+<h3>4g. AI-search readiness: 73/100 (their best work dissected fully in the <em>course</em>, Part 3)</h3>
 <ul>
   <li><span class="sev p">Works well</span><a href="https://genesysgrowth.com/robots.txt">robots.txt</a> individually welcomes 10 AI crawlers incl. CCBot/anthropic-ai (deliberate maximum-visibility stance); <a href="https://genesysgrowth.com/llms.txt">llms.txt</a> present and well-formed; <a href="https://genesysgrowth.com/ai-info">/ai-info</a> is a bespoke AI fact sheet with "Limitations" and "AI assistant guidelines" sections; zero cloaking verified (byte-identical pages served to humans and GPTBot); stat blocks average the right shape for citation with 66/66 checked sources real and deep-linked.</li>
-  <li><span class="sev h">High</span>The broken article schema (4a) undermines machine parsing of exactly the content built for machines; and the company claims <strong>three different client counts — 60+, 40+, 45+ — on different pages right now</strong>, so an AI citing them could pull any of the three.</li>
+  <li><span class="sev h">High</span>The broken article schema (4a) undermines machine parsing of exactly the content built for machines; and the company claims <strong>three different client counts. 60+, 40+, 45+, on different pages right now</strong>, so an AI citing them could pull any of the three.</li>
   <li><span class="sev m">Medium</span>/ai-info is stale ("Last updated 27 Oct 2025"); /llms-full.txt returns the text "Not found" with an HTTP 200 status (a crawler could ingest "Not found" as their content); no FAQPage schema despite abundant FAQs; no charts on stat-heavy posts.</li>
 </ul>
 
-<h3>4h. Search experience (SXO) — 46/100</h3>
+<h3>4h. Search experience (SXO): 46/100</h3>
 <ul>
   <li><span class="sev c">Critical</span><strong>Topical authority dilution:</strong> a GTM consultancy publishing at scale about transcription apps and video editors teaches Google (and buyers) that it's about none of those things convincingly.</li>
-  <li><span class="sev c">Critical</span><strong>Zero unique media:</strong> all 4 audited pages reuse the same 157-image site template — no product screenshots on "hands-on" comparisons, no charts on 34-stat roundups.</li>
-  <li><span class="sev h">High</span><strong>Zero-volume title engineering:</strong> #1–3 rankings sit on phrasings like "…stats for marketing leaders 2026" that nobody types (2.6 visits/keyword/month); on natural head queries they're #3–6 behind real review sites. <span class="see" style="display:block"><span class="lbl">Click &amp; verify</span><p>Google <a href="https://www.google.com/search?q=fathom+vs+fireflies+vs+otter">"fathom vs fireflies vs otter"</a> (real query) vs <a href="https://www.google.com/search?q=%22b2b+video+performance+stats+for+marketing+leaders%22">"b2b video performance stats for marketing leaders"</a> in quotes (their engineered phrasing — they own an empty room).</p></span></li>
-  <li><span class="sev h">High</span><strong>Persona mismatch quantified:</strong> the tool-comparison visitor scores 42/100 fit against the "book a GTM consulting call" CTA — including one non-sequitur bridge ("Evaluating GTM strategy tools?" on a meeting-transcription comparison).</li>
+  <li><span class="sev c">Critical</span><strong>Zero unique media:</strong> all 4 audited pages reuse the same 157-image site template: no product screenshots on "hands-on" comparisons, no charts on 34-stat roundups.</li>
+  <li><span class="sev h">High</span><strong>Zero-volume title engineering:</strong> #1–3 rankings sit on phrasings like "…stats for marketing leaders 2026" that nobody types (2.6 visits/keyword/month); on natural head queries they're #3–6 behind real review sites. <span class="see" style="display:block"><span class="lbl">Click &amp; verify</span><p>Google <a href="https://www.google.com/search?q=fathom+vs+fireflies+vs+otter">"fathom vs fireflies vs otter"</a> (real query) vs <a href="https://www.google.com/search?q=%22b2b+video+performance+stats+for+marketing+leaders%22">"b2b video performance stats for marketing leaders"</a> in quotes (their engineered phrasing. They own an empty room).</p></span></li>
+  <li><span class="sev h">High</span><strong>Persona mismatch quantified:</strong> the tool-comparison visitor scores 42/100 fit against the "book a GTM consulting call" CTA. Including one non-sequitur bridge ("Evaluating GTM strategy tools?" on a meeting-transcription comparison).</li>
   <li><span class="sev p">Works well</span>The conversion machinery is genuinely excellent and NOT where effort should go: 1 click to Calendly from every page, 4–16 CTAs per page, 1,800+ newsletter subscribers.</li>
 </ul>
 
 <h2 id="keyword">5 · Your keyword question: does "best AI development agency in 2026 <em>June</em>" beat the big players?</h2>
-<p class="prose"><strong>Short answer: no — that's the exact trap Genesys fell into, and now you can name it.</strong> Adding "June" creates a phrasing with ~zero search volume; you'd rank #1 in an empty room (2.6 visits/keyword is what that strategy yields at scale). Here's the honest mechanics of date-modified keywords:</p>
+<p class="prose"><strong>Short answer: no: that's the exact trap Genesys fell into, and now you can name it.</strong> Adding "June" creates a phrasing with ~zero search volume; you'd rank #1 in an empty room (2.6 visits/keyword is what that strategy yields at scale). Here's the honest mechanics of date-modified keywords:</p>
 <ul class="prose">
   <li><strong>Year modifiers are real:</strong> "best ai development agency 2026" has genuine volume, because searchers add the year to force fresh results. Put the year in your title, refresh the page (content + date) each January, keep the URL year-free (<code>/best-ai-automation-agencies</code>, never <code>/best-ai-automation-agencies-2026</code>) so the URL keeps its accumulated authority forever.</li>
-  <li><strong>Month modifiers are noise:</strong> almost nobody searches "…June 2026", and Google treats the page as targeting the same query anyway — you gain nothing and look templated.</li>
-  <li><strong>How you actually beat bigger players on a young domain:</strong> not by out-phrasing them on the head term, but by (1) down-market specificity with real volume — "best AI automation agency for insurance", "n8n automation agency" — where incumbents have no dedicated page; (2) genuinely better pages (real screenshots, real data, real methodology — everything Genesys faked); (3) the AI-search lane, where being the clearest, best-structured answer wins citations regardless of domain age. Then, as authority compounds, you climb toward the head terms.</li>
+  <li><strong>Month modifiers are noise:</strong> almost nobody searches "…June 2026", and Google treats the page as targeting the same query anyway. You gain nothing and look templated.</li>
+  <li><strong>How you actually beat bigger players on a young domain:</strong> not by out-phrasing them on the head term, but by (1) down-market specificity with real volume: "best AI automation agency for insurance", "n8n automation agency". Where incumbents have no dedicated page; (2) genuinely better pages (real screenshots, real data, real methodology, everything Genesys faked); (3) the AI-search lane, where being the clearest, best-structured answer wins citations regardless of domain age. Then, as authority compounds, you climb toward the head terms.</li>
 </ul>
 
-<h2 id="strong">6 · The strong plays — what earned them anything at all</h2>
+<h2 id="strong">6 · The strong plays: what earned them anything at all</h2>
 <ol class="prose">
-  <li><strong>The stats linkable-asset series</strong> — their only real link engine (215 refdomains on one post) AND their top traffic (60% of all visits from ~10 posts). One format doing both jobs. Copy it, add original client data and charts.</li>
-  <li><strong>The GEO layer</strong> — /ai-info + llms.txt + AI-crawler welcomes + zero cloaking. Best implementation we've audited; full copy-playbook in the course, Part 3.</li>
-  <li><strong>Commercial transparency</strong> — published pricing, named clients with quotes, 1-click booking. The trust layer a real business deserves — which makes the manufactured shell around it such a waste.</li>
+  <li><strong>The stats linkable-asset series</strong>. Their only real link engine (215 refdomains on one post) AND their top traffic (60% of all visits from ~10 posts). One format doing both jobs. Copy it, add original client data and charts.</li>
+  <li><strong>The GEO layer</strong>, /ai-info + llms.txt + AI-crawler welcomes + zero cloaking. Best implementation we've audited; full copy-playbook in the course, Part 3.</li>
+  <li><strong>Commercial transparency</strong>: published pricing, named clients with quotes, 1-click booking. The trust layer a real business deserves, which makes the manufactured shell around it such a waste.</li>
 </ol>
 
 <div class="foot">
-  <p>Method: seo-audit skill (<a href="https://github.com/AgriciDaniel/claude-seo">github.com/AgriciDaniel/claude-seo</a>) — nine specialist agents over live fetches, Playwright screenshots, and Ahrefs API v3 (pulled 2 Aug 2026). Raw findings + fix-ready code: <code>~/clients/onegtmlab/new-venture-website/genesysgrowth.com-audit/</code>. Companions: <a href="seo-from-zero.html">SEO From Zero course</a> · <a href="wordpress-vs-webflow.html">platform decision</a>. Next in the series, on request: the same deep-dive for Appinventiv, then TechGropse, then the combined strategy for our site. Live-site observations true as of 2 Aug 2026.</p>
+  <p>Method: seo-audit skill (<a href="https://github.com/AgriciDaniel/claude-seo">github.com/AgriciDaniel/claude-seo</a>): nine specialist agents over live fetches, Playwright screenshots, and Ahrefs API v3 (pulled 2 Aug 2026). Raw findings + fix-ready code: <code>~/clients/onegtmlab/new-venture-website/genesysgrowth.com-audit/</code>. Companions: <a href="seo-from-zero.html">SEO From Zero course</a> · <a href="wordpress-vs-webflow.html">platform decision</a>. Next in the series, on request: the same deep-dive for Appinventiv, then TechGropse, then the combined strategy for our site. Live-site observations true as of 2 Aug 2026.</p>
 </div>
 </div>
-<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence — open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open — money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data — volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page — each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like — homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise — and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits — internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy — page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages — and a 532-byte stub served to GPTBot.</span></li><li class="here"><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+<footer class="lib-foot"><h3>The complete document set</h3><p class="sub">Seventeen documents. Everything from the strategy down to the evidence: open any of them from any page.</p><div class="lib-grid"><div><h4>Start here</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open: money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data: volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page: each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like: homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise: and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The seven audits: internal</h4><ul><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy: page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages: and a 532-byte stub served to GPTBot.</span></li><li class="here"><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
 </html>
