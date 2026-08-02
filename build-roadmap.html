@@ -8,7 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>Build Roadmap. AI Agent Site</title>
+<title>Build Roadmap: AI Agent Site</title>
 <style>
   :root{color-scheme:light;--bg:#faf9f7;--panel:#fff;--ink:#111110;--ink2:#54524d;--mut:#8a8781;--line:#e5e2db;--ring:rgba(17,17,16,.09);--acc:#1a4fd6;--soft:#eef2fd;--good:#0c7a3e;--warn:#a85b0a;--crit:#c4372c;--p1:#1a4fd6;--p2:#0c7a5e;--p3:#a8324a;--p4:#6d3fa8;--p5:#a85b0a;--p6:#4a6b1f}
   @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){color-scheme:dark;--bg:#0c0c0b;--panel:#171716;--ink:#f6f5f2;--ink2:#b7b4ac;--mut:#847f78;--line:#2a2926;--ring:rgba(255,255,255,.1);--acc:#7ba3ff;--soft:#141d33;--good:#4ade80;--warn:#f0a339;--crit:#f0796b;--p1:#7ba3ff;--p2:#4fd1ae;--p3:#f0819a;--p4:#c4a0ec;--p5:#f0a339;--p6:#a8ce70}}
@@ -124,6 +124,64 @@
   *,*::before,*::after{box-sizing:border-box}
   img,svg{max-width:100%}
 
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
     a{color:#1a4fd6;text-decoration:underline}
@@ -137,18 +195,15 @@
     h2,h3{break-after:avoid}
   }
 
-  .lib-nav{position:sticky;top:0;z-index:50;display:flex;gap:2px;flex-wrap:wrap;
-    align-items:center;padding:8px 14px;margin:0 0 22px;font-size:.78rem;
-    border-radius:0 0 10px 10px;max-width:100%;
-    background:color-mix(in srgb,var(--panel,#fff) 92%,transparent);
-    backdrop-filter:saturate(1.6) blur(8px);
-    border-bottom:1px solid var(--ring,#e5e2db)}
-  .lib-nav a{color:var(--ink2,#54524d);text-decoration:none;padding:4px 9px;
-    border-radius:6px;white-space:nowrap}
-  .lib-nav a:hover{background:var(--soft,#eef2fd);color:var(--acc,#1a4fd6)}
-  .lib-nav a.here{background:var(--acc,#1a4fd6);color:#fff;font-weight:700}
-  .lib-nav .home{font-weight:700;color:var(--acc,#1a4fd6);margin-right:6px}
-  .lib-nav .sep{color:var(--mut,#8a8781);opacity:.5;padding:0 2px}
+  .lib-nav{display:flex;gap:14px;align-items:baseline;padding:12px 0 0;
+    margin:0 0 4px;font-size:.82rem}
+  .lib-nav .back{color:var(--acc,#1a4fd6);text-decoration:none;font-weight:700}
+  .lib-nav .back:hover{text-decoration:underline}
+  .lib-nav .ctx{color:var(--mut,#8a8781);font-size:.72rem;letter-spacing:.09em;
+    text-transform:uppercase;font-weight:700}
+  .lib-foot .backline{margin:0 0 20px;font-size:.86rem}
+  .lib-foot .backline a{color:var(--acc,#1a4fd6);text-decoration:none;font-weight:700}
+  .lib-foot .backline a:hover{text-decoration:underline}
   .lib-foot{margin:64px 0 0;padding:30px 22px 44px;max-width:100%;
     border-radius:12px 12px 0 0;
     border-top:3px solid var(--ink,#111110);background:var(--panel,#fff)}
@@ -170,7 +225,7 @@
   @media print{.lib-nav,.lib-foot{display:none}}
 </style>
 </head>
-<body><nav class="lib-nav"><a class="home" href="index.html">GTM BUILD LIBRARY</a><a href="build-roadmap.html" class="here">The Build Roadmap</a><span class="sep">·</span><a href="seo-from-zero.html">SEO From Zero</a><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><a href="niche-research.html">Niche Research</a><a href="page-types.html">Page Types Decoded</a><a href="zero-click-marketing.html">Zero-Click Marketing</a><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span class="sep">·</span><a href="site-prototype.html">Clickable Prototype</a><a href="site-blueprint.html">Site Blueprint</a><a href="30-day-compression.html">The 30-Day Compression</a><a href="full-build-documentation.html">Full Build Documentation</a><span class="sep">·</span><a href="audit-appinventiv.html">Appinventiv</a><a href="audit-searchable.html">searchable.com</a><a href="audit-genesysgrowth.html">genesysgrowth.com</a><a href="audit-omnibound.html">omnibound.ai</a><a href="audit-appwrk.html">appwrk.com</a><a href="audit-techgropse.html">TechGropse</a></nav>
+<body>
 <div class="wrap">
 <header>
   <div class="eyebrow">BUILD ROADMAP · 3 Aug 2026 · references verified live</div>
@@ -191,7 +246,7 @@
 <div class="see" style="border-left:3px solid var(--acc);margin-bottom:28px">
 <span class="lbl">Scope of this document</span>
 This is the build roadmap: URL architecture, the 30-day thread, cluster maps, the linking law, distribution, and the MCP play. Every REF link points at a live public page you can open and study.<br><br>
-The underlying competitor audits. Including the named backlink-vendor findings and per-site teardowns, stay <b>internal only</b> and are not in this document. Ask Jainendra for those.
+The underlying competitor audits, including the named backlink-vendor findings and per-site teardowns, stay <b>internal only</b> and are not in this document. Ask Jainendra for those.
 </div>
 <h2 id="tree">1 · The URL tree</h2>
 <p class="prose">Every line carries: the slug · page type · target keyword with volume and difficulty · <span style="color:var(--acc)">REF</span> = the live page to open and study · <span style="color:var(--good)">→</span> what it links to · which blogs feed it · ship day. <span class="g">Green KD</span> = winnable now · <span class="w">amber</span> = needs DR 25–45 · <span class="r">red</span> = year two.</p>
