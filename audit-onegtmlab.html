@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>onegtmlab.com: Complete SEO Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --bar: #2a78d6;
+    --good: #006300; --warn: #b45309; --crit: #d03b3b;
+    --see: #eef4fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --ring: rgba(255,255,255,0.10);
+      --accent: #86b6ef; --bar: #3987e5;
+      --good: #0ca30c; --warn: #f5a623; --crit: #e66767;
+      --see: #16202b;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --ring: rgba(255,255,255,0.10);
+    --accent: #86b6ef; --bar: #3987e5;
+    --good: #0ca30c; --warn: #f5a623; --crit: #e66767;
+    --see: #16202b;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --bar: #2a78d6;
+    --good: #006300; --warn: #b45309; --crit: #d03b3b;
+    --see: #eef4fb;
+  }
+  body { background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6; margin: 0; padding: 0 20px 90px; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  h1, h2, h3 { font-family: Charter, Georgia, serif; text-wrap: balance; }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.15; margin: 0 0 8px; }
+  h2 { font-size: 1.5rem; margin: 56px 0 14px; padding-top: 16px; border-top: 3px solid var(--ink); }
+  h3 { font-size: 1.14rem; margin: 32px 0 8px; }
+  p { color: var(--ink-2); margin: 0 0 13px; }
+  p strong, li strong, td strong { color: var(--ink); }
+  ul, ol { color: var(--ink-2); padding-left: 1.35em; margin: 0 0 13px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--accent); }
+  code { background: color-mix(in srgb, var(--grid) 50%, transparent); border-radius: 4px; padding: 1px 5px; font-size: 0.88em; }
+  blockquote { border-left: 3px solid var(--grid); margin: 14px 0; padding: 4px 0 4px 16px; color: var(--ink-2); font-style: italic; }
+  .eyebrow { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 44px 0 12px; font-weight: 600; }
+  .prose { max-width: 720px; }
+  .hero { display: flex; gap: 26px; align-items: center; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 24px 26px; margin: 26px 0; }
+  .gauge { position: relative; width: 128px; height: 128px; flex: 0 0 auto; }
+  .gauge svg { width: 128px; height: 128px; transform: rotate(-90deg); }
+  .gauge .val { position: absolute; inset: 0; display: grid; place-items: center; font-size: 2rem; font-weight: 700; }
+  .gauge .val small { font-size: 0.7rem; font-weight: 600; color: var(--muted); }
+  .hero-txt { flex: 1 1 320px; }
+  .hero-txt p { margin-bottom: 8px; }
+  .sev { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; padding: 1px 8px; border-radius: 99px; text-transform: uppercase; margin-right: 6px; }
+  .sev.c { color: var(--crit); border: 1px solid var(--crit); }
+  .sev.h { color: var(--warn); border: 1px solid var(--warn); }
+  .sev.m { color: var(--muted); border: 1px solid var(--muted); }
+  .sev.p { color: var(--good); border: 1px solid var(--good); }
+  .see { background: var(--see); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 0.94rem; color: var(--ink-2); }
+  .see .lbl { font-weight: 700; color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .see p:last-child { margin-bottom: 0; }
+  .tbl-scroll { overflow-x: auto; margin: 16px 0; border: 1px solid var(--ring); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.86rem; min-width: 560px; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  .chart-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 14px; margin: 20px 0; }
+  pre.mermaid { margin: 0 auto; background: transparent; }
+  .foot { margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--grid); font-size: 0.8rem; color: var(--muted); }
+</style>
+<style>
+  /* Searchable-specific: the two-column "says vs ships" comparison */
+  .vs { display:grid; grid-template-columns:1fr 1fr; gap:0; margin:18px 0;
+        border:1px solid var(--ring); border-radius:10px; overflow:hidden }
+  .vs > div { padding:14px 16px; font-size:.9rem; color:var(--ink-2) }
+  .vs > div:first-child { background:color-mix(in srgb,var(--good) 7%,transparent);
+        border-right:1px solid var(--ring) }
+  .vs > div:last-child { background:color-mix(in srgb,var(--crit) 7%,transparent) }
+  .vs .h { font-size:.7rem; letter-spacing:.09em; text-transform:uppercase;
+        font-weight:700; display:block; margin-bottom:6px }
+  .vs > div:first-child .h { color:var(--good) }
+  .vs > div:last-child .h { color:var(--crit) }
+  .vs code { font-size:.82em }
+  @media (max-width:640px){ .vs{grid-template-columns:1fr}
+        .vs>div:first-child{border-right:0;border-bottom:1px solid var(--ring)} }
+  .scores { display:flex; gap:10px; flex-wrap:wrap; margin:16px 0 }
+  .sc { flex:1 1 128px; background:var(--surface); border:1px solid var(--ring);
+        border-radius:10px; padding:12px 14px }
+  .sc b { display:block; font-size:1.7rem; line-height:1.1; font-variant-numeric:tabular-nums }
+  .sc span { font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:700 }
+  .sc small { display:block; font-size:.76rem; color:var(--ink-2); margin-top:4px; line-height:1.4 }
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
+  @media print{
+    body{background:#fff;padding:0}
+    a{color:#1a4fd6;text-decoration:underline}
+    .tree{white-space:pre-wrap!important;overflow:visible!important;
+          word-break:break-word;font-size:6.4pt!important;line-height:1.62!important}
+    .tbl,.chart,.tbl-scroll,.chart-scroll,.mmwrap{overflow:visible!important}
+    table{min-width:0!important;font-size:7.2pt!important;table-layout:fixed;width:100%}
+    th,td{word-break:break-word;padding:4px 6px!important}
+    pre,code{white-space:pre-wrap!important;word-break:break-word}
+    .see,.gold,.warn,.dgm,.card,.concept,.myth,.stat,.vital,.dgwrap,.mmwrap{break-inside:avoid}
+    h2,h3{break-after:avoid}
+  }
+
+  .lib-nav{display:flex;gap:14px;align-items:baseline;padding:12px 0 0;
+    margin:0 0 4px;font-size:.82rem}
+  .lib-nav .back{color:var(--acc,#1a4fd6);text-decoration:none;font-weight:700}
+  .lib-nav .back:hover{text-decoration:underline}
+  .lib-nav .ctx{color:var(--mut,#8a8781);font-size:.72rem;letter-spacing:.09em;
+    text-transform:uppercase;font-weight:700}
+  .lib-foot .backline{margin:0 0 20px;font-size:.86rem}
+  .lib-foot .backline a{color:var(--acc,#1a4fd6);text-decoration:none;font-weight:700}
+  .lib-foot .backline a:hover{text-decoration:underline}
+  .lib-foot{margin:64px 0 0;padding:30px 22px 44px;max-width:100%;
+    border-radius:12px 12px 0 0;
+    border-top:3px solid var(--ink,#111110);background:var(--panel,#fff)}
+  .lib-foot h3{font-family:Charter,Georgia,serif;font-size:1.22rem;margin:0 0 4px;
+    color:var(--ink,#111110)}
+  .lib-foot .sub{font-size:.86rem;color:var(--mut,#8a8781);margin:0 0 22px}
+  .lib-grid{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    max-width:1180px}
+  .lib-grid h4{font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--mut,#8a8781);margin:0 0 9px;font-weight:700}
+  .lib-grid ul{list-style:none;margin:0;padding:0}
+  .lib-grid li{margin:0 0 11px;line-height:1.4}
+  .lib-grid a{font-weight:700;font-size:.9rem;color:var(--acc,#1a4fd6);text-decoration:none}
+  .lib-grid a:hover{text-decoration:underline}
+  .lib-grid span{display:block;font-size:.78rem;color:var(--ink2,#54524d);margin-top:2px}
+  .lib-grid li.here a{color:var(--ink,#111110)}
+  .lib-grid li.here a::after{content:": you are here";font-weight:400;
+    font-size:.74rem;color:var(--mut,#8a8781)}
+  @media print{.lib-nav,.lib-foot{display:none}}
+</style>
+</head>
+<body><nav class="lib-nav"><a class="back" href="index.html">&#8592; The Build Roadmap</a><span class="ctx">reference document</span></nav>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Our own site · audited 3 Aug 2026 · Ahrefs API v3 + live crawl of 22 pages</div>
+  <h1>onegtmlab.com: 871 pages, 365 referring domains, zero organic traffic</h1>
+  <p class="prose">This is the audit we ran on every competitor, turned on ourselves. The result is
+  blunt: the site ranks for <strong>nothing</strong>. Not a few keywords. Zero. And the cause is not
+  effort or volume, it is three specific defects, two of which are a single afternoon's work to fix.
+  There is also a finding about our backlink profile that needs a decision this week.</p>
+</header>
+
+<div class="scores">
+  <div class="sc"><span>Organic traffic</span><b style="color:var(--crit)">0</b><small>per month. Ahrefs has no traffic history for this domain at all.</small></div>
+  <div class="sc"><span>Ranking keywords</span><b style="color:var(--crit)">0</b><small>871 indexable URLs, none ranking in any country.</small></div>
+  <div class="sc"><span>Domain Rating</span><b style="color:var(--crit)">2.3</b><small>from 365 referring domains. That ratio is the tell.</small></div>
+  <div class="sc"><span>Pages</span><b>871</b><small>797 of them (91.5%) are tool-directory pages.</small></div>
+  <div class="sc"><span>Tool-page similarity</span><b style="color:var(--crit)">97.3%</b><small>mean pairwise. Two sampled pages were 100% identical.</small></div>
+</div>
+
+<h2 id="cause">1 · Why nothing ranks: the 797 tool pages</h2>
+<p class="prose">The tool directory is 91.5% of the site. We pulled fourteen at random and crawled them
+directly. Every one came back the same way.</p>
+
+<div class="vs">
+  <div><span class="h">What a page needs to rank</span>A unique <code>&lt;title&gt;</code> naming the thing ·
+  an <code>&lt;h1&gt;</code> · a <code>&lt;link rel="canonical"&gt;</code> · enough distinct content that
+  Google can tell it apart from its siblings · ideally schema describing what it is</div>
+  <div><span class="h">What all 14 sampled tool pages have</span><b>Title:</b> <code>OneGTM</code>, identical
+  on every one · <b>H1:</b> none, on all 14 · <b>Canonical:</b> none · <b>JSON-LD:</b> none ·
+  <b>Body:</b> 97.3% identical to each other, 95% of the characters shared</div>
+</div>
+
+<p class="prose">Google is being handed 797 pages whose title tag is the same three-word string, that
+carry no heading, and whose visible text is 95% boilerplate. There is no signal available to
+distinguish <code>/tools/lemlist-c6c2e</code> from <code>/tools/scalelist</code>. <strong>This is not
+a ranking problem. It is a page-identity problem.</strong> The pages cannot rank because there is
+nothing on them that says what they are.</p>
+
+<div class="warn"><span class="lbl">The precedent, from our own audit set</span>
+<p>APPWRK built 36 city pages that measured 98–99% identical. Their traffic fell <strong>95%</strong>,
+from 25,700 a month to 1,185, and eighteen months of good content afterwards did not recover it.
+Google's scaled-content-abuse policy does not penalise <em>volume</em>. It penalises pages that are
+undifferentiated. Ours are at 97.3%.</p>
+<p>We have not been penalised. We were never ranked in the first place, so there was nothing to lose.
+That is the one piece of luck here: the fix is additive, not a recovery.</p></div>
+
+<h3>1a · The three-line fix</h3>
+<div class="tbl"><table>
+  <thead><tr><th>Change</th><th>Where</th><th>Effort</th></tr></thead>
+  <tbody>
+    <tr><td><b>Bind the title to the tool name</b>: <code>{Tool} pricing, features and alternatives | OneGTMLab</code></td><td>Webflow CMS collection page settings</td><td class="g">~15 min</td></tr>
+    <tr><td><b>Add an H1</b> bound to the tool name field</td><td>Same template</td><td class="g">~10 min</td></tr>
+    <tr><td><b>Add a self-referencing canonical</b></td><td>Site-wide, not just tools</td><td class="g">~10 min</td></tr>
+    <tr><td><b>Add 120–200 words of genuinely per-tool copy</b>: what it costs, who it is for, one real limitation, what we would pair it with</td><td>New CMS field, 797 rows</td><td class="w">the real work</td></tr>
+    <tr><td><b>Add <code>SoftwareApplication</code> schema</b> per tool</td><td>Template embed</td><td class="g">~30 min</td></tr>
+  </tbody>
+</table></div>
+<p class="prose">The first three take under an hour together and are worth doing today regardless. The
+fourth is the one that decides whether the directory earns anything: 797 × 150 words is roughly
+120,000 words, which is a real content programme, not a template change. <strong>Our own roadmap already
+sets this rule for the integration pages: no engineer-supplied specifics for a tool means do not build
+that page.</strong> The directory was built without applying it.</p>
+
+<h2 id="links">2 · The backlink profile is the vendor we have been documenting</h2>
+<p class="prose">365 referring domains produce DR 2.3. That gap is the same fingerprint we flagged on four
+competitors. We pulled the anchor text.</p>
+<blockquote>"Before I found SEOExpress.org, I had nearly given up on im…"<br>
+<span style="font-size:.86em">· the anchor on <strong>217 of our 365 referring domains</strong></span></blockquote>
+<p class="prose">A further 40 domains carry <em>"onegtmlab.com gets high-quality backlinks, guest posts,
+on-page…"</em>, which is the vendor's own sales copy used as anchor text. The referring domains
+themselves are: <code>buybacklinks.agency</code>, <code>backlinker.shop</code>, <code>seoexpress.org</code>,
+<code>rank-optimizer.website</code>, <code>linkrankpro.shop</code>, <code>rankxlinks.shop</code>,
+<code>seorankflow.shop</code>, <code>buyseobacklinks.shop</code>, <code>authoritybacklinks.shop</code>,
+<code>rank-top.click</code>. <strong>This is the fifth site in our study carrying the SEOExpress network,
+after Genesys, Omnibound, APPWRK and Searchable. It is the first one that is ours.</strong></p>
+
+<div class="see"><span class="lbl">Two readings, and the honest position</span>
+<p><strong>Either</strong> someone bought a package at some point, <strong>or</strong> the vendor is using
+our domain as filler in its own spam content. The second is genuinely plausible and probably more likely:
+the anchor text is a <em>testimonial for SEOExpress</em>, not a promotion of us. That is what a link farm
+writes when it needs an outbound link to look natural. <strong>We are not in a position to say which from
+the data, and this audit does not.</strong></p>
+<p><strong>The action is the same either way.</strong> Disavow the cluster in Search Console. It is
+passing nothing (DR 2.3 on 365 domains is proof of that), it costs nothing to remove, and leaving a
+documented link farm pointing at us while we publish audits naming that exact network on other people's
+sites is not a position worth holding.</p></div>
+
+<h2 id="works">3 · What is already right</h2>
+<p class="prose">The audit is not all bad. Several things are ahead of the competitors we studied.</p>
+<div class="tbl"><table>
+  <thead><tr><th>Element</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td><b>AI crawler access</b>: robots.txt names GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, CCBot and Applebot individually, all <code>Allow: /</code></td><td class="g">Correct</td></tr>
+    <tr><td><b>Zero cloaking</b>: homepage returns a byte-identical 227,109 bytes to Chrome, GPTBot and OAI-SearchBot. Searchable, who sell AI visibility, serve GPTBot a 532-byte stub.</td><td class="g">Better than the vendor</td></tr>
+    <tr><td><b>Backlink ratio</b> 371 links across 365 domains = 1.02. No artificial multiplication, whatever the source.</td><td class="g">Clean</td></tr>
+    <tr><td><b>Case studies</b> carry real H1s, JSON-LD and named outcomes ("zero outbound infrastructure to 20k enriched accounts in 45 days")</td><td class="g">Good</td></tr>
+    <tr><td><b>Service pages</b> run ~1,537 words with Organization schema</td><td class="g">Good</td></tr>
+    <tr><td>HTTPS, HSTS <code>max-age=31536000</code>, Cloudflare, HTTP/2</td><td class="g">Fine</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="gaps">4 · The rest of the gap list</h2>
+<ul>
+  <li><span class="sev c">Critical</span><strong>No canonical tag anywhere on the site</strong>, not just on tools. Checked on the homepage, a service page and a case study. With 797 near-identical pages this is the difference between Google picking one and Google trusting none.</li>
+  <li><span class="sev c">Critical</span><strong>No meta description and no <code>og:title</code> on the homepage.</strong> Google writes its own snippet, and every LinkedIn or Slack share renders without a title card. For a company whose primary channel is LinkedIn, that is a daily cost.</li>
+  <li><span class="sev h">High</span><strong>No <code>llms.txt</code>, no <code>/ai-info</code>.</strong> Both 404. We recommend these in the roadmap's machine layer and have not shipped them ourselves.</li>
+  <li><span class="sev h">High</span><strong>Only 7 blog posts and 1 services page in a sitemap of 871.</strong> The commercial pages that would actually convert are outnumbered 100:1 by directory entries that convert nothing.</li>
+  <li><span class="sev m">Medium</span><strong>No security headers</strong>: no CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy or Permissions-Policy. Not a ranking factor; it is a due-diligence question an enterprise buyer's security team will ask.</li>
+  <li><span class="sev m">Medium</span><strong>Sitemap served as <code>application/rss+xml</code></strong> rather than <code>application/xml</code>.</li>
+  <li><span class="sev p">Note</span>Webflow. Consistent with the platform recommendation in the roadmap for a site this size; nothing here argues for a migration.</li>
+</ul>
+
+<h2 id="do">5 · What to do, in order</h2>
+<ol class="prose">
+  <li><strong>This week, under two hours:</strong> per-tool titles, an H1 on the tool template, self-referencing canonicals site-wide, a homepage meta description and <code>og:title</code>. These are template edits in Webflow and they unblock every other thing on this list.</li>
+  <li><strong>This week, one hour:</strong> disavow the SEOExpress cluster in Search Console. Export the referring domains from Ahrefs, keep the genuine ones (substack.com and the real directory listings), disavow the <code>.shop</code> / <code>.website</code> / <code>.click</code> farm.</li>
+  <li><strong>Decide what the tool directory is for.</strong> 797 pages with 150 unique words each is a 120,000-word programme. If that is not going to happen, cut it to the 100 tools we actually have an opinion on and <code>noindex</code> the rest. A hundred pages that rank beat 797 that do not.</li>
+  <li><strong>Then the commercial layer.</strong> One services page against 797 tool pages is the wrong ratio. The roadmap's own linking law says ~14 money-page links to 3 blog links; our own site is nowhere near it.</li>
+  <li><strong>Ship the machine layer</strong>: <code>llms.txt</code> pointing at the services, case studies and tool directory, plus <code>/ai-info</code>. We advise this; we should run it.</li>
+</ol>
+
+<div class="gold"><span class="lbl">The honest summary</span>
+<p>We built 871 pages and earned zero visits, because 797 of them were shipped without a title, a
+heading or a reason to exist separately. Nothing here is a strategy failure, and nothing needs
+rebuilding. The first hour of work is template fields. The real decision is whether the tool directory
+gets the 120,000 words it needs or gets cut to the hundred entries we can actually write.<br><br>
+Worth noting: <strong>this is the exact mistake the roadmap already warns about</strong>, in the
+programmatic-pages section, sourced from the APPWRK collapse. We wrote the rule and did not apply it
+to ourselves. That is the most useful thing this audit found.</p></div>
+
+<div class="foot">
+  <p>Method: Ahrefs API v3 (domain-rating, metrics, metrics-history, backlinks-stats, refdomains, anchors,
+  organic-keywords), full sitemap parse of 871 URLs, direct crawl of 22 pages with browser and AI-crawler
+  user agents, pairwise body-similarity measurement across 14 randomly sampled tool pages. Data pulled
+  3 Aug 2026. Ahrefs traffic figures are estimates; the zero here is a genuine absence of ranking data,
+  not a small number rounded down.</p>
+</div>
+</div>
+<footer class="lib-foot"><p class="backline"><a href="index.html">&#8592; Back to the build roadmap</a></p><h3>Reference documents</h3><p class="sub">The research the roadmap was built from, kept here so any decision in it can be traced back to the evidence.</p><div class="lib-grid"><div><h4>This document</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open: money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data: volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page: each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like: homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise: and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The audits: internal</h4><ul><li class="here"><a href="audit-onegtmlab.html">onegtmlab.com (ours)</a><span>Our own site: 871 pages, 365 referring domains, zero organic traffic. Why.</span></li><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy: page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages: and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
+</html>
