@@ -52,186 +52,169 @@
   .chart{overflow-x:auto;background:var(--panel);border:1px solid var(--ring);border-radius:12px;padding:14px;margin:18px 0}
   pre.mermaid{margin:0 auto;background:transparent}
 
-  .dgwrap{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);
+.dgwrap{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);
           border-radius:12px;padding:16px 18px 18px;margin:18px 0;overflow-x:auto}
   .dgcap{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;
-         font-weight:700;color:var(--mut,#8a8781);margin:0 0 12px}
+         font-weight:700;color:var(--mut,#8a8781);margin:0 0 10px}
   .dg{display:block;margin:0 auto}
-  .dg + .dg{margin-top:18px}
   .dg-never{margin-top:14px;padding:10px 14px;border-radius:8px;font-size:.86rem;
             line-height:1.5;color:var(--ink2,#54524d);
             background:color-mix(in srgb,var(--crit,#c4372c) 8%,transparent);
             border-left:3px solid var(--crit,#c4372c)}
+  .dgkey{margin:0 0 14px;font-size:.8rem;color:var(--ink2,#54524d);line-height:1.65}
+  .dgkey b{color:var(--acc,#1a4fd6)}
   @media print{.dgwrap{break-inside:avoid;overflow:visible}}
   .foot{margin-top:54px;padding-top:16px;border-top:1px solid var(--line);font-size:.82rem;color:var(--mut)}
 </style>
 <style>
   .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
-  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
-          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 13%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.9}
   .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
-            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
-  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
-              stroke:var(--good,#0c7a3e);stroke-width:1.5}
-  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
-           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
-  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 50%,transparent);stroke-width:1.3}
+  .nb.proof{fill:color-mix(in srgb,var(--warn,#a85b0a) 8%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--warn,#a85b0a) 55%,transparent);stroke-width:1.3}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 13%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.6}
+  .nt{font:600 10.6px system-ui,-apple-system,"Segoe UI",sans-serif;
       fill:var(--ink,#111110);text-anchor:middle}
   .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.money{fill:var(--acc,#1a4fd6)}
+  .nt.proof{fill:var(--warn,#a85b0a)}
   .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
-  .nt.warn{fill:var(--crit,#c4372c)}
-  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle}
-  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ns{font:400 9px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.25}
   .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
   .ed.dash{stroke-dasharray:5 4}
-  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
-  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle;letter-spacing:.09em}
+  .ed.mesh{stroke:var(--acc,#1a4fd6);stroke-width:1.5;opacity:.85}
+  .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .el.acc{fill:var(--acc,#1a4fd6)}
+  .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
 </style>
 <style>
   .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
-  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
-          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 13%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.9}
   .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
-            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
-  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
-              stroke:var(--good,#0c7a3e);stroke-width:1.5}
-  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
-           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
-  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 50%,transparent);stroke-width:1.3}
+  .nb.proof{fill:color-mix(in srgb,var(--warn,#a85b0a) 8%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--warn,#a85b0a) 55%,transparent);stroke-width:1.3}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 13%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.6}
+  .nt{font:600 10.6px system-ui,-apple-system,"Segoe UI",sans-serif;
       fill:var(--ink,#111110);text-anchor:middle}
   .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.money{fill:var(--acc,#1a4fd6)}
+  .nt.proof{fill:var(--warn,#a85b0a)}
   .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
-  .nt.warn{fill:var(--crit,#c4372c)}
-  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle}
-  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ns{font:400 9px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.25}
   .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
   .ed.dash{stroke-dasharray:5 4}
-  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
-  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle;letter-spacing:.09em}
+  .ed.mesh{stroke:var(--acc,#1a4fd6);stroke-width:1.5;opacity:.85}
+  .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .el.acc{fill:var(--acc,#1a4fd6)}
+  .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
 </style>
 <style>
   .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
-  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
-          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 13%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.9}
   .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
-            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
-  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
-              stroke:var(--good,#0c7a3e);stroke-width:1.5}
-  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
-           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
-  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 50%,transparent);stroke-width:1.3}
+  .nb.proof{fill:color-mix(in srgb,var(--warn,#a85b0a) 8%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--warn,#a85b0a) 55%,transparent);stroke-width:1.3}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 13%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.6}
+  .nt{font:600 10.6px system-ui,-apple-system,"Segoe UI",sans-serif;
       fill:var(--ink,#111110);text-anchor:middle}
   .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.money{fill:var(--acc,#1a4fd6)}
+  .nt.proof{fill:var(--warn,#a85b0a)}
   .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
-  .nt.warn{fill:var(--crit,#c4372c)}
-  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle}
-  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ns{font:400 9px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.25}
   .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
   .ed.dash{stroke-dasharray:5 4}
-  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
-  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle;letter-spacing:.09em}
+  .ed.mesh{stroke:var(--acc,#1a4fd6);stroke-width:1.5;opacity:.85}
+  .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .el.acc{fill:var(--acc,#1a4fd6)}
+  .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
 </style>
 <style>
   .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
-  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
-          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 13%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.9}
   .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
-            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
-  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
-              stroke:var(--good,#0c7a3e);stroke-width:1.5}
-  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
-           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
-  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 50%,transparent);stroke-width:1.3}
+  .nb.proof{fill:color-mix(in srgb,var(--warn,#a85b0a) 8%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--warn,#a85b0a) 55%,transparent);stroke-width:1.3}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 13%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.6}
+  .nt{font:600 10.6px system-ui,-apple-system,"Segoe UI",sans-serif;
       fill:var(--ink,#111110);text-anchor:middle}
   .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.money{fill:var(--acc,#1a4fd6)}
+  .nt.proof{fill:var(--warn,#a85b0a)}
   .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
-  .nt.warn{fill:var(--crit,#c4372c)}
-  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle}
-  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ns{font:400 9px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.25}
   .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
   .ed.dash{stroke-dasharray:5 4}
-  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
-  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle;letter-spacing:.09em}
+  .ed.mesh{stroke:var(--acc,#1a4fd6);stroke-width:1.5;opacity:.85}
+  .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .el.acc{fill:var(--acc,#1a4fd6)}
+  .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
 </style>
 <style>
   .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
-  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
-          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 13%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.9}
   .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
-            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
-  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
-              stroke:var(--good,#0c7a3e);stroke-width:1.5}
-  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
-           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
-  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 50%,transparent);stroke-width:1.3}
+  .nb.proof{fill:color-mix(in srgb,var(--warn,#a85b0a) 8%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--warn,#a85b0a) 55%,transparent);stroke-width:1.3}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 13%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.6}
+  .nt{font:600 10.6px system-ui,-apple-system,"Segoe UI",sans-serif;
       fill:var(--ink,#111110);text-anchor:middle}
   .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.money{fill:var(--acc,#1a4fd6)}
+  .nt.proof{fill:var(--warn,#a85b0a)}
   .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
-  .nt.warn{fill:var(--crit,#c4372c)}
-  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle}
-  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ns{font:400 9px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.25}
   .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
   .ed.dash{stroke-dasharray:5 4}
-  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
-  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle;letter-spacing:.09em}
+  .ed.mesh{stroke:var(--acc,#1a4fd6);stroke-width:1.5;opacity:.85}
+  .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .el.acc{fill:var(--acc,#1a4fd6)}
+  .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
 </style>
 <style>
   .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
-  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
-          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
+  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 13%,var(--panel,#fff));
+          stroke:var(--acc,#1a4fd6);stroke-width:1.9}
   .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
-            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
-  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
-              stroke:var(--good,#0c7a3e);stroke-width:1.5}
-  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
-           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
-  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
+            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 50%,transparent);stroke-width:1.3}
+  .nb.proof{fill:color-mix(in srgb,var(--warn,#a85b0a) 8%,var(--panel,#fff));
+            stroke:color-mix(in srgb,var(--warn,#a85b0a) 55%,transparent);stroke-width:1.3}
+  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 13%,var(--panel,#fff));
+              stroke:var(--good,#0c7a3e);stroke-width:1.6}
+  .nt{font:600 10.6px system-ui,-apple-system,"Segoe UI",sans-serif;
       fill:var(--ink,#111110);text-anchor:middle}
   .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
+  .nt.money{fill:var(--acc,#1a4fd6)}
+  .nt.proof{fill:var(--warn,#a85b0a)}
   .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
-  .nt.warn{fill:var(--crit,#c4372c)}
-  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle}
-  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
+  .ns{font:400 9px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .ed{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.25}
   .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
   .ed.dash{stroke-dasharray:5 4}
-  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
-  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle;letter-spacing:.09em}
-</style>
-<style>
-  .nb{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
-  .nb.hub{fill:color-mix(in srgb,var(--acc,#1a4fd6) 12%,var(--panel,#fff));
-          stroke:var(--acc,#1a4fd6);stroke-width:1.8}
-  .nb.money{fill:color-mix(in srgb,var(--acc,#1a4fd6) 6%,var(--panel,#fff));
-            stroke:color-mix(in srgb,var(--acc,#1a4fd6) 45%,transparent)}
-  .nb.convert{fill:color-mix(in srgb,var(--good,#0c7a3e) 12%,var(--panel,#fff));
-              stroke:var(--good,#0c7a3e);stroke-width:1.5}
-  .nb.warn{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
-           stroke:var(--crit,#c4372c);stroke-dasharray:4 3}
-  .nt{font:600 11.2px system-ui,-apple-system,"Segoe UI",sans-serif;
-      fill:var(--ink,#111110);text-anchor:middle}
-  .nt.hub{font-weight:700;fill:var(--acc,#1a4fd6)}
-  .nt.convert{fill:var(--good,#0c7a3e);font-weight:700}
-  .nt.warn{fill:var(--crit,#c4372c)}
-  .ns{font:400 9.6px system-ui,-apple-system,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle}
-  .ed{fill:none;stroke:var(--line,#d0cdc6);stroke-width:1.3}
-  .ed.strong{stroke:var(--good,#0c7a3e);stroke-width:2}
-  .ed.dash{stroke-dasharray:5 4}
-  .el{font:600 8.6px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
-  .ct{font:700 10px system-ui,sans-serif;fill:var(--mut,#8a8781);
-      text-anchor:middle;letter-spacing:.09em}
+  .ed.mesh{stroke:var(--acc,#1a4fd6);stroke-width:1.5;opacity:.85}
+  .el{font:600 8.4px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .el.acc{fill:var(--acc,#1a4fd6)}
+  .tl{font:700 9.2px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.08em}
 </style>
 <style>
   *,*::before,*::after{box-sizing:border-box}
@@ -501,43 +484,68 @@ The underlying competitor audits — including the named backlink-vendor finding
 </div>
 
 <h2 id="clusters">3 · Cluster maps</h2>
-<div class="dgwrap"><p class="dgcap">How authority enters the site and where it ends up</p>
-<svg class="dg" viewBox="0 0 900 255" width="100%" style="max-width:900px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+<div class="dgwrap"><p class="dgcap">How authority enters the site — and the mesh it pools in</p>
+<p class="dgkey">Every map reads <strong>top to bottom</strong>. A grey arrow is a one-way link. A <b>blue arrow with a head at both ends means the two pages link to each other</b> — that reciprocal wiring is what makes the cluster work, and it is the part most agencies never build. Green marks the path to <b>/book-a-call/</b>.</p>
+<svg class="dg" viewBox="0 0 1028 437" width="100%" style="max-width:1028px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
 
-<text class="ct" x="118.0" y="14.0">AUTHORITY IN</text>
-<text class="ct" x="450.0" y="14.0">WHERE IT POOLS</text>
-<text class="ct" x="782.0" y="14.0">WHAT IT CONVERTS TO</text>
-<path class="ed strong" d="M236.0,51.5 C284.0,51.5 284.0,135.5 325.0,135.5" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M236.0,107.5 C284.0,107.5 284.0,135.5 325.0,135.5" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M236.0,163.5 C284.0,163.5 284.0,135.5 325.0,135.5" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M236.0,219.5 C284.0,219.5 284.0,135.5 325.0,135.5" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M568.0,135.5 C616.0,135.5 616.0,107.5 657.0,107.5" marker-end="url(#ah2)"/>
-<path class="ed " d="M568.0,135.5 C616.0,135.5 616.0,163.5 657.0,163.5" marker-end="url(#ah)"/>
-<rect class="nb feed" x="0.0" y="30.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="49.0">/glossary/</text>
-<text class="ns" x="118.0" y="63.0">40–60 entries, before demand</text>
-<rect class="nb feed" x="0.0" y="86.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="105.0">/resources/ + downloadables</text>
-<text class="ns" x="118.0" y="119.0">earns external links</text>
-<rect class="nb feed" x="0.0" y="142.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="161.0">/mcp/ + /prompts/</text>
-<text class="ns" x="118.0" y="175.0">earns AI citations</text>
-<rect class="nb feed" x="0.0" y="198.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="217.0">43 blog posts</text>
-<text class="ns" x="118.0" y="231.0">2–3 links each to their money page</text>
-<rect class="nb convert" x="664.0" y="86.0" width="236" height="43.0" rx="7"/>
-<text class="nt convert" x="782.0" y="105.0">/book-a-call/</text>
-<text class="ns" x="782.0" y="119.0">the ONE conversion destination</text>
-<rect class="nb feed" x="664.0" y="142.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="782.0" y="161.0">✉ newsletter</text>
-<text class="ns" x="782.0" y="175.0">the channel no algorithm throttles</text>
-<rect class="nb hub" x="332.0" y="102.5" width="236" height="66.0" rx="7"/>
-<text class="nt hub" x="450.0" y="121.5">THE MONEY LAYER</text>
-<text class="ns" x="450.0" y="135.5">homepage KD 17 · 4 parents ·</text>
-<text class="ns" x="450.0" y="147.0">/industries/ · /case-studies/ ·</text>
-<text class="ns" x="450.0" y="158.5">cost pillar</text>
+<text class="tl" x="6" y="52.6">EARNS AUTHORITY</text>
+<text class="tl" x="6" y="157.8">ENTRY POINT</text>
+<text class="tl" x="6" y="301.0">THE MONEY LAYER</text>
+<text class="tl" x="6" y="406.2">CONVERTS</text>
+<path class="ed " d="M232.0,69.2 C232.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#ah)"/>
+<path class="ed " d="M473.0,69.2 C473.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#ah)"/>
+<path class="ed " d="M709.0,69.2 C709.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#ah)"/>
+<path class="ed " d="M232.0,69.2 C232.0,170.3 924.0,170.3 924.0,271.4" marker-end="url(#ah)"/>
+<path class="ed " d="M933.0,69.2 C933.0,170.3 246.0,170.3 246.0,271.4" marker-end="url(#ah)"/>
+<path class="ed dash" d="M473.0,69.2 C473.0,222.9 747.0,222.9 747.0,376.6" marker-end="url(#ah)"/>
+<path class="ed " d="M580.0,174.4 C580.0,222.9 246.0,222.9 246.0,271.4" marker-end="url(#ah)"/>
+<path class="ed strong" d="M246.0,317.6 C246.0,347.1 453.0,347.1 453.0,376.6" marker-end="url(#ah2)"/>
+<path class="ed " d="M580.0,174.4 C580.0,222.9 475.0,222.9 475.0,271.4" marker-end="url(#ah)"/>
+<path class="ed " d="M475.0,317.6 C475.0,347.1 453.0,347.1 453.0,376.6" marker-end="url(#ah)"/>
+<path class="ed " d="M580.0,174.4 C580.0,222.9 702.0,222.9 702.0,271.4" marker-end="url(#ah)"/>
+<path class="ed " d="M702.0,317.6 C702.0,347.1 453.0,347.1 453.0,376.6" marker-end="url(#ah)"/>
+<path class="ed " d="M580.0,174.4 C580.0,222.9 924.0,222.9 924.0,271.4" marker-end="url(#ah)"/>
+<path class="ed " d="M924.0,317.6 C924.0,347.1 453.0,347.1 453.0,376.6" marker-end="url(#ah)"/>
+<path class="ed mesh" d="M348.0,298.0 L378.0,298.0" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<path class="ed mesh" d="M572.0,298.0 L602.0,298.0" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<path class="ed mesh" d="M802.0,298.0 L832.0,298.0" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<path class="ed mesh" d="M352.0,298.0 C352.0,232.4 598.0,232.4 598.0,298.0" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<text class="el acc" x="475.0" y="243.4">all four link to each other, both ways</text>
+<rect class="nb feed" x="132.0" y="30.0" width="200" height="39.2" rx="7"/>
+<text class="nt feed" x="232.0" y="47.4">/glossary/</text>
+<text class="ns" x="232.0" y="60.4">40–60 entries, before demand</text>
+<rect class="nb feed" x="366.0" y="30.0" width="214" height="39.2" rx="7"/>
+<text class="nt feed" x="473.0" y="47.4">/resources/ + downloadables</text>
+<text class="ns" x="473.0" y="60.4">the linkable assets</text>
+<rect class="nb feed" x="614.0" y="30.0" width="190" height="39.2" rx="7"/>
+<text class="nt feed" x="709.0" y="47.4">/mcp/ + /prompts/</text>
+<text class="ns" x="709.0" y="60.4">earns AI citations</text>
+<rect class="nb feed" x="838.0" y="30.0" width="190" height="39.2" rx="7"/>
+<text class="nt feed" x="933.0" y="47.4">43 blog posts</text>
+<text class="ns" x="933.0" y="60.4">2–3 links each, upward</text>
+<rect class="nb hub" x="415.0" y="135.2" width="330" height="39.2" rx="7"/>
+<text class="nt hub" x="580.0" y="152.6">HOMEPAGE</text>
+<text class="ns" x="580.0" y="165.6">"ai agent development company" · 1,417 · KD 17</text>
+<rect class="nb money" x="146.0" y="278.4" width="200" height="39.2" rx="7"/>
+<text class="nt money" x="246.0" y="295.8">4 PARENT SERVICES</text>
+<text class="ns" x="246.0" y="308.8">+ their 12 children</text>
+<rect class="nb money" x="380.0" y="278.4" width="190" height="39.2" rx="7"/>
+<text class="nt money" x="475.0" y="295.8">/industries/ HUB</text>
+<text class="ns" x="475.0" y="308.8">6 verticals</text>
+<rect class="nb proof" x="604.0" y="278.4" width="196" height="39.2" rx="7"/>
+<text class="nt proof" x="702.0" y="295.8">/case-studies/ HUB</text>
+<text class="ns" x="702.0" y="308.8">12 case studies</text>
+<rect class="nb money" x="834.0" y="278.4" width="180" height="39.2" rx="7"/>
+<text class="nt money" x="924.0" y="295.8">COST PILLAR</text>
+<text class="ns" x="924.0" y="308.8">+ calculator</text>
+<rect class="nb convert" x="303.0" y="383.6" width="300" height="39.2" rx="7"/>
+<text class="nt convert" x="453.0" y="401.0">/book-a-call/</text>
+<text class="ns" x="453.0" y="414.0">the ONE conversion destination</text>
+<rect class="nb feed" x="637.0" y="383.6" width="220" height="39.2" rx="7"/>
+<text class="nt feed" x="747.0" y="401.0">✉ newsletter</text>
+<text class="ns" x="747.0" y="414.0">no algorithm throttles it</text>
 </svg>
 </div>
 <!--mermaid
@@ -559,48 +567,60 @@ flowchart TD
   P1 & P2 & P3 & P4 & IND & CASE & COST & RES & AIN ==> BOOK
 -->
 <div class="dgwrap"><p class="dgcap">The insurance cluster — replicate this exact shape for every vertical</p>
-<svg class="dg" viewBox="0 0 900 311" width="100%" style="max-width:900px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<svg class="dg" viewBox="0 0 1158 416" width="100%" style="max-width:1158px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<text class="ct" x="118.0" y="14.0">5 BLOGS FEED IT</text>
-<text class="ct" x="450.0" y="14.0">THE BEACHHEAD PAGE</text>
-<text class="ct" x="782.0" y="14.0">IT LINKS OUT TO</text>
-<path class="ed " d="M236.0,51.5 C284.0,51.5 284.0,163.5 325.0,163.5" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,107.5 C284.0,107.5 284.0,163.5 325.0,163.5" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,163.5 C284.0,163.5 284.0,163.5 325.0,163.5" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,219.5 C284.0,219.5 284.0,163.5 325.0,163.5" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,275.5 C284.0,275.5 284.0,163.5 325.0,163.5" marker-end="url(#ah)"/>
-<path class="ed " d="M568.0,163.5 C616.0,163.5 616.0,96.8 657.0,96.8" marker-end="url(#ah)"/>
-<path class="ed " d="M568.0,163.5 C616.0,163.5 616.0,141.2 657.0,141.2" marker-end="url(#ah)"/>
-<path class="ed " d="M568.0,163.5 C616.0,163.5 616.0,185.8 657.0,185.8" marker-end="url(#ah)"/>
-<path class="ed strong" d="M568.0,163.5 C616.0,163.5 616.0,230.2 657.0,230.2" marker-end="url(#ah2)"/>
-<rect class="nb feed" x="0.0" y="30.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="49.0">insurance claims automation</text>
-<text class="ns" x="118.0" y="63.0">556 · KD 7 · D14</text>
-<rect class="nb feed" x="0.0" y="86.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="105.0">claims processing automation</text>
-<text class="ns" x="118.0" y="119.0">248 · KD 6 · D15</text>
-<rect class="nb feed" x="0.0" y="142.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="161.0">why insurance AI pilots fail</text>
-<text class="ns" x="118.0" y="175.0">D17 · citation bait</text>
-<rect class="nb feed" x="0.0" y="198.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="217.0">legacy integration</text>
-<text class="ns" x="118.0" y="231.0">D22</text>
-<rect class="nb feed" x="0.0" y="254.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="273.0">compliance + agents</text>
-<text class="ns" x="118.0" y="287.0">D23</text>
-<rect class="nb money" x="664.0" y="81.0" width="236" height="31.5" rx="7"/>
-<text class="nt money" x="782.0" y="100.0">flagship service page</text>
-<rect class="nb money" x="664.0" y="125.5" width="236" height="31.5" rx="7"/>
-<text class="nt money" x="782.0" y="144.5">cost pillar</text>
-<rect class="nb money" x="664.0" y="170.0" width="236" height="31.5" rx="7"/>
-<text class="nt money" x="782.0" y="189.0">2 insurance case studies</text>
-<rect class="nb convert" x="664.0" y="214.5" width="236" height="31.5" rx="7"/>
-<text class="nt convert" x="782.0" y="233.5">/book-a-call/</text>
-<rect class="nb hub" x="332.0" y="142.0" width="236" height="43.0" rx="7"/>
-<text class="nt hub" x="450.0" y="161.0">/industries/ai-agents-for-insurance/</text>
-<text class="ns" x="450.0" y="175.0">70 · KD 3 · $10 CPC · D16</text>
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
+
+<text class="tl" x="6" y="52.6">5 BLOGS FEED IT</text>
+<text class="tl" x="6" y="157.8">THE BEACHHEAD</text>
+<text class="tl" x="6" y="295.7">IT LINKS TO</text>
+<text class="tl" x="6" y="390.3">CONVERTS</text>
+<path class="ed " d="M225.0,69.2 C225.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M447.0,69.2 C447.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M669.0,69.2 C669.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M876.0,69.2 C876.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M1074.0,69.2 C1074.0,98.7 645.0,98.7 645.0,128.2" marker-end="url(#ah)"/>
+<path class="ed dash" d="M225.0,69.2 C225.0,170.3 320.0,170.3 320.0,271.4" marker-end="url(#ah)"/>
+<path class="ed dash" d="M447.0,69.2 C447.0,170.3 540.0,170.3 540.0,271.4" marker-end="url(#ah)"/>
+<path class="ed mesh" d="M645.0,181.4 C645.0,226.4 320.0,226.4 320.0,271.4" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<text class="el acc" x="482.5" y="223.4">both ways</text>
+<path class="ed mesh" d="M645.0,181.4 C645.0,226.4 540.0,226.4 540.0,271.4" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<text class="el acc" x="592.5" y="223.4">both ways</text>
+<path class="ed " d="M645.0,174.4 C645.0,222.9 760.0,222.9 760.0,271.4" marker-end="url(#ah)"/>
+<path class="ed " d="M645.0,174.4 C645.0,222.9 975.0,222.9 975.0,271.4" marker-end="url(#ah)"/>
+<path class="ed strong" d="M320.0,307.0 C320.0,336.5 645.0,336.5 645.0,366.0" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M540.0,307.0 C540.0,336.5 645.0,336.5 645.0,366.0" marker-end="url(#ah2)"/>
+<path class="ed strong" d="M760.0,307.0 C760.0,336.5 645.0,336.5 645.0,366.0" marker-end="url(#ah2)"/>
+<path class="ed mesh" d="M415.0,292.7 L445.0,292.7" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<rect class="nb feed" x="132.0" y="30.0" width="186" height="39.2" rx="7"/>
+<text class="nt feed" x="225.0" y="47.4">insurance claims automation</text>
+<text class="ns" x="225.0" y="60.4">556 · KD 7 · D14</text>
+<rect class="nb feed" x="352.0" y="30.0" width="190" height="39.2" rx="7"/>
+<text class="nt feed" x="447.0" y="47.4">claims processing automation</text>
+<text class="ns" x="447.0" y="60.4">248 · KD 6 · D15</text>
+<rect class="nb feed" x="576.0" y="30.0" width="186" height="39.2" rx="7"/>
+<text class="nt feed" x="669.0" y="47.4">why insurance AI pilots fail</text>
+<text class="ns" x="669.0" y="60.4">D17 · citation bait</text>
+<rect class="nb feed" x="796.0" y="30.0" width="160" height="39.2" rx="7"/>
+<text class="nt feed" x="876.0" y="47.4">legacy integration</text>
+<text class="ns" x="876.0" y="60.4">D22</text>
+<rect class="nb feed" x="990.0" y="30.0" width="168" height="39.2" rx="7"/>
+<text class="nt feed" x="1074.0" y="47.4">compliance + agents</text>
+<text class="ns" x="1074.0" y="60.4">D23</text>
+<rect class="nb hub" x="475.0" y="135.2" width="340" height="39.2" rx="7"/>
+<text class="nt hub" x="645.0" y="152.6">/industries/ai-agents-for-insurance/</text>
+<text class="ns" x="645.0" y="165.6">70 · KD 3 · $10 CPC · D16</text>
+<rect class="nb proof" x="227.0" y="278.4" width="186" height="28.6" rx="7"/>
+<text class="nt proof" x="320.0" y="295.8">insurance case A</text>
+<rect class="nb proof" x="447.0" y="278.4" width="186" height="28.6" rx="7"/>
+<text class="nt proof" x="540.0" y="295.8">insurance case B</text>
+<rect class="nb money" x="667.0" y="278.4" width="186" height="28.6" rx="7"/>
+<text class="nt money" x="760.0" y="295.8">flagship service</text>
+<rect class="nb money" x="887.0" y="278.4" width="176" height="28.6" rx="7"/>
+<text class="nt money" x="975.0" y="295.8">cost pillar</text>
+<rect class="nb convert" x="520.0" y="373.0" width="250" height="28.6" rx="7"/>
+<text class="nt convert" x="645.0" y="390.4">/book-a-call/</text>
 </svg>
 </div>
 <!--mermaid
@@ -616,58 +636,60 @@ flowchart TD
   IP & C1 & C2 ==> BOOK["📅 book-a-call"]
 -->
 <div class="dgwrap"><p class="dgcap">The cost cluster — highest commercial intent on the site</p>
-<svg class="dg" viewBox="0 0 900 434" width="100%" style="max-width:900px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<svg class="dg" viewBox="0 0 1482 418" width="100%" style="max-width:1160px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<text class="ct" x="118.0" y="14.0">7 BLOGS FEED IT</text>
-<text class="ct" x="450.0" y="14.0">HIGHEST COMMERCIAL INTENT</text>
-<text class="ct" x="782.0" y="14.0">IT LINKS OUT TO</text>
-<path class="ed " d="M236.0,51.5 C284.0,51.5 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,107.5 C284.0,107.5 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,163.5 C284.0,163.5 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,219.5 C284.0,219.5 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,281.2 C284.0,281.2 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,343.0 C284.0,343.0 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,399.0 C284.0,399.0 284.0,225.2 325.0,225.2" marker-end="url(#ah)"/>
-<path class="ed " d="M568.0,225.2 C616.0,225.2 616.0,168.2 657.0,168.2" marker-end="url(#ah)"/>
-<path class="ed " d="M568.0,225.2 C616.0,225.2 616.0,219.5 657.0,219.5" marker-end="url(#ah)"/>
-<path class="ed strong" d="M568.0,225.2 C616.0,225.2 616.0,276.5 657.0,276.5" marker-end="url(#ah2)"/>
-<rect class="nb feed" x="0.0" y="30.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="49.0">how much does an agent cost</text>
-<text class="ns" x="118.0" y="63.0">D19</text>
-<rect class="nb feed" x="0.0" y="86.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="105.0">ai agent pricing</text>
-<text class="ns" x="118.0" y="119.0">150 · KD 7 · D20</text>
-<rect class="nb feed" x="0.0" y="142.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="161.0">chatbot development cost</text>
-<text class="ns" x="118.0" y="175.0">197 · KD 9 · D21</text>
-<rect class="nb feed" x="0.0" y="198.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="217.0">cost to build</text>
-<text class="ns" x="118.0" y="231.0">D23</text>
-<rect class="nb feed" x="0.0" y="254.0" width="236" height="54.5" rx="7"/>
-<text class="nt feed" x="118.0" y="273.0">what agents cost to RUN</text>
-<text class="ns" x="118.0" y="287.0">D29 · page 1 is Reddit only. Own</text>
-<text class="ns" x="118.0" y="298.5">it.</text>
-<rect class="nb feed" x="0.0" y="321.5" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="340.5">build vs buy</text>
-<text class="ns" x="118.0" y="354.5">D26</text>
-<rect class="nb feed" x="0.0" y="377.5" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="396.5">ROI measurement</text>
-<text class="ns" x="118.0" y="410.5">D30</text>
-<rect class="nb money" x="664.0" y="152.5" width="236" height="31.5" rx="7"/>
-<text class="nt money" x="782.0" y="171.5">all 4 parent services</text>
-<rect class="nb money" x="664.0" y="197.0" width="236" height="45.0" rx="7"/>
-<text class="nt money" x="782.0" y="216.0">3 case studies with real</text>
-<text class="nt money" x="782.0" y="229.5">numbers</text>
-<rect class="nb convert" x="664.0" y="255.0" width="236" height="43.0" rx="7"/>
-<text class="nt convert" x="782.0" y="274.0">/book-a-call/</text>
-<text class="ns" x="782.0" y="288.0">calculator → form</text>
-<rect class="nb hub" x="332.0" y="191.2" width="236" height="68.0" rx="7"/>
-<text class="nt hub" x="450.0" y="210.2">/guide/ai-agent-development-cost/</text>
-<text class="nt hub" x="450.0" y="223.8">+ CALCULATOR</text>
-<text class="ns" x="450.0" y="237.8">KD 8 — a DR-3 site holds #1 today</text>
-<text class="ns" x="450.0" y="249.2">· D19</text>
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
+
+<text class="tl" x="6" y="52.6">7 BLOGS FEED IT</text>
+<text class="tl" x="6" y="157.8">HIGHEST COMMERCIAL INTENT</text>
+<text class="tl" x="6" y="287.7">IT LINKS TO</text>
+<text class="tl" x="6" y="387.6">CONVERTS</text>
+<path class="ed " d="M223.0,69.2 C223.0,98.7 807.0,98.7 807.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M427.0,69.2 C427.0,98.7 807.0,98.7 807.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M630.0,69.2 C630.0,98.7 807.0,98.7 807.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M824.0,69.2 C824.0,98.7 807.0,98.7 807.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M1021.0,69.2 C1021.0,98.7 807.0,98.7 807.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M1218.0,69.2 C1218.0,98.7 807.0,98.7 807.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M1402.0,69.2 C1402.0,98.7 807.0,98.7 807.0,128.2" marker-end="url(#ah)"/>
+<path class="ed mesh" d="M807.0,181.4 C807.0,222.4 676.0,222.4 676.0,263.4" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<path class="ed mesh" d="M807.0,181.4 C807.0,222.4 931.0,222.4 931.0,263.4" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<path class="ed strong" d="M807.0,174.4 C807.0,266.2 807.0,266.2 807.0,358.0" marker-end="url(#ah2)"/>
+<path class="ed mesh" d="M785.0,284.7 L815.0,284.7" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<text class="el acc" x="800.0" y="276.7">both ways</text>
+<path class="ed " d="M676.0,299.0 C676.0,328.5 807.0,328.5 807.0,358.0" marker-end="url(#ah)"/>
+<path class="ed " d="M931.0,299.0 C931.0,328.5 807.0,328.5 807.0,358.0" marker-end="url(#ah)"/>
+<rect class="nb feed" x="132.0" y="30.0" width="182" height="39.2" rx="7"/>
+<text class="nt feed" x="223.0" y="47.4">how much does an agent cost</text>
+<text class="ns" x="223.0" y="60.4">D19</text>
+<rect class="nb feed" x="348.0" y="30.0" width="158" height="39.2" rx="7"/>
+<text class="nt feed" x="427.0" y="47.4">ai agent pricing</text>
+<text class="ns" x="427.0" y="60.4">150 · KD 7 · D20</text>
+<rect class="nb feed" x="540.0" y="30.0" width="180" height="39.2" rx="7"/>
+<text class="nt feed" x="630.0" y="47.4">chatbot development cost</text>
+<text class="ns" x="630.0" y="60.4">197 · KD 9 · D21</text>
+<rect class="nb feed" x="754.0" y="30.0" width="140" height="39.2" rx="7"/>
+<text class="nt feed" x="824.0" y="47.4">cost to build</text>
+<text class="ns" x="824.0" y="60.4">D23</text>
+<rect class="nb feed" x="928.0" y="30.0" width="186" height="39.2" rx="7"/>
+<text class="nt feed" x="1021.0" y="47.4">what agents cost to RUN</text>
+<text class="ns" x="1021.0" y="60.4">D29 · Reddit owns page 1</text>
+<rect class="nb feed" x="1148.0" y="30.0" width="140" height="39.2" rx="7"/>
+<text class="nt feed" x="1218.0" y="47.4">build vs buy</text>
+<text class="ns" x="1218.0" y="60.4">D26</text>
+<rect class="nb feed" x="1322.0" y="30.0" width="160" height="39.2" rx="7"/>
+<text class="nt feed" x="1402.0" y="47.4">ROI measurement</text>
+<text class="ns" x="1402.0" y="60.4">D30</text>
+<rect class="nb hub" x="633.0" y="135.2" width="348" height="39.2" rx="7"/>
+<text class="nt hub" x="807.0" y="152.6">/guide/ai-agent-development-cost/</text>
+<text class="ns" x="807.0" y="165.6">+ CALCULATOR · KD 8 · D19</text>
+<rect class="nb money" x="569.0" y="270.4" width="214" height="28.6" rx="7"/>
+<text class="nt money" x="676.0" y="287.8">all 4 parent services</text>
+<rect class="nb proof" x="817.0" y="270.4" width="228" height="28.6" rx="7"/>
+<text class="nt proof" x="931.0" y="287.8">3 cases with real numbers</text>
+<rect class="nb convert" x="667.0" y="365.0" width="280" height="39.2" rx="7"/>
+<text class="nt convert" x="807.0" y="382.4">/book-a-call/</text>
+<text class="ns" x="807.0" y="395.4">calculator result → form</text>
 </svg>
 </div>
 <!--mermaid
@@ -682,71 +704,62 @@ flowchart TD
   CP --&gt; ALL["⚙️ all 4 parents"] & C3["📊 3 cases with real numbers"]
   CP ==>|"calculator → form"| BOOK["📅 book-a-call"]
 -->
-<div class="dgwrap"><p class="dgcap">The mechanics cluster — nine blogs feeding four service pages</p>
-<svg class="dg" viewBox="0 0 900 356" width="100%" style="max-width:900px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+<div class="dgwrap"><p class="dgcap">The mechanics cluster — six blogs into the flagship, three into its children</p>
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<svg class="dg" viewBox="0 0 1336 422" width="100%" style="max-width:1160px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<text class="ct" x="118.0" y="14.0">6 BLOGS FEED THE FLAGSHIP</text>
-<text class="ct" x="450.0" y="14.0">PARENT SERVICE</text>
-<text class="ct" x="782.0" y="14.0">CONVERTS TO</text>
-<path class="ed " d="M236.0,51.5 C284.0,51.5 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,107.5 C284.0,107.5 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,163.5 C284.0,163.5 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,219.5 C284.0,219.5 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,275.5 C284.0,275.5 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
-<path class="ed " d="M236.0,325.8 C284.0,325.8 284.0,185.8 325.0,185.8" marker-end="url(#ah)"/>
-<path class="ed strong" d="M568.0,185.8 C616.0,185.8 616.0,185.8 657.0,185.8" marker-end="url(#ah2)"/>
-<rect class="nb feed" x="0.0" y="30.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="49.0">ai agent examples</text>
-<text class="ns" x="118.0" y="63.0">631 · KD 11</text>
-<rect class="nb feed" x="0.0" y="86.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="105.0">ai agent use cases</text>
-<text class="ns" x="118.0" y="119.0">783 · KD 20</text>
-<rect class="nb feed" x="0.0" y="142.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="161.0">ai agent vs chatbot</text>
-<text class="ns" x="118.0" y="175.0">713 · KD 23</text>
-<rect class="nb feed" x="0.0" y="198.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="217.0">how to build an ai agent</text>
-<text class="ns" x="118.0" y="231.0">6,195 · KD 18 ★ biggest prize</text>
-<rect class="nb feed" x="0.0" y="254.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="273.0">ai agent frameworks</text>
-<text class="ns" x="118.0" y="287.0">1,534 · KD 26</text>
-<rect class="nb feed" x="0.0" y="310.0" width="236" height="31.5" rx="7"/>
-<text class="nt feed" x="118.0" y="329.0">agent memory &amp; state</text>
-<rect class="nb convert" x="664.0" y="170.0" width="236" height="31.5" rx="7"/>
-<text class="nt convert" x="782.0" y="189.0">/book-a-call/</text>
-<rect class="nb hub" x="332.0" y="164.2" width="236" height="43.0" rx="7"/>
-<text class="nt hub" x="450.0" y="183.2">/ai-agent-development-services/</text>
-<text class="ns" x="450.0" y="197.2">the flagship · 403 · KD 13 · D01</text>
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
+
+<text class="tl" x="6" y="52.6">6 BLOGS FEED IT</text>
+<text class="tl" x="6" y="157.8">PARENT SERVICE</text>
+<text class="tl" x="6" y="297.0">ITS CHILDREN</text>
+<text class="tl" x="6" y="396.9">CONVERTS</text>
+<path class="ed " d="M214.0,69.2 C214.0,98.7 734.0,98.7 734.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M413.0,69.2 C413.0,98.7 734.0,98.7 734.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M615.0,69.2 C615.0,98.7 734.0,98.7 734.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M826.0,69.2 C826.0,98.7 734.0,98.7 734.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M1039.0,69.2 C1039.0,98.7 734.0,98.7 734.0,128.2" marker-end="url(#ah)"/>
+<path class="ed " d="M1248.0,69.2 C1248.0,98.7 734.0,98.7 734.0,128.2" marker-end="url(#ah)"/>
+<path class="ed mesh" d="M734.0,181.4 C734.0,224.4 452.0,224.4 452.0,267.4" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<path class="ed mesh" d="M734.0,181.4 C734.0,224.4 729.0,224.4 729.0,267.4" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<path class="ed mesh" d="M734.0,181.4 C734.0,224.4 1011.0,224.4 1011.0,267.4" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<path class="ed strong" d="M734.0,174.4 C734.0,273.5 734.0,273.5 734.0,372.6" marker-end="url(#ah2)"/>
+<path class="ed mesh" d="M571.0,294.0 L601.0,294.0" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<path class="ed mesh" d="M857.0,294.0 L887.0,294.0" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<rect class="nb feed" x="132.0" y="30.0" width="164" height="39.2" rx="7"/>
+<text class="nt feed" x="214.0" y="47.4">ai agent examples</text>
+<text class="ns" x="214.0" y="60.4">631 · KD 11</text>
+<rect class="nb feed" x="330.0" y="30.0" width="166" height="39.2" rx="7"/>
+<text class="nt feed" x="413.0" y="47.4">ai agent use cases</text>
+<text class="ns" x="413.0" y="60.4">783 · KD 20</text>
+<rect class="nb feed" x="530.0" y="30.0" width="170" height="39.2" rx="7"/>
+<text class="nt feed" x="615.0" y="47.4">ai agent vs chatbot</text>
+<text class="ns" x="615.0" y="60.4">713 · KD 23</text>
+<rect class="nb feed" x="734.0" y="30.0" width="184" height="39.2" rx="7"/>
+<text class="nt feed" x="826.0" y="47.4">how to build an ai agent</text>
+<text class="ns" x="826.0" y="60.4">6,195 · KD 18 ★</text>
+<rect class="nb feed" x="952.0" y="30.0" width="174" height="39.2" rx="7"/>
+<text class="nt feed" x="1039.0" y="47.4">ai agent frameworks</text>
+<text class="ns" x="1039.0" y="60.4">1,534 · KD 26</text>
+<rect class="nb feed" x="1160.0" y="30.0" width="176" height="39.2" rx="7"/>
+<text class="nt feed" x="1248.0" y="47.4">agent memory &amp; state</text>
+<text class="ns" x="1248.0" y="60.4">D23</text>
+<rect class="nb hub" x="564.0" y="135.2" width="340" height="39.2" rx="7"/>
+<text class="nt hub" x="734.0" y="152.6">/ai-agent-development-services/</text>
+<text class="ns" x="734.0" y="165.6">THE FLAGSHIP · 403 · KD 13 · D01</text>
+<rect class="nb money" x="335.0" y="274.4" width="234" height="39.2" rx="7"/>
+<text class="nt money" x="452.0" y="291.8">/rag-development-services/</text>
+<text class="ns" x="452.0" y="304.8">fed by rag-vs-fine-tuning, D17</text>
+<rect class="nb money" x="603.0" y="274.4" width="252" height="39.2" rx="7"/>
+<text class="nt money" x="729.0" y="291.8">/multi-agent-system-development/</text>
+<text class="ns" x="729.0" y="304.8">fed by orchestration, D30</text>
+<rect class="nb money" x="889.0" y="274.4" width="244" height="39.2" rx="7"/>
+<text class="nt money" x="1011.0" y="291.8">/managed-ai-agent-services/</text>
+<text class="ns" x="1011.0" y="304.8">fed by guardrails+evals, D25</text>
+<rect class="nb convert" x="609.0" y="379.6" width="250" height="28.6" rx="7"/>
+<text class="nt convert" x="734.0" y="397.0">/book-a-call/</text>
 </svg>
-<svg class="dg" viewBox="0 0 568 217" width="100%" style="max-width:568px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
-
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
-
-<text class="ct" x="118.0" y="14.0">THREE MORE BLOGS</text>
-<text class="ct" x="450.0" y="14.0">EACH FEEDS ITS OWN CHILD</text>
-<path class="ed strong" d="M236.0,51.5 C284.0,51.5 284.0,51.5 325.0,51.5" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M236.0,112.5 C284.0,112.5 284.0,112.5 325.0,112.5" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M236.0,173.5 C284.0,173.5 284.0,173.5 325.0,173.5" marker-end="url(#ah2)"/>
-<rect class="nb feed" x="0.0" y="30.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="49.0">rag vs fine tuning</text>
-<text class="ns" x="118.0" y="63.0">503 · KD 16 · D17</text>
-<rect class="nb hub" x="332.0" y="35.8" width="236" height="31.5" rx="7"/>
-<text class="nt hub" x="450.0" y="54.8">/rag-development-services/</text>
-<rect class="nb feed" x="0.0" y="91.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="110.0">multi-agent orchestration</text>
-<text class="ns" x="118.0" y="124.0">D30</text>
-<rect class="nb hub" x="332.0" y="96.8" width="236" height="31.5" rx="7"/>
-<text class="nt hub" x="450.0" y="115.8">/multi-agent-system-development/</text>
-<rect class="nb feed" x="0.0" y="152.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="171.0">guardrails &amp; evals</text>
-<text class="ns" x="118.0" y="185.0">D25</text>
-<rect class="nb hub" x="332.0" y="152.0" width="236" height="43.0" rx="7"/>
-<text class="nt hub" x="450.0" y="171.0">/managed-ai-agent-services/</text>
-<text class="ns" x="450.0" y="185.0">the retainer page</text>
-</svg>
-<div class="dg-never"><strong>⛔ NEVER TARGET:</strong> "what is an ai agent" — 16,114 volume, KD 83. Wikipedia, IBM and AWS own page 1 permanently. At DR 0 this is unwinnable and the traffic would not convert anyway.</div>
+<div class="dg-never"><strong>⛔ NEVER TARGET:</strong> "what is an ai agent" — 16,114 volume, KD 83. Wikipedia, IBM and AWS own page 1 permanently. Unwinnable at DR 0, and that traffic would not convert.</div>
 </div>
 <!--mermaid
 flowchart TD
@@ -762,65 +775,59 @@ flowchart TD
   SVC ==> BOOK["📅 book-a-call"]
 -->
 <div class="dgwrap"><p class="dgcap">Ecommerce, automation and stack — one blog, one money page, every time</p>
-<svg class="dg" viewBox="0 0 568 509" width="100%" style="max-width:568px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<svg class="dg" viewBox="0 0 1262 309" width="100%" style="max-width:1160px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<text class="ct" x="118.0" y="14.0">THE BLOG THAT FEEDS IT</text>
-<text class="ct" x="450.0" y="14.0">THE MONEY PAGE IT FEEDS</text>
-<path class="ed strong" d="M236.0,57.2 C284.0,57.2 284.0,57.2 325.0,57.2" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M236.0,130.8 C284.0,130.8 284.0,130.8 325.0,130.8" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M236.0,198.5 C284.0,198.5 284.0,198.5 325.0,198.5" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M236.0,259.5 C284.0,259.5 284.0,259.5 325.0,259.5" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M236.0,326.2 C284.0,326.2 284.0,326.2 325.0,326.2" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M236.0,393.0 C284.0,393.0 284.0,393.0 325.0,393.0" marker-end="url(#ah2)"/>
-<path class="ed strong" d="M236.0,459.8 C284.0,459.8 284.0,459.8 325.0,459.8" marker-end="url(#ah2)"/>
-<rect class="nb feed" x="0.0" y="30.0" width="236" height="54.5" rx="7"/>
-<text class="nt feed" x="118.0" y="49.0">ecommerce automation</text>
-<text class="ns" x="118.0" y="63.0">1,377 · KD 3 ★ best ratio on the</text>
-<text class="ns" x="118.0" y="74.5">list</text>
-<rect class="nb hub" x="332.0" y="35.8" width="236" height="43.0" rx="7"/>
-<text class="nt hub" x="450.0" y="54.8">/industries/ai-agents-for-ecommerce/</text>
-<text class="ns" x="450.0" y="68.8">300 · KD 1 · D17</text>
-<rect class="nb feed" x="0.0" y="102.5" width="236" height="56.5" rx="7"/>
-<text class="nt feed" x="118.0" y="121.5">order status · returns ·</text>
-<text class="nt feed" x="118.0" y="135.0">catalog</text>
-<text class="ns" x="118.0" y="149.0">D16 · D18 · D20</text>
-<rect class="nb hub" x="332.0" y="109.2" width="236" height="43.0" rx="7"/>
-<text class="nt hub" x="450.0" y="128.2">/industries/ai-agents-for-ecommerce/</text>
-<text class="ns" x="450.0" y="142.2">300 · KD 1 · D17</text>
-<rect class="nb feed" x="0.0" y="177.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="196.0">invoice processing</text>
-<text class="ns" x="118.0" y="210.0">902 · KD 9 · D16</text>
-<rect class="nb hub" x="332.0" y="177.0" width="236" height="43.0" rx="7"/>
-<text class="nt hub" x="450.0" y="196.0">/business-process-automation-services/</text>
-<text class="ns" x="450.0" y="210.0">1,820 · KD 8 · D09</text>
-<rect class="nb feed" x="0.0" y="238.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="257.0">customer service automation</text>
-<text class="ns" x="118.0" y="271.0">2,173 · KD 19 · D20</text>
-<rect class="nb hub" x="332.0" y="238.0" width="236" height="43.0" rx="7"/>
-<text class="nt hub" x="450.0" y="257.0">/industries/ai-agents-for-customer-service/</text>
-<text class="ns" x="450.0" y="271.0">500 · KD 28 · D26</text>
-<rect class="nb feed" x="0.0" y="299.0" width="236" height="54.5" rx="7"/>
-<text class="nt feed" x="118.0" y="318.0">n8n vs zapier vs make</text>
-<text class="ns" x="118.0" y="332.0">⚡ open goal — no agency owns page</text>
-<text class="ns" x="118.0" y="343.5">1</text>
-<rect class="nb hub" x="332.0" y="304.8" width="236" height="43.0" rx="7"/>
-<text class="nt hub" x="450.0" y="323.8">/n8n-automation-agency/</text>
-<text class="ns" x="450.0" y="337.8">450 · KD 33 · D11</text>
-<rect class="nb feed" x="0.0" y="371.5" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="390.5">agents + CRM / HubSpot</text>
-<text class="ns" x="118.0" y="404.5">D27</text>
-<rect class="nb hub" x="332.0" y="371.5" width="236" height="43.0" rx="7"/>
-<text class="nt hub" x="450.0" y="390.5">/integrations/ × 80–120</text>
-<text class="ns" x="450.0" y="404.5">programmatic · D20–30</text>
-<rect class="nb feed" x="0.0" y="438.2" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="457.2">MCP explained for buyers</text>
-<text class="ns" x="118.0" y="471.2">D26</text>
-<rect class="nb hub" x="332.0" y="432.5" width="236" height="54.5" rx="7"/>
-<text class="nt hub" x="450.0" y="451.5">/mcp/</text>
-<text class="ns" x="450.0" y="465.5">what nobody else in this market</text>
-<text class="ns" x="450.0" y="477.0">ships</text>
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
+
+<text class="tl" x="6" y="52.6">THE BLOG</text>
+<text class="tl" x="6" y="183.8">THE MONEY PAGE IT FEEDS</text>
+<text class="tl" x="6" y="283.7">CONVERTS</text>
+<path class="ed " d="M264.0,69.2 C264.0,111.7 229.0,111.7 229.0,154.2" marker-end="url(#ah)"/>
+<path class="ed " d="M475.0,69.2 C475.0,111.7 466.0,111.7 466.0,154.2" marker-end="url(#ah)"/>
+<path class="ed " d="M692.0,69.2 C692.0,111.7 713.0,111.7 713.0,154.2" marker-end="url(#ah)"/>
+<path class="ed " d="M915.0,69.2 C915.0,111.7 949.0,111.7 949.0,154.2" marker-end="url(#ah)"/>
+<path class="ed " d="M1131.0,69.2 C1131.0,111.7 1170.0,111.7 1170.0,154.2" marker-end="url(#ah)"/>
+<path class="ed strong" d="M229.0,200.4 C229.0,229.9 697.0,229.9 697.0,259.4" marker-end="url(#ah2)"/>
+<path class="ed " d="M466.0,200.4 C466.0,229.9 697.0,229.9 697.0,259.4" marker-end="url(#ah)"/>
+<path class="ed " d="M713.0,200.4 C713.0,229.9 697.0,229.9 697.0,259.4" marker-end="url(#ah)"/>
+<path class="ed " d="M949.0,200.4 C949.0,229.9 697.0,229.9 697.0,259.4" marker-end="url(#ah)"/>
+<path class="ed " d="M1170.0,200.4 C1170.0,229.9 697.0,229.9 697.0,259.4" marker-end="url(#ah)"/>
+<path class="ed mesh" d="M332.0,180.8 C332.0,121.2 600.0,121.2 600.0,180.8" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<text class="el acc" x="466.0" y="132.2">verticals cross-link, both ways</text>
+<path class="ed mesh" d="M1046.0,180.8 L1076.0,180.8" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<rect class="nb feed" x="172.0" y="30.0" width="184" height="39.2" rx="7"/>
+<text class="nt feed" x="264.0" y="47.4">ecommerce automation</text>
+<text class="ns" x="264.0" y="60.4">1,377 · KD 3 ★</text>
+<rect class="nb feed" x="390.0" y="30.0" width="170" height="39.2" rx="7"/>
+<text class="nt feed" x="475.0" y="47.4">invoice processing</text>
+<text class="ns" x="475.0" y="60.4">902 · KD 9 · D16</text>
+<rect class="nb feed" x="594.0" y="30.0" width="196" height="39.2" rx="7"/>
+<text class="nt feed" x="692.0" y="47.4">customer service automation</text>
+<text class="ns" x="692.0" y="60.4">2,173 · KD 19</text>
+<rect class="nb feed" x="824.0" y="30.0" width="182" height="39.2" rx="7"/>
+<text class="nt feed" x="915.0" y="47.4">n8n vs zapier vs make</text>
+<text class="ns" x="915.0" y="60.4">⚡ open goal · D24</text>
+<rect class="nb feed" x="1040.0" y="30.0" width="182" height="39.2" rx="7"/>
+<text class="nt feed" x="1131.0" y="47.4">agents + CRM / HubSpot</text>
+<text class="ns" x="1131.0" y="60.4">D27</text>
+<rect class="nb money" x="132.0" y="161.2" width="194" height="39.2" rx="7"/>
+<text class="nt money" x="229.0" y="178.6">/industries/…-ecommerce/</text>
+<text class="ns" x="229.0" y="191.6">300 · KD 1</text>
+<rect class="nb money" x="360.0" y="161.2" width="212" height="39.2" rx="7"/>
+<text class="nt money" x="466.0" y="178.6">/business-process-automation/</text>
+<text class="ns" x="466.0" y="191.6">1,820 · KD 8</text>
+<rect class="nb money" x="606.0" y="161.2" width="214" height="39.2" rx="7"/>
+<text class="nt money" x="713.0" y="178.6">/industries/…-customer-service/</text>
+<text class="ns" x="713.0" y="191.6">500 · KD 28</text>
+<rect class="nb money" x="854.0" y="161.2" width="190" height="39.2" rx="7"/>
+<text class="nt money" x="949.0" y="178.6">/n8n-automation-agency/</text>
+<text class="ns" x="949.0" y="191.6">450 · KD 33</text>
+<rect class="nb money" x="1078.0" y="161.2" width="184" height="39.2" rx="7"/>
+<text class="nt money" x="1170.0" y="178.6">/integrations/ × 80–120</text>
+<text class="ns" x="1170.0" y="191.6">programmatic</text>
+<rect class="nb convert" x="572.0" y="266.4" width="250" height="28.6" rx="7"/>
+<text class="nt convert" x="697.0" y="283.8">/book-a-call/</text>
 </svg>
 </div>
 <!--mermaid
@@ -857,55 +864,58 @@ flowchart TD
 <p class="prose">Your LinkedIn engine already works — 20–30 high-quality posts a month, millions of impressions. The website is currently disconnected from it. This is the loop that connects them, and it's the part most agencies never build.</p>
 
 <div class="dgwrap"><p class="dgcap">The content distribution system — one insight, five channels, one destination</p>
-<svg class="dg" viewBox="0 0 1564 209" width="100%" style="max-width:1564px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<svg class="dg" viewBox="0 0 918 483" width="100%" style="max-width:918px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
 
-<text class="ct" x="118.0" y="14.0">SOURCE</text>
-<text class="ct" x="450.0" y="14.0">DISTRIBUTION</text>
-<text class="ct" x="782.0" y="14.0">PERMANENT ASSETS</text>
-<text class="ct" x="1114.0" y="14.0">WHERE IT LANDS</text>
-<text class="ct" x="1446.0" y="14.0">CONVERSION</text>
-<path class="ed strong" d="M236.0,112.5 C284.0,112.5 284.0,84.5 325.0,84.5" marker-end="url(#ah2)"/>
-<path class="ed " d="M236.0,112.5 C284.0,112.5 284.0,140.5 325.0,140.5" marker-end="url(#ah)"/>
-<path class="ed strong" d="M568.0,84.5 C616.0,84.5 616.0,84.5 657.0,84.5" marker-end="url(#ah2)"/>
-<text class="el" x="616.0" y="80.5">engagement</text>
-<path class="ed " d="M568.0,84.5 C616.0,84.5 616.0,140.5 657.0,140.5" marker-end="url(#ah)"/>
-<path class="ed strong" d="M900.0,84.5 C948.0,84.5 948.0,45.8 989.0,45.8" marker-end="url(#ah2)"/>
-<path class="ed " d="M900.0,84.5 C948.0,84.5 948.0,90.2 989.0,90.2" marker-end="url(#ah)"/>
-<path class="ed " d="M900.0,84.5 C948.0,84.5 948.0,134.8 989.0,134.8" marker-end="url(#ah)"/>
-<path class="ed " d="M900.0,84.5 C948.0,84.5 948.0,179.2 989.0,179.2" marker-end="url(#ah)"/>
-<path class="ed dash" d="M900.0,140.5 C948.0,140.5 948.0,134.8 989.0,134.8" marker-end="url(#ah2)"/>
-<text class="el" x="948.0" y="133.6">ranks p1</text>
-<path class="ed strong" d="M1232.0,45.8 C1280.0,45.8 1280.0,112.5 1321.0,112.5" marker-end="url(#ah2)"/>
-<path class="ed " d="M1232.0,90.2 C1280.0,90.2 1280.0,112.5 1321.0,112.5" marker-end="url(#ah)"/>
-<path class="ed strong" d="M1232.0,134.8 C1280.0,134.8 1280.0,112.5 1321.0,112.5" marker-end="url(#ah2)"/>
-<path class="ed " d="M1232.0,179.2 C1280.0,179.2 1280.0,112.5 1321.0,112.5" marker-end="url(#ah)"/>
-<rect class="nb feed" x="0.0" y="91.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="118.0" y="110.0">50 engineers</text>
-<text class="ns" x="118.0" y="124.0">real delivery work</text>
-<rect class="nb feed" x="332.0" y="63.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="450.0" y="82.0">LinkedIn post</text>
-<text class="ns" x="450.0" y="96.0">text-first, 3×/week</text>
-<rect class="nb feed" x="332.0" y="119.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="450.0" y="138.0">Instagram reel</text>
-<text class="ns" x="450.0" y="152.0">same insight, video-first</text>
-<rect class="nb feed" x="664.0" y="63.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="782.0" y="82.0">blog post on YOUR site</text>
-<text class="ns" x="782.0" y="96.0">targets a real keyword</text>
-<rect class="nb feed" x="664.0" y="119.0" width="236" height="43.0" rx="7"/>
-<text class="nt feed" x="782.0" y="138.0">Reddit answer</text>
-<text class="ns" x="782.0" y="152.0">r/AI_Agents · r/automation · r/n8n</text>
-<rect class="nb money" x="996.0" y="30.0" width="236" height="31.5" rx="7"/>
-<text class="nt money" x="1114.0" y="49.0">money page</text>
-<rect class="nb feed" x="996.0" y="74.5" width="236" height="31.5" rx="7"/>
-<text class="nt feed" x="1114.0" y="93.5">✉ newsletter issue</text>
-<rect class="nb money" x="996.0" y="119.0" width="236" height="31.5" rx="7"/>
-<text class="nt money" x="1114.0" y="138.0">Google SERP</text>
-<rect class="nb money" x="996.0" y="163.5" width="236" height="31.5" rx="7"/>
-<text class="nt money" x="1114.0" y="182.5">AI engines cite you</text>
-<rect class="nb convert" x="1328.0" y="96.8" width="236" height="31.5" rx="7"/>
-<text class="nt convert" x="1446.0" y="115.8">/book-a-call/</text>
+<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="ah2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker><marker id="ah3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--acc,#1a4fd6)"/></marker><marker id="ahr" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M8,0 L0,4 L8,8 z" fill="var(--acc,#1a4fd6)"/></marker></defs>
+
+<text class="tl" x="6" y="52.6">SOURCE</text>
+<text class="tl" x="6" y="157.8">DISTRIBUTION</text>
+<text class="tl" x="6" y="263.0">PERMANENT ASSETS</text>
+<text class="tl" x="6" y="362.9">WHERE IT LANDS</text>
+<text class="tl" x="6" y="457.5">CONVERSION</text>
+<path class="ed strong" d="M525.0,69.2 C525.0,98.7 412.0,98.7 412.0,128.2" marker-end="url(#ah2)"/>
+<path class="ed " d="M525.0,69.2 C525.0,98.7 642.0,98.7 642.0,128.2" marker-end="url(#ah)"/>
+<path class="ed strong" d="M412.0,174.4 C412.0,203.9 406.0,203.9 406.0,233.4" marker-end="url(#ah2)"/>
+<text class="el" x="409.0" y="200.9">engagement</text>
+<path class="ed " d="M412.0,174.4 C412.0,203.9 649.0,203.9 649.0,233.4" marker-end="url(#ah)"/>
+<path class="ed strong" d="M406.0,279.6 C406.0,309.1 215.0,309.1 215.0,338.6" marker-end="url(#ah2)"/>
+<path class="ed " d="M406.0,279.6 C406.0,309.1 415.0,309.1 415.0,338.6" marker-end="url(#ah)"/>
+<path class="ed " d="M406.0,279.6 C406.0,309.1 615.0,309.1 615.0,338.6" marker-end="url(#ah)"/>
+<path class="ed " d="M406.0,279.6 C406.0,309.1 825.0,309.1 825.0,338.6" marker-end="url(#ah)"/>
+<path class="ed dash" d="M649.0,279.6 C649.0,309.1 615.0,309.1 615.0,338.6" marker-end="url(#ah)"/>
+<text class="el" x="632.0" y="306.1">Reddit ranks page 1</text>
+<path class="ed strong" d="M215.0,374.2 C215.0,403.7 525.0,403.7 525.0,433.2" marker-end="url(#ah2)"/>
+<path class="ed " d="M415.0,374.2 C415.0,403.7 525.0,403.7 525.0,433.2" marker-end="url(#ah)"/>
+<path class="ed strong" d="M615.0,374.2 C615.0,403.7 525.0,403.7 525.0,433.2" marker-end="url(#ah2)"/>
+<path class="ed " d="M825.0,374.2 C825.0,403.7 525.0,403.7 525.0,433.2" marker-end="url(#ah)"/>
+<path class="ed mesh" d="M500.0,359.9 L530.0,359.9" marker-end="url(#ah3)" marker-start="url(#ahr)"/>
+<text class="el acc" x="515.0" y="351.9">returning readers → branded search</text>
+<rect class="nb feed" x="413.0" y="30.0" width="224" height="39.2" rx="7"/>
+<text class="nt feed" x="525.0" y="47.4">50 engineers</text>
+<text class="ns" x="525.0" y="60.4">real delivery work</text>
+<rect class="nb feed" x="312.0" y="135.2" width="200" height="39.2" rx="7"/>
+<text class="nt feed" x="412.0" y="152.6">LinkedIn post</text>
+<text class="ns" x="412.0" y="165.6">text-first, 3×/week</text>
+<rect class="nb feed" x="546.0" y="135.2" width="192" height="39.2" rx="7"/>
+<text class="nt feed" x="642.0" y="152.6">Instagram reel</text>
+<text class="ns" x="642.0" y="165.6">same insight, video</text>
+<rect class="nb feed" x="299.0" y="240.4" width="214" height="39.2" rx="7"/>
+<text class="nt feed" x="406.0" y="257.8">blog post on YOUR site</text>
+<text class="ns" x="406.0" y="270.8">targets a real keyword</text>
+<rect class="nb feed" x="547.0" y="240.4" width="204" height="39.2" rx="7"/>
+<text class="nt feed" x="649.0" y="257.8">Reddit answer</text>
+<text class="ns" x="649.0" y="270.8">r/AI_Agents · r/automation</text>
+<rect class="nb money" x="132.0" y="345.6" width="166" height="28.6" rx="7"/>
+<text class="nt money" x="215.0" y="363.0">money page</text>
+<rect class="nb feed" x="332.0" y="345.6" width="166" height="28.6" rx="7"/>
+<text class="nt feed" x="415.0" y="363.0">✉ newsletter</text>
+<rect class="nb money" x="532.0" y="345.6" width="166" height="28.6" rx="7"/>
+<text class="nt money" x="615.0" y="363.0">Google SERP</text>
+<rect class="nb money" x="732.0" y="345.6" width="186" height="28.6" rx="7"/>
+<text class="nt money" x="825.0" y="363.0">AI engines cite you</text>
+<rect class="nb convert" x="400.0" y="440.2" width="250" height="28.6" rx="7"/>
+<text class="nt convert" x="525.0" y="457.6">/book-a-call/</text>
 </svg>
 </div>
 <!--mermaid
