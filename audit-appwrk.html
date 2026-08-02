@@ -235,6 +235,35 @@
   *,*::before,*::after{box-sizing:border-box}
   img,svg{max-width:100%}
 
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
     a{color:#1a4fd6;text-decoration:underline}
@@ -283,7 +312,7 @@
 <header>
   <div class="eyebrow">Complete deep-dive · 2 Aug 2026 · seo-audit skill (github.com/AgriciDaniel/claude-seo) · 9 specialists + Ahrefs API v3</div>
   <h1>appwrk.com: a real agency that poisoned itself with every shortcut at once</h1>
-  <p class="prose">APPWRK IT Solutions is a genuine business: founded 2012, six real offices, ISO-certified, 98 named case studies, a live Shopify client roster. This audit found a real company buried under a content farm, doorway pages, fake star ratings, hollow badge links, purchased Telegram spam, a fold-covering popup, and a cache bug serving the wrong pages. The fourth case study in our series, and the lowest score yet. Companions: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appinventiv.html">Appinventiv blueprint</a>.</p>
+  <p class="prose">APPWRK IT Solutions is a genuine business: founded 2012, six real offices, ISO-certified, 98 named case studies, a live Shopify client roster. This audit found a real company buried under a content farm, doorway pages, fake star ratings, hollow badge links, Telegram link-seller spam, a fold-covering popup, and a cache bug serving the wrong pages. The fourth case study in our series, and the lowest score yet. Companions: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys</a> · <a href="audit-omnibound.html">Omnibound</a> · <a href="audit-appinventiv.html">Appinventiv blueprint</a>.</p>
 </header>
 
 <div class="hero">
@@ -296,7 +325,7 @@
   </div>
   <div class="hero-txt">
     <p><strong>SEO Health Score 49/100, the lowest of our three full audits</strong> (Genesys 54, Omnibound 54). Traffic: peaked <strong>25,700/mo (late 2024) → ~1,185 now, −95%</strong>. Paper DR 61; true durable authority ≈ high-teens to low-20s. Publishing frozen since April 2026.</p>
-    <p>Scores. GEO 64 · Technical 61 · SXO 52 · Sitemap 48 · Performance 42 · Visual 42 · Content 39 · Schema 32 · <strong>Backlinks 14 (MIXED, badge-link machine + bought spam)</strong>.</p>
+    <p>Scores. GEO 64 · Technical 61 · SXO 52 · Sitemap 48 · Performance 42 · Visual 42 · Content 39 · Schema 32 · <strong>Backlinks 14 (MIXED: badge-link machine + spam)</strong>.</p>
   </div>
 </div>
 
@@ -327,7 +356,7 @@
 <text class="ms bad" x="465.0" y="111.7">top-10 domains = 82.8% (53.6</text>
 <text class="ms bad" x="465.0" y="123.9">links/domain)</text>
 <rect class="mn bad" x="591.0" y="34.0" width="200" height="100.4" rx="7"/>
-<text class="mt bad" x="691.0" y="50.7">Purchased black-hat layer</text>
+<text class="mt bad" x="691.0" y="50.7">Telegram link-seller spam</text>
 <text class="ms bad" x="691.0" y="62.9">Telegram link-seller anchors on</text>
 <text class="ms bad" x="691.0" y="75.1">~49% of top-30 domains</text>
 <text class="ms bad" x="691.0" y="87.3">('ACCESS TO HACKED SITES FOR</text>
@@ -432,7 +461,7 @@ flowchart TD
 <h2 id="backlinks">3 · The two-layer backlink machine (verdict: MIXED, 14/100)</h2>
 <h3>3a. The badge-link machine: a new pattern in our series</h3>
 <p class="prose">APPWRK builds Shopify stores, and their theme ships a footer credit: <code>Design &amp; Developed by <a>APPWRK</a></code> · dofollow, on <em>every page</em> of every client's catalog. Result: <strong>one client store (glopalstore.com, DR 69) supplies 51.7% of all 111,845 links</strong>; icrafttransfers.com adds 13,603; the top 10 domains carry 82.8%. These are real, operating businesses · but it's one template decision masquerading as thousands of endorsements, which is why Ahrefs counts 53.6 links per domain and passes almost no real equity. <strong>Lesson for us:</strong> if we ever credit-badge client builds, it's nofollow or one homepage link · never a sitewide dofollow footer.</p>
-<h3>3b. The bought layer: and the vendor we keep meeting</h3>
+<h3>3b. The link-seller layer: and the vendor we keep meeting</h3>
 <blockquote>"🍪 TELEGRAM @SALESOVEN | ACCESS TO HACKED SITES FOR SEO". 39 referring domains<br>"TG @LINKS_DEALER | EFFECTIVE SEO LINKS FOR APPWRK.COM". 20 domains<br>"When starting out with appwrk.com, I had no idea how powerful good SEO could be until hiring SEOExpress.org…". 200 domains</blockquote>
 <p class="prose">Telegram link-seller channel names as literal anchor text across ~49% of the top-30 referring domains, and the <strong>third confirmed sighting of the SEOExpress.org spun-testimonial network</strong>, now proven on Genesys, Omnibound, and APPWRK. One spam operator is quietly fulfilling "SEO packages" across this entire market segment. If a vendor ever promises your site DR growth, assume this is what they resell. You now know the fingerprint.</p>
 

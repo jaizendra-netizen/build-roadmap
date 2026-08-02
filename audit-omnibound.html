@@ -236,6 +236,35 @@
   *,*::before,*::after{box-sizing:border-box}
   img,svg{max-width:100%}
 
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
     a{color:#1a4fd6;text-decoration:underline}
@@ -283,7 +312,7 @@
 <div class="wrap">
 <header>
   <div class="eyebrow">Complete deep-dive · 2 Aug 2026 · seo-audit skill (github.com/AgriciDaniel/claude-seo) · 9 specialists + Ahrefs API v3 + Firecrawl</div>
-  <h1>omnibound.ai: the company selling AI-search authority bought its own from a spam vendor</h1>
+  <h1>omnibound.ai: the company selling AI-search authority has none of its own</h1>
   <p class="prose">Full autopsy of the "AI Search Growth Platform": the complete site tree top-to-bottom, the month-by-month history, every specialist finding, the exact PBN domains behind its DR 64, and the verdict that its real story is almost identical to Genesys Growth's, from literally the same link seller. Companion reading: the <a href="seo-from-zero.html">SEO From Zero course</a> (all terms defined) and the <a href="audit-genesysgrowth.html">Genesys deep-dive</a>.</p>
 </header>
 
@@ -573,7 +602,7 @@ flowchart TD
 <p class="prose">That trailing clause is not a summarize request: it's an undisclosed steering instruction that manufactures a brand-citation event inside the reader's own ChatGPT/Claude history, identical on every post regardless of topic. <a href="https://www.omnibound.ai/blog/answer-engine-optimization">See it live</a> (hover the buttons, read the link URL). Verdict: genuinely clever distribution mechanics, ethically gray as implemented. If we borrow it: keep the one-click summarize convenience, drop or disclose the steering clause. The convenience alone earns the brand impression.</p>
 
 <h2 id="leads">6 · How many leads are they really generating?</h2>
-<p class="prose">Assumption-explicit estimate (no CRM access, obviously): ~500–620 relevant organic visits/mo (US-skewed; AEO-topic readers are definitionally in-market. Much better lead quality per visit than Genesys's video-editor shoppers) + ~154 paid-ad visits + LinkedIn/direct (unmeasurable). Conversion assets: a genuinely low-friction 1-field checker (but nav-only, and tap-blocked on mobile), gated webinars, demo booking. At 2–5% blended conversion on relevant traffic plus magnet uplift: <strong>roughly 15–30 raw inbound leads/month, of which perhaps 8–15 are ICP-qualified.</strong> A seed-stage inbound pipeline: the sales motion is clearly demo-led and supplemented by ads and LinkedIn, not an inbound machine yet. Their "growth story" is 8 months old and partly paint: real content ramp + bought DR + one attribution artifact.</p>
+<p class="prose">Assumption-explicit estimate (no CRM access, obviously): ~500–620 relevant organic visits/mo (US-skewed; AEO-topic readers are definitionally in-market. Much better lead quality per visit than Genesys's video-editor shoppers) + ~154 paid-ad visits + LinkedIn/direct (unmeasurable). Conversion assets: a genuinely low-friction 1-field checker (but nav-only, and tap-blocked on mobile), gated webinars, demo booking. At 2–5% blended conversion on relevant traffic plus magnet uplift: <strong>roughly 15–30 raw inbound leads/month, of which perhaps 8–15 are ICP-qualified.</strong> A seed-stage inbound pipeline: the sales motion is clearly demo-led and supplemented by ads and LinkedIn, not an inbound machine yet. Their "growth story" is 8 months old and partly paint: real content ramp + inflated DR from spam nobody asked for + one attribution artifact.</p>
 
 <h2 id="verdict">7 · The combined verdict: what Omnibound teaches us</h2>
 <div class="tbl-scroll"><table>
@@ -589,7 +618,7 @@ flowchart TD
     <tr><td>Best idea worth stealing</td><td>/ai-info + llms.txt fact-sheet layer</td><td>Summarize-with-AI buttons; Content-Signal robots policy; 1-field checker magnet; prompt-tracking mental model</td></tr>
   </tbody>
 </table></div>
-<p class="prose"><strong>The meta-lesson for our build:</strong> two flagship "AI-search era" websites, both running the modern playbook everyone talks about on LinkedIn, and both are ~600-real-visits sites wearing bought DR from the same spam vendor. The parts that actually work: sourced stats assets, real head-term rankings, intent-aligned topics, low-friction magnets, honest technical GEO. Are all cheap and all copyable without buying a single link. That's precisely the plan we'll build next.</p>
+<p class="prose"><strong>The meta-lesson for our build:</strong> two flagship "AI-search era" websites, both running the modern playbook everyone talks about on LinkedIn, and both are ~600-real-visits sites carrying spam links from the same vendor (45 anchor groups, 1,230 links, <strong>zero dofollow</strong>: sprayed at them, not bought by them). The parts that actually work: sourced stats assets, real head-term rankings, intent-aligned topics, low-friction magnets, honest technical GEO. Are all cheap and all copyable without buying a single link. That's precisely the plan we'll build next.</p>
 
 <div class="foot">
   <p>Method: seo-audit skill (<a href="https://github.com/AgriciDaniel/claude-seo">github.com/AgriciDaniel/claude-seo</a>): 9 specialist agents, live fetches under multiple user-agents, Playwright screenshots (10), Ahrefs API v3, Firecrawl scrapes. Full evidence: <code>~/clients/onegtmlab/new-venture-website/omnibound.ai-audit/</code> (9 findings files + screenshots + FULL-AUDIT-REPORT.md). Companions: <a href="seo-from-zero.html">SEO From Zero</a> · <a href="audit-genesysgrowth.html">Genesys deep-dive</a> · <a href="wordpress-vs-webflow.html">platform decision</a>. All third-party metrics are Ahrefs estimates; live-site observations true as of 2 Aug 2026. Next: the 3–4 month strategy + roadmap for our own site, built on all four case studies.</p>

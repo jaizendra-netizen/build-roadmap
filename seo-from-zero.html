@@ -210,6 +210,35 @@
   *,*::before,*::after{box-sizing:border-box}
   img,svg{max-width:100%}
 
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
+</style>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  img,svg{max-width:100%}
+
   @media print{
     body{background:#fff;padding:0}
     a{color:#1a4fd6;text-decoration:underline}
@@ -377,7 +406,7 @@
   <p class="oneliner">🔑 A <strong>PBN (Private Blog Network)</strong> is a web of low-quality websites that exist only to sell links; a <strong>manufactured link profile</strong> is authority assembled from PBNs, mass directory submissions, and self-serve platform pages instead of earned editorial mentions.</p>
   <p><strong>Why you care:</strong> this is the #1 way SEO vendors fool founders. They deliver "DR 60 in 6 months!": built from links Google's page-level algorithms quietly discount, leaving you with a big number and no traffic, one manual-penalty away from disaster. You now know how to catch it (below).</p>
   <div class="see"><span class="lbl">See it live</span>
-  <p><strong>The tell is the DR-vs-UR gap.</strong> Genesys's domain says DR 66, but its homepage, the page ALL those links point at, scores UR 8/100. A genuinely-linked homepage with 400+ referring domains scores UR 30–60. Translation: Ahrefs' page-level algorithm (which behaves more like Google) has already voted the links worthless; only the domain-wide counter is impressed. Compare the timeline: Genesys jumped <strong>DR 11 → 50 in six months</strong> (Jul 2025 → Jan 2026). Appinventiv took <em>years</em> to climb that range. Authority that appears at that speed was purchased, not earned. "Propped up" in plain words: the impressive DR number is a scaffolding of bought links holding up a building with no foundation.</p></div>
+  <p><strong>The tell is the DR-vs-UR gap.</strong> Genesys's domain says DR 66, but its homepage, the page ALL those links point at, scores UR 8/100. A genuinely-linked homepage with 400+ referring domains scores UR 30–60. Translation: Ahrefs' page-level algorithm (which behaves more like Google) has already voted the links worthless; only the domain-wide counter is impressed. Compare the timeline: Genesys jumped <strong>DR 11 → 50 in six months</strong> (Jul 2025 → Jan 2026). Appinventiv took <em>years</em> to climb that range. Authority that appears at that speed was manufactured, not earned. "Propped up" in plain words: the impressive DR number is scaffolding, links that were never editorially given, holding up a building with no foundation.</p></div>
   <div class="myth"><span class="lbl">The myth</span>
   <p>"Links are links. Google can't tell." It visibly can: that's precisely why 1,403 referring domains produce 516 visits. When you hire for link-building, demand: real publications in your industry, branded (not commercial exact-match) anchors, and links to your <em>content assets</em>, and spot-check the linking sites yourself: would a human ever read this website?</p></div>
 </div>
@@ -458,7 +487,7 @@
   <thead><tr><th>When</th><th class="num">DR</th><th class="num">Organic visits/mo</th><th>What was happening</th></tr></thead>
   <tbody>
     <tr><td>Jan 2025</td><td class="num">8</td><td class="num">4</td><td>Tiny normal young site</td></tr>
-    <tr><td>Jul 2025</td><td class="num">11</td><td class="num">35</td><td>Still normal · then the link-buying starts</td></tr>
+    <tr><td>Jul 2025</td><td class="num">11</td><td class="num">35</td><td>Still normal · then the spam links arrive</td></tr>
     <tr><td>Oct 2025</td><td class="num">22</td><td class="num">20</td><td>DR doubling with no traffic to justify it</td></tr>
     <tr><td>Jan 2026</td><td class="num">50</td><td class="num">346</td><td><strong>DR 11 → 50 in six months</strong> · the manufactured-authority sprint</td></tr>
     <tr><td>Feb 4–6, 2026</td><td class="num">·</td><td class="num">·</td><td><strong>364 blog posts published in a single 3-day window</strong> (from their own page metadata)</td></tr>
@@ -484,7 +513,7 @@
 <p>Open these two side by side: <a href="https://genesysgrowth.com/blog/fathom-vs-fireflies-ai-vs-otter-ai">fathom-vs-fireflies-ai-vs-otter-ai</a> and <a href="https://genesysgrowth.com/blog/descript-vs-capcut-vs-clipchamp">descript-vs-capcut-vs-clipchamp</a>. Same skeleton, same section rhythm, same stock imagery (our audit measured 6,377 vs 6,378 words: one word apart), different tool names. Note what's missing from both: a single screenshot of the tools supposedly "hands-on tested." Then ask the concept-14 question: what does a video-editor shopper do on a GTM consultancy's website? Nothing, which is why this traffic converts to zero.</p></div>
 
 <h3 id="g-f4">Finding 4: "Propped up by a manufactured backlink profile… top anchor is literally PBN spam"</h3>
-<p><strong>Plain English, term by term:</strong> "propped up" = the impressive DR 66 number is held up artificially, like scaffolding, by links that were bought or induced rather than earned (<a href="#c-pbn">concept 8</a>). The "top anchor" = the most common clickable text used across all links pointing at them (<a href="#c-backlinks">concept 7</a>), and theirs, used identically by 207 different websites, is a spun fake-testimonial paragraph that actually advertises a <em>different</em> SEO vendor. Hundreds of sites don't organically write the same paragraph; one spam network pastes it. That network is a <strong>PBN</strong>: a private blog network, websites that exist only to sell links.</p>
+<p><strong>Plain English, term by term:</strong> "propped up" = the impressive DR 66 number is held up artificially, like scaffolding, by links that were never editorially given (<a href="#c-pbn">concept 8</a>). The "top anchor" = the most common clickable text used across all links pointing at them (<a href="#c-backlinks">concept 7</a>), and theirs, used identically by 207 different websites, is a spun fake-testimonial paragraph that actually advertises a <em>different</em> SEO vendor. Hundreds of sites don't organically write the same paragraph; one spam network pastes it. That network is a <strong>PBN</strong>: a private blog network, websites that exist only to sell links.</p>
 <div class="see"><span class="lbl">Verify the shape of it yourself</span>
 <p>The raw anchor data sits behind Ahrefs' paid API (we pulled it with our key. The full table is in your local audit file <code>findings/backlinks.md</code>), but the two public tells you can check free: (1) <a href="https://ahrefs.com/website-authority-checker">the free DR checker</a> shows genesysgrowth.com at ~DR 66 · now remember from the timeline that this appeared at 6× natural speed; (2) the traffic reality · <a href="https://www.google.com/search?q=site%3Agenesysgrowth.com">Google's own index of their site</a> vs 516 monthly visits. Domain-wide score up, page-level score (UR 8/100) and traffic down: that divergence is the manufactured-profile fingerprint you now know how to read. Our estimate of their <em>true durable</em> authority · what would remain if the fake layer burned off · is DR in the high-20s to mid-30s, i.e., roughly what 13 months of honest work produces.</p></div>
 

@@ -115,10 +115,42 @@
   .tree .ref{color:var(--acc)}.tree .hdr{color:var(--ink);font-weight:700;background:var(--soft)}
   .tree{font-size:.70rem;line-height:1.95}
   .tree code{background:transparent;color:var(--ink);font-weight:700;padding:0 2px}
+
+  .mmwrap{background:var(--panel,#fff);border:1px solid var(--ring,#e5e2db);
+          border-radius:12px;padding:16px 18px 18px;margin:18px 0;overflow-x:auto}
+  .mmkey{margin:0 0 12px;font-size:.79rem;color:var(--ink2,#54524d);line-height:1.6}
+  .mmkey .k-bad{color:var(--crit,#c4372c)}
+  .mmkey .k-good{color:var(--good,#0c7a3e)}
+  .mmkey .k-dead{color:var(--mut,#8a8781)}
+  @media print{.mmwrap{break-inside:avoid;overflow:visible}}
+</style>
+<style>
+  .mn{fill:var(--panel,#fff);stroke:var(--ring,#d9d6cf);stroke-width:1}
+  .mn.bad{fill:color-mix(in srgb,var(--crit,#c4372c) 8%,var(--panel,#fff));
+          stroke:color-mix(in srgb,var(--crit,#c4372c) 60%,transparent);stroke-width:1.4}
+  .mn.good{fill:color-mix(in srgb,var(--good,#0c7a3e) 10%,var(--panel,#fff));
+           stroke:var(--good,#0c7a3e);stroke-width:1.4}
+  .mn.dead{fill:color-mix(in srgb,var(--mut,#8a8781) 16%,var(--panel,#fff));
+           stroke:var(--mut,#8a8781);stroke-dasharray:4 3}
+  .mn.ai{fill:color-mix(in srgb,var(--acc,#1a4fd6) 9%,var(--panel,#fff));
+         stroke:var(--acc,#1a4fd6);stroke-width:1.4}
+  .mt{font:700 10.4px system-ui,-apple-system,sans-serif;fill:var(--ink,#111110);
+      text-anchor:middle}
+  .ms{font:400 9.4px system-ui,sans-serif;fill:var(--ink2,#54524d);text-anchor:middle}
+  .mt.bad,.ms.bad{fill:var(--crit,#c4372c)} .mt.good{fill:var(--good,#0c7a3e)}
+  .mt.dead,.ms.dead{fill:var(--mut,#8a8781)} .mt.ai{fill:var(--acc,#1a4fd6)}
+  .ms.bad,.ms.good,.ms.ai{fill:var(--ink2,#54524d)}
+  .me{fill:none;stroke:var(--line,#cfccc4);stroke-width:1.2}
+  .me.weak{stroke-dasharray:5 4;stroke:color-mix(in srgb,var(--crit,#c4372c) 55%,transparent)}
+  .me.hard{stroke:var(--good,#0c7a3e);stroke-width:2}
+  .mel{font:600 8.2px system-ui,sans-serif;fill:var(--mut,#8a8781);text-anchor:middle}
+  .msub{font:700 9.4px system-ui,sans-serif;fill:var(--mut,#8a8781);letter-spacing:.07em}
+  .mn,.mt,.ms{pointer-events:none}
 </style>
 <style>
   *,*::before,*::after{box-sizing:border-box}
   img,svg{max-width:100%}
+
   @media print{.mmwrap{break-inside:avoid;overflow:visible}}
 </style>
 <style>
@@ -310,12 +342,13 @@
 <body><nav class="lib-nav"><a class="back" href="index.html">&#8592; The Build Roadmap</a><span class="ctx">reference document</span></nav>
 <div class="wrap">
 <header>
-  <div class="eyebrow">onegtmlab.com · audited 3 Aug 2026 · Ahrefs API v3 + live crawl of 24 pages across every page type</div>
-  <h1>846 of our 871 pages have the same title tag: "OneGTM"</h1>
-  <p class="prose">This is the audit we ran on seven competitors, turned on our own site. Every number below
-  was pulled live from onegtmlab.com on 3 August 2026 and can be reproduced with the commands shown.
-  Nothing here is inference. <strong>The site ranks for zero keywords and receives zero organic visits,
-  and the reasons are specific, visible in the page source, and mostly fixable this week.</strong></p>
+  <div class="eyebrow">onegtmlab.com · audited 3 Aug 2026 · Ahrefs API v3 + live crawl of 24 pages across all nine page types</div>
+  <h1>846 of our 871 pages carry the same title tag: "OneGTM"</h1>
+  <p class="prose">This is the audit we ran on seven competitors, turned on our own site. Every figure below
+  was pulled live from onegtmlab.com on 3 August 2026 and every one can be reproduced with the commands
+  shown. Nothing here is inference. <strong>The site ranks for zero keywords and receives zero organic
+  visits. The causes are specific, visible in the page source, and most of them are template
+  configuration.</strong></p>
 </header>
 
 <div class="scores">
@@ -323,217 +356,365 @@
   <div class="sc"><span>Ranking keywords</span><b style="color:var(--crit)">0</b><small>871 indexable URLs, none ranking in any country.</small></div>
   <div class="sc"><span>Pages titled "OneGTM"</span><b style="color:var(--crit)">846</b><small>97.1% of the site. Identical string, byte for byte.</small></div>
   <div class="sc"><span>Canonical tags</span><b style="color:var(--crit)">0</b><small>Not one, on any page type we checked.</small></div>
-  <div class="sc"><span>Meta descriptions</span><b style="color:var(--crit)">0</b><small>Including the homepage.</small></div>
+  <div class="sc"><span>Winnable searches sitting unclaimed</span><b style="color:var(--good)">2,442</b><small>per month, at KD 0 to 10. Content already written.</small></div>
 </div>
 
-<div class="see"><span class="lbl">How to verify any line in this document</span>
-<p>Every finding below can be reproduced in one command. For example, the title tag on any tool page:</p>
+<div class="see"><span class="lbl">Verify any line in this document</span>
+<p>Every finding is reproducible in one command. The title tag on any tool page:</p>
 <p><code>curl -s https://onegtmlab.com/tools/lemlist-c6c2e | grep -o '&lt;title&gt;[^&lt;]*'</code><br>
 → <code>&lt;title&gt;OneGTM</code></p>
-<p>Change the URL to any of the 797 tool pages, 35 sub-category pages or 7 category pages and the output
-is identical. That is the audit in one line.</p></div>
+<p>Swap in any of the 797 tool pages, 35 sub-category pages or 7 category pages. Same output every time.</p></div>
 
-<h2 id="thread">1 · Every defect, by page type</h2>
+<h2 id="map">1 · The whole site in one picture</h2>
+<p class="prose">Where authority comes in, what it lands on, and where it stops. Red is broken, green
+works, grey is dead weight.</p>
+<div class="mmwrap"><p class="mmkey">Reads top to bottom. <b class="k-bad">Red dashed</b> = manufactured or low-quality. <b class="k-good">Green</b> = genuine and earning. <b class="k-dead">Grey dashed</b> = dead weight.</p>
+<svg class="dg mm" viewBox="0 0 1382 532" width="100%" style="max-width:1160px;height:auto" role="img" xmlns="http://www.w3.org/2000/svg">
+
+<defs><marker id="mah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line,#b9b5ad)"/></marker><marker id="maw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--crit,#c4372c)"/></marker><marker id="mas" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--good,#0c7a3e)"/></marker></defs>
+<text class="msub" x="4" y="14">WHO LINKS TO US: 365 domains, DR 2.3</text>
+<path class="me weak" d="M562.0,97.8 C562.0,124.8 691.0,124.8 691.0,151.8" marker-end="url(#maw)"/>
+<path class="me hard" d="M820.0,85.6 C820.0,118.7 691.0,118.7 691.0,151.8" marker-end="url(#mas)"/>
+<path class="me " d="M691.0,209.4 C691.0,236.4 75.0,236.4 75.0,263.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,209.4 C691.0,236.4 251.0,236.4 251.0,263.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,209.4 C691.0,236.4 427.0,236.4 427.0,263.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,209.4 C691.0,236.4 603.0,236.4 603.0,263.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,209.4 C691.0,236.4 779.0,236.4 779.0,263.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,209.4 C691.0,236.4 955.0,236.4 955.0,263.4" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,209.4 C691.0,236.4 1131.0,236.4 1131.0,263.4" marker-end="url(#mah)"/>
+<path class="me " d="M779.0,345.4 C779.0,384.6 691.0,384.6 691.0,423.8" marker-end="url(#mah)"/>
+<path class="me " d="M691.0,209.4 C691.0,236.4 1307.0,236.4 1307.0,263.4" marker-end="url(#mah)"/>
+<rect class="mn bad" x="446.0" y="34.0" width="232" height="63.8" rx="7"/>
+<text class="mt bad" x="562.0" y="50.7">SEOExpress spray campaign</text>
+<text class="ms bad" x="562.0" y="62.9">218 links · 0 DOFOLLOW · unsolicited</text>
+<text class="ms bad" x="562.0" y="75.1">38 arrived in one burst, April 2026</text>
+<text class="ms bad" x="562.0" y="87.3">anchors advertise SEOExpress, not us</text>
+<rect class="mn good" x="704.0" y="34.0" width="232" height="51.6" rx="7"/>
+<text class="mt good" x="820.0" y="50.7">GENUINE editorial links</text>
+<text class="ms good" x="820.0" y="62.9">reo.dev, substack</text>
+<text class="ms good" x="820.0" y="75.1">anchor: 'OneGTMLab'</text>
+<rect class="mn" x="575.0" y="157.8" width="232" height="51.6" rx="7"/>
+<text class="mt" x="691.0" y="174.5">onegtmlab.com</text>
+<text class="ms" x="691.0" y="186.7">871 pages · Webflow · DR 2.3</text>
+<text class="ms" x="691.0" y="198.9">0 organic visits · 0 ranking keywords</text>
+<rect class="mn bad" x="0.0" y="269.4" width="150" height="88.2" rx="7"/>
+<text class="mt bad" x="75.0" y="286.1">/tools/ · 797 pages,</text>
+<text class="ms bad" x="75.0" y="298.3">91.5%</text>
+<text class="ms bad" x="75.0" y="310.5">title 'OneGTM' · NO h1 at</text>
+<text class="ms bad" x="75.0" y="322.7">all</text>
+<text class="ms bad" x="75.0" y="334.9">97.3% identical · 0</text>
+<text class="ms bad" x="75.0" y="347.1">visits</text>
+<rect class="mn bad" x="176.0" y="269.4" width="150" height="76.0" rx="7"/>
+<text class="mt bad" x="251.0" y="286.1">/tool-category/ · 7 tag</text>
+<text class="ms bad" x="251.0" y="298.3">pages</text>
+<text class="ms bad" x="251.0" y="310.5">title 'OneGTM' · 100%</text>
+<text class="ms bad" x="251.0" y="322.7">byte-identical</text>
+<text class="ms bad" x="251.0" y="334.9">same h1 on all seven</text>
+<rect class="mn bad" x="352.0" y="269.4" width="150" height="88.2" rx="7"/>
+<text class="mt bad" x="427.0" y="286.1">/tool-sub-category/ · 35</text>
+<text class="ms bad" x="427.0" y="298.3">tag pages</text>
+<text class="ms bad" x="427.0" y="310.5">title 'OneGTM' · h1</text>
+<text class="ms bad" x="427.0" y="322.7">hardcoded to</text>
+<text class="ms bad" x="427.0" y="334.9">'Competitive</text>
+<text class="ms bad" x="427.0" y="347.1">Intelligence' on all 35</text>
+<rect class="mn bad" x="528.0" y="269.4" width="150" height="63.8" rx="7"/>
+<text class="mt bad" x="603.0" y="286.1">blog + case-study</text>
+<text class="ms bad" x="603.0" y="298.3">categories · 7 pages</text>
+<text class="ms bad" x="603.0" y="310.5">title 'OneGTM' · 100%</text>
+<text class="ms bad" x="603.0" y="322.7">identical</text>
+<rect class="mn good" x="704.0" y="269.4" width="150" height="76.0" rx="7"/>
+<text class="mt good" x="779.0" y="286.1">/blog/ · 7 posts</text>
+<text class="ms good" x="779.0" y="298.3">1,652 to 4,221 words</text>
+<text class="ms good" x="779.0" y="310.5">body-only</text>
+<text class="ms good" x="779.0" y="322.7">real unique h1s · the</text>
+<text class="ms good" x="779.0" y="334.9">strongest asset</text>
+<rect class="mn good" x="880.0" y="269.4" width="150" height="51.6" rx="7"/>
+<text class="mt good" x="955.0" y="286.1">/case-studies/ · 5 pages</text>
+<text class="ms good" x="955.0" y="298.3">unique h1 + JSON-LD +</text>
+<text class="ms good" x="955.0" y="310.5">named outcomes</text>
+<rect class="mn" x="1056.0" y="269.4" width="150" height="88.2" rx="7"/>
+<text class="mt" x="1131.0" y="286.1">/ and /services/ · 8</text>
+<text class="ms" x="1131.0" y="298.3">pages</text>
+<text class="ms" x="1131.0" y="310.5">2,972 and 1,537 words ·</text>
+<text class="ms" x="1131.0" y="322.7">Organization schema</text>
+<text class="ms" x="1131.0" y="334.9">but no meta description,</text>
+<text class="ms" x="1131.0" y="347.1">no og:title</text>
+<rect class="mn" x="575.0" y="429.8" width="232" height="88.2" rx="7"/>
+<text class="mt" x="691.0" y="446.5">🎯 2,442 searches/mo at KD 0 to 10</text>
+<text class="ms" x="691.0" y="458.7">abm workflow KD 0 · go to market</text>
+<text class="ms" x="691.0" y="470.9">engineer KD 2</text>
+<text class="ms" x="691.0" y="483.1">b2b intent signals KD 3 · b2b buying</text>
+<text class="ms" x="691.0" y="495.3">signals 800 at KD 8</text>
+<text class="ms" x="691.0" y="507.5">ranking for NONE of it</text>
+<rect class="mn dead" x="1232.0" y="269.4" width="150" height="100.4" rx="7"/>
+<text class="mt dead" x="1307.0" y="286.1">ALL 871 pages</text>
+<text class="ms dead" x="1307.0" y="298.3">'Page One, Lorem ipsum</text>
+<text class="ms dead" x="1307.0" y="310.5">dolor sit amet'</text>
+<text class="ms dead" x="1307.0" y="322.7">through Page Eight, live</text>
+<text class="ms dead" x="1307.0" y="334.9">in the nav</text>
+<text class="ms dead" x="1307.0" y="347.1">zero canonicals · zero</text>
+<text class="ms dead" x="1307.0" y="359.3">meta descriptions</text>
+</svg>
+</div>
+
+<h2 id="thread">2 · Every defect, by page type</h2>
 <p class="prose">We sampled 24 URLs across all nine page types in the sitemap and recorded the title, meta
-description, H1 count, canonical, schema blocks and word count on each. Read this as the thread: the
-branch is the page type, the leaves are what is actually on those pages.</p>
+description, H1 count, canonical, schema and word count on each, then measured pairwise text similarity
+within each type. The branch is the page type; the leaves are what is actually on those pages.</p>
 
 <div class="tree"><b>onegtmlab.com</b> <span class="note">· 871 URLs in sitemap.xml · Webflow · Cloudflare · DR 2.3 · 0 visits/mo</span>
 │
-├── <span class="hard">✕</span> <b>/tools/[tool-name]</b>  <span class="note">797 pages · 91.5% of the site</span>
-│     <span class="hard">TITLE</span>   <code>OneGTM</code> <span class="note">· identical on all 14 sampled. Not "Lemlist", not "Lemlist pricing". Just "OneGTM".</span>
-│     <span class="hard">H1</span>      <span class="note">NONE. Zero &lt;h1&gt; elements on 14 of 14 pages sampled.</span>
+├── <span class="hard">✕</span> <b>/tools/[tool-name]</b>  <span class="note">797 pages · 91.5% of the entire site</span>
+│     <span class="hard">TITLE</span>   <code>OneGTM</code> <span class="note">· identical on all 14 sampled. Not "Lemlist". Not "Lemlist pricing". Just "OneGTM".</span>
+│     <span class="hard">H1</span>      <span class="note">NONE. Zero &lt;h1&gt; elements on 14 of 14 pages.</span>
 │     <span class="hard">CANONICAL</span> <span class="note">none · </span><span class="hard">META DESC</span><span class="note"> none · </span><span class="hard">JSON-LD</span><span class="note"> none</span>
-│     <span class="note">BODY  559–588 words · </span><span class="hard">97.3% mean pairwise similarity</span><span class="note"> (min 96%, max 100%)</span>
+│     <span class="note">BODY  559 to 588 words · </span><span class="hard">97.3% mean pairwise similarity</span><span class="note"> (min 96%, max 100%)</span>
 │     <span class="note">      95% of the characters on any two tool pages are the same characters</span>
-│     <span class="lk">→ CONSEQUENCE</span> <span class="note">Google is handed 797 URLs with one title, no heading and near-identical text.</span>
-│     <span class="note">                There is no signal available to tell /tools/cykel from /tools/circleback.</span>
+│     <span class="lk">→ WHY IT MATTERS</span> <span class="note">797 URLs, one title, no heading, near-identical text. There is no signal</span>
+│     <span class="note">                  available for Google to tell /tools/cykel from /tools/circleback.</span>
 │
 ├── <span class="hard">✕✕</span> <b>/tool-category/[category]</b>  <span class="note">7 pages · THE TAG PAGES</span>
 │     <span class="hard">TITLE</span>   <code>OneGTM</code>
 │     <span class="hard">H1</span>      <code>Best B2B GTM Tools in 2026 (Complete Directory)</code>
-│     <span class="hard">        · the SAME H1 on /outreach, /data-prospecting and /engagement</span>
-│     <span class="hard">BODY</span>    <span class="hard">100.0% IDENTICAL.</span> <span class="note">Byte for byte. All three sampled pages return the same</span>
-│     <span class="note">        1,789 words. The category in the URL changes nothing on the page.</span>
-│     <span class="lk">→ CONSEQUENCE</span> <span class="note">These are not category pages. They are seven copies of one page at seven URLs.</span>
+│     <span class="hard">        the SAME H1 on /outreach, /data-prospecting and /engagement</span>
+│     <span class="hard">BODY</span>    <span class="hard">100.0% IDENTICAL.</span> <span class="note">Byte for byte. All three sampled return the same 1,789 words.</span>
+│     <span class="note">        The category in the URL changes nothing whatsoever on the page.</span>
+│     <span class="lk">→ WHY IT MATTERS</span> <span class="note">These are not seven category pages. They are one page at seven URLs.</span>
 │
 ├── <span class="hard">✕✕</span> <b>/tool-sub-category/[sub]</b>  <span class="note">35 pages · THE TAG PAGES</span>
 │     <span class="hard">TITLE</span>   <code>OneGTM</code>
 │     <span class="hard">H1</span>      <code>Go-To-Market Tools for Competitive Intelligence</code>
-│     <span class="hard">        · on /workflow-automation, /content-copywriting AND /intent-signals</span>
+│     <span class="hard">        on /workflow-automation, /content-copywriting AND /intent-signals</span>
 │     <span class="note">        The H1 is hardcoded to one sub-category and never binds to the actual one.</span>
-│     <span class="note">BODY  1,717–1,969 words · 95.1% mean pairwise similarity</span>
-│     <span class="lk">→ CONSEQUENCE</span> <span class="note">A page about workflow automation tells Google it is about competitive intelligence.</span>
+│     <span class="note">BODY  1,717 to 1,969 words · 95.1% mean pairwise similarity</span>
+│     <span class="lk">→ WHY IT MATTERS</span> <span class="note">A page about workflow automation tells Google it is about competitive intelligence.</span>
 │
-├── <span class="hard">✕</span> <b>/blog-categories/[cat]</b>  <span class="note">3 pages</span>
-│     <span class="hard">TITLE</span> <code>OneGTM</code> <span class="note">· </span><span class="hard">BODY 100.0% IDENTICAL</span><span class="note"> · 340 words each</span>
+├── <span class="hard">✕</span> <b>/blog-categories/</b> <span class="note">3 pages · </span><span class="hard">100.0% IDENTICAL</span><span class="note"> · title </span><code>OneGTM</code><span class="note"> · 340 words each</span>
+├── <span class="hard">✕</span> <b>/case-studies-category/</b> <span class="note">4 pages · 87.1% similar · title </span><code>OneGTM</code><span class="note"> · ~305 words each</span>
 │
-├── <span class="hard">✕</span> <b>/case-studies-category/[cat]</b>  <span class="note">4 pages</span>
-│     <span class="hard">TITLE</span> <code>OneGTM</code> <span class="note">· 87.1% similar · 304–311 words each</span>
-│
-├── <span class="easy">✓</span> <b>/blog/[post]</b>  <span class="note">7 pages · THE ONE THING THAT IS RIGHT</span>
-│     <span class="lk">TITLE</span>   <span class="note">real and unique: "Blog | 25 B2B Buying Signals Sales Teams Can Turn Into…"</span>
+├── <span class="easy">✓</span> <b>/blog/[post]</b>  <span class="note">7 posts · THE STRONGEST THING ON THE SITE</span>
+│     <span class="lk">TITLE</span>   <span class="note">real and unique on every post</span>
 │     <span class="lk">H1</span>      <span class="note">present and unique on every post</span>
-│     <span class="lk">BODY</span>    <span class="note">4,179 / 4,197 / 4,346 words · </span><span class="easy">13.7% similarity</span><span class="note"> · genuinely distinct writing</span>
-│     <span class="note">        7 H2s, 9 H2s, 2 H2s. This is real, publishable, rankable content.</span>
-│     <span class="hard">but</span>     <span class="note">still no canonical, no meta description, no Article schema</span>
-│     <span class="lk">→</span> <span class="note">Seven excellent posts are carrying the entire commercial burden of the site.</span>
+│     <span class="lk">BODY</span>    <span class="note">body-only word counts, chrome stripped, all seven measured:</span>
+│     <span class="note">        4,221 · 4,072 · 4,054 · 3,800 · 3,117 · 3,115 · 1,652   (median ~3,800)</span>
+│     <span class="note">        2 to 10 H2s per post · 13.7% pairwise similarity: genuinely distinct writing</span>
+│     <span class="hard">but</span>     <span class="note">no canonical, no meta description, no Article schema on any of them</span>
 │
-├── <span class="easy">✓</span> <b>/case-studies/[slug]</b>  <span class="note">5 pages</span>
-│     <span class="lk">TITLE</span> <span class="note">unique · </span><span class="lk">H1</span><span class="note"> unique · </span><span class="lk">JSON-LD</span><span class="note"> present · 783–812 words · 23.7% similarity</span>
-│     <span class="note">"From zero outbound infrastructure to 20k enriched accounts in 45 days" · a real, named outcome</span>
+├── <span class="easy">✓</span> <b>/case-studies/[slug]</b>  <span class="note">5 pages · unique title + H1 + JSON-LD · 783 to 812 words · 23.7% similarity</span>
+│     <span class="note">"From zero outbound infrastructure to 20k enriched accounts in 45 days": a real, named outcome</span>
 │
 ├── <span class="easy">✓</span> <b>/ and /services/*</b>  <span class="note">homepage 2,972 words · service page 1,537 words · Organization schema</span>
-│     <span class="hard">but</span> <span class="note">homepage has </span><span class="hard">no meta description and no og:title</span><span class="note"> · every LinkedIn</span>
-│     <span class="note">    and Slack share of onegtmlab.com renders without a title card</span>
+│     <span class="hard">but</span> <span class="note">homepage has </span><span class="hard">no meta description and no og:title</span><span class="note">, so every LinkedIn</span>
+│     <span class="note">    and Slack share of onegtmlab.com renders with no title card at all</span>
 │
-└── <span class="hard">✕✕✕</span> <b>SITE-WIDE, every one of the 871 pages</b>
-      <span class="hard">LOREM IPSUM IS LIVE IN THE NAVIGATION.</span> <span class="note">The header dropdown contains:</span>
+└── <span class="hard">✕✕✕</span> <b>SITE-WIDE, on every one of the 871 pages</b>
+      <span class="hard">LOREM IPSUM IS LIVE IN THE NAVIGATION.</span> <span class="note">The header dropdown reads:</span>
       <span class="note">  "Page group one · Page One · Lorem ipsum dolor sit amet consectetur elit"</span>
-      <span class="note">  …repeating through </span><span class="hard">Page Eight</span><span class="note">. Webflow's default nav placeholder, never replaced.</span>
-      <span class="note">  Confirmed present on the homepage, a service page, a tool page, a category page,</span>
-      <span class="note">  a blog post and the case studies index. That is all 871 pages.</span>
-      <span class="hard">NO CANONICAL TAG</span> <span class="note">on any page of any type.</span>
-      <span class="hard">NO META DESCRIPTION</span> <span class="note">on any page of any type.</span>
+      <span class="note">  repeating through </span><span class="hard">Page Eight</span><span class="note">. Webflow's default nav placeholder, never replaced.</span>
+      <span class="note">  Confirmed on the homepage, a service page, a tool page, a category page, a blog</span>
+      <span class="note">  post and the case-studies index. That is every template on the site.</span>
+      <span class="hard">NO CANONICAL TAG</span> <span class="note">and </span><span class="hard">NO META DESCRIPTION</span> <span class="note">on any page of any type.</span>
 </div>
 
-<h2 id="model">2 · What these pages are supposed to look like</h2>
-<p class="prose">We pulled the same four fields from the sites that run this play successfully. Lindy runs
-1,559 integration pages earning roughly 122,000 visits a month. n8n and Zapier run the largest directory
-and tag-page systems on the web. <strong>Every one of them does the three things our pages do not.</strong></p>
-
+<h2 id="model">3 · What these pages are supposed to look like</h2>
+<p class="prose">We pulled the same fields from the sites running this play successfully. Lindy runs 1,559
+integration pages earning roughly 122,000 visits a month; n8n and Zapier operate the largest directory
+and tag-page systems on the web. <strong>All three do the same three things ours do not.</strong></p>
 <div class="tbl"><table>
   <thead><tr><th>Site</th><th>Title tag</th><th>H1</th><th>Canonical</th><th>Schema</th></tr></thead>
   <tbody>
-    <tr><td><b>n8n</b> <code>/integrations/slack/</code></td><td class="g">Slack integrations | Workflow automation with n8n</td><td class="g">Integrate Slack with 1000+ apps and services</td><td class="g">yes</td><td class="g">4 blocks</td></tr>
-    <tr><td><b>Zapier</b> <code>/apps/slack/integrations</code></td><td class="g">Slack Integrations | Connect Your Apps with Zapier</td><td class="g">Slack Integrations</td><td class="g">yes</td><td class="g">6 blocks</td></tr>
+    <tr><td><b>n8n</b> <code>/integrations/slack/</code></td><td class="g">Slack integrations | Workflow automation with n8n</td><td class="g">Integrate Slack with 1000+ apps and services</td><td class="g">yes</td><td class="g">4</td></tr>
+    <tr><td><b>Zapier</b> <code>/apps/slack/integrations</code></td><td class="g">Slack Integrations | Connect Your Apps with Zapier</td><td class="g">Slack Integrations</td><td class="g">yes</td><td class="g">6</td></tr>
     <tr><td><b>Lindy</b> <code>/integrations/slack</code></td><td class="g">Slack · Lindy AI · Automate Slack with AI-Powered Workflows</td><td class="g">Integrate Slack with your AI Workflows</td><td class="g">yes</td><td class="w">0</td></tr>
     <tr><td><b>ours</b> <code>/tools/lemlist-c6c2e</code></td><td class="r">OneGTM</td><td class="r">none</td><td class="r">no</td><td class="r">0</td></tr>
   </tbody>
 </table></div>
 
-<h3>2a · And the tag pages specifically</h3>
-<p class="prose">You asked about tag pages. n8n runs exactly the structure we attempted, and it works:</p>
+<h3>3a · The tag pages, specifically</h3>
 <div class="vs">
   <div><span class="h">n8n · /integrations/categories/communication/</span>
-  <b>Title:</b> "Best Communication apps &amp; software integrations"<br>
-  <b>H1:</b> "Best Communication apps &amp; software integrations"<br>
+  <b>Title:</b> Best Communication apps &amp; software integrations<br>
+  <b>H1:</b> Best Communication apps &amp; software integrations<br>
   <b>Meta:</b> "Optimize your workflows with top Communication integrations…"<br>
   <b>Canonical:</b> yes · <b>JSON-LD:</b> 2 · <b>2,928 words</b><br><br>
-  The category name appears in the title, the H1 and the meta description. Swap "communication" for
+  The category name appears in the title, the H1 and the meta. Change "communication" to
   "productivity" in the URL and all three change with it.</div>
   <div><span class="h">ours · /tool-category/outreach</span>
-  <b>Title:</b> "OneGTM"<br>
-  <b>H1:</b> "Best B2B GTM Tools in 2026 (Complete Directory)"<br>
+  <b>Title:</b> OneGTM<br>
+  <b>H1:</b> Best B2B GTM Tools in 2026 (Complete Directory)<br>
   <b>Meta:</b> none<br>
   <b>Canonical:</b> no · <b>JSON-LD:</b> 0 · <b>1,789 words</b><br><br>
-  Swap "outreach" for "data-prospecting" and <b>nothing changes at all</b>. The response is byte-identical.
-  The word "outreach" appears nowhere in the title, the H1 or the meta.</div>
+  Change "outreach" to "data-prospecting" and <b>nothing changes at all</b>. The response is
+  byte-identical. The word "outreach" appears nowhere in the title, H1 or meta.</div>
 </div>
-<p class="prose"><strong>So the tag pages were built. They just were not bound to their own data.</strong>
-This is not an architecture problem or a Webflow limitation. n8n's tag pages are the same CMS pattern.
-The collection template is missing three field bindings.</p>
+<p class="prose"><strong>So the tag pages were built. They were simply never bound to their own data.</strong>
+This is not an architecture problem and not a Webflow limitation, because n8n's tag pages use the same
+CMS pattern. Three missing field bindings in the collection template.</p>
 
-<h2 id="fix">3 · The fix, in the order it should be done</h2>
+<h2 id="links">4 · The backlink profile, and a correction to our own published work</h2>
+<div class="gold"><span class="lbl">Corrected 3 Aug 2026, after Jainendra challenged the finding</span>
+<p>An earlier version of this audit, and our audits of four competitors, described the SEOExpress
+network as links those sites <em>bought</em>. <strong>Jainendra was certain we had never bought a link,
+which prompted a re-test. He was right, and the original reading was wrong on every site.</strong></p></div>
 
-<div class="gold"><span class="lbl">Under two hours, and it unblocks everything else</span>
-<p>All five items below are Webflow collection-template field bindings. No new content, no migration,
-no rebuild. Do these before anything else on the list.</p></div>
-
+<p class="prose"><strong>The test:</strong> a purchased link is <em>dofollow</em>. Passing ranking equity
+is the entire product; a nofollow link passes nothing, so there is nothing to sell. We pulled the
+dofollow count for every spam anchor group on all five domains.</p>
 <div class="tbl"><table>
-  <thead><tr><th class="num">#</th><th>Change</th><th>Where in Webflow</th><th>Bind to</th></tr></thead>
+  <thead><tr><th>Site</th><th class="num">Spam anchor groups</th><th class="num">Links</th><th class="num">Dofollow</th><th>Verdict</th></tr></thead>
   <tbody>
-    <tr><td class="num">1</td><td><b>Bind the title tag to the item name</b><br><code>{Tool name} pricing, features and alternatives | OneGTMLab</code></td><td>Tools collection → Page Settings → SEO Title</td><td><code>Name</code> field</td></tr>
-    <tr><td class="num">2</td><td><b>Add an H1</b> to the tool template</td><td>Tools template → heading element → set to H1</td><td><code>Name</code> field</td></tr>
-    <tr><td class="num">3</td><td><b>Bind the category H1 and title</b> so /outreach says "outreach"</td><td>Tool Category + Tool Sub-Category templates</td><td><code>Category Name</code></td></tr>
-    <tr><td class="num">4</td><td><b>Add a self-referencing canonical</b></td><td>Site-wide, all templates and static pages</td><td>page URL</td></tr>
-    <tr><td class="num">5</td><td><b>Delete the Lorem ipsum nav dropdown</b></td><td>Header symbol, affects all 871 pages</td><td>·</td></tr>
-    <tr><td class="num">6</td><td><b>Homepage meta description + og:title</b></td><td>Home → Page Settings</td><td>·</td></tr>
+    <tr><td><b>onegtmlab.com</b> (ours)</td><td class="num">56</td><td class="num">340</td><td class="num r">2</td><td class="g">sprayed, not bought</td></tr>
+    <tr><td>searchable.com</td><td class="num">57</td><td class="num">2,341</td><td class="num r">0</td><td class="g">sprayed, not bought</td></tr>
+    <tr><td>omnibound.ai</td><td class="num">45</td><td class="num">1,230</td><td class="num r">0</td><td class="g">sprayed, not bought</td></tr>
+    <tr><td>genesysgrowth.com <span class="note">(SEOExpress anchor)</span></td><td class="num">1</td><td class="num">243</td><td class="num r">0</td><td class="g">sprayed, not bought</td></tr>
+    <tr><td>appwrk.com <span class="note">(Telegram anchor)</span></td><td class="num">1</td><td class="num">576</td><td class="num r">0</td><td class="g">sprayed, not bought</td></tr>
   </tbody>
 </table></div>
+<p class="prose">Zero dofollow, on every spun-testimonial cluster, on every site. <strong>Nobody bought
+these. A link vendor is spraying fabricated testimonials for itself and using real domains as
+filler.</strong> We have corrected the searchable, omnibound, appwrk, genesys and SEO-From-Zero
+documents accordingly.</p>
 
-<h3>3a · Then the decision that actually matters</h3>
-<p class="prose">Fixing the titles makes the pages <em>distinguishable</em>. It does not yet make them
-<em>worth ranking</em>. 559 words of 95% boilerplate with the tool name swapped in is still a thin page,
-and that is the pattern that cost APPWRK 95% of their traffic.</p>
-<div class="warn"><span class="lbl">The precedent, from our own audit set</span>
-<p>APPWRK shipped 36 city pages measuring 98–99% identical. Traffic fell from 25,700/mo to 1,185, and
-eighteen months of good content afterwards did not recover it. <strong>Our tool pages are at 97.3% and
-our category pages are at 100%.</strong> We have not been penalised only because we never ranked, so
-there was nothing to take away.</p></div>
-<p class="prose">Two honest options:</p>
-<ol class="prose">
-  <li><strong>Write them.</strong> 797 pages × 150 words of genuine per-tool substance (real pricing, who
-  it suits, one real limitation, what we pair it with) is about 120,000 words. That is a content
-  programme, not a sprint. n8n's Slack page runs <strong>20,912 words</strong>; Zapier's runs 4,539 with
-  24 H2s. That is the bar the winners clear.</li>
-  <li><strong>Cut it.</strong> Keep the 80–120 tools we have a real opinion on, write those properly, and
-  <code>noindex</code> the rest. <strong>A hundred pages that rank beat 797 that do not</strong>, and today
-  797 rank for nothing at all.</li>
-</ol>
-<p class="prose">Our own roadmap already states this rule for the integration pages, sourced from that
-APPWRK collapse: <em>each page needs engineer-supplied specifics · auth method, objects synced, a real
-rate-limit gotcha. No specifics for a tool means do not build that page.</em> The directory was built
-without applying it.</p>
+<h3>4a · The exact URL, so you can open it yourself</h3>
+<p class="prose">This is one of the 218 pages linking to us. The slug alone is the proof:</p>
+<blockquote><code>https://seo-high-ranking.shop/back-when-i-started-my-online-shop-i-had-zero-google-<br>
+ranking-and-no-budget-for-big-agencies-<b>SEOExpress.org</b>-made-all-the-difference-with-<br>
+budget-friendly-seo-solutions-helping-me-climb-from-paged-out</code></blockquote>
+<p class="prose">The page is a fabricated testimonial <strong>for SEOExpress</strong>, about an
+imaginary online shop. Its link to onegtmlab.com is filler. The anchor text reads
+<em>"Before I found SEOExpress.org, I had nearly given up on improving onegtmlab.com's presence
+online"</em>, which is the vendor's template with our domain injected into it. It is
+<code>nofollow</code>. It arrived <strong>17 April 2026</strong>, part of a burst of 38 in that month.</p>
+<p class="prose">Six of the referring domains share the campaign ID <code>bt8c9da</code> in their URL
+slugs (<code>linkrankpro.shop</code>, <code>rankxlinks.shop</code>, <code>ranklinkerpro.shop</code>,
+<code>seorankflow.shop</code>, <code>buyseobacklinks.shop</code>, <code>rankshiftseo.shop</code>).
+One operator, one batch, sprayed across many targets. All of them return a 301 or 302 today.</p>
+<p class="prose"><strong>What is genuinely dofollow and pointing at us: one link.</strong>
+<code>reo.dev/blog/developer-marketing-resources-2026</code>, DR 40, anchor "OneGTMLab". That is a real
+editorial mention. Of 100 live backlinks sampled, <strong>99 are nofollow.</strong></p>
+<div class="see"><span class="lbl">The action, unchanged</span>
+<p>Disavow the cluster in Search Console anyway. It passes nothing (DR 2.3 across 365 domains proves
+that), removal costs nothing, and it keeps the profile clean. But this is hygiene, not remediation, and
+<strong>no one on the team did anything wrong here.</strong></p></div>
 
-<h2 id="links">4 · The backlink profile</h2>
-<p class="prose">365 referring domains producing DR 2.3 is the same gap we flagged on four competitors.
-We pulled the anchor text.</p>
-<blockquote>"Before I found SEOExpress.org, I had nearly given up on im…"<br>
-<span style="font-size:.86em">· the anchor on <strong>217 of our 365 referring domains</strong></span></blockquote>
-<p class="prose">A further 40 carry <em>"onegtmlab.com gets high-quality backlinks, guest posts, on-page…"</em>,
-which is the vendor's own sales copy used as anchor text. Referring domains include
-<code>buybacklinks.agency</code>, <code>seoexpress.org</code>, <code>linkrankpro.shop</code>,
-<code>rankxlinks.shop</code>, <code>buyseobacklinks.shop</code>, <code>authoritybacklinks.shop</code>.
-<strong>This is the fifth site in our study carrying the SEOExpress network, after Genesys, Omnibound,
-APPWRK and Searchable. It is the first that is ours.</strong></p>
-<div class="see"><span class="lbl">Two readings, and the honest position</span>
-<p>Either a package was bought at some point, or the vendor is using our domain as filler in its own
-spam. The second is plausible and probably likelier: the anchor is a <em>testimonial for SEOExpress</em>,
-not a promotion of us, which is what a farm writes when it needs an outbound link to look natural.
-<strong>We cannot tell which from the data and this audit does not claim to.</strong></p>
-<p>The action is identical either way: disavow the cluster in Search Console. It is passing nothing
-(DR 2.3 across 365 domains proves that), removal costs nothing, and publishing audits that name this
-network on other people's sites while it points at ours is not a position worth holding.</p></div>
+<h2 id="good">5 · What is verified good</h2>
 
-<h2 id="right">5 · What the team got right</h2>
-<p class="prose">The failures above are all template configuration. The judgment calls were good, and
-several things here are ahead of the competitors we audited.</p>
+<h3>5a · The blog, measured</h3>
+<p class="prose">Body-only word counts with navigation, header and footer stripped, all seven posts:</p>
+<div class="tbl"><table>
+  <thead><tr><th>Post</th><th class="num">Body words</th><th class="num">H2s</th></tr></thead>
+  <tbody>
+    <tr><td>25 B2B buying signals sales teams can turn into pipeline</td><td class="num g">4,221</td><td class="num">7</td></tr>
+    <tr><td>ABM and signals: the beginner's guide</td><td class="num g">4,072</td><td class="num">9</td></tr>
+    <tr><td>The ABM workflow every team needs in 2026</td><td class="num g">4,054</td><td class="num">2</td></tr>
+    <tr><td>How to build a GTM signal-response system</td><td class="num g">3,800</td><td class="num">7</td></tr>
+    <tr><td>AI agents vs AI automation</td><td class="num g">3,117</td><td class="num">10</td></tr>
+    <tr><td>Legacy GTM tools vs AI-native tools vs Claude</td><td class="num g">3,115</td><td class="num">7</td></tr>
+    <tr><td>How to build a LinkedIn content engine using Claude Code</td><td class="num w">1,652</td><td class="num">3</td></tr>
+  </tbody>
+</table></div>
+<p class="prose"><strong>Note on precision:</strong> an earlier draft quoted "4,179 / 4,197 / 4,346 words"
+from three sampled posts. Those figures were whole-page counts including chrome, and they were the three
+longest. The honest range is <strong>1,652 to 4,221 body words, median about 3,800</strong>. Still
+genuinely strong, and better long-form than five of the seven competitors we audited, but stated
+properly.</p>
+
+<h3>5b · Zero cloaking, proved by hash</h3>
+<p class="prose">We fetched three pages under five user agents and compared SHA-256 of the full response.
+Not "roughly the same size": <strong>byte-identical</strong>.</p>
+<div class="tbl"><table>
+  <thead><tr><th>URL</th><th class="num">Bytes</th><th>SHA-256 (first 12)</th><th>Chrome · GPTBot · OAI-SearchBot · ClaudeBot · PerplexityBot</th></tr></thead>
+  <tbody>
+    <tr><td><code>/</code></td><td class="num">227,018</td><td><code>898892f4160a</code></td><td class="g">all five identical</td></tr>
+    <tr><td><code>/blog/the-abm-workflow…</code></td><td class="num">92,218</td><td><code>4cccb84c2b97</code></td><td class="g">all five identical</td></tr>
+    <tr><td><code>/tools/lemlist-c6c2e</code></td><td class="num">53,206</td><td><code>52e3629cb95d</code></td><td class="g">all five identical</td></tr>
+  </tbody>
+</table></div>
+<p class="prose">For contrast: <strong>searchable.com, a company that sells AI-search visibility, serves
+GPTBot a 532-byte stub where a browser gets 565KB.</strong> We are materially ahead of the vendor on
+this. <code>robots.txt</code> also names GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, CCBot and
+Applebot individually, all allowed.</p>
+
+<h3>5c · The rest</h3>
 <ul>
-  <li><span class="sev p">Strong</span><strong>The blog is genuinely excellent.</strong> 4,179 / 4,197 / 4,346 words, 13.7% pairwise similarity, real H2 structure. That is better long-form work than five of the seven sites we audited. It is also the only part of the site that could rank tomorrow if the technical layer were fixed.</li>
-  <li><span class="sev p">Strong</span><strong>Zero cloaking.</strong> The homepage returns a byte-identical 227,109 bytes to Chrome, GPTBot and OAI-SearchBot. Searchable, a company that sells AI visibility, serves GPTBot a 532-byte stub. We are ahead of the vendor.</li>
-  <li><span class="sev p">Strong</span><strong>robots.txt names GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, CCBot and Applebot individually</strong>, all allowed. Most sites have not done this.</li>
-  <li><span class="sev p">Good</span>Case studies carry unique H1s, JSON-LD and named outcomes with real numbers.</li>
-  <li><span class="sev p">Good</span>371 links across 365 domains = 1.02 per domain. No artificial multiplication, whatever the source.</li>
-  <li><span class="sev p">Good</span>HTTPS, HSTS <code>max-age=31536000</code>, HTTP/2, Cloudflare. Webflow is the right platform for a site this size.</li>
+  <li><span class="sev p">Good</span>Case studies: unique H1s, JSON-LD, named outcomes with real numbers.</li>
+  <li><span class="sev p">Good</span>371 links across 365 domains = 1.02 per domain. No artificial multiplication.</li>
+  <li><span class="sev p">Good</span>HTTPS, HSTS <code>max-age=31536000</code>, HTTP/2, Cloudflare. Webflow is the right platform at this size.</li>
 </ul>
 
-<h2 id="gaps">6 · The remaining gap list</h2>
+<h2 id="opp">6 · What is sitting there unclaimed</h2>
+<p class="prose">The seven blog posts already target real commercial keywords. We pulled US volume and
+difficulty for each topic. <strong>Every one is KD 10 or below. The content is written. It ranks for
+none of it.</strong></p>
+<div class="tbl"><table>
+  <thead><tr><th>Keyword</th><th class="num">Volume/mo</th><th class="num">KD</th><th class="num">CPC</th><th>Post that targets it</th></tr></thead>
+  <tbody>
+    <tr><td>b2b buying signals</td><td class="num">800</td><td class="num g">8</td><td class="num">–</td><td>25 B2B buying signals</td></tr>
+    <tr><td>go to market engineer</td><td class="num">409</td><td class="num g">2</td><td class="num">$5.00</td><td>GTM engineering posts</td></tr>
+    <tr><td>gtm engineering</td><td class="num">322</td><td class="num g">low</td><td class="num">$3.50</td><td>GTM signal-response system</td></tr>
+    <tr><td>b2b intent signals</td><td class="num">285</td><td class="num g">3</td><td class="num">$9.00</td><td>ABM and signals</td></tr>
+    <tr><td>signal based selling</td><td class="num">200</td><td class="num g">8</td><td class="num">$9.00</td><td>GTM signal-response system</td></tr>
+    <tr><td>buying signals sales</td><td class="num">166</td><td class="num g">4</td><td class="num">$7.00</td><td>25 B2B buying signals</td></tr>
+    <tr><td>abm workflow</td><td class="num">150</td><td class="num g">0</td><td class="num">$6.00</td><td>The ABM workflow every team needs</td></tr>
+    <tr><td>intent data b2b</td><td class="num">100</td><td class="num g">10</td><td class="num">$19.00</td><td>ABM and signals</td></tr>
+    <tr><td><strong>Total addressable, existing content</strong></td><td class="num"><strong>2,442</strong></td><td class="num g">0–10</td><td class="num"></td><td><strong>currently ranking: none</strong></td></tr>
+  </tbody>
+</table></div>
+<p class="prose"><strong>"abm workflow" is KD 0.</strong> A 4,054-word post targeting it exists on the
+site right now. It ranks nowhere, because the technical layer underneath it is not letting anything
+through.</p>
+
+<h2 id="fix">7 · The fix, in order</h2>
+<div class="tree"><span class="hdr"> ═══ DAY 1 · UNDER TWO HOURS · ALL WEBFLOW TEMPLATE FIELDS ═══ </span>
+ ├─ <b>1. Bind the tool title to the item name</b>
+ │     <span class="note">Tools collection → Page Settings → SEO Title → </span><code>{Name} pricing, features and alternatives | OneGTMLab</code>
+ ├─ <b>2. Add an H1 to the tool template</b>  <span class="note">bound to the Name field</span>
+ ├─ <b>3. Bind the category title and H1</b>  <span class="note">Tool Category + Tool Sub-Category → so /outreach says "outreach"</span>
+ ├─ <b>4. Add a self-referencing canonical</b>  <span class="note">site-wide, every template and static page</span>
+ ├─ <b>5. Delete the Lorem ipsum nav dropdown</b>  <span class="note">one header symbol, fixes all 871 pages</span>
+ └─ <b>6. Homepage meta description + og:title</b>  <span class="note">stops every LinkedIn share rendering blank</span>
+
+<span class="hdr"> ═══ WEEK 1 ═══ </span>
+ ├─ <b>Meta descriptions and Article schema on the 7 blog posts</b> <span class="note">the only pages that can rank this month</span>
+ ├─ <b>Disavow the spam cluster</b> <span class="note">hygiene, not remediation</span>
+ └─ <b>Ship llms.txt and /ai-info</b> <span class="note">both 404 today; we recommend both in our own roadmap</span>
+
+<span class="hdr"> ═══ THE DECISION THAT ACTUALLY MATTERS ═══ </span>
+ <span class="note">Fixing titles makes the 797 tool pages </span><b>distinguishable</b><span class="note">. It does not make them </span><b>worth ranking</b><span class="note">.</span>
+ <span class="note">559 words of 95% boilerplate with a name swapped in is still thin, and thin at scale is</span>
+ <span class="note">exactly what cost APPWRK 95% of their traffic. Two honest options:</span>
+ ├─ <span class="easy">A.</span> <b>Write them.</b> <span class="note">797 × 150 words of real substance ≈ 120,000 words. A programme, not a sprint.</span>
+ │      <span class="note">n8n's Slack page runs </span><b>20,912 words</b><span class="note">; Zapier's runs 4,539 with 24 H2s. That is the bar.</span>
+ └─ <span class="easy">B.</span> <b>Cut it.</b> <span class="note">Keep the 80 to 120 tools we have a real opinion on, write those properly,</span>
+        <code>noindex</code> <span class="note">the rest. </span><b>100 pages that rank beat 797 that do not</b><span class="note">, and today 797 rank for nothing.</span>
+</div>
+
+<h2 id="gaps">8 · Remaining gap list</h2>
 <ul>
-  <li><span class="sev h">High</span><strong>No <code>llms.txt</code>, no <code>/ai-info</code></strong> · both return 404. We recommend both in our own roadmap's machine layer.</li>
-  <li><span class="sev h">High</span><strong>One services page against 797 tool pages.</strong> The commercial pages that convert are outnumbered 100:1 by directory entries that convert nothing.</li>
-  <li><span class="sev m">Medium</span><strong>No <code>Article</code> schema on the blog posts</strong>, which are the site's strongest asset.</li>
-  <li><span class="sev m">Medium</span><strong>No security headers</strong>: no CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy or Permissions-Policy. Not a ranking factor, but an enterprise buyer's security review will ask.</li>
+  <li><span class="sev h">High</span><strong>No <code>llms.txt</code>, no <code>/ai-info</code></strong>, both 404. We recommend both in our own roadmap's machine layer.</li>
+  <li><span class="sev h">High</span><strong>One services page against 797 tool pages.</strong> The pages that convert are outnumbered 100:1 by pages that convert nothing.</li>
+  <li><span class="sev m">Medium</span><strong>No <code>Article</code> schema on the blog</strong>, the site's strongest asset.</li>
+  <li><span class="sev m">Medium</span><strong>No security headers</strong>: no CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy or Permissions-Policy. Not a ranking factor, but an enterprise security review will ask.</li>
   <li><span class="sev m">Medium</span>Sitemap served as <code>application/rss+xml</code> rather than <code>application/xml</code>.</li>
-  <li><span class="sev m">Medium</span>Tool URLs carry hash suffixes: <code>/tools/lemlist-c6c2e</code>, <code>/tools/folderly-5954a</code>. Slugs should be clean, and the duplicates behind those hashes should be merged.</li>
+  <li><span class="sev m">Medium</span>Tool slugs carry hash suffixes: <code>/tools/lemlist-c6c2e</code>, <code>/tools/folderly-5954a</code>. Clean these and merge whatever duplicates sit behind them.</li>
 </ul>
 
-<div class="gold"><span class="lbl">The summary to take into the meeting</span>
-<p>The team built 871 pages, seven genuinely excellent blog posts and a working Webflow CMS. Then
-<strong>846 of those pages shipped with the same title tag, no canonical, no meta description and
-Lorem ipsum in the navigation</strong>, and the category templates were never bound to their own
-category data.<br><br>
-None of that is a strategy failure and none of it needs a rebuild. Items 1 to 6 in section 3 are
-template field bindings that take under two hours together. The real decision is whether the tool
-directory earns its 120,000 words or gets cut to the hundred entries we can actually write.</p></div>
+<div class="gold"><span class="lbl">The summary for the meeting</span>
+<p>The team built 871 pages, seven genuinely strong blog posts and a working Webflow CMS. Then 846 of
+those pages shipped with one title tag, no canonical, no meta description and Lorem ipsum in the
+navigation, and the category templates were never bound to their own data.<br><br>
+None of that is a strategy failure and none of it needs a rebuild. Day 1 is six template fields.
+2,442 searches a month sit at KD 0 to 10 with the content already written for them.<br><br>
+And on the backlinks: <strong>we were wrong and Jainendra was right.</strong> Nobody bought anything.
+That correction has been pushed to all five audits.</p></div>
 
 <div class="foot">
-  <p>Method: Ahrefs API v3 (domain-rating, metrics, metrics-history, backlinks-stats, refdomains, anchors,
-  organic-keywords), full parse of all 871 sitemap URLs, direct crawl of 24 pages spanning all nine page
-  types with browser and AI-crawler user agents, pairwise body-similarity measured with difflib across
-  each page type, and a live field-by-field comparison against n8n, Zapier and Lindy. Pulled 3 Aug 2026.
-  Ahrefs traffic figures are estimates; the zero here is a genuine absence of ranking data, not a small
-  number rounded down. Every finding is reproducible with curl against the live site.</p>
+  <p>Method: Ahrefs API v3 (domain-rating, metrics, metrics-history, backlinks-stats, refdomains, anchors
+  with dofollow counts, all-backlinks with source URLs, organic-keywords, keywords-explorer), full parse
+  of all 871 sitemap URLs, direct crawl of 24 pages spanning all nine page types, five-user-agent
+  SHA-256 comparison on three pages, pairwise body-similarity via difflib within each page type, and a
+  live field-by-field comparison against n8n, Zapier and Lindy. Pulled 3 Aug 2026. Ahrefs traffic figures
+  are estimates; the zero here is a genuine absence of ranking data, not a small number rounded down.</p>
 </div>
 </div>
 <footer class="lib-foot"><p class="backline"><a href="index.html">&#8592; Back to the build roadmap</a></p><h3>Reference documents</h3><p class="sub">The research the roadmap was built from, kept here so any decision in it can be traced back to the evidence.</p><div class="lib-grid"><div><h4>This document</h4><ul><li><a href="build-roadmap.html">The Build Roadmap</a><span>URL tree, 30-day pod threads, six cluster maps, the linking law, distribution and the MCP play.</span></li></ul></div><div><h4>Learn the mechanics</h4><ul><li><a href="seo-from-zero.html">SEO From Zero</a><span>Every term defined against a real page you can open: money page, schema, anchor text, DR, KD, PBN.</span></li><li><a href="positioning-and-kd-ladder.html">Positioning &amp; the KD Ladder</a><span>Why we are an AI agent development company, how keyword difficulty really works, and the climb.</span></li><li><a href="niche-research.html">Niche Research</a><span>The keyword source data: volumes, difficulty and SERP checks behind the master table.</span></li><li><a href="page-types.html">Page Types Decoded</a><span>Money page, parent, child, hub, pillar, linkable asset, geo page: each with a live example.</span></li><li><a href="zero-click-marketing.html">Zero-Click Marketing</a><span>58.5% of searches end without a click. Why the distribution and MCP sections exist.</span></li><li><a href="wordpress-vs-webflow.html">WordPress vs Webflow</a><span>The platform decision, with the link-concentration arithmetic behind one domain, never split.</span></li></ul></div><div><h4>Build references</h4><ul><li><a href="site-prototype.html">Clickable Prototype</a><span>What the pages actually look like: homepage, service page, case study, cost pillar.</span></li><li><a href="site-blueprint.html">Site Blueprint</a><span>The earlier URL-by-URL pass. Superseded by the roadmap; kept for the reasoning.</span></li><li><a href="30-day-compression.html">The 30-Day Compression</a><span>What 50 people across two time zones can parallelise: and what no headcount speeds up.</span></li><li><a href="full-build-documentation.html">Full Build Documentation</a><span>The long-form roadmap plus the complete audit index. Original mermaid cluster maps.</span></li></ul></div><div><h4>The audits: internal</h4><ul><li class="here"><a href="audit-onegtmlab.html">onegtmlab.com (ours)</a><span>Our own site: 871 pages, 365 referring domains, zero organic traffic. Why.</span></li><li><a href="audit-appinventiv.html">Appinventiv</a><span>The architecture to copy: page-type system, 53:5 homepage ratio, refresh cadence.</span></li><li><a href="audit-searchable.html">searchable.com</a><span>0 to 2,229 visits in six months on 156 pages: and a 532-byte stub served to GPTBot.</span></li><li><a href="audit-genesysgrowth.html">genesysgrowth.com</a><span>364 posts in three days, peaked three months later. Where the publish-to-rank lag comes from.</span></li><li><a href="audit-omnibound.html">omnibound.ai</a><span>83% of posts under a byline with no bio or photo. Why named engineers are the moat.</span></li><li><a href="audit-appwrk.html">appwrk.com</a><span>Minus 95% traffic. 36 city pages measured 98–99% identical. The line not to cross.</span></li><li><a href="audit-techgropse.html">TechGropse</a><span>The collapse, the ccTLD reset, and how their inbound actually arrives.</span></li></ul></div></div></footer></body>
